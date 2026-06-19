@@ -23,9 +23,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-luxury-white dark:bg-luxury-black overflow-hidden selection:bg-brand-gold/20 text-brand-blue dark:text-luxury-white">
-      {/* Dynamic atmospheric ambient background canvas */}
-      <Atmosphere />
+    <div className="relative w-full min-h-screen bg-white overflow-hidden selection:bg-brand-gold/20 text-brand-blue">
 
       {/* Main Snap-Scroll Container */}
       <div id="snap-container" className="relative w-full h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth z-10">
@@ -56,7 +54,6 @@ export default function Home() {
 
         {/* SECTION 1 */}
         <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
-          <Image src="/vision/rheole_vision_network_1781893148900.png" alt="Vision" fill className="object-cover opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
           <motion.div 
             {...fadeInUp}
             className="max-w-4xl text-center z-10"
@@ -69,7 +66,6 @@ export default function Home() {
 
         {/* SECTION 2 */}
         <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
-          <Image src="/vision/rheole_vision_people_1781893159291.png" alt="Vision" fill className="object-cover opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
           <motion.div 
             {...fadeInUp}
             className="max-w-4xl text-center z-10"
@@ -82,7 +78,6 @@ export default function Home() {
 
         {/* SECTION 3 */}
         <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
-          <Image src="/vision/rheole_vision_map_1781893174344.png" alt="Vision" fill className="object-cover opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
           <motion.div 
             {...fadeInUp}
             className="max-w-4xl text-center z-10"
