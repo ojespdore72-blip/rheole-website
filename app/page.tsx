@@ -11,6 +11,8 @@ import RheoleLogo from "@/components/logo";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SeeMotion from "@/components/SeeMotion";
+import VisionCarousel from "@/components/VisionCarousel";
+import Image from "next/image";
 
 export default function Home() {
   const fadeInUp = {
@@ -53,10 +55,11 @@ export default function Home() {
         </section>
 
         {/* SECTION 1 */}
-        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
+          <Image src="/vision/rheole_vision_network_1781893148900.png" alt="Vision" fill className="object-cover opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
           <motion.div 
             {...fadeInUp}
-            className="max-w-4xl text-center"
+            className="max-w-4xl text-center z-10"
           >
             <h2 className="text-3xl md:text-6xl lg:text-7xl font-serif-editorial font-light leading-none text-brand-blue/90 dark:text-luxury-white/95">
               &ldquo;Civilization moves.&rdquo;
@@ -65,10 +68,11 @@ export default function Home() {
         </section>
 
         {/* SECTION 2 */}
-        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
+          <Image src="/vision/rheole_vision_people_1781893159291.png" alt="Vision" fill className="object-cover opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
           <motion.div 
             {...fadeInUp}
-            className="max-w-4xl text-center"
+            className="max-w-4xl text-center z-10"
           >
             <h2 className="text-3xl md:text-6xl lg:text-7xl font-serif-editorial font-light leading-none text-brand-blue/90 dark:text-luxury-white/95">
               &ldquo;People move.&rdquo;
@@ -77,15 +81,21 @@ export default function Home() {
         </section>
 
         {/* SECTION 3 */}
-        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
+          <Image src="/vision/rheole_vision_map_1781893174344.png" alt="Vision" fill className="object-cover opacity-[0.03] dark:opacity-[0.05] pointer-events-none" />
           <motion.div 
             {...fadeInUp}
-            className="max-w-4xl text-center"
+            className="max-w-4xl text-center z-10"
           >
             <h2 className="text-3xl md:text-6xl lg:text-7xl font-serif-editorial font-light leading-none text-brand-blue/90 dark:text-luxury-white/95">
               &ldquo;Information moves.&rdquo;
             </h2>
           </motion.div>
+        </section>
+
+        {/* VISION CAROUSEL SECTION */}
+        <section className="relative w-full min-h-screen flex flex-col justify-center snap-start snap-always">
+          <VisionCarousel />
         </section>
 
         {/* SECTION 4 — CONVERGENCE */}
