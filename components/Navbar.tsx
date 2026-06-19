@@ -13,7 +13,6 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
     { name: "About", path: "/about" },
     { name: "Manifesto", path: "/manifesto" },
     { name: "Security", path: "/security" },
-    { name: "Developer", path: "/developer" },
     { name: "Careers", path: "/careers" },
     { name: "Contact", path: "/contact" },
   ];
