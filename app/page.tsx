@@ -10,6 +10,41 @@ import RheoleLogo from "@/components/logo";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SeeMotion from "@/components/SeeMotion";
+import StatementSection from "@/components/StatementSection";
+
+const civilizationWords = [
+  "Civilization", "Cities", "Communities", "Neighborhoods", "Architecture", 
+  "Infrastructure", "Transit", "Mobility", "Discovery", "Markets", 
+  "Trade", "Culture", "Society", "Progress", "Innovation", 
+  "Knowledge", "Education", "Commerce", "History", "Generations", 
+  "Public Space", "Belonging", "Movement", "Exchange", "Connection", 
+  "Identity", "Growth", "Development", "Craftsmanship", "Creation", 
+  "Urban Life", "Cultural Memory", "Economic Activity", "Human Progress", "Shared Spaces", 
+  "Local Discovery", "Collective Intelligence", "The Built World", "Connected Places", "Living Cities", 
+  "Evolving Communities"
+];
+
+const peopleWords = [
+  "People", "Movement", "Journeys", "Exploration", "Discovery", 
+  "Belonging", "Connection", "Friendship", "Families", "Relationships", 
+  "Gathering", "Participation", "Learning", "Celebration", "Conversation", 
+  "Collaboration", "Experiences", "Interaction", "Curiosity", "Adventure", 
+  "Purpose", "Presence", "Identity", "Communities", "Engagement", 
+  "Travel", "Navigation", "Sharing", "Creation", "Contribution", 
+  "Local Life", "Human Stories", "Daily Rituals", "Social Fabric", "Collective Experience", 
+  "Shared Moments", "Meaningful Encounters", "Human Connection", "The Human Network", "Life In Motion"
+];
+
+const informationWords = [
+  "Information", "Knowledge", "Signals", "Awareness", "Context", 
+  "Understanding", "Discovery", "Insights", "Intelligence", "Communication", 
+  "Events", "Patterns", "Networks", "Visibility", "Realtime", 
+  "Updates", "Coordination", "Meaning", "Attention", "Learning", 
+  "Observation", "Analysis", "Understanding", "Momentum", "Connections", 
+  "Data", "Contextual Intelligence", "Community Signals", "Live Activity", "Local Awareness", 
+  "Collective Knowledge", "Emerging Patterns", "Human Intelligence", "Shared Understanding", "Connected Information", 
+  "Spatial Intelligence", "World Awareness", "Actionable Insight", "The Pulse Of Your World"
+];
 
 export default function Home() {
   const fadeInUp = {
@@ -59,41 +94,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION 1 */}
-        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-4xl text-center z-10"
-          >
-            <h2 className="text-3xl md:text-6xl lg:text-7xl font-serif-editorial font-light leading-none text-brand-blue/90 dark:text-luxury-white/95">
-              &ldquo;Civilization moves.&rdquo;
-            </h2>
-          </motion.div>
-        </section>
-
-        {/* SECTION 2 */}
-        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-4xl text-center z-10"
-          >
-            <h2 className="text-3xl md:text-6xl lg:text-7xl font-serif-editorial font-light leading-none text-brand-blue/90 dark:text-luxury-white/95">
-              &ldquo;People move.&rdquo;
-            </h2>
-          </motion.div>
-        </section>
-
-        {/* SECTION 3 */}
-        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-4xl text-center z-10"
-          >
-            <h2 className="text-3xl md:text-6xl lg:text-7xl font-serif-editorial font-light leading-none text-brand-blue/90 dark:text-luxury-white/95">
-              &ldquo;Information moves.&rdquo;
-            </h2>
-          </motion.div>
-        </section>
+        {/* STATEMENT SECTIONS WITH STICKY SCROLL REVEAL */}
+        <StatementSection statement="Civilization moves." words={civilizationWords} />
+        <StatementSection statement="People move." words={peopleWords} />
+        <StatementSection statement="Information moves." words={informationWords} />
 
 
 
