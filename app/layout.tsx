@@ -33,6 +33,14 @@ export const metadata: Metadata = {
     title: "Rheole",
     description: "The intelligence layer between people and the physical world.",
   },
+  icons: {
+    icon: [
+      { url: "/rheole-brand-logo.png", type: "image/png" }
+    ],
+    apple: [
+      { url: "/rheole-brand-logo.png", sizes: "180x180", type: "image/png" }
+    ]
+  }
 };
 
 export default function RootLayout({

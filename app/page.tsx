@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Atmosphere from "@/components/Atmosphere";
 import LivingEnvironment from "@/components/LivingEnvironment";
 import QueryPrompt from "@/components/QueryPrompt";
 import WaitlistForm from "@/components/WaitlistForm";
@@ -11,8 +10,6 @@ import RheoleLogo from "@/components/logo";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SeeMotion from "@/components/SeeMotion";
-import VisionCarousel from "@/components/VisionCarousel";
-import Image from "next/image";
 
 export default function Home() {
   const fadeInUp = {
@@ -98,10 +95,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* VISION CAROUSEL SECTION */}
-        <section className="relative w-full min-h-screen flex flex-col justify-center snap-start snap-always">
-          <VisionCarousel />
-        </section>
+
 
         {/* SECTION 4 — CONVERGENCE */}
         <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
