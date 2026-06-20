@@ -12,7 +12,7 @@ export default function RheoleLogo({
 }: RheoleLogoProps) {
   // variant "icon" refers to rheole-brand-logo.png (the wave icon)
   // variant "wordmark" refers to rheole-actual-logo.png (the "Rheole" text logo)
-  const src = variant === "icon" ? "/rheole-brand-logo.png?v=5" : "/rheole-actual-logo.png?v=5";
+  const src = variant === "icon" ? "/rheole-brand-logo.png?v=5" : "/rheole-web-text-final-logo.png?v=5";
 
   return (
     <img
