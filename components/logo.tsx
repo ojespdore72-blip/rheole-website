@@ -12,13 +12,13 @@ export default function RheoleLogo({
 }: RheoleLogoProps) {
   // variant "icon" refers to rheole-brand-logo.png (the wave icon)
   // variant "wordmark" refers to rheole-actual-logo.png (the "Rheole" text logo)
-  const src = variant === "icon" ? "/rheole-brand-logo.jpeg?v=4" : "/rheole-actual-logo.png?v=4";
+  const src = variant === "icon" ? "/rheole-brand-logo.png?v=5" : "/rheole-actual-logo.png?v=5";
 
   return (
     <img
       src={src}
       alt={alt}
-      className={`${className} object-contain`}
+      className={`${className} object-contain dark:invert`}
       {...props}
     />
   );

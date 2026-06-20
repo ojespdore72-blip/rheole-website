@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CookieConsent from "@/components/CookieConsent";
+import ClientMotionConfig from "@/components/ClientMotionConfig";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -64,9 +65,11 @@ export default function RootLayout({
         />
         <Navbar isGlobal />
         <main className="flex-grow flex flex-col w-full">
-          <ErrorBoundary>
-            {children}
-          </ErrorBoundary>
+          <ClientMotionConfig>
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
+          </ClientMotionConfig>
         </main>
         <Footer isGlobal />
         <CookieConsent />

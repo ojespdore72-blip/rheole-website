@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import Image from "next/image";
 
 const visions = [
@@ -25,6 +25,26 @@ const visions = [
   }
 ];
 
+interface ProgressDotProps {
+  index: number;
+  scrollXProgress: MotionValue<number>;
+  total: number;
+}
+
+function ProgressDot({ index, scrollXProgress, total }: ProgressDotProps) {
+  const opacity = useTransform(
+    scrollXProgress,
+    [(index - 0.5) / total, index / total, (index + 0.5) / total],
+    [0.2, 1, 0.2]
+  );
+  return (
+    <motion.div
+      className="w-2 h-2 rounded-full bg-brand-gold"
+      style={{ opacity }}
+    />
+  );
+}
+
 export default function VisionCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollXProgress } = useScroll({ container: containerRef });
@@ -38,12 +58,11 @@ export default function VisionCarousel() {
         <div className="hidden md:flex gap-2">
           {/* Progress indicator dots */}
           {visions.map((_, i) => (
-            <motion.div
+            <ProgressDot
               key={i}
-              className="w-2 h-2 rounded-full bg-brand-gold"
-              style={{
-                opacity: useTransform(scrollXProgress, [(i - 0.5) / visions.length, i / visions.length, (i + 0.5) / visions.length], [0.2, 1, 0.2])
-              }}
+              index={i}
+              scrollXProgress={scrollXProgress}
+              total={visions.length}
             />
           ))}
         </div>

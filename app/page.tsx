@@ -32,13 +32,23 @@ export default function Home() {
         {/* HERO EXPERIENCE */}
         <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <div className="flex flex-col items-center gap-12 text-center">
-            {/* Cinematic Apple-style entrance */}
+            {/* Premium cinematic entrance + continuous levitation float */}
             <motion.div
-              initial={{ scale: 3.5, opacity: 0, filter: "blur(20px)" }}
+              initial={{ scale: 0.3, opacity: 0, filter: "blur(15px)" }}
               animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-              transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1] }}
             >
-              <RheoleLogo className="h-32 w-32 drop-shadow-[0_0_35px_rgba(79,70,229,0.3)] transition-transform duration-[4s] hover:scale-105" />
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  duration: 4.5,
+                  ease: "easeInOut"
+                }}
+              >
+                <RheoleLogo className="h-32 w-32 drop-shadow-[0_0_35px_rgba(79,70,229,0.25)] transition-transform duration-300 hover:scale-105" />
+              </motion.div>
             </motion.div>
 
             <motion.h1
