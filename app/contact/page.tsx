@@ -333,7 +333,7 @@ export default function Contact() {
         {/* Brand Block */}
         <div className="flex flex-col gap-1 mt-6 text-[10px] uppercase tracking-widest text-brand-blue/35 dark:text-luxury-white/35">
           <span>RHEOLE TECHNOLOGIES PRIVATE LIMITED</span>
-          <span className="text-brand-gold font-medium">The Pulse of Your World.</span>
+          <span className="text-luxury-black dark:text-luxury-white font-medium">The Pulse of Your World.</span>
         </div>
       </motion.div>
     </div>

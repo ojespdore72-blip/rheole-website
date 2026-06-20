@@ -45,7 +45,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30, letterSpacing: "0.1em" }}
               animate={{ opacity: 1, y: 0, letterSpacing: "0.25em" }}
               transition={{ delay: 0.8, duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl md:text-7xl lg:text-8xl font-light tracking-[0.25em] uppercase leading-none text-gradient-gold-blue"
+              className="text-4xl md:text-7xl lg:text-8xl font-light tracking-[0.25em] uppercase leading-none text-luxury-black"
             >
               THE PULSE OF YOUR WORLD
             </motion.h1>
