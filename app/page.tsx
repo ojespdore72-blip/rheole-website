@@ -12,38 +12,58 @@ import Navbar from "@/components/Navbar";
 import SeeMotion from "@/components/SeeMotion";
 import StatementSection from "@/components/StatementSection";
 
-const civilizationWords = [
-  "Civilization", "Cities", "Communities", "Neighborhoods", "Architecture", 
-  "Infrastructure", "Transit", "Mobility", "Discovery", "Markets", 
-  "Trade", "Culture", "Society", "Progress", "Innovation", 
-  "Knowledge", "Education", "Commerce", "History", "Generations", 
-  "Public Space", "Belonging", "Movement", "Exchange", "Connection", 
-  "Identity", "Growth", "Development", "Craftsmanship", "Creation", 
-  "Urban Life", "Cultural Memory", "Economic Activity", "Human Progress", "Shared Spaces", 
-  "Local Discovery", "Collective Intelligence", "The Built World", "Connected Places", "Living Cities", 
-  "Evolving Communities"
+interface WordItem {
+  text: string;
+  top: string;
+  left: string;
+  fontSize: string;
+  opacity: number;
+  animationClass?: string;
+}
+
+const civilizationWords: WordItem[] = [
+  { text: "Infrastructure", top: "12%", left: "15%", fontSize: "text-[10px] md:text-xs", opacity: 0.08, animationClass: "" },
+  { text: "Spatial Matrix", top: "25%", left: "70%", fontSize: "text-xs md:text-sm", opacity: 0.12, animationClass: "" },
+  { text: "Expansion", top: "82%", left: "10%", fontSize: "text-[10px] md:text-xs", opacity: 0.07, animationClass: "" },
+  { text: "Networks", top: "78%", left: "80%", fontSize: "text-sm md:text-base", opacity: 0.11, animationClass: "" },
+  { text: "Evolution", top: "18%", left: "45%", fontSize: "text-[10px] md:text-xs", opacity: 0.06, animationClass: "" },
+  { text: "Metropolis", top: "68%", left: "22%", fontSize: "text-xs md:text-sm", opacity: 0.09, animationClass: "" },
+  { text: "Architecture", top: "40%", left: "8%", fontSize: "text-[11px] md:text-xs", opacity: 0.08, animationClass: "" },
+  { text: "Urban Flow", top: "88%", left: "48%", fontSize: "text-xs md:text-sm", opacity: 0.07, animationClass: "" },
+  { text: "Chronology", top: "32%", left: "82%", fontSize: "text-[10px] md:text-xs", opacity: 0.05, animationClass: "" },
+  { text: "Cooperative Progress", top: "58%", left: "78%", fontSize: "text-[11px] md:text-xs", opacity: 0.10, animationClass: "" },
+  { text: "Regional Systems", top: "15%", left: "80%", fontSize: "text-xs md:text-sm", opacity: 0.06, animationClass: "" },
+  { text: "Foundation", top: "90%", left: "28%", fontSize: "text-[10px] md:text-xs", opacity: 0.08, animationClass: "" },
 ];
 
-const peopleWords = [
-  "People", "Movement", "Journeys", "Exploration", "Discovery", 
-  "Belonging", "Connection", "Friendship", "Families", "Relationships", 
-  "Gathering", "Participation", "Learning", "Celebration", "Conversation", 
-  "Collaboration", "Experiences", "Interaction", "Curiosity", "Adventure", 
-  "Purpose", "Presence", "Identity", "Communities", "Engagement", 
-  "Travel", "Navigation", "Sharing", "Creation", "Contribution", 
-  "Local Life", "Human Stories", "Daily Rituals", "Social Fabric", "Collective Experience", 
-  "Shared Moments", "Meaningful Encounters", "Human Connection", "The Human Network", "Life In Motion"
+const peopleWords: WordItem[] = [
+  { text: "Community", top: "15%", left: "12%", fontSize: "text-xs md:text-sm", opacity: 0.12, animationClass: "" },
+  { text: "Encounters", top: "28%", left: "75%", fontSize: "text-[10px] md:text-xs", opacity: 0.07, animationClass: "" },
+  { text: "Density Resonance", top: "80%", left: "15%", fontSize: "text-sm md:text-base", opacity: 0.11, animationClass: "" },
+  { text: "Interaction", top: "76%", left: "80%", fontSize: "text-xs md:text-sm", opacity: 0.08, animationClass: "" },
+  { text: "Mobility", top: "18%", left: "48%", fontSize: "text-[10px] md:text-xs", opacity: 0.06, animationClass: "" },
+  { text: "Collective Flows", top: "68%", left: "18%", fontSize: "text-xs md:text-sm", opacity: 0.09, animationClass: "" },
+  { text: "Gathering", top: "38%", left: "10%", fontSize: "text-[11px] md:text-xs", opacity: 0.08, animationClass: "" },
+  { text: "Harmonious Spaces", top: "88%", left: "50%", fontSize: "text-xs md:text-sm", opacity: 0.07, animationClass: "" },
+  { text: "Frequency", top: "32%", left: "82%", fontSize: "text-[10px] md:text-xs", opacity: 0.05, animationClass: "" },
+  { text: "People Move", top: "58%", left: "78%", fontSize: "text-[11px] md:text-xs", opacity: 0.10, animationClass: "" },
+  { text: "Pulse", top: "18%", left: "82%", fontSize: "text-xs md:text-sm", opacity: 0.06, animationClass: "" },
+  { text: "Connections", top: "90%", left: "32%", fontSize: "text-[10px] md:text-xs", opacity: 0.08, animationClass: "" },
 ];
 
-const informationWords = [
-  "Information", "Knowledge", "Signals", "Awareness", "Context", 
-  "Understanding", "Discovery", "Insights", "Intelligence", "Communication", 
-  "Events", "Patterns", "Networks", "Visibility", "Realtime", 
-  "Updates", "Coordination", "Meaning", "Attention", "Learning", 
-  "Observation", "Analysis", "Understanding", "Momentum", "Connections", 
-  "Data", "Contextual Intelligence", "Community Signals", "Live Activity", "Local Awareness", 
-  "Collective Knowledge", "Emerging Patterns", "Human Intelligence", "Shared Understanding", "Connected Information", 
-  "Spatial Intelligence", "World Awareness", "Actionable Insight", "The Pulse Of Your World"
+const informationWords: WordItem[] = [
+  { text: "Digital Streams", top: "14%", left: "10%", fontSize: "text-xs md:text-sm", opacity: 0.12, animationClass: "" },
+  { text: "Dynamic Data", top: "24%", left: "72%", fontSize: "text-[10px] md:text-xs", opacity: 0.07, animationClass: "" },
+  { text: "Ephemeral Pulse", top: "82%", left: "18%", fontSize: "text-sm md:text-base", opacity: 0.11, animationClass: "" },
+  { text: "Routing Protocols", top: "76%", left: "78%", fontSize: "text-xs md:text-sm", opacity: 0.08, animationClass: "" },
+  { text: "Convergence", top: "18%", left: "50%", fontSize: "text-[10px] md:text-xs", opacity: 0.06, animationClass: "" },
+  { text: "Integrity", top: "68%", left: "15%", fontSize: "text-xs md:text-sm", opacity: 0.09, animationClass: "" },
+  { text: "Signal", top: "38%", left: "12%", fontSize: "text-[11px] md:text-xs", opacity: 0.08, animationClass: "" },
+  { text: "Transmission", top: "88%", left: "48%", fontSize: "text-xs md:text-sm", opacity: 0.07, animationClass: "" },
+  { text: "Synchronicity", top: "30%", left: "84%", fontSize: "text-[10px] md:text-xs", opacity: 0.05, animationClass: "" },
+  { text: "Intelligence Layer", top: "58%", left: "76%", fontSize: "text-[11px] md:text-xs", opacity: 0.10, animationClass: "" },
+  { text: "Data Convergence", top: "16%", left: "78%", fontSize: "text-xs md:text-sm", opacity: 0.06, animationClass: "" },
+  { text: "Resilience", top: "90%", left: "30%", fontSize: "text-[10px] md:text-xs", opacity: 0.08, animationClass: "" },
 ];
 
 export default function Home() {

@@ -3,8 +3,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+interface WordItem {
+  text: string;
+  top: string;
+  left: string;
+  fontSize: string;
+  opacity: number;
+  animationClass?: string;
+}
+
 interface TypographyFieldProps {
-  words: string[];
+  words: WordItem[];
   reveal: boolean;
 }
 
@@ -14,59 +23,6 @@ interface AnimatedWordProps {
   delay: number;
   baseOpacity: number;
 }
-
-// 40 Hand-crafted slots layout with safe, well-spaced coordinates.
-// Center zone (Top: 38%-62%, Left: 30%-70%) is kept clear for negative space.
-// Coordinates are carefully budgeted to guarantee zero overlap.
-const slots = [
-  // Quadrant 1 (Top Left)
-  { top: "5%", left: "4%", fontSize: "text-[10px] md:text-xs", opacity: 0.10 },
-  { top: "6%", left: "26%", fontSize: "text-xs md:text-sm", opacity: 0.15 },
-  { top: "14%", left: "8%", fontSize: "text-[11px] md:text-xs", opacity: 0.12 },
-  { top: "15%", left: "30%", fontSize: "text-sm md:text-md", opacity: 0.20 },
-  { top: "23%", left: "5%", fontSize: "text-xs md:text-sm", opacity: 0.18 },
-  { top: "24%", left: "22%", fontSize: "text-md md:text-lg", opacity: 0.24 },
-  { top: "31%", left: "10%", fontSize: "text-lg md:text-xl", opacity: 0.28 },
-  { top: "32%", left: "28%", fontSize: "text-xl md:text-2xl", opacity: 0.35 },
-  { top: "38%", left: "4%", fontSize: "text-lg", opacity: 0.28 },
-  { top: "39%", left: "18%", fontSize: "text-xl md:text-2xl", opacity: 0.32 },
-
-  // Quadrant 2 (Top Right)
-  { top: "4%", left: "86%", fontSize: "text-[10px] md:text-xs", opacity: 0.10 },
-  { top: "5%", left: "64%", fontSize: "text-xs md:text-sm", opacity: 0.15 },
-  { top: "13%", left: "81%", fontSize: "text-[11px] md:text-xs", opacity: 0.12 },
-  { top: "14%", left: "55%", fontSize: "text-sm md:text-md", opacity: 0.20 },
-  { top: "22%", left: "88%", fontSize: "text-xs md:text-sm", opacity: 0.18 },
-  { top: "23%", left: "68%", fontSize: "text-md md:text-lg", opacity: 0.24 },
-  { top: "30%", left: "78%", fontSize: "text-lg md:text-xl", opacity: 0.28 },
-  { top: "31%", left: "57%", fontSize: "text-xl md:text-2xl", opacity: 0.35 },
-  { top: "38%", left: "84%", fontSize: "text-lg", opacity: 0.28 },
-  { top: "39%", left: "70%", fontSize: "text-xl md:text-2xl", opacity: 0.32 },
-
-  // Quadrant 3 (Bottom Left)
-  { top: "92%", left: "5%", fontSize: "text-[10px] md:text-xs", opacity: 0.10 },
-  { top: "89%", left: "22%", fontSize: "text-xs md:text-sm", opacity: 0.15 },
-  { top: "81%", left: "8%", fontSize: "text-[11px] md:text-xs", opacity: 0.12 },
-  { top: "78%", left: "28%", fontSize: "text-sm md:text-md", opacity: 0.20 },
-  { top: "71%", left: "4%", fontSize: "text-xs md:text-sm", opacity: 0.18 },
-  { top: "68%", left: "20%", fontSize: "text-md md:text-lg", opacity: 0.24 },
-  { top: "61%", left: "10%", fontSize: "text-lg md:text-xl", opacity: 0.28 },
-  { top: "58%", left: "26%", fontSize: "text-xl md:text-2xl", opacity: 0.35 },
-  { top: "52%", left: "4%", fontSize: "text-lg", opacity: 0.28 },
-  { top: "49%", left: "18%", fontSize: "text-xl md:text-2xl", opacity: 0.32 },
-
-  // Quadrant 4 (Bottom Right)
-  { top: "92%", left: "85%", fontSize: "text-[10px] md:text-xs", opacity: 0.10 },
-  { top: "89%", left: "65%", fontSize: "text-xs md:text-sm", opacity: 0.15 },
-  { top: "82%", left: "81%", fontSize: "text-[11px] md:text-xs", opacity: 0.12 },
-  { top: "78%", left: "57%", fontSize: "text-sm md:text-md", opacity: 0.20 },
-  { top: "71%", left: "88%", fontSize: "text-xs md:text-sm", opacity: 0.18 },
-  { top: "68%", left: "70%", fontSize: "text-md md:text-lg", opacity: 0.24 },
-  { top: "61%", left: "78%", fontSize: "text-lg md:text-xl", opacity: 0.28 },
-  { top: "58%", left: "59%", fontSize: "text-xl md:text-2xl", opacity: 0.35 },
-  { top: "51%", left: "84%", fontSize: "text-lg", opacity: 0.28 },
-  { top: "49%", left: "68%", fontSize: "text-xl md:text-2xl", opacity: 0.32 },
-];
 
 function AnimatedWord({ text, reveal, delay, baseOpacity }: AnimatedWordProps) {
   const characters = Array.from(text);
@@ -122,9 +78,6 @@ function AnimatedWord({ text, reveal, delay, baseOpacity }: AnimatedWordProps) {
 export default function TypographyField({ words, reveal }: TypographyFieldProps) {
   const animScopeId = React.useId().replace(/:/g, "-");
 
-  // Keep it limited to slots length to ensure 1:1 mapping with no duplicates or overlaps
-  const uniqueWords = words.slice(0, slots.length);
-
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
       {/* 
@@ -172,8 +125,7 @@ export default function TypographyField({ words, reveal }: TypographyFieldProps)
         }
       `}} />
 
-      {uniqueWords.map((wordText, index) => {
-        const slot = slots[index % slots.length];
+      {words.map((item, index) => {
         const animClass = `anim-drift-${(index % 4) + 1}-${animScopeId}`;
         const colorClass = "text-brand-blue/90 dark:text-luxury-white/95";
         
@@ -183,18 +135,18 @@ export default function TypographyField({ words, reveal }: TypographyFieldProps)
         return (
           <div
             key={index}
-            className={`absolute font-serif-editorial uppercase tracking-[0.05em] md:tracking-[0.08em] whitespace-nowrap ${slot.fontSize} ${colorClass} ${animClass}`}
+            className={`absolute font-serif-editorial uppercase tracking-[0.05em] md:tracking-[0.08em] whitespace-nowrap ${item.fontSize} ${colorClass} ${animClass}`}
             style={{
-              top: slot.top,
-              left: slot.left,
+              top: item.top,
+              left: item.left,
               willChange: "transform",
             }}
           >
             <AnimatedWord 
-              text={wordText} 
+              text={item.text} 
               reveal={reveal} 
               delay={wordDelay} 
-              baseOpacity={slot.opacity} 
+              baseOpacity={item.opacity} 
             />
           </div>
         );

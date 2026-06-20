@@ -4,9 +4,18 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import TypographyField from "./TypographyField";
 
+interface WordItem {
+  text: string;
+  top: string;
+  left: string;
+  fontSize: string;
+  opacity: number;
+  animationClass?: string;
+}
+
 interface StatementSectionProps {
   statement: string;
-  words: string[];
+  words: WordItem[];
 }
 
 export default function StatementSection({ statement, words }: StatementSectionProps) {

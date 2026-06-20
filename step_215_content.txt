@@ -1,0 +1,4 @@
+Created At: 2026-06-20T14:24:09Z
+Tool is running as a background task with task id: 7f1c5aef-6170-4f16-ac3b-200e56482bbb/task-215
+Task Description: npm run build
+Task logs are available at: file:///C:/Users/Balachandra/.gemini/antigravity-ide/brain/7f1c5aef-6170-4f16-ac3b-200e56482bbb/.system_generated/tasks/task-215.log
