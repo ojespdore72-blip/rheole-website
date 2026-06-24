@@ -16,8 +16,8 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
         {/* Brand Column */}
         <div className="flex flex-col items-start gap-4">
-          <div className="flex items-center gap-3">
-            <RheoleLogo className="h-7 w-auto md:h-9" />
+          <div className="flex items-center gap-4">
+            <RheoleLogo className="h-8 w-auto md:h-10.5" />
             <RheoleLogo variant="wordmark" className="h-7 md:h-9 w-auto" />
           </div>
           <p className="text-xs text-brand-blue/50 dark:text-luxury-white/40 max-w-xs leading-relaxed">

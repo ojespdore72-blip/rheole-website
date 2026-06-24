@@ -20,8 +20,8 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
   return (
     <header className="absolute top-0 left-0 right-0 z-50 px-6 md:px-12 py-6">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3 bg-transparent">
-        <Link href="/" className="flex items-center gap-3 group">
-          <RheoleLogo className="h-5 w-auto md:h-6 rounded-lg transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" />
+        <Link href="/" className="flex items-center gap-4 group">
+          <RheoleLogo className="h-6 w-auto md:h-7 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" />
           <RheoleLogo variant="wordmark" className="h-5 w-auto md:h-6 transition-all duration-300 group-hover:scale-105" />
         </Link>
 
