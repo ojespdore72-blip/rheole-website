@@ -35,10 +35,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/rheole-app-icon.jpg", type: "image/jpeg" }
+      { url: "/rheole-app-icon-transparent.png", type: "image/png" }
     ],
     apple: [
-      { url: "/rheole-app-icon.jpg", sizes: "180x180", type: "image/jpeg" }
+      { url: "/rheole-app-icon-transparent.png", sizes: "180x180", type: "image/png" }
     ]
   }
 };
