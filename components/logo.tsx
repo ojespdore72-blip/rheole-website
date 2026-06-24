@@ -10,15 +10,15 @@ export default function RheoleLogo({
   alt = "Rheole Logo",
   ...props
 }: RheoleLogoProps) {
-  // variant "icon" refers to rheole-brand-logo.png (the wave icon)
-  // variant "wordmark" refers to rheole-actual-logo.png (the "Rheole" text logo)
-  const src = variant === "icon" ? "/rheole-brand-logo.png?v=5" : "/rheole-web-text-final-logo.png?v=5";
+  // variant "icon" refers to rheole-app-icon.jpg (the app icon logo)
+  // variant "wordmark" refers to rheole-web-text-final-logo.png (the "Rheole" text logo)
+  const src = variant === "icon" ? "/rheole-app-icon.jpg?v=5" : "/rheole-web-text-final-logo.png?v=5";
 
   return (
     <img
       src={src}
       alt={alt}
-      className={`${className} object-contain dark:invert`}
+      className={`${className} object-contain`}
       {...props}
     />
   );
