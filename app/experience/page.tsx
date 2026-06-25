@@ -219,7 +219,7 @@ export default function ExperienceNarrative() {
       <main className="flex-1 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-6 lg:px-12 py-12 relative z-10">
         
         {/* Left Column: Narrative Text */}
-        <div className="lg:w-5/12 flex flex-col justify-center h-full gap-8 z-20">
+        <div className="lg:w-5/12 flex flex-col justify-center h-full gap-4 lg:gap-8 z-20 text-center lg:text-left order-2 lg:order-1 mt-6 lg:mt-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={screen}
@@ -227,19 +227,19 @@ export default function ExperienceNarrative() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-6"
+              className="flex flex-col gap-3 lg:gap-6"
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light font-serif-editorial text-luxury-white leading-tight">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-light font-serif-editorial text-luxury-white leading-tight">
                 {NARRATIVE[screen].title}
               </h1>
-              <p className="text-lg md:text-xl font-light text-luxury-white/60 leading-relaxed font-sans max-w-md">
+              <p className="text-sm md:text-lg font-light text-luxury-white/60 leading-relaxed font-sans max-w-md mx-auto lg:mx-0">
                 {NARRATIVE[screen].desc}
               </p>
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Controls */}
-          <div className="flex items-center gap-4 mt-8">
+          {/* Desktop Navigation Controls */}
+          <div className="hidden lg:flex items-center gap-4 mt-8">
             <button
               onClick={handlePrev}
               disabled={screen === 0}
@@ -258,8 +258,13 @@ export default function ExperienceNarrative() {
         </div>
 
         {/* Right Column: The Device Mockup */}
-        <div className="lg:w-6/12 flex justify-center items-center relative mt-16 lg:mt-0">
+        <div className="lg:w-6/12 flex justify-center items-center relative order-1 lg:order-2 w-full">
           
+          {/* Mobile Interaction Hint */}
+          <div className="absolute -top-8 text-center w-full lg:hidden animate-pulse text-[9px] uppercase tracking-widest text-brand-gold font-mono z-50">
+            Tap the phone screen to interact
+          </div>
+
           {/* Ambient Device Glow */}
           <motion.div 
             animate={{ 
@@ -274,13 +279,28 @@ export default function ExperienceNarrative() {
           <motion.div 
             layout
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className={`relative rounded-[48px] bg-black border-[8px] border-[#1a1a1a] shadow-2xl overflow-hidden flex flex-col justify-between ${
-              screen === 9 ? 'w-[360px] h-[720px] lg:w-[400px] lg:h-[800px]' : 'w-[320px] h-[660px]'
-            }`}
+            className={`relative rounded-[40px] lg:rounded-[48px] bg-black border-[6px] lg:border-[8px] border-[#1a1a1a] shadow-2xl overflow-hidden flex flex-col justify-between ${
+              screen === 9 ? 'w-[320px] h-[640px] lg:w-[400px] lg:h-[800px]' : 'w-[280px] h-[580px] lg:w-[320px] lg:h-[660px]'
+            } mx-auto`}
           >
             {/* Inner Screen Bezel */}
-            <div className="relative w-full h-full rounded-[38px] overflow-hidden bg-[#05050C] flex flex-col">
+            <div className="relative w-full h-full rounded-[34px] lg:rounded-[38px] overflow-hidden bg-[#05050C] flex flex-col group">
               
+              {/* Invisible Tap Zones for Mobile & Desktop Operation */}
+              <div className="absolute inset-0 z-[60] flex">
+                <button 
+                  className="w-1/2 h-full cursor-w-resize outline-none focus:outline-none focus-visible:bg-white/5 transition-colors" 
+                  onClick={handlePrev}
+                  disabled={screen === 0}
+                  aria-label="Previous screen"
+                />
+                <button 
+                  className="w-1/2 h-full cursor-e-resize outline-none focus:outline-none focus-visible:bg-white/5 transition-colors" 
+                  onClick={handleNext}
+                  aria-label="Next screen"
+                />
+              </div>
+
               {/* Dynamic Island / Notch */}
               <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-50 flex items-center justify-between px-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-brand-gold/50" />
