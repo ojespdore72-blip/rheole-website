@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import LivingEnvironment from "@/components/LivingEnvironment";
+import { motion, AnimatePresence } from "framer-motion";
+
 import QueryPrompt from "@/components/QueryPrompt";
 import WaitlistForm from "@/components/WaitlistForm";
 import RheoleLogo from "@/components/logo";
@@ -67,6 +67,9 @@ const informationWords: WordItem[] = [
 ];
 
 export default function Home() {
+  const [activeCohort, setActiveCohort] = useState<"explorers" | "collectives" | "organisers">("explorers");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
     whileInView: { opacity: 1, y: 0 },
@@ -114,16 +117,42 @@ export default function Home() {
           </div>
         </section>
 
-        {/* STATEMENT SECTIONS WITH STICKY SCROLL REVEAL */}
-        <StatementSection statement="Civilization moves." words={civilizationWords} />
-        <StatementSection statement="People move." words={peopleWords} />
-        <StatementSection statement="Information moves." words={informationWords} />
+        {/* SECTION 2 — STATEMENT INDEX */}
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center md:snap-start md:snap-always px-6 md:px-12 py-20 md:py-0 border-t border-brand-blue/5">
+          <div className="max-w-6xl w-full mx-auto flex flex-col gap-12 select-none">
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 0.6, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4 }}
+              className="text-4xl md:text-7xl font-serif-editorial font-light leading-none text-brand-blue/60"
+            >
+              Civilization moves.
+            </motion.h2>
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 0.8, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, delay: 0.3 }}
+              className="text-4xl md:text-7xl font-serif-editorial font-light leading-none text-brand-blue/80"
+            >
+              People move.
+            </motion.h2>
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, delay: 0.6 }}
+              className="text-4xl md:text-7xl font-serif-editorial font-light leading-none text-brand-blue"
+            >
+              Information moves.
+            </motion.h2>
+          </div>
+        </section>
 
-
-
-        {/* SECTION 4 — CONVERGENCE */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6 overflow-hidden">
-          {/* Subtle emerging abstract cityscape wireframe */}
+        {/* SECTION 3 — PRODUCT DESCRIPTION */}
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center md:snap-start md:snap-always px-6 md:px-12 py-20 md:py-0 overflow-hidden border-t border-brand-blue/5">
+          {/* Subtle emerging abstract cityscape wireframe background */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 0.12, scale: 1 }}
@@ -131,7 +160,7 @@ export default function Home() {
             transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0"
           >
-            <svg width="80%" height="80%" viewBox="0 0 1000 600" fill="none" className="stroke-brand-blue dark:stroke-luxury-white opacity-40">
+            <svg width="80%" height="80%" viewBox="0 0 1000 600" fill="none" className="stroke-brand-blue opacity-40">
               <path d="M500,50 L900,250 L500,450 L100,250 Z" strokeWidth="0.5" />
               <path d="M500,150 L800,300 L500,450 L200,300 Z" strokeWidth="0.5" strokeDasharray="4 8" />
               <path d="M500,50 L500,450" strokeWidth="0.5" />
@@ -143,46 +172,176 @@ export default function Home() {
             </svg>
           </motion.div>
 
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-4xl text-center z-10 px-6"
-          >
-            <p className="text-xl md:text-3xl lg:text-4xl font-light leading-relaxed font-serif-editorial italic text-brand-blue/70 dark:text-luxury-white/75">
-              An invisible layer connecting everything.
-            </p>
-          </motion.div>
-        </section>
-
-        {/* SECTION 5 — INTERACTIVE WORLD EXPERIENCE */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center md:snap-start md:snap-always px-6 md:px-12 py-16 md:py-0">
-          <div className="max-w-6xl w-full mx-auto flex flex-col gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2 }}
-              className="flex justify-between items-end border-b border-brand-blue/5 dark:border-luxury-white/5 pb-4"
+          <div className="max-w-6xl w-full mx-auto flex flex-col gap-8 z-10">
+            <motion.h2 
+              {...fadeInUp}
+              className="text-3xl md:text-5xl font-light tracking-tight text-brand-blue font-serif-editorial italic"
             >
-              <h2 className="text-xl md:text-2xl font-light uppercase tracking-widest text-brand-blue/80 dark:text-luxury-white/80">
-                Resonant Space
-              </h2>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full flex-grow h-[60vh] min-h-[350px] relative"
+              An invisible layer connecting everything
+            </motion.h2>
+            <motion.div 
+              {...fadeInUp}
+              className="text-sm md:text-base text-brand-blue/70 leading-relaxed font-sans max-w-3xl flex flex-col gap-6"
             >
-              <LivingEnvironment />
+              <p>
+                Rheole is a spatial intelligence platform that helps people understand the world around them in real time. It brings together communities, local events, places, opportunities, and meaningful interactions into a single intelligent experience, enabling users to discover what matters nearby through context-aware recommendations rather than endless searching.
+              </p>
+              <p>
+                Beyond discovery, Rheole connects people with their surroundings through AI-powered insights, personalized recommendations, intelligent navigation, and dynamic community experiences. Whether finding relevant events, exploring neighborhoods, connecting with like-minded people, or staying informed about local activity, Rheole continuously adapts to each user's interests while respecting privacy and user control.
+              </p>
+              <p>
+                As Rheole evolves, it aims to become the intelligence layer between people and the physical world. By combining artificial intelligence, spatial computing, and community-driven information, the platform delivers a more connected, informed, and efficient way to experience everyday life—transforming fragmented local information into a unified, intelligent ecosystem that grows alongside its users.
+              </p>
             </motion.div>
           </div>
         </section>
 
+        {/* SECTION 4.1 — INFRASTRUCTURE MATRIX */}
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center md:snap-start md:snap-always px-6 md:px-12 py-20 md:py-0 border-t border-brand-blue/5">
+          <div className="max-w-6xl w-full mx-auto flex flex-col gap-16">
+            <motion.div {...fadeInUp} className="flex flex-col gap-4 text-left max-w-xl">
+              <span className="text-xs tracking-[0.25em] font-medium text-brand-gold uppercase">THE METROPOLIS INTEGRATION</span>
+              <h2 className="text-3xl md:text-5xl font-light tracking-tight text-brand-blue font-serif-editorial italic leading-tight">
+                Architectural technology engineered for local resilience.
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
+              {[
+                { num: "01", title: "MESH NODES", desc: "Local peer-to-peer relay structures that form coordinate hubs dynamically." },
+                { num: "02", title: "DECAY RATIOS", desc: "Automatic local data degradation that ensures messages and data disappear safely." },
+                { num: "03", title: "RESONANCE METRIC", desc: "Real-time density interpretation mapping active wavelengths without tracking." },
+                { num: "04", title: "SENSORY ROUTING", desc: "Navigation cache mapping paths according to local blockages, weather, and traffic." }
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: idx * 0.15 }}
+                  className="flex flex-col justify-between p-8 border border-brand-blue/5 hover:border-brand-gold/20 rounded-2xl bg-white hover:bg-brand-blue/[0.01] transition-all duration-500 hover:shadow-xl hover:shadow-brand-gold/[0.02] group min-h-[220px]"
+                >
+                  <span className="text-sm font-mono tracking-widest text-brand-gold font-light group-hover:translate-x-1 transition-transform duration-300">{item.num}</span>
+                  <div className="flex flex-col gap-2 mt-8">
+                    <h3 className="text-xs uppercase tracking-[0.2em] font-medium text-brand-blue">{item.title}</h3>
+                    <p className="text-xs text-brand-blue/60 leading-relaxed font-sans">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4.2 — THE LIFECYCLE */}
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center md:snap-start md:snap-always px-6 md:px-12 py-20 md:py-0 border-t border-brand-blue/5">
+          <div className="max-w-6xl w-full mx-auto flex flex-col gap-20">
+            <motion.div {...fadeInUp} className="flex flex-col gap-4 text-center max-w-2xl mx-auto">
+              <span className="text-xs tracking-[0.25em] font-medium text-brand-gold uppercase">THE INTERACTIVE LOOP</span>
+              <h2 className="text-3xl md:text-5xl font-light tracking-tight text-brand-blue font-serif-editorial italic">
+                How the physical world resonates with Rheole
+              </h2>
+            </motion.div>
+
+            <div className="flex flex-col md:flex-row justify-between items-stretch gap-12 md:gap-6 relative">
+              <div className="absolute top-1/3 left-12 right-12 h-[1px] bg-brand-blue/5 hidden md:block z-0" />
+              
+              {[
+                { step: "01", name: "EMIT", subtitle: "SIGNAL INITIATION", desc: "Local users share coordinates, event updates, or space activities. All data points are cached safely without user profiling." },
+                { step: "02", name: "RESOLVE", subtitle: "SPATIAL COORDINATION", desc: "Rheole's mesh protocol aggregates signals, resolves coordinates, and creates active resonance clusters in real time." },
+                { step: "03", name: "RESONATE", subtitle: "SPATIAL INTERACTION", desc: "Discover active community nodes, join local mesh chats, and navigate weather-optimized routes down your street." }
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.4, delay: idx * 0.2 }}
+                  className="flex-1 flex flex-col gap-6 p-8 rounded-2xl bg-white border border-brand-blue/5 relative z-10 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-4xl font-light font-serif-editorial italic text-brand-gold">{item.step}</span>
+                    <div className="flex flex-col">
+                      <span className="text-xs uppercase tracking-[0.2em] font-semibold text-brand-blue">{item.name}</span>
+                      <span className="text-[9px] tracking-widest text-brand-blue/40 font-mono">{item.subtitle}</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-brand-blue/60 leading-relaxed font-sans mt-2">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+
+
         {/* SEE RHEOLE IN MOTION */}
         <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center items-center md:snap-start md:snap-always px-6 md:px-12 py-16 md:py-0">
           <SeeMotion />
+        </section>
+
+        {/* SECTION 5.1 — COHORT SEGMENTS */}
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center md:snap-start md:snap-always px-6 md:px-12 py-20 md:py-0 border-t border-brand-blue/5">
+          <div className="max-w-5xl w-full mx-auto flex flex-col gap-12">
+            <motion.div {...fadeInUp} className="flex flex-col gap-4 text-center max-w-xl mx-auto">
+              <span className="text-xs tracking-[0.25em] font-medium text-brand-gold uppercase">SEGMENTED UTILITY</span>
+              <h2 className="text-3xl md:text-4xl font-light uppercase tracking-widest text-brand-blue font-serif-editorial">
+                Tailored Wavelengths
+              </h2>
+            </motion.div>
+
+            <div className="flex justify-center border-b border-brand-blue/5 pb-2 max-w-md mx-auto w-full gap-8">
+              {[
+                { id: "explorers", label: "Explorers" },
+                { id: "collectives", label: "Collectives" },
+                { id: "organisers", label: "Organisers" }
+              ].map((tab) => {
+                const isActive = activeCohort === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveCohort(tab.id as any)}
+                    className={`text-xs uppercase tracking-[0.2em] font-medium pb-2 border-b-2 transition-all duration-300 ${
+                      isActive ? "border-brand-gold text-brand-gold font-semibold" : "border-transparent text-brand-blue/40 hover:text-brand-blue"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="min-h-[220px] flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeCohort}
+                  initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-white border border-brand-blue/5 rounded-3xl p-10 md:p-14 shadow-xl shadow-brand-blue/[0.01]"
+                >
+                  <div className="flex flex-col gap-4 text-left">
+                    <span className="text-[10px] tracking-widest font-mono text-brand-gold uppercase">
+                      {activeCohort === "explorers" && "01 / PHYSICAL DISCOVERY"}
+                      {activeCohort === "collectives" && "02 / LOCAL CONVERGENCE"}
+                      {activeCohort === "organisers" && "03 / COORDINATED MATRIX"}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-light font-serif-editorial italic text-brand-blue">
+                      {activeCohort === "explorers" && "Uncover the rhythm of your surroundings."}
+                      {activeCohort === "collectives" && "Anchor your community nodes to real coordinates."}
+                      {activeCohort === "organisers" && "Manage local signal distributions seamlessly."}
+                    </h3>
+                  </div>
+
+                  <p className="text-xs text-brand-blue/60 leading-relaxed font-sans text-left">
+                    {activeCohort === "explorers" && "Discover real-time density updates, find verified acoustics events, and navigate weather-aware routes. Exploration feels natural, tailored to what is actively happening nearby without trackers."}
+                    {activeCohort === "collectives" && "Connect neighborhood circles, organize spontaneous meets, and communicate securely via decaying mesh-chats. Take ownership of local spaces and share context without corporate feeds."}
+                    {activeCohort === "organisers" && "Broadcast localized notifications, share spatial coordinate updates, and monitor crowd density flows. Built for space coordinators, event curators, and local project leaders."}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
         </section>
 
         {/* SECTION 6 — RHEOLE INTELLIGENCE */}
@@ -214,6 +373,56 @@ export default function Home() {
               <p className="text-brand-gold">Rheole exists to connect them.</p>
             </div>
           </motion.div>
+        </section>
+
+        {/* SECTION 7.1 — FAQ ACCORDION */}
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center md:snap-start md:snap-always px-6 md:px-12 py-20 md:py-0 border-t border-brand-blue/5">
+          <div className="max-w-3xl w-full mx-auto flex flex-col gap-12">
+            <motion.div {...fadeInUp} className="flex flex-col gap-4 text-center">
+              <span className="text-xs tracking-[0.25em] font-medium text-brand-gold uppercase">CLARITY MATRIX</span>
+              <h2 className="text-3xl md:text-4xl font-light uppercase tracking-widest text-brand-blue font-serif-editorial">
+                Technical Specifications
+              </h2>
+            </motion.div>
+
+            <div className="flex flex-col border-t border-brand-blue/10">
+              {[
+                { q: "Do I need special hardware to run a Rheole node?", a: "No. The spatial mesh utilizes standard smartphone GPS, Bluetooth, and Wi-Fi antennas to coordinate signals. Nodes are resolved locally using secure peer-to-peer caching." },
+                { q: "How is user privacy protected?", a: "Rheole does not store your location history or create target profiles. All coordinates decay and expire automatically after set intervals. You remain anonymized, and mesh chats decay to keep your data footprint at zero." },
+                { q: "How does weather-aware and events-aware routing work?", a: "Our routing matrix polls real-time weather logs and density reports. If a flood signal or festival block is detected, path algorithms recalculate coordinates instantly to suggest optimized local detours." }
+              ].map((faq, idx) => {
+                const isOpen = openFaq === idx;
+                return (
+                  <div key={idx} className="border-b border-brand-blue/5">
+                    <button
+                      onClick={() => setOpenFaq(isOpen ? null : idx)}
+                      className="w-full py-6 flex justify-between items-center text-left hover:text-brand-gold transition-colors duration-300 focus:outline-none"
+                    >
+                      <span className="text-xs md:text-sm uppercase tracking-widest font-medium text-brand-blue">{faq.q}</span>
+                      <span className="text-xs font-mono font-light text-brand-gold transition-transform duration-300 ml-4">
+                        {isOpen ? "✕" : "＋"}
+                      </span>
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <p className="pb-6 text-xs text-brand-blue/60 leading-relaxed font-sans">
+                            {faq.a}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </section>
 
         {/* SECTION 8 — ACCESS */}
