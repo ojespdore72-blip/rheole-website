@@ -78,11 +78,11 @@ export default function Home() {
     <div className="relative w-full min-h-screen bg-white overflow-hidden selection:bg-brand-gold/20 text-brand-blue">
 
       {/* Main Snap-Scroll Container */}
-      <div id="snap-container" className="relative w-full h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth z-10">
+      <div id="snap-container" className="relative w-full h-auto md:h-screen md:overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth z-10">
         <Navbar />
         
         {/* HERO EXPERIENCE */}
-        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
           <div className="flex flex-col items-center gap-12 text-center">
             {/* Premium cinematic entrance + continuous levitation float */}
             <motion.div
@@ -122,7 +122,7 @@ export default function Home() {
 
 
         {/* SECTION 4 — CONVERGENCE */}
-        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6 overflow-hidden">
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6 overflow-hidden">
           {/* Subtle emerging abstract cityscape wireframe */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -154,7 +154,7 @@ export default function Home() {
         </section>
 
         {/* SECTION 5 — INTERACTIVE WORLD EXPERIENCE */}
-        <section className="relative w-full h-screen flex flex-col justify-center snap-start snap-always px-6 md:px-12 py-16">
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center md:snap-start md:snap-always px-6 md:px-12 py-16 md:py-0">
           <div className="max-w-6xl w-full mx-auto flex flex-col gap-6">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -181,12 +181,12 @@ export default function Home() {
         </section>
 
         {/* SEE RHEOLE IN MOTION */}
-        <section className="relative w-full h-screen flex flex-col justify-center items-center snap-start snap-always px-6 md:px-12 py-16">
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center items-center md:snap-start md:snap-always px-6 md:px-12 py-16 md:py-0">
           <SeeMotion />
         </section>
 
         {/* SECTION 6 — RHEOLE INTELLIGENCE */}
-        <section className="relative w-full h-screen flex flex-col justify-center items-center snap-start snap-always px-6">
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center items-center md:snap-start md:snap-always py-12 md:py-0 px-6">
           <motion.div 
             {...fadeInUp}
             className="w-full max-w-4xl"
@@ -196,7 +196,7 @@ export default function Home() {
         </section>
 
         {/* SECTION 7 — MANIFESTO EXHIBIT */}
-        <section className="relative w-full h-screen flex flex-col justify-center items-center snap-start snap-always px-6 md:px-12">
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center items-center md:snap-start md:snap-always py-12 md:py-0 px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -217,7 +217,7 @@ export default function Home() {
         </section>
 
         {/* SECTION 8 — ACCESS */}
-        <section className="relative w-full h-screen flex flex-col justify-center items-center snap-start snap-always px-6 bg-brand-blue/[0.01] dark:bg-luxury-white/[0.01]">
+        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center items-center md:snap-start md:snap-always py-12 md:py-0 px-6 bg-brand-blue/[0.01] dark:bg-luxury-white/[0.01]">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -251,7 +251,7 @@ export default function Home() {
         </section>
 
         {/* FOOTER SECTION */}
-        <section className="relative w-full snap-start snap-always mt-auto">
+        <section className="relative w-full md:snap-start md:snap-always mt-auto">
           <Footer />
         </section>
 

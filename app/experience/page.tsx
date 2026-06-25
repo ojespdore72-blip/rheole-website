@@ -167,7 +167,7 @@ export default function ExperiencePage() {
   }, [currentStep]);
 
   return (
-    <div className="w-full min-h-screen bg-luxury-black text-luxury-white relative overflow-hidden flex flex-col justify-between selection:bg-brand-gold/20">
+    <div className="w-full min-h-screen bg-white text-brand-blue relative overflow-hidden flex flex-col justify-between selection:bg-brand-gold/20">
       
       {/* Background Ambient Glow */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -176,14 +176,14 @@ export default function ExperiencePage() {
       </div>
 
       {/* Top Header Navigation */}
-      <header className="relative z-10 w-full px-6 md:px-12 py-6 flex items-center justify-between border-b border-luxury-white/5 bg-luxury-black/35 backdrop-blur-md">
+      <header className="relative z-10 w-full px-6 md:px-12 py-6 flex items-center justify-between border-b border-brand-blue/5 bg-white/35 backdrop-blur-md">
         <Link href="/" className="flex items-center gap-3">
           <RheoleLogo className="h-5 w-auto md:h-6" />
-          <span className="text-xs uppercase tracking-widest text-luxury-white/40 font-mono hidden sm:inline-block">Interactive Preview</span>
+          <span className="text-xs uppercase tracking-widest text-brand-blue/40 font-mono hidden sm:inline-block">Interactive Preview</span>
         </Link>
         <Link 
           href="/" 
-          className="text-xs uppercase tracking-widest text-luxury-white/60 hover:text-brand-gold transition-colors duration-300 border border-luxury-white/10 hover:border-brand-gold rounded-full px-4 py-2"
+          className="text-xs uppercase tracking-widest text-brand-blue/60 hover:text-brand-gold transition-colors duration-300 border border-brand-blue/10 hover:border-brand-gold rounded-full px-4 py-2"
         >
           Exit Preview
         </Link>
@@ -197,7 +197,7 @@ export default function ExperiencePage() {
           <div className="flex items-center gap-3">
             <span className="text-xs font-mono tracking-widest text-brand-gold uppercase">Step {steps[currentStep].number}</span>
             <div className="h-[1px] w-12 bg-brand-gold/30" />
-            <span className="text-[10px] font-mono tracking-widest text-luxury-white/30 uppercase">Interactive Demo</span>
+            <span className="text-[10px] font-mono tracking-widest text-brand-blue/30 uppercase">Interactive Demo</span>
           </div>
 
           <AnimatePresence mode="wait">
@@ -209,21 +209,21 @@ export default function ExperiencePage() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col gap-4"
             >
-              <h1 className="text-3xl md:text-5xl font-light font-serif-editorial uppercase tracking-wide leading-tight text-luxury-white">
+              <h1 className="text-3xl md:text-5xl font-light font-serif-editorial uppercase tracking-wide leading-tight text-brand-blue">
                 {steps[currentStep].title}
               </h1>
               <h2 className="text-sm font-medium uppercase tracking-widest text-brand-gold">
                 {steps[currentStep].subtitle}
               </h2>
-              <p className="text-luxury-white/70 text-sm md:text-base leading-relaxed max-w-md font-sans">
+              <p className="text-brand-blue/70 text-sm md:text-base leading-relaxed max-w-md font-sans">
                 {steps[currentStep].description}
               </p>
             </motion.div>
           </AnimatePresence>
 
           {/* Guide hints & action controls */}
-          <div className="flex flex-col gap-4 mt-4 pt-6 border-t border-luxury-white/5">
-            <p className="text-[11px] font-mono tracking-wider text-luxury-white/40 italic">
+          <div className="flex flex-col gap-4 mt-4 pt-6 border-t border-brand-blue/5">
+            <p className="text-[11px] font-mono tracking-wider text-brand-blue/40 italic">
               * Hint: {steps[currentStep].hint}
             </p>
 
@@ -231,7 +231,7 @@ export default function ExperiencePage() {
               {currentStep > 0 && (
                 <button
                   onClick={prevStep}
-                  className="text-xs uppercase tracking-widest border border-luxury-white/20 hover:border-luxury-white/50 text-luxury-white/80 rounded-full px-6 py-3.5 transition-all duration-300"
+                  className="text-xs uppercase tracking-widest border border-brand-blue/20 hover:border-brand-blue/50 text-brand-blue/80 rounded-full px-6 py-3.5 transition-all duration-300"
                 >
                   Previous
                 </button>
@@ -253,7 +253,7 @@ export default function ExperiencePage() {
                 key={i}
                 onClick={() => setCurrentStep(i)}
                 className={`h-1.5 rounded-full transition-all duration-500 ${
-                  currentStep === i ? "w-8 bg-brand-gold" : "w-1.5 bg-luxury-white/20 hover:bg-luxury-white/40"
+                  currentStep === i ? "w-8 bg-brand-gold" : "w-1.5 bg-brand-blue/20 hover:bg-brand-blue/40"
                 }`}
                 aria-label={`Go to step ${i}`}
               />
@@ -891,7 +891,7 @@ export default function ExperiencePage() {
       </AnimatePresence>
 
       {/* Footer copyright */}
-      <footer className="relative z-10 w-full px-6 py-4 border-t border-luxury-white/5 flex flex-col sm:flex-row items-center justify-between text-[10px] text-luxury-white/30 uppercase tracking-widest font-mono">
+      <footer className="relative z-10 w-full px-6 py-4 border-t border-brand-blue/5 flex flex-col sm:flex-row items-center justify-between text-[10px] text-brand-blue/30 uppercase tracking-widest font-mono">
         <span>© 2026 RHEOLE PVT. LTD. ALL RIGHTS RESERVED.</span>
         <span className="mt-1 sm:mt-0">A PRODUCT OF IKHAGA LTD.</span>
       </footer>

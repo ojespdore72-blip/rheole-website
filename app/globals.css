@@ -6,14 +6,14 @@
   --color-brand-gold: #C5A880;
   --color-brand-gold-glow: #F3E5AB;
   --color-luxury-black: #03030A;
-  --color-luxury-white: #FAF9F6;
+  --color-luxury-white: #ffffff;
   
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
 }
 
 :root {
-  --background: #FAF9F6;
+  --background: #ffffff;
   --foreground: #0A2540;
   --card-bg: rgba(255, 255, 255, 0.6);
   --border-color: rgba(10, 37, 64, 0.1);
@@ -22,11 +22,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #03030A;
-    --foreground: #FAF9F6;
-    --card-bg: rgba(5, 5, 15, 0.6);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --glow-color: rgba(197, 168, 128, 0.15);
+    --background: #ffffff;
+    --foreground: #0A2540;
+    --card-bg: rgba(255, 255, 255, 0.6);
+    --border-color: rgba(10, 37, 64, 0.1);
+    --glow-color: rgba(197, 168, 128, 0.2);
   }
 }
 
