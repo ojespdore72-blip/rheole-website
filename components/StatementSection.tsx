@@ -23,32 +23,22 @@ export default function StatementSection({ statement, words }: StatementSectionP
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Find the custom scroll container
-    const scrollContainer = document.getElementById("snap-container");
-    if (!scrollContainer) return;
-
     const handleScroll = () => {
       if (!containerRef.current) return;
       
       const rect = containerRef.current.getBoundingClientRect();
-      const containerRect = scrollContainer.getBoundingClientRect();
-      
-      // Calculate start offset relative to scroll container top
-      const start = rect.top - containerRect.top;
       const sectionHeight = rect.height;
-      const viewportHeight = containerRect.height;
+      const viewportHeight = window.innerHeight;
       
       const stickyRange = sectionHeight - viewportHeight;
       if (stickyRange <= 0) return;
       
-      // Progress from 0 (top aligned) to 1 (fully scrolled sticky range)
-      const currentScroll = -start;
+      const currentScroll = -rect.top;
       const currentProgress = Math.max(0, Math.min(1, currentScroll / stickyRange));
       setProgress(currentProgress);
     };
 
-    // Listen to scroll events on the custom scroll container
-    scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     
     // Trigger initial calculation
     handleScroll();
@@ -57,7 +47,7 @@ export default function StatementSection({ statement, words }: StatementSectionP
     const interval = setInterval(handleScroll, 200);
 
     return () => {
-      scrollContainer.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
       clearInterval(interval);
     };
   }, []);
@@ -74,7 +64,7 @@ export default function StatementSection({ statement, words }: StatementSectionP
   return (
     <div 
       ref={containerRef} 
-      className="relative w-full h-[180vh] snap-start"
+      className="relative w-full h-[180vh]"
     >
       {/* Sticky viewport container (keeps the statement centered while background words fade in) */}
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden px-6">
