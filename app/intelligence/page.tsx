@@ -132,17 +132,17 @@ export default function Intelligence() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-white overflow-hidden selection:bg-brand-gold/20 text-brand-blue">
+    <div className="relative w-full min-h-screen bg-luxury-white dark:bg-luxury-black overflow-hidden selection:bg-brand-gold/20 text-brand-blue dark:text-luxury-white">
       {/* Atmosphere background */}
       <Atmosphere />
 
       <Navbar />
 
       {/* Main Snap-Scroll Container */}
-      <div id="snap-container" className="relative w-full h-auto md:h-screen md:overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth z-10">
+      <div id="snap-container" className="relative w-full h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth z-10">
         
         {/* TITLE SECTION */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <motion.div 
             {...fadeInUp}
             className="max-w-4xl text-center flex flex-col gap-6"
@@ -162,7 +162,7 @@ export default function Intelligence() {
         </section>
 
         {/* SECTION 1 — THE PROBLEM */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <motion.div 
             {...fadeInUp}
             className="max-w-3xl text-center flex flex-col gap-8"
@@ -184,7 +184,7 @@ export default function Intelligence() {
         </section>
 
         {/* SECTION 2 — THE INTELLIGENCE LAYER */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <motion.div 
             {...fadeInUp}
             className="max-w-4xl text-center flex flex-col gap-8"
@@ -213,7 +213,7 @@ export default function Intelligence() {
         </section>
 
         {/* SECTION 3 — ASK YOUR WORLD */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <div className="max-w-4xl w-full flex flex-col gap-12 text-center">
             <motion.div {...fadeInUp} className="flex flex-col gap-4">
               <span className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold">
@@ -235,7 +235,7 @@ export default function Intelligence() {
         </section>
 
         {/* SECTION 4 — LOCAL INTELLIGENCE */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <motion.div 
             {...fadeInUp}
             className="max-w-3xl text-center flex flex-col gap-8"
@@ -257,7 +257,7 @@ export default function Intelligence() {
         </section>
 
         {/* SECTION 5 — INTELLIGENT DISCOVERY */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <motion.div 
             {...fadeInUp}
             className="max-w-3xl text-center flex flex-col gap-8"
@@ -282,7 +282,7 @@ export default function Intelligence() {
         </section>
 
         {/* SECTION 6 — INTELLIGENT ROUTING */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <div className="max-w-4xl w-full flex flex-col gap-12 text-center">
             <motion.div {...fadeInUp} className="flex flex-col gap-4">
               <span className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold">
@@ -304,7 +304,7 @@ export default function Intelligence() {
         </section>
 
         {/* SECTION 7 — CITY PULSE */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <motion.div 
             {...fadeInUp}
             className="max-w-3xl text-center flex flex-col gap-8"
@@ -329,7 +329,7 @@ export default function Intelligence() {
         </section>
 
         {/* SECTION 8 — THE FUTURE */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col items-center justify-center md:snap-start md:snap-always py-12 md:py-0 px-6">
+        <section className="relative w-full h-screen flex flex-col items-center justify-center snap-start snap-always px-6">
           <motion.div 
             {...fadeInUp}
             className="max-w-4xl text-center flex flex-col gap-6"
@@ -348,7 +348,7 @@ export default function Intelligence() {
         </section>
 
         {/* FINAL STATEMENT & CALL TO ACTION */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center items-center md:snap-start md:snap-always py-12 md:py-0 px-6 bg-brand-blue/[0.01] dark:bg-luxury-white/[0.01]">
+        <section className="relative w-full h-screen flex flex-col justify-center items-center snap-start snap-always px-6 bg-brand-blue/[0.01] dark:bg-luxury-white/[0.01]">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -375,7 +375,7 @@ export default function Intelligence() {
         </section>
 
         {/* FOOTER SECTION */}
-        <section className="relative w-full md:snap-start md:snap-always mt-auto">
+        <section className="relative w-full snap-start snap-always mt-auto">
           <Footer />
         </section>
 
