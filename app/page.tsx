@@ -109,8 +109,9 @@ export default function Home() {
     <div className="relative w-full min-h-screen bg-white overflow-hidden selection:bg-brand-gold/20 text-brand-blue font-sans">
       <Navbar />
       
-      {/* 1. HERO SECTION (CLARITY INJECTION) */}
-      <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-center py-32 px-6">
+      {/* 1. HERO SECTION */}
+      <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-64 pb-24 px-6 md:px-12 overflow-hidden">
+        {/* Animated grid background */}
         <div className="flex flex-col items-center gap-8 text-center max-w-4xl mt-12">
           
           <motion.div
