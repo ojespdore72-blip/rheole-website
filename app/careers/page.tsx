@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface Position {
   title: string;
@@ -214,12 +215,12 @@ export default function Careers() {
                   </span>
                 </div>
 
-                <a
-                  href="mailto:careers@rheole.com"
+                <Link
+                  href={`/careers/apply?role=${encodeURIComponent(role.title)}`}
                   className="text-[10px] tracking-widest uppercase border border-brand-blue/20 dark:border-luxury-white/20 hover:border-brand-gold hover:text-brand-gold px-5 py-2 rounded-full transition-all duration-300 self-start md:self-center"
                 >
                   Apply
-                </a>
+                </Link>
               </div>
 
               {/* Responsibilities & Ideal Candidate details */}
