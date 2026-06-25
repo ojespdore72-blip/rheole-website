@@ -36,7 +36,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                 className={`text-sm tracking-wider uppercase transition-colors duration-300 ${
                   isActive
                     ? "text-brand-gold font-medium"
-                    : "text-brand-blue/70 dark:text-luxury-white/70 hover:text-brand-blue dark:hover:text-luxury-white"
+                    : "text-brand-blue/70 hover:text-brand-blue"
                 }`}
               >
                 {link.name}
@@ -49,7 +49,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
         <div className="flex items-center gap-4">
           <Link
             href="/founding-access"
-            className="hidden sm:inline-flex text-xs uppercase tracking-widest font-medium border border-brand-blue/20 dark:border-luxury-white/20 hover:border-brand-gold/75 rounded-full px-5 py-2 transition-all duration-300 text-brand-blue dark:text-luxury-white hover:text-brand-gold"
+            className="hidden sm:inline-flex text-xs uppercase tracking-widest font-medium border border-brand-blue/20 hover:border-brand-gold/75 rounded-full px-5 py-2 transition-all duration-300 text-brand-blue hover:text-brand-gold"
           >
             Join the Future
           </Link>
