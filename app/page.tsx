@@ -118,23 +118,23 @@ export default function Home() {
         </section>
 
         {/* SECTION 2 — STATEMENT INDEX */}
-        <section className="relative w-full min-h-screen md:h-screen flex flex-col justify-center md:snap-start md:snap-always px-6 md:px-12 py-20 md:py-0 border-t border-brand-blue/5">
-          <div className="max-w-6xl w-full mx-auto flex flex-col gap-12 select-none">
+        <section className="relative w-full py-20 md:py-28 px-6 md:px-12 border-t border-brand-blue/5">
+          <div className="max-w-6xl w-full mx-auto flex flex-col gap-10 md:gap-12 select-none text-center">
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 0.6, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.4 }}
-              className="text-4xl md:text-7xl font-serif-editorial font-light leading-none text-brand-blue/60"
+              className="text-4xl md:text-7xl font-serif-editorial font-light leading-none text-brand-blue"
             >
               Civilization moves.
             </motion.h2>
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 0.8, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.4, delay: 0.3 }}
-              className="text-4xl md:text-7xl font-serif-editorial font-light leading-none text-brand-blue/80"
+              className="text-4xl md:text-7xl font-serif-editorial font-light leading-none text-brand-blue"
             >
               People move.
             </motion.h2>
