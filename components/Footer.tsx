@@ -12,7 +12,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
   if (isGlobal && (pathname === "/" || pathname === "/about" || pathname === "/intelligence" || pathname === "/experience")) return null;
 
   return (
-    <footer className="w-full border-t border-brand-blue/5 dark:border-luxury-white/5 bg-transparent py-16 px-6 md:px-16 mt-auto">
+    <footer className="w-full border-t border-brand-blue/5 dark:border-luxury-white/5 bg-transparent py-10 px-6 md:px-16 mt-auto">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
         {/* Brand Column */}
         <div className="flex flex-col items-start gap-4">
@@ -122,7 +122,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between border-t border-brand-blue/5 dark:border-luxury-white/5 mt-16 pt-8 gap-4">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between border-t border-brand-blue/5 dark:border-luxury-white/5 mt-10 pt-6 gap-4">
         <span className="text-[10px] uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/30">
           © {currentYear} RHEOLE PVT. LTD. ALL RIGHTS RESERVED.
         </span>
