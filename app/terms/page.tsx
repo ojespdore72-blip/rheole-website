@@ -21,164 +21,178 @@ export default function Terms() {
 
   const sections: TermsSection[] = [
     {
-      id: "acceptance",
-      title: "1. Acceptance of Terms",
+      id: "1-introduction",
+      title: "1. Introduction",
       desc: (
         <div className="flex flex-col gap-3 font-sans">
-          <p>
-            These Terms of Service ("Terms") constitute a legally binding agreement between you and Ikhaga Private Limited ("Ikhaga", "we", "us", or "our"). These Terms govern your access to and use of the Rheole application, our website, associated APIs, and all related spatial intelligence services (collectively, the "Platform"). By creating an account, accessing, or using the Platform, you expressly acknowledge that you have read, completely understood, and agree to be bound by these Terms in their entirety. Furthermore, these Terms incorporate by reference our Privacy Policy and Community Guidelines, which establish the foundational rules for operating within our ecosystem. 
-          </p>
-          <p>
-            If you are accepting these Terms on behalf of a company, organization, or other legal entity, you represent and warrant that you possess the full legal authority to bind such entity to these Terms. We view the integrity of our platform as paramount. Therefore, if you do not agree to every single provision outlined in these Terms, you may not use the Platform and must immediately cease access. We recommend reviewing these terms closely, as they significantly affect your legal rights and obligations.
-          </p>
+        <p>Welcome to Rheole, a platform developed and operated by <strong>Ikhaga Private Limited</strong> ("Ikhaga," "we," "us," or "our"). Our mission is to become the intelligence layer between people and the physical world. </p>
+        <p>These Terms of Service ("Terms") are a legally binding contract between you and Ikhaga Private Limited. By downloading, accessing, or using the Rheole platform—including our mobile apps, websites, AI intelligence features, and future Developer APIs (collectively, the "Services")—you agree to be bound by these Terms. </p>
+        <p><strong>If you do not agree to these Terms, you may not use Rheole.</strong></p>
         </div>
       )
     },
     {
-      id: "eligibility",
-      title: "2. Eligibility",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            To utilize Rheole and participate in our spatial intelligence network, you must meet specific eligibility requirements to ensure the safety and legal compliance of our ecosystem. First and foremost, you must be at least 13 years of age. However, if the laws of your country of residence dictate a higher minimum age for digital consent, you must meet that higher age threshold. If you are under the age of 18, or the age of legal majority in your jurisdiction, you must have the explicit permission and supervision of your parent or legal guardian to use the Platform. 
-          </p>
-          <p>
-            Additionally, you must not be barred from receiving digital services under the laws of the applicable jurisdiction, such as being located in a comprehensively embargoed country. You must not have been previously suspended, banned, or removed from Rheole for violating our policies. Finally, to protect the physical safety of our community members during real-world interactions, individuals who are registered sex offenders or who have been convicted of violent crimes are strictly prohibited from using the Platform. We reserve the absolute right to refuse access to the Platform to anyone, at any time, for any reason, within the bounds of applicable law.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "accounts",
-      title: "3. Accounts & Security",
+      id: "2-eligibility-and-accounts",
+      title: "2. Eligibility and Accounts",
       desc: (
         <div className="flex flex-col gap-8 font-sans">
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">Account Creation</h4>
-            <p>
-              To access the full spectrum of spatial intelligence, community networking, and intelligent navigation features offered by Rheole, you must register for a dedicated user account. During the registration process, you agree to provide accurate, current, complete, and truthful information about your identity. You are under a continuing obligation to promptly update such information to ensure it remains accurate at all times. You are entirely and solely responsible for safeguarding the password and advanced authentication mechanisms (such as hardware Passkeys, biometric data, or Two-Factor Authentication codes) that you utilize to access the Platform. You explicitly agree not to disclose your password or authentication credentials to any third party under any circumstances. You must notify our security team immediately of any unauthorized use or suspected breach of your account. You remain fully legally and financially responsible for all activities, actions, and consequences that occur under your account, regardless of whether or not you had actual knowledge of those activities.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">Username Rules</h4>
-            <p>
-              Usernames on the Rheole platform are strictly provided on a first-come, first-served basis. Your chosen username represents your digital identity within our physical-world network, and therefore must adhere to strict guidelines. Your username must not impersonate another person, public figure, corporate entity, or recognized brand. It must not contain profanity, hate speech, explicit language, or terminology that is offensive to marginalized groups. Furthermore, it must not infringe on the intellectual property rights, such as registered trademarks or copyrighted names, of any third party. Usernames may not be used for the primary purpose of domain squatting, extortion, or unauthorized resale on secondary markets. We reserve the unequivocal right to unilaterally reclaim, modify, forcefully change, or permanently terminate usernames that violate these rules or our broader Community Guidelines, without providing any prior notice or compensation to the account holder.
-            </p>
-          </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">2.1. Eligibility</h4>
+        <p>To use Rheole, you must:
+        *   Be at least 13 years of age (or older if required by your country of residence).
+        *   Not be prohibited from receiving the Services under the laws of your applicable jurisdiction.
+        *   Not have been previously suspended or removed from Rheole.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">2.2. Account Creation and Security</h4>
+        <p>To access most features, including our Waitlist & Referral System or Founding Access Program, you must create an account. You agree to provide accurate, current, and complete information. You are entirely responsible for maintaining the security of your authentication credentials (including passwords or Passkeys) and for all activities that occur under your account. You must immediately notify us of any unauthorized access.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">2.3. Username Rules</h4>
+        <p>Usernames must comply with our <strong>Community Guidelines</strong>. We reserve the right to reclaim, reassign, or remove usernames that are inactive, violate intellectual property rights, or impersonate others. Selling, buying, or soliciting usernames is strictly prohibited.</p>
+        </div>
         </div>
       )
     },
     {
-      id: "using-rheole",
-      title: "4. Using Rheole",
+      id: "3-your-use-of-the-services",
+      title: "3. Your Use of the Services",
       desc: (
         <div className="flex flex-col gap-8 font-sans">
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">Community Rules</h4>
-            <p>
-              Rheole is fundamentally designed to connect people with the physical world and foster authentic interactions between individuals. Because our platform bridges the digital and physical divide, we expect and demand all users to interact with the utmost respect and integrity. You agree to strictly abide by our comprehensive Community Guidelines, which operate as an extension of these Terms. These guidelines explicitly prohibit harassment of any kind, cyberbullying, physical threats, impersonation, fraudulent schemes, spamming, the intentional spread of malicious misinformation, and the promotion or coordination of violence or illegal activities. Our Trust and Safety team employs both automated systems and human moderators to monitor community interactions. Violations of these community rules are treated with extreme severity and may result in the immediate, permanent suspension of your account, as well as potential reporting to relevant law enforcement authorities if physical harm is threatened.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">Acceptable Use</h4>
-            <p>
-              To maintain the integrity, speed, and reliability of our spatial intelligence network, you agree not to engage in any prohibited technical activities. Most importantly, you are forbidden from engaging in Location Manipulation—this includes spoofing, falsifying, or utilizing VPNs to manipulate GPS data to misrepresent your actual physical location to our servers or other users. You must not engage in Platform Abuse, which encompasses overburdening, attacking via Distributed Denial of Service (DDoS), or otherwise disrupting the Platform’s infrastructure. Unauthorized Scraping and Automation is strictly prohibited; you may not use bots, scrapers, spiders, or other automated means to access, extract, harvest, or index proprietary spatial data from Rheole without our explicit written permission. Furthermore, you are barred from Reverse Engineering, decompiling, or attempting to extract the source code or proprietary routing algorithms of the Platform, as well as attempting to bypass or evade rate limits or established API usage restrictions.
-            </p>
-          </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">3.1. Acceptable Use</h4>
+        <p>You agree to use Rheole only for its intended purposes. You must comply with our <strong>Acceptable Use Policy</strong> and <strong>Community Guidelines</strong> at all times. You agree not to:
+        *   Use the Services for any illegal or unauthorized purpose.
+        *   Engage in harassment, bullying, impersonation, fraud, or spam.
+        *   Upload viruses, malware, or malicious code.
+        *   Attempt to reverse engineer, decompile, or hack the Services.
+        *   Manipulate location data or abuse the spatial intelligence features.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">3.2. User-Generated Content (UGC)</h4>
+        <p>You are solely responsible for any text, images, location data, event details, or other media you create, upload, or share on Rheole ("Your Content").</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">3.3. Intellectual Property and Licensing</h4>
+        <p>You retain all ownership rights to Your Content. However, by sharing Your Content on Rheole, you grant Ikhaga Private Limited a worldwide, royalty-free, sublicensable, and transferable license to host, store, use, display, reproduce, modify, and distribute Your Content solely for the purposes of operating, developing, and providing the Services. </p>
+        <p>This license ends when you delete Your Content or your account, subject to technical limitations regarding backups and cache, or if the content has been shared with others who have not deleted it.</p>
+        </div>
         </div>
       )
     },
     {
-      id: "ai-features",
-      title: "5. AI Features & Usage",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            Rheole leverages state-of-the-art Artificial Intelligence to provide you with deeply personalized spatial intelligence, dynamic intelligent navigation, and predictive real-world insights. While we strive for technological excellence and rigorous model training, you must understand that AI-generated outputs, predictive recommendations, and spatial insights are provided strictly for informational and entertainment purposes. These systems process vast amounts of complex data and may occasionally produce results that are inaccurate, incomplete, historically biased, or contextually inappropriate. 
-          </p>
-          <p>
-            Crucially, you should absolutely never rely solely on AI-generated navigation routing, event recommendations, or spatial insights in life-threatening, critical, or emergency situations where human safety is at risk. You agree to exercise human common sense and situational awareness at all times. In terms of acceptable AI usage, you agree not to use our AI features to attempt to generate harmful, illegal, defamatory, or abusive content. You may not attempt to "jailbreak," maliciously manipulate, or extract the underlying model weights, system prompts, or operational parameters of our proprietary AI systems. Your interactions with our AI may be logged and used to further personalize your individual experience, as comprehensively detailed in our Privacy Policy and AI Transparency Policy.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "subscriptions",
-      title: "6. Subscriptions, Payments & Refunds",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            While the core Rheole experience remains accessible, certain advanced functionalities—including Premium AI Features, unlimited intelligent routing, historical spatial insights, and commercial API access—require a paid subscription or a one-time payment. By selecting and utilizing a premium feature, you enter into a commercial agreement to pay Ikhaga Private Limited the exact fees indicated at the point of sale, inclusive of all applicable taxes. All financial transactions and payments are processed securely through our heavily audited, authorized third-party payment processors (such as Stripe, Apple App Store, or Google Play). 
-          </p>
-          <p>
-            You must provide valid, active, and legally authorized payment information. By providing this information, you grant us the irrevocable authorization to charge your payment method on a recurring billing cycle (for subscriptions) or immediately (for one-time purchases). Unless strictly required by the consumer protection laws of your specific jurisdiction, or explicitly stated otherwise by us in writing, all fees, charges, and subscription payments are strictly non-refundable. If you genuinely believe you have been billed in error due to a technical glitch, you must contact our billing support team within 30 days of the disputed billing date. Subscription cancellations will take effect precisely at the end of your current paid billing cycle, ensuring you retain access to all premium features until that specific cycle concludes.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "content-ip",
-      title: "7. Content & Intellectual Property",
+      id: "4-ai-usage-and-spatial-intelligence",
+      title: "4. AI Usage and Spatial Intelligence",
       desc: (
         <div className="flex flex-col gap-8 font-sans">
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">User Generated Content</h4>
-            <p>
-              We firmly believe that your content belongs to you. You retain all inherent ownership rights, copyrights, and intellectual property claims to the photos, text, spatial reviews, event descriptions, audio, and other media you actively upload, post, or transmit through Rheole (collectively referred to as "User Content"). However, to legally operate the platform and distribute your content to other users, we require a license. By submitting User Content to the Platform, you grant Ikhaga Private Limited a worldwide, non-exclusive, royalty-free, fully paid, sublicensable, and transferable license to use, reproduce, distribute, prepare derivative works of, display, and perform that content specifically in connection with providing, promoting, and improving the Platform. You represent and warrant that you have all the necessary legal rights, licenses, and permissions to grant this license and that your User Content does not infringe upon the intellectual property, privacy, or publicity rights of any third party.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">Rheole's Intellectual Property</h4>
-            <p>
-              Except for the User Content that you specifically provide, the entire Rheole Platform and all of its constituent components are the sole, exclusive property of Ikhaga Private Limited. This includes, but is not limited to, the underlying software code, proprietary spatial algorithms, AI models, user interface designs (UI/UX), text, graphics, logos, trademarks, service marks, and trade secrets. Our intellectual property is aggressively protected by international copyright, trademark, patent, and other intellectual property laws. By accepting these Terms, you are granted a limited, revocable, non-exclusive, non-transferable license to simply access and use the Platform for your own personal, non-commercial use. You may not copy, modify, distribute, sell, or lease any part of our services or included software, nor may you reverse engineer or attempt to extract the source code of that software, unless laws explicitly prohibit those restrictions or you have our written permission.
-            </p>
-          </div>
+        <p>Rheole employs advanced AI Intelligence and Spatial Intelligence features.</p>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">4.1. AI Interactions</h4>
+        <p>When you interact with Rheole's AI features, you understand that the outputs generated are for informational and navigational purposes. While we strive for accuracy, AI systems may occasionally produce inaccurate, biased, or incomplete information. Please review our <strong>AI Transparency Policy</strong> for more details.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">4.2. Location Data</h4>
+        <p>Our Intelligent Navigation and Local Discovery features rely on location data. You are responsible for paying attention to your physical surroundings and obeying all local traffic and safety laws. Do not rely solely on Rheole in emergency situations.</p>
+        </div>
         </div>
       )
     },
     {
-      id: "termination",
-      title: "8. Termination & Suspension",
+      id: "5-premium-features-and-subscriptions",
+      title: "5. Premium Features and Subscriptions",
       desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            To maintain a safe, functional, and premium environment for all users, Ikhaga Private Limited reserves the absolute right, exercised at our sole and unreviewable discretion and without any liability to you, to suspend, restrict, or permanently terminate your account and your access to the Platform. We may take this action at any time, with or without cause, and with or without prior notice. Common reasons for termination include, but are not limited to, explicit violations of these Terms of Service, severe breaches of our Community Guidelines, confirmed reports of fraudulent activity, extended periods of account inactivity, or necessary compliance with binding legal requests from law enforcement agencies.
-          </p>
-          <p>
-            Upon the termination or suspension of your account, your right to access and use the Platform will immediately and permanently cease. In the event of termination, we reserve the right to systematically delete your User Content, profile information, and associated spatial data from our active servers in accordance with our Data Retention Policy, though certain data may be retained for legal compliance or security auditing purposes. Please note that critical sections of these Terms—specifically those regarding Intellectual Property, Indemnification, Disclaimers, and Limitation of Liability—are designed to survive the termination of your account and remain legally binding indefinitely.
-          </p>
+        <div className="flex flex-col gap-8 font-sans">
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">5.1. Founding Access and Premium AI</h4>
+        <p>Rheole may offer Founding Access Programs, Premium AI Features, or other subscriptions. By enrolling in a paid subscription, you agree to pay the fees specified at the time of purchase.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">5.2. Payments and Billing</h4>
+        <p>All payments are processed securely through third-party payment processors. Your subscription will automatically renew unless canceled prior to the renewal date.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">5.3. Refunds</h4>
+        <p>Unless required by law, all purchases are final and non-refundable.</p>
+        </div>
         </div>
       )
     },
     {
-      id: "disclaimers-liability",
-      title: "9. Disclaimers & Limitation of Liability",
+      id: "6-termination-and-suspension",
+      title: "6. Termination and Suspension",
       desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p className="uppercase text-xs font-semibold text-brand-blue/60 dark:text-luxury-white/60 tracking-widest mb-1">Please read carefully</p>
-          <p>
-            THE PLATFORM, INCLUDING ALL SPATIAL DATA, AI INSIGHTS, AND COMMUNITY FEATURES, IS PROVIDED TO YOU STRICTLY ON AN "AS IS" AND "AS AVAILABLE" BASIS. IKHAGA PRIVATE LIMITED EXPRESSLY DISCLAIMS ALL WARRANTIES AND CONDITIONS OF ANY KIND, WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE PLATFORM WILL BE UNINTERRUPTED, TIMELY, 100% SECURE, OR COMPLETELY ERROR-FREE, NOR DO WE GUARANTEE THE ABSOLUTE ACCURACY, COMPLETENESS, OR RELIABILITY OF ANY SPATIAL DATA, ROUTING INFORMATION, OR AI RECOMMENDATIONS PROVIDED. YOU USE RHEOLE ENTIRELY AT YOUR OWN DISCRETION AND PHYSICAL RISK.
-          </p>
-          <p>
-            TO THE FULLEST EXTENT PERMITTED BY APPLICABLE JURISPRUDENCE, IN NO EVENT SHALL IKHAGA PRIVATE LIMITED, ITS AFFILIATES, DIRECTORS, EMPLOYEES, OR AGENTS BE HELD LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES. THIS INCLUDES ANY LOSS OF PROFITS, REVENUES, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES RESULTING FROM: (A) YOUR ACCESS TO, USE OF, OR INABILITY TO ACCESS THE PLATFORM; (B) ANY HARMFUL CONDUCT OR CONTENT OF ANY THIRD PARTY ENCOUNTERED ON THE PLATFORM; (C) ANY AI-GENERATED INSIGHTS OR ROUTING ERRORS THAT INDIRECTLY OR DIRECTLY RESULT IN PHYSICAL INJURY, PROPERTY DAMAGE, OR FINANCIAL HARM; OR (D) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS. IN NO EVENT SHALL OUR TOTAL AGGREGATE LIABILITY FOR ALL CLAIMS RELATING TO THE PLATFORM EXCEED THE GREATER OF ONE HUNDRED U.S. DOLLARS ($100 USD) OR THE EXACT AMOUNT YOU PAID US IN THE PAST TWELVE MONTHS FOR PREMIUM SERVICES.
-          </p>
+        <div className="flex flex-col gap-8 font-sans">
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">6.1. By You</h4>
+        <p>You may terminate this agreement at any time by deleting your account and discontinuing use of the Services.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">6.2. By Us</h4>
+        <p>We reserve the right to suspend or terminate your account, restrict your access, or remove Your Content at any time, with or without notice, if we determine you have violated these Terms, the Community Guidelines, or the Acceptable Use Policy, or if your actions pose a legal risk to Ikhaga Private Limited or other users.</p>
+        </div>
         </div>
       )
     },
     {
-      id: "governing-law",
-      title: "10. Governing Law & Dispute Resolution",
+      id: "7-disclaimers-and-limitations-of-liability",
+      title: "7. Disclaimers and Limitations of Liability",
+      desc: (
+        <div className="flex flex-col gap-8 font-sans">
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">7.1. Disclaimers</h4>
+        <p><strong>RHEOLE IS PROVIDED "AS IS" AND "AS AVAILABLE."</strong> TO THE MAXIMUM EXTENT PERMITTED BY LAW, IKHAGA PRIVATE LIMITED DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT GUARANTEE THAT RHEOLE WILL BE ERROR-FREE, SECURE, OR UNINTERRUPTED.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">7.2. Limitation of Liability</h4>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, IKHAGA PRIVATE LIMITED SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUES, DATA, USE, OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE SERVICES. IN NO EVENT SHALL OUR AGGREGATE LIABILITY EXCEED THE GREATER OF ONE HUNDRED U.S. DOLLARS ($100) OR THE AMOUNT YOU PAID US IN THE PAST TWELVE MONTHS.</p>
+        </div>
+        </div>
+      )
+    },
+    {
+      id: "8-indemnification",
+      title: "8. Indemnification",
       desc: (
         <div className="flex flex-col gap-3 font-sans">
-          <p>
-            These Terms, and any action, dispute, or claim related thereto, will be governed by and interpreted in accordance with the laws of the jurisdiction in which Ikhaga Private Limited is legally incorporated, without regard to its conflict of laws provisions that would result in the application of the laws of another jurisdiction. You agree that any legal nuances or interpretations of these Terms will be viewed through the lens of this specific governing law.
-          </p>
-          <p>
-            <strong>Binding Arbitration:</strong> To ensure swift and private resolution of conflicts, any dispute, claim, or controversy arising out of or relating to these Terms or the breach, termination, enforcement, interpretation, or validity thereof, shall be determined by binding arbitration before a single arbitrator. The arbitration shall be administered according to standard commercial arbitration rules in the primary jurisdiction of Ikhaga Private Limited. Judgment on the Award may be entered in any court having competent jurisdiction. 
-          </p>
-          <p>
-            <strong>Class Action Waiver:</strong> YOU AND IKHAGA PRIVATE LIMITED EXPLICITLY AGREE THAT EACH PARTY MAY BRING CLAIMS AGAINST THE OTHER ONLY IN YOUR OR ITS INDIVIDUAL CAPACITY. YOU WAIVE THE RIGHT TO BRING OR PARTICIPATE IN ANY CLAIM AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS ACTION, CONSOLIDATED, OR REPRESENTATIVE PROCEEDING. This waiver is central to the agreement to arbitrate disputes.
-          </p>
+        <p>You agree to indemnify, defend, and hold harmless Ikhaga Private Limited, its affiliates, directors, officers, and employees from any claims, damages, liabilities, costs, or expenses (including reasonable attorneys' fees) arising from:
+        1. Your use of Rheole;
+        2. Your violation of these Terms;
+        3. Your Content;
+        4. Your violation of any rights of another person or entity.</p>
+        </div>
+      )
+    },
+    {
+      id: "9-governing-law-and-dispute-resolution",
+      title: "9. Governing Law and Dispute Resolution",
+      desc: (
+        <div className="flex flex-col gap-8 font-sans">
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">9.1. Governing Law</h4>
+        <p>These Terms shall be governed by and construed in accordance with the laws of [Insert Jurisdiction, e.g., Delaware, USA / Singapore], without regard to its conflict of law principles.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">9.2. Arbitration Agreement</h4>
+        <p>Any dispute arising out of or relating to these Terms or the Services shall be resolved through binding, individual arbitration, rather than in court. <strong>You and Ikhaga Private Limited waive the right to a trial by jury or to participate in a class action lawsuit.</strong></p>
+        </div>
+        </div>
+      )
+    },
+    {
+      id: "10-modifications",
+      title: "10. Modifications",
+      desc: (
+        <div className="flex flex-col gap-3 font-sans">
+        <p>We may modify these Terms periodically. If we make material changes, we will notify you via the app or email. Your continued use of Rheole after the effective date of the updated Terms constitutes your acceptance of the changes.</p>
+        </div>
+      )
+    },
+    {
+      id: "11-contact-us",
+      title: "11. Contact Us",
+      desc: (
+        <div className="flex flex-col gap-3 font-sans">
+        <p>If you have questions about these Terms, contact us at <strong>legal@rheole.com</strong>.</p>
         </div>
       )
     }

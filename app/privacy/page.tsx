@@ -22,194 +22,155 @@ export default function Privacy() {
   const sections: PrivacySection[] = [
     {
       id: "introduction",
-      title: "1. Introduction",
+      title: "Introduction",
       desc: (
         <div className="flex flex-col gap-3 font-sans">
-          <p>
-            Welcome to Rheole, the intelligence layer between people and the physical world. Rheole is a Spatial Intelligence Platform meticulously developed, wholly owned, and operated by Ikhaga Private Limited ("Ikhaga," "we," "us," or "our"). At Ikhaga, we fundamentally believe that true technological advancement must be built upon a foundation of absolute user trust. Therefore, we are deeply committed to protecting your privacy and ensuring that you retain ultimate sovereign control over your personal data at all times. 
-          </p>
-          <p>
-            Our core mission is to empower human-centered AI while adhering strictly to the non-negotiable principles of privacy-first design, security by default, and minimal data exposure. This comprehensive Privacy Policy has been carefully crafted to explain in precise detail exactly how we collect, intelligently use, securely process, and rigorously safeguard your personal data when you interact with the Rheole application, our website, and all associated services (collectively, the "Platform"). By accessing or using Rheole, you acknowledge that you have read, completely understood, and agree to the data practices described herein.
-          </p>
+        <p>At Rheole, built by <strong>Ikhaga Private Limited</strong>, our mission is to become the intelligence layer between people and the physical world. Achieving this requires a profound level of trust. Spatial intelligence, personalized recommendations, and dynamic communities depend on data—but that data belongs to you. </p>
+        <p>This Privacy Policy explains how we collect, use, protect, and minimize exposure of your personal information. We operate on the principles of <strong>Privacy First, Security by Design, User Control, Minimal Data Exposure, and Transparency</strong>. We do not sell your personal data. We do not use your private communications to build targeted advertising profiles.</p>
+        <p>This policy applies to all users of the Rheole platform, including our mobile applications, APIs, websites, and associated services (collectively, the "Services").</p>
         </div>
       )
     },
     {
-      id: "information-we-collect",
-      title: "2. Information We Collect",
+      id: "1-information-we-collect",
+      title: "1. Information We Collect",
       desc: (
         <div className="flex flex-col gap-8 font-sans">
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">Identity & Profile Information</h4>
-            <p>
-              To establish your digital presence within our physical-world network, we must collect essential identity information. When you create an account or join our exclusive Founding Access Program, we require your full legal name, an active email address, a verified phone number, and your exact date of birth. Your date of birth is utilized exclusively to strictly verify that you meet our minimum age requirements and to ensure compliance with global child protection laws. To facilitate meaningful connections within localized Communities, you may also optionally provide rich profile information. This encompasses your chosen username, a profile picture, a personalized biography, preferred pronouns, and specific interests. We guarantee that your profile information is visible to other Rheole users strictly based on the granular visibility settings that you alone configure and control.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">Location Information</h4>
-            <p>
-              As a premier Spatial Intelligence Platform, location data serves as the lifeblood of the Rheole experience. However, we employ mathematically rigorous boundaries to govern how this sensitive data is both gathered and utilized. By default, Rheole only collects your Approximate Location (e.g., at the city or general neighborhood level) using IP addresses and broad network routing data. This allows us to provide localized discovery and trending events without tracking your exact physical coordinates. 
-            </p>
-            <p>
-              Conversely, to unlock the full power of our platform, including Intelligent Navigation and exact proximity-based recommendations, we require your Precise Location. This is strictly collected via explicit, opt-in consent through your device's operating system to access GPS coordinates. You maintain the absolute right to revoke this GPS permission at any given moment directly through your device settings. When this permission is revoked, Rheole gracefully degrades its functionality to rely solely on Approximate Location.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">Community & Messages</h4>
-            <p>
-              Rheole actively fosters human interaction through dynamic Communities and private Messaging. Consequently, we collect data regarding your platform participation, including the specific communities you join, your designated roles (e.g., moderator), and your direct interactions with community posts. For private communication, we process the encrypted content of your messages, associated timestamps, read receipts, and participant network lists. Our advanced backend systems analyze purely the metadata of these messages for proactive spam prevention and the strict enforcement of our Trust & Safety guidelines. We prioritize your conversational privacy above all else and employ industry-leading encryption protocols to secure your communications against interception, both while in transit across our networks and while at rest on our secure database clusters.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">AI Interaction Data & Search</h4>
-            <p>
-              Our Premium AI Features and core AI Intelligence engines rely heavily on your direct interactions to function effectively. We systematically collect your text prompts, spatial queries, explicit feedback on AI-generated responses, and broad interaction patterns with our intelligent agents. This rich data stream is securely isolated and processed exclusively to personalize and refine your individual intelligence layer. We maintain a strict policy against utilizing your deeply personal AI Interaction Data to arbitrarily train our foundational models across the broader, public user base without first obtaining your explicit, separate, and informed consent. Furthermore, we log your search queries and Intelligent Navigation routes (including origins and destinations), which are systematically aggregated and stripped of personally identifiable markers after a short retention period to continuously improve our global routing algorithms.
-            </p>
-          </div>
+        <p>To provide a seamless, hyper-local spatial intelligence experience, we collect information in three ways: information you provide, information collected automatically, and information from third parties.</p>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">1.1. Information You Provide to Us</h4>
+        <ul className="list-disc pl-5"><li>  **Identity Information:** When you create an account, join our Waitlist, or participate in our Founding Access Program, we collect your name, email address, phone number, and a secure authentication credential (such as a Passkey or hashed password).</li><li>  **Profile Information:** This includes your username, profile picture, bio, and any links you choose to share on your Rheole profile.</li><li>  **Community & Event Data:** When you join Communities, RSVP to Events, or create them, we store this information to build your personalized social graph.</li><li>  **Messages:** We facilitate private and group messaging. While messages are stored securely, they are processed solely to deliver the service and are not scanned for advertising purposes.</li><li>  **Uploaded Media:** Photos, videos, and audio you upload to Events, Communities, or your Profile.</li><li>  **Saved Places:** Locations, businesses, or coordinates you explicitly save to your private or public lists.</li><li>  **Feedback & Support:** Content of your communications with our Trust & Safety or Support teams.</li></ul>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">1.2. Information We Collect Automatically</h4>
+        <ul className="list-disc pl-5"><li>  **Location Information:** Because Rheole is a spatial intelligence platform, location is a core component. We distinguish between:</li><li>      **Precise Location:** Collected only with your explicit operating system-level permission. We use this for Intelligent Navigation, real-time hyper-local discovery, and precise event check-ins.</li><li>      **Approximate Location:** Derived from your IP address or network data, used to provide generalized local content and enforce regional compliance.</li><li>  **AI Interaction Data:** When you use our AI-powered Insights and premium AI features, we process your queries, contextual interactions, and the resulting recommendations to improve the AI's contextual accuracy.</li><li>  **Search & Navigation History:** Your search queries for places, communities, and events, as well as your Intelligent Navigation routing history, are stored to refine your future personalized recommendations.</li><li>  **Device & Usage Information:** We collect data about your device type, operating system version, app version, unique device identifiers, and how you interact with the Rheole app (e.g., taps, time spent on screens) to improve performance and user experience.</li><li>  **Security Logs & Diagnostics:** To maintain security and stability, we collect crash reports, performance metrics, and security-related event logs.</li></ul>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">1.3. Information from Third Parties</h4>
+        <ul className="list-disc pl-5"><li>  **Referral System:** If you join via a referral link, we link your account creation to the referrer to administer the Founding Access Program and Waitlist benefits.</li><li>  **Integrations:** In the future, if you connect Rheole to third-party services via our Developer APIs, we will receive data according to the permissions you grant those services.</li></ul>
+        </div>
         </div>
       )
     },
     {
-      id: "technical-diagnostic",
-      title: "3. Technical & Diagnostic Data",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            To maintain the absolute security, peak performance, and uncompromising reliability of the Rheole infrastructure, our backend systems automatically generate and log specific technical and diagnostic data. We utilize privacy-preserving analytics methodologies to comprehensively understand how our users navigate the Platform. This includes measuring critical metrics such as average session duration, specific feature usage frequency, and identifying user flow bottlenecks. 
-          </p>
-          <p>
-            Additionally, we actively deploy strictly necessary cookies required for secure user authentication and session management, alongside performance cookies that actively enhance your browsing experience. In the unfortunate event of an application failure or crash, Rheole immediately generates detailed diagnostic reports. These crash reports capture the precise state of the application at the exact moment of failure, including stack traces and memory allocation data, allowing our engineers to rapidly patch vulnerabilities. We also continuously monitor our network for anomalous behavior, logging IP addresses and authentication attempts to proactively detect and mitigate unauthorized access, fraud, and coordinated cyberattacks.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "how-we-use",
-      title: "4. How We Use Your Information",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            Rheole utilizes your collected information under strict internal access controls and exclusively for a defined set of operational purposes. Primarily, we use your data to reliably provide and maintain the Platform, which includes delivering complex spatial intelligence, calculating intelligent navigation routes, and hosting community forums. We also heavily utilize your data to deeply personalize your individual experience; this means tailoring real-world recommendations, surfacing localized discovery options, and generating bespoke AI insights that align with your historical preferences and current spatial context.
-          </p>
-          <p>
-            Furthermore, your information is critical for enhancing platform security, allowing us to proactively protect our user base against malicious actors, financial fraud, and systemic abuse. We relentlessly analyze usage trends and diagnostic data to improve our underlying technology, refine our predictive algorithms, squash bugs, and architect future features such as our highly anticipated Commerce platform and Developer APIs. Finally, we use your contact information to communicate essential service updates, critical security alerts, and, strictly with your explicit consent, promotional materials regarding the Founding Access Program.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "legal-basis",
-      title: "5. Legal Basis for Processing",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            For users residing within jurisdictions that legally require a specifically defined legal basis for data processing (most notably the General Data Protection Regulation or GDPR within the European Economic Area), we process your data under several robust legal frameworks. Our primary basis is Contractual Necessity; meaning the processing of your identity and basic usage data is absolutely necessary for us to perform our binding obligations under the Terms of Service, such as provisioning your account and delivering core functionality.
-          </p>
-          <p>
-            We also rely heavily on Legitimate Interests. This allows us to process data when necessary for our legitimate business operations—such as dramatically improving the Platform's speed, ensuring robust cybersecurity, and preventing localized fraud—provided that these interests are never overridden by your fundamental human rights and freedoms. Where strictly required by law, such as for tracking Precise Location or deploying non-essential tracking cookies, we rely exclusively on your explicit, informed Consent, which you may freely withdraw at any given time. Finally, we may process your data out of Legal Obligation to comply with binding laws, regulatory mandates, or enforceable court orders.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "data-sharing",
-      title: "6. Data Sharing and Disclosure",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            At Rheole, we operate under the fundamental belief that your data is inherently yours. We do not, and will never, sell your personal information to third-party data brokers or advertising networks. We only share your data under highly specific, tightly controlled circumstances. Information that you explicitly designate as public (such as your profile biography and open community posts) is visible to the broader Rheole community. We also share necessary data with trusted Service Providers—these are heavily vetted third-party vendors responsible for our cloud hosting infrastructure, database management, and customer support operations. These providers are bound by extremely strict, legally binding data processing agreements and are categorically prohibited from using your data for any independent, unauthorized purpose.
-          </p>
-          <p>
-            In the event of a corporate restructuring, such as if Ikhaga Private Limited is involved in a merger, acquisition, bankruptcy, or the sale of all or a significant portion of our assets, your information may be legally transferred as part of that specific transaction; we will notify you prominently of any such change in ownership. Finally, we will disclose data in response to Law Enforcement Requests. We cooperate with government officials only when compelled by a valid subpoena, court order, or search warrant. Our legal team rigorously reviews all such requests for legal sufficiency and will aggressively push back against any demands that we deem overly broad, inappropriate, or legally flawed.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "data-retention",
-      title: "7. Data Retention",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            We strictly adhere to the privacy principle of storage limitation, ensuring we do not hoard data unnecessarily. Rheole systematically retains your personal information only for the absolute minimum duration strictly necessary to fulfill the specific operational purposes outlined in this policy, unless a longer retention period is explicitly required or legally permitted by applicable law. For active users, we securely retain your profile details, saved spatial coordinates, and active community participation data for the entire active lifespan of your account to ensure seamless service. 
-          </p>
-          <p>
-            However, upon your initiation of account deletion, we immediately trigger an automated process to permanently erase or irreversibly cryptographically anonymize your core data from our production servers within exactly 30 days. Routine system logs, which include critical security logs, IP addresses, and diagnostic crash data, are completely segregated and typically automatically purged from our backend after 90 days. For a completely exhaustive schedule of how long specific data types are stored, please review our dedicated, standalone Data Retention Policy.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "your-privacy-rights",
-      title: "8. Your Privacy Rights",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            Depending on your specific global jurisdiction (including robust frameworks like the GDPR in Europe and the CCPA/CPRA in California), you are legally guaranteed profound and actionable rights regarding your personal data. You possess the definitive Right to Access, allowing you to request a comprehensive, human-readable report of the exact personal data we currently hold about you. You hold the Right to Rectification, enabling you to effortlessly correct any inaccurate or incomplete data directly through your in-app account settings. 
-          </p>
-          <p>
-            Crucially, you possess the Right to Erasure (often referred to as the Right to be Forgotten), which empowers you to demand the permanent deletion of your account and all associated personal data from our systems. You may also exercise the Right to Restrict Processing, asking us to temporarily pause the processing of your data under certain disputed circumstances; the Right to Data Portability, receiving a complete copy of your data in a structured, machine-readable format; and the Right to Object to our processing of your data based on legitimate interests. We honor these rights globally. You can exercise them instantly via the Security Center within the app or by formally contacting privacy@rheole.com.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "account-deletion",
-      title: "9. Account Deletion & Data Export",
-      desc: (
-        <div className="flex flex-col gap-3 font-sans">
-          <p>
-            We believe that joining Rheole is a choice, and leaving should be just as easy. You possess complete and total autonomy over your digital presence on our platform. At any time, without needing to contact support, you can initiate a Data Export directly from the Security Center situated in your account settings. This export function seamlessly and securely compiles your entire data archive—including all private messages, saved real-world places, and uploaded media—into universally accessible JSON and CSV formats for your personal records.
-          </p>
-          <p>
-            Similarly, you hold the power to permanently delete your account at any time via that same Security Center. The moment you initiate deletion, your public profile and all associated data are immediately removed from the active Platform, rendering you invisible to other users. Following this immediate unpublishing, the complete and irreversible erasure of your underlying data from our deeply nested backup systems and server clusters will automatically conclude within exactly 30 days, barring any active, legally mandated data holds.
-          </p>
-        </div>
-      )
-    },
-    {
-      id: "children-international",
-      title: "10. Children & International Transfers",
+      id: "2-how-we-use-your-information",
+      title: "2. How We Use Your Information",
       desc: (
         <div className="flex flex-col gap-8 font-sans">
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">Children's Privacy</h4>
-            <p>
-              Rheole is a sophisticated intelligence platform and is strictly not intended for use by individuals under the age of 13, or the applicable age of digital consent in your specific jurisdiction (such as 16 in certain European countries). We do not, under any circumstances, knowingly collect, solicit, or maintain personal information from children. If our trust and safety team becomes aware, or is reliably informed, that we have inadvertently collected data from a child without verifiable parental consent, we will take immediate, aggressive steps to permanently delete that data from our servers and permanently terminate the associated account.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">International Data Transfers</h4>
-            <p>
-              Ikhaga Private Limited operates as a truly global entity. Consequently, the information we collect from you may be transferred to, extensively processed in, and securely stored in the United States and various other countries where our trusted service providers maintain physical server facilities. We recognize that these international jurisdictions may have data protection laws that differ significantly from those in your home country. To mitigate this, we strictly utilize legally recognized transfer mechanisms, most notably the European Commission’s Standard Contractual Clauses, to guarantee that your data consistently receives an adequate, legally compliant level of protection regardless of exactly where on the globe it is physically processed or stored.
-            </p>
-          </div>
+        <p>We process your data strictly to operate, secure, and improve Rheole. </p>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">2.1. Providing and Improving the Services</h4>
+        <ul className="list-disc pl-5"><li>  **Spatial Intelligence:** To render real-time, context-aware maps and Intelligent Navigation.</li><li>  **Personalization:** To power our AI Intelligence engine, suggesting Communities, Events, and Local Discovery opportunities tailored to your tastes.</li><li>  **Communication:** To facilitate messaging between users and send you service-related Notifications.</li><li>  **Account Management:** To administer your account, process premium subscriptions, and manage Waitlist/Founding Access status.</li></ul>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">2.2. Safety, Security, and Integrity</h4>
+        <ul className="list-disc pl-5"><li>  **Trust & Safety:** To detect and prevent spam, fraud, abuse, and violations of our Community Guidelines and Acceptable Use Policy.</li><li>  **Security Engineering:** To monitor infrastructure for malicious activity, unauthorized access, and reverse engineering attempts.</li></ul>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">2.3. Research and Development</h4>
+        <ul className="list-disc pl-5"><li>  **Human-Centered AI:** We use aggregated, de-identified interaction data to train and refine our AI models, ensuring they remain helpful, unbiased, and aligned with our AI Transparency Policy.</li><li>  **Future Commerce & APIs:** We analyze usage patterns to structure future marketplace features and Developer APIs safely.</li></ul>
+        </div>
         </div>
       )
     },
     {
-      id: "contact",
-      title: "11. Contact Information",
+      id: "3-how-we-share-your-information",
+      title: "3. How We Share Your Information",
       desc: (
-        <div className="flex flex-col gap-4 font-sans">
-          <p>
-            Transparency and accountability are the bedrock of our privacy philosophy. If you have any questions, deep concerns, or formal legal requests regarding this Privacy Policy or our broader data handling practices, we encourage you to contact our dedicated privacy team immediately. Our Chief Privacy Officer reviews all inquiries.
-          </p>
-          <div className="p-4 border border-brand-blue/10 dark:border-luxury-white/10 rounded-xl bg-brand-blue/[0.02] dark:bg-luxury-white/[0.02]">
-            <p className="font-semibold text-brand-blue dark:text-luxury-white mb-1">Ikhaga Private Limited</p>
-            <p className="text-brand-blue/70 dark:text-luxury-white/70">Attn: Chief Privacy Officer</p>
-            <p className="mt-2">
-              <span className="font-medium">Privacy Inquiries: </span>
-              <a href="mailto:privacy@rheole.com" className="text-brand-gold hover:underline">privacy@rheole.com</a>
-            </p>
-            <p>
-              <span className="font-medium">Legal Department: </span>
-              <a href="mailto:legal@rheole.com" className="text-brand-gold hover:underline">legal@rheole.com</a>
-            </p>
-          </div>
-          <p className="text-xs text-brand-blue/50 dark:text-luxury-white/50 italic mt-2">
-            For matters requiring physical correspondence or legal service, please request our current registered mailing address via the legal email provided above.
-          </p>
+        <div className="flex flex-col gap-8 font-sans">
+        <p>Rheole enforces a strict policy of <strong>Minimal Data Exposure</strong>. We share your data only in the following limited circumstances:</p>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">3.1. With Other Users</h4>
+        <ul className="list-disc pl-5"><li>  **Public Profile:** Your username, profile picture, and any information you explicitly set to "Public" are visible to others.</li><li>  **Communities and Events:** When you join a public community or attend a public event, your presence may be visible to other members or attendees.</li><li>  **Messages:** Content you send in direct messages or group chats is shared with the recipients.</li></ul>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">3.2. With Service Providers</h4>
+        <p>We share data with trusted infrastructure and service providers (e.g., cloud hosting, payment processors) who process it solely on our behalf, under strict confidentiality agreements.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">3.3. Legal and Law Enforcement Requests</h4>
+        <p>We will disclose your data if we believe in good faith that it is reasonably necessary to:
+        1. Comply with a valid legal process, search warrant, court order, or subpoena.
+        2. Protect the safety of any person from death or serious bodily injury.
+        3. Investigate and prevent fraud or security breaches.
+        4. Protect the rights and property of Ikhaga Private Limited.</p>
+        </div>
+        <div>
+        <h4 className="font-semibold text-brand-blue dark:text-luxury-white mb-2 text-base">3.4. Business Transfers</h4>
+        <p>In the event that Ikhaga Private Limited is involved in a merger, acquisition, bankruptcy, or sale of assets, your information may be transferred as part of that transaction, subject to the promises made in this Privacy Policy.</p>
+        </div>
+        </div>
+      )
+    },
+    {
+      id: "4-your-rights-and-controls",
+      title: "4. Your Rights and Controls",
+      desc: (
+        <div className="flex flex-col gap-3 font-sans">
+        <p>You own your data. We provide granular controls directly within the Rheole application settings.</p>
+        <ul className="list-disc pl-5"><li>  **Location Controls:** You can toggle between precise and approximate location tracking at any time via your device settings.</li><li>  **Account Deletion:** You can permanently delete your account directly from the app. Upon deletion, we remove your profile, messages, and location history from our active systems in accordance with our Data Retention Policy.</li><li>  **Data Export:** You can request a downloadable archive of your account data at any time.</li><li>  **Opt-Outs:** You may opt out of non-essential analytical tracking and promotional notifications.</li></ul>
+        </div>
+      )
+    },
+    {
+      id: "5-data-retention",
+      title: "5. Data Retention",
+      desc: (
+        <div className="flex flex-col gap-3 font-sans">
+        <p>We retain your personal information only for as long as necessary to provide the Services and fulfill the purposes outlined in this policy. 
+        *   <strong>Active Accounts:</strong> We retain your data while your account is active.
+        *   <strong>Deleted Accounts:</strong> When you initiate an account deletion, your data is scheduled for permanent erasure within 30 days, except where we are required to retain specific data for legal, tax, or regulatory compliance.
+        *   For detailed timelines, please refer to our full <strong>Data Retention Policy</strong>.</p>
+        </div>
+      )
+    },
+    {
+      id: "6-international-data-transfers",
+      title: "6. International Data Transfers",
+      desc: (
+        <div className="flex flex-col gap-3 font-sans">
+        <p>Rheole operates globally. Your information may be transferred to, stored, and processed in countries other than your own. When we transfer data across borders, we utilize recognized legal frameworks (such as Standard Contractual Clauses) to ensure your data receives adequate protection.</p>
+        </div>
+      )
+    },
+    {
+      id: "7-children-s-privacy",
+      title: "7. Children's Privacy",
+      desc: (
+        <div className="flex flex-col gap-3 font-sans">
+        <p>Rheole is not directed at children under the age of 13 (or higher, depending on local law). We do not knowingly collect personal information from children. If we become aware that a child has provided us with personal information, we will immediately take steps to delete that account and data.</p>
+        </div>
+      )
+    },
+    {
+      id: "8-cookies-and-tracking-technologies",
+      title: "8. Cookies and Tracking Technologies",
+      desc: (
+        <div className="flex flex-col gap-3 font-sans">
+        <p>We use cookies and similar technologies (like local storage and SDKs) to authenticate you, remember your preferences, and analyze platform performance. Detailed information on our usage and your choices can be found in our <strong>Cookie Policy</strong>.</p>
+        </div>
+      )
+    },
+    {
+      id: "9-policy-updates",
+      title: "9. Policy Updates",
+      desc: (
+        <div className="flex flex-col gap-3 font-sans">
+        <p>We may update this Privacy Policy from time to time to reflect changes in technology, law, or our operations. If we make material changes, we will provide you with advance notice via an in-app notification or email. Your continued use of Rheole after the effective date of the updated policy constitutes your acceptance of the changes.</p>
+        </div>
+      )
+    },
+    {
+      id: "10-contact-information",
+      title: "10. Contact Information",
+      desc: (
+        <div className="flex flex-col gap-3 font-sans">
+        <p>If you have questions, concerns, or feedback regarding this Privacy Policy, please contact our Chief Privacy Officer and the Privacy Team:</p>
+        <p><strong>Email:</strong> privacy@rheole.com  
+        <strong>Mailing Address:</strong>  
+        Ikhaga Private Limited  
+        Attn: Privacy Team / General Counsel  
+        [Address Placeholder - Update Before Launch]</p>
         </div>
       )
     }

@@ -107,10 +107,10 @@ export default function Home() {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30, letterSpacing: "0.1em" }}
-              animate={{ opacity: 1, y: 0, letterSpacing: "0.25em" }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl md:text-7xl lg:text-8xl font-light tracking-[0.25em] uppercase leading-none text-luxury-black"
+              className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-light tracking-[0.1em] md:tracking-[0.25em] uppercase leading-tight md:leading-none text-luxury-black max-w-[90vw] mx-auto"
             >
               THE PULSE OF YOUR WORLD
             </motion.h1>

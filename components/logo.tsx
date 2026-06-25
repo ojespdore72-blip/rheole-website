@@ -18,7 +18,7 @@ export default function RheoleLogo({
     <img
       src={src}
       alt={alt}
-      className={`${className} object-contain dark:invert`}
+      className={`${className} object-contain`}
       {...props}
     />
   );
