@@ -161,17 +161,56 @@ export default function Home() {
       {/* 2. PROGRESSIVE SCROLL NARRATIVE & 3. EARLY PRODUCT REVEAL */}
       <ProgressiveReveal />
 
-      {/* NEW: TRANSITIONAL NARRATIVE PARAGRAPH */}
-      <section className="relative w-full py-32 px-6 md:px-12 lg:px-24 bg-brand-blue flex justify-center items-center overflow-hidden">
-        {/* Subtle atmospheric glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(197,168,128,0.15),transparent_70%)]" />
+      {/* DISCOVERY SECTION */}
+      <section className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-[#05050C] text-white flex flex-col items-center justify-center overflow-hidden border-t border-white/5">
+        {/* Background atmospheric glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(197,168,128,0.1),transparent_50%)]" />
         
-        <motion.p 
-          {...fadeInUp}
-          className="relative z-10 text-2xl md:text-4xl lg:text-5xl font-light font-serif-editorial italic text-center text-[#F5F2EB] leading-relaxed max-w-6xl"
-        >
-          Rheole understands the relationships between people, places, communities, and events in real time. It translates the chaos of the physical world into a unified, intelligent feed tailored specifically to your context. You are instantly immersed in a living map of human activity, creating a digital sixth sense for your physical reality.
-        </motion.p>
+        <motion.div {...fadeInUp} className="relative z-10 flex flex-col items-center gap-12 md:gap-16 w-full max-w-[90rem]">
+          <div className="text-center space-y-6 max-w-3xl">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-light font-serif-editorial tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-[#F5F2EB] to-white/70">
+              Discovery
+            </h2>
+            <p className="text-sm md:text-lg text-brand-gold/90 font-light tracking-[0.2em] uppercase">
+              Captures the joy of discovering places nearby
+            </p>
+          </div>
+
+          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+            {[
+              "/web_image_1.png",
+              "/web_image_3.jpg",
+              "/web_image_4.jpg"
+            ].map((src, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1.2, delay: idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative w-full rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 hover:border-brand-gold/40 transition-colors duration-700 bg-white/[0.02]"
+              >
+                {/* 
+                  Aspect ratio 2:3 on mobile (aspect-[2/3])
+                  Aspect ratio 16:9 on desktop (md:aspect-[16/9]) 
+                */}
+                <div className="relative w-full aspect-[2/3] md:aspect-[16/9] overflow-hidden">
+                  <img
+                    src={src}
+                    alt={`Discovery Image ${idx + 1}`}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-[1.03] will-change-transform"
+                    loading="lazy"
+                  />
+                  {/* Subtle overlay gradient for premium depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05050C]/90 via-transparent to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-700" />
+                  
+                  {/* Premium inner border highlight */}
+                  <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/10 group-hover:ring-brand-gold/30 transition-all duration-700 pointer-events-none" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       {/* 4. HOW RHEOLE WORKS */}
