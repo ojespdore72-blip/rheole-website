@@ -34,7 +34,7 @@ export default function PrivacyTogglesDemo() {
   };
 
   return (
-    <div className="relative w-full h-[600px] md:h-auto md:aspect-square rounded-none md:rounded-[40px] spatial-glass border-y md:border border-brand-blue/10 dark:border-white/10 overflow-hidden flex items-center justify-center transition-colors duration-1000">
+    <div className="relative w-full h-[600px] md:h-auto md:aspect-square rounded-none md:rounded-[40px] bg-[#F4ECE1] border-y md:border border-brand-blue/10 overflow-hidden flex items-center justify-center transition-colors duration-1000">
       
       {/* Background Layer */}
       <div className="absolute inset-0 z-0">
@@ -113,14 +113,14 @@ export default function PrivacyTogglesDemo() {
         {SETTINGS.map((setting) => {
           const isOn = activeToggles[setting.id];
           return (
-            <div key={setting.id} className="flex justify-between items-center pb-6 border-b border-brand-blue/10 dark:border-white/10 last:border-0">
-              <span className={`text-sm font-mono tracking-widest uppercase transition-colors duration-300 ${isOn ? "text-brand-blue dark:text-brand-gold font-semibold" : "text-brand-blue/60 dark:text-white/60"}`}>
+            <div key={setting.id} className="flex justify-between items-center pb-6 border-b border-black/10 last:border-0">
+              <span className={`text-sm font-sans tracking-widest uppercase transition-colors duration-300 ${isOn ? "text-black font-semibold" : "text-black/60"}`}>
                 {setting.label}
               </span>
               <button
                 onClick={() => handleToggle(setting.id)}
                 className={`w-12 h-6 rounded-full flex items-center p-1 transition-colors duration-300 cursor-pointer ${
-                  isOn ? "bg-brand-gold dark:bg-brand-gold" : "bg-brand-blue/20 dark:bg-white/20"
+                  isOn ? "bg-[#1877F2]" : "bg-black/20"
                 }`}
               >
                 <motion.div
