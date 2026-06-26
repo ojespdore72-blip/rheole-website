@@ -12,6 +12,18 @@ import ProgressiveReveal from "@/components/ProgressiveReveal";
 export default function Home() {
   const [activeScenario, setActiveScenario] = useState(0);
   const [activeFeatureMenu, setActiveFeatureMenu] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ 
+        x: (e.clientX / window.innerWidth - 0.5) * 20, 
+        y: (e.clientY / window.innerHeight - 0.5) * 20 
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -138,51 +150,69 @@ export default function Home() {
     <div className="relative w-full min-h-screen bg-white overflow-hidden selection:bg-brand-gold/20 text-brand-blue font-sans">
       <Navbar />
       
-      {/* 1. HERO SECTION */}
-      <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-64 pb-24 px-6 md:px-12 overflow-hidden">
-        {/* Animated grid background */}
-        <div className="flex flex-col items-center gap-8 text-center max-w-4xl mt-12">
+      {/* 1. SPATIAL HERO SECTION */}
+      <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-32 pb-24 px-6 md:px-12 overflow-hidden">
+        
+        {/* Ambient Spatial Mesh Background */}
+        <motion.div 
+          animate={{ x: mousePos.x * -2, y: mousePos.y * -2 }}
+          transition={{ type: "spring", stiffness: 40, damping: 20 }}
+          className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center"
+        >
+          {/* Liquid Orbs */}
+          <div className="absolute top-[10%] left-[20%] w-[600px] h-[600px] bg-brand-gold/15 rounded-full blur-[100px] mix-blend-multiply animate-pulse-slow" />
+          <div className="absolute bottom-[10%] right-[15%] w-[500px] h-[500px] bg-brand-indigo/10 rounded-full blur-[120px] mix-blend-multiply" style={{ animation: 'pulse-slow 12s infinite ease-in-out reverse' }} />
+          <div className="absolute top-[30%] left-[50%] w-[800px] h-[800px] bg-brand-blue/5 rounded-full blur-[150px] mix-blend-multiply ambient-breathe" />
+          
+          {/* Subtle grid to anchor the space */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(10,37,64,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(10,37,64,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)]" />
+        </motion.div>
+
+        {/* Foreground Content */}
+        <div className="relative z-10 flex flex-col items-center gap-10 text-center max-w-5xl mt-12">
           
           <motion.div
-            initial={{ scale: 0.8, opacity: 0, filter: "blur(10px)" }}
+            initial={{ scale: 0.8, opacity: 0, filter: "blur(20px)" }}
             animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+            className="ambient-breathe"
           >
-            <motion.div animate={{ y: [0, -8, 0] }} transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}>
-              <RheoleLogo className="h-24 w-24 md:h-32 md:w-32 drop-shadow-[0_0_35px_rgba(79,70,229,0.25)]" />
+            <motion.div 
+              animate={{ x: mousePos.x * 1, y: mousePos.y * 1 }} 
+              transition={{ type: "spring", stiffness: 100, damping: 30 }}
+            >
+              <RheoleLogo className="h-24 w-24 md:h-32 md:w-32 drop-shadow-[0_0_50px_rgba(197,168,128,0.4)]" />
             </motion.div>
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light tracking-[0.1em] md:tracking-[0.2em] uppercase leading-tight text-luxury-black max-w-[90vw]"
+            transition={{ delay: 0.4, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] font-light font-serif-editorial tracking-tight leading-[1.05] text-brand-blue"
           >
-            THE PULSE OF YOUR WORLD
+            The pulse of<br/><span className="text-gradient-gold-blue italic">your world.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-base md:text-xl font-light text-brand-blue/80 max-w-2xl leading-relaxed mt-2"
+            transition={{ delay: 0.7, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="text-lg md:text-2xl font-light text-brand-blue/70 max-w-3xl leading-relaxed mt-2"
           >
-            An AI-powered spatial intelligence platform connecting people, communities, places, and real-world activity into one seamless experience.
+            An ambient spatial intelligence layer. Connect effortlessly to the people, communities, and live rhythms shaping your reality.
           </motion.p>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-center gap-4 mt-6"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.0, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row items-center gap-6 mt-8"
           >
-            <Link href="/experience" className="w-full sm:w-auto px-8 py-4 bg-brand-gold text-brand-blue hover:bg-[#d6b78c] transition-colors rounded-full text-xs font-semibold uppercase tracking-widest shadow-lg shadow-brand-gold/20">
-              Experience Rheole
+            <Link href="/experience" className="group relative px-10 py-5 bg-brand-blue text-luxury-white rounded-full text-sm font-medium tracking-widest uppercase overflow-hidden haptic-press shadow-[0_20px_40px_-10px_rgba(10,37,64,0.4)]">
+              <span className="relative z-10 group-hover:text-brand-blue transition-colors duration-500">See the Pulse</span>
+              <div className="absolute inset-0 bg-brand-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             </Link>
-            <a href="#how-it-works" className="w-full sm:w-auto px-8 py-4 border border-brand-blue/20 text-brand-blue hover:border-brand-blue transition-colors rounded-full text-xs font-semibold uppercase tracking-widest text-center">
-              How It Works
-            </a>
           </motion.div>
         </div>
       </section>
