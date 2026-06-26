@@ -162,12 +162,12 @@ export default function Home() {
       <ProgressiveReveal />
 
       {/* DISCOVERY SECTION */}
-      <section className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-[#05050C] text-white flex flex-col items-center justify-center overflow-hidden border-t border-white/5">
+      <section className="relative w-full py-24 md:py-32 px-0 md:px-12 lg:px-24 bg-[#05050C] text-white flex flex-col items-center justify-center overflow-hidden border-t border-white/5">
         {/* Background atmospheric glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(197,168,128,0.1),transparent_50%)]" />
         
         <motion.div {...fadeInUp} className="relative z-10 flex flex-col items-center gap-12 md:gap-16 w-full max-w-[90rem]">
-          <div className="text-center space-y-6 max-w-3xl">
+          <div className="text-center space-y-6 max-w-3xl px-6 md:px-0">
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-light font-serif-editorial tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-[#F5F2EB] to-white/70">
               Discovery
             </h2>
@@ -176,7 +176,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+          <div className="w-full flex md:grid md:grid-cols-3 gap-6 md:gap-8 lg:gap-10 overflow-x-auto snap-x snap-mandatory px-6 md:px-0 pb-8 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {[
               "/web_image_1.png",
               "/web_image_3.jpg",
@@ -188,7 +188,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 1.2, delay: idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative w-full rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 hover:border-brand-gold/40 transition-colors duration-700 bg-white/[0.02]"
+                className="group relative w-[85vw] md:w-full flex-shrink-0 snap-center rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 hover:border-brand-gold/40 transition-colors duration-700 bg-white/[0.02]"
               >
                 {/* 
                   Aspect ratio 2:3 on mobile (aspect-[2/3])
