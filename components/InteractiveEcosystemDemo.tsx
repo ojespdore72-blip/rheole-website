@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimationFrame, useMotionValue } from "framer-motion";
+import { useRef } from "react";
 import { Map as MapIcon, MessageCircle, Calendar, Users, Sparkles, Mic, Route, X, Heart, Share2, MapPin, Search, Music, Film, Activity, UserPlus, Clock } from "lucide-react";
 
 const features = [
@@ -68,51 +69,7 @@ export default function InteractiveEcosystemDemo() {
             transition={{ duration: 0.5 }}
             className="absolute inset-0"
           >
-            {features.map((app, i) => {
-              const Icon = app.icon;
-              const xPath = [
-                Math.sin(i * 1.1 + 1) * 180,
-                Math.cos(i * 1.3 + 2) * 190,
-                Math.sin(i * 1.7 + 3) * 170,
-                Math.cos(i * 1.9 + 4) * 180,
-                Math.sin(i * 2.3 + 5) * 190,
-                Math.sin(i * 1.1 + 1) * 180,
-              ];
-              const yPath = [
-                Math.cos(i * 1.2 + 1) * 180,
-                Math.sin(i * 1.4 + 2) * 170,
-                Math.cos(i * 1.6 + 3) * 190,
-                Math.sin(i * 1.8 + 4) * 180,
-                Math.cos(i * 2.2 + 5) * 170,
-                Math.cos(i * 1.2 + 1) * 180,
-              ];
-              const rotatePath = [
-                0, Math.sin(i * 2) * 15, Math.cos(i * 3) * -15, Math.sin(i * 4) * 15, Math.cos(i * 5) * -15, 0
-              ];
-              
-              return (
-                <motion.button
-                  key={app.name}
-                  onClick={() => setActiveFeature(app.id)}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: false, margin: "-100px" }}
-                  animate={{ x: xPath, y: yPath, rotate: rotatePath }}
-                  transition={{ 
-                    duration: 25 + (i % 4) * 5, 
-                    repeat: Infinity,
-                    ease: "linear" 
-                  }}
-                  className="absolute left-1/2 top-1/2 -ml-[100px] -mt-[30px] px-6 py-4 rounded-2xl border border-[#0000FF]/20 shadow-[0_0_30px_rgba(0,0,255,0.15)] whitespace-nowrap hover:scale-110 transition-transform hover:z-50 cursor-pointer flex items-center justify-center"
-                  style={{ backgroundColor: "#ffffff" }}
-                >
-                  <div className="flex items-center gap-2 pointer-events-none">
-                    <Icon size={16} className="text-[#0000FF]" />
-                    <span className="text-sm font-mono tracking-widest uppercase text-[#0000FF] font-semibold">{app.name}</span>
-                  </div>
-                </motion.button>
-              );
-            })}
+          <FloatingTags onSelect={setActiveFeature} />
           </motion.div>
         ) : (
           <motion.div
@@ -134,6 +91,111 @@ export default function InteractiveEcosystemDemo() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+function FloatingTags({ onSelect }: { onSelect: (id: string) => void }) {
+  const NUM_TAGS = features.length;
+  const RADIUS = 160;
+  const REPULSION_STRENGTH = 10000;
+  const DAMPING = 0.95;
+  const WANDER_STRENGTH = 0.5;
+
+  const nodes = useRef(features.map((f, i) => {
+    const angle = (i / NUM_TAGS) * Math.PI * 2;
+    return {
+      x: Math.cos(angle) * 120,
+      y: Math.sin(angle) * 120,
+      vx: 0,
+      vy: 0
+    };
+  }));
+
+  const mvs = [
+    { x: useMotionValue(nodes.current[0].x), y: useMotionValue(nodes.current[0].y), r: useMotionValue(0) },
+    { x: useMotionValue(nodes.current[1].x), y: useMotionValue(nodes.current[1].y), r: useMotionValue(0) },
+    { x: useMotionValue(nodes.current[2].x), y: useMotionValue(nodes.current[2].y), r: useMotionValue(0) },
+    { x: useMotionValue(nodes.current[3].x), y: useMotionValue(nodes.current[3].y), r: useMotionValue(0) },
+    { x: useMotionValue(nodes.current[4].x), y: useMotionValue(nodes.current[4].y), r: useMotionValue(0) },
+    { x: useMotionValue(nodes.current[5].x), y: useMotionValue(nodes.current[5].y), r: useMotionValue(0) },
+    { x: useMotionValue(nodes.current[6].x), y: useMotionValue(nodes.current[6].y), r: useMotionValue(0) }
+  ];
+
+  useAnimationFrame((t, delta) => {
+    const dt = Math.min(delta, 32) / 16; 
+
+    for (let i = 0; i < NUM_TAGS; i++) {
+      const node = nodes.current[i];
+      
+      // Wander force
+      node.vx += (Math.random() - 0.5) * WANDER_STRENGTH;
+      node.vy += (Math.random() - 0.5) * WANDER_STRENGTH;
+
+      // Center gravity
+      node.vx += -node.x * 0.002;
+      node.vy += -node.y * 0.002;
+
+      // Repulsion from others
+      for (let j = 0; j < NUM_TAGS; j++) {
+        if (i === j) continue;
+        const other = nodes.current[j];
+        const dx = node.x - other.x;
+        const dy = node.y - other.y;
+        const distSq = dx * dx + dy * dy;
+        const dist = Math.sqrt(distSq);
+        
+        const MIN_DIST = 160; 
+        if (dist > 0 && dist < MIN_DIST) {
+          const force = Math.min((MIN_DIST - dist) * 0.1, 8);
+          node.vx += (dx / dist) * force;
+          node.vy += (dy / dist) * force;
+        }
+      }
+
+      // Boundary collision
+      const currentRadius = Math.sqrt(node.x * node.x + node.y * node.y);
+      if (currentRadius > RADIUS) {
+        node.vx += -node.x * 0.01;
+        node.vy += -node.y * 0.01;
+      }
+
+      node.vx *= DAMPING;
+      node.vy *= DAMPING;
+      node.x += node.vx * dt;
+      node.y += node.vy * dt;
+
+      mvs[i].x.set(node.x);
+      mvs[i].y.set(node.y);
+      mvs[i].r.set(node.vx * 2);
+    }
+  });
+
+  return (
+    <>
+      {features.map((app, i) => {
+        const Icon = app.icon;
+        return (
+          <motion.button
+            key={app.name}
+            onClick={() => onSelect(app.id)}
+            style={{ 
+              x: mvs[i].x, 
+              y: mvs[i].y, 
+              rotate: mvs[i].r,
+              backgroundColor: "#ffffff"
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="absolute left-1/2 top-1/2 -ml-[100px] -mt-[30px] px-6 py-4 rounded-2xl border border-[#0000FF]/20 shadow-[0_0_30px_rgba(0,0,255,0.15)] whitespace-nowrap hover:scale-110 transition-transform hover:z-50 cursor-pointer flex items-center justify-center"
+          >
+            <div className="flex items-center gap-2 pointer-events-none">
+              <Icon size={16} className="text-[#0000FF]" />
+              <span className="text-sm font-mono tracking-widest uppercase text-[#0000FF] font-semibold">{app.name}</span>
+            </div>
+          </motion.button>
+        );
+      })}
+    </>
   );
 }
 
