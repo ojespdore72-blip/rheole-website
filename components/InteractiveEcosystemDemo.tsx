@@ -69,7 +69,8 @@ export default function InteractiveEcosystemDemo() {
             transition={{ duration: 0.5 }}
             className="absolute inset-0"
           >
-          <FloatingTags onSelect={setActiveFeature} />
+            <BackgroundDots />
+            <FloatingTags onSelect={setActiveFeature} />
           </motion.div>
         ) : (
           <motion.div
@@ -686,6 +687,53 @@ function RoutesDemo() {
           </motion.div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function BackgroundDots() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {Array.from({ length: 100 }).map((_, i) => {
+        const colors = ["bg-brand-blue", "bg-brand-gold", "bg-white"];
+        const color = colors[i % colors.length];
+        
+        // Deterministic pseudo-random values based on index to avoid hydration mismatch
+        const random1 = (Math.sin(i * 12.9898) * 43758.5453) % 1;
+        const random2 = (Math.cos(i * 78.233) * 43758.5453) % 1;
+        const random3 = (Math.sin(i * 45.123) * 43758.5453) % 1;
+        
+        const size = Math.abs(random1) * 3 + 1.5; // 1.5px to 4.5px
+        const startTop = Math.abs(random2) * 100;
+        const startLeft = Math.abs(random3) * 100;
+        const duration = Math.abs(random1) * 20 + 20; // 20s to 40s
+        const drift = random2 * 100; // -100px to 100px
+        const delay = -Math.abs(random3) * 40;
+        
+        return (
+          <motion.div
+            key={`bg-dot-${i}`}
+            className={`absolute rounded-full ${color}`}
+            style={{
+              width: size,
+              height: size,
+              top: `${startTop}%`,
+              left: `${startLeft}%`,
+              opacity: Math.abs(random1) * 0.4 + 0.2
+            }}
+            animate={{
+              y: [0, -1000],
+              x: [0, drift]
+            }}
+            transition={{
+              duration: duration,
+              repeat: Infinity,
+              ease: "linear",
+              delay: delay
+            }}
+          />
+        );
+      })}
     </div>
   );
 }

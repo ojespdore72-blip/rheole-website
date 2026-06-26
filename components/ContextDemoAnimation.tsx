@@ -60,7 +60,7 @@ export default function ContextDemoAnimation() {
   }, []);
 
   return (
-    <div className="relative w-full aspect-[2/3] rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border border-brand-blue/10">
+    <div className="relative w-full aspect-[2/3] min-h-[500px] rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border border-brand-blue/10">
       
       {/* Background Image of Girl Holding Phone */}
       <div 

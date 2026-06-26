@@ -179,12 +179,12 @@ export default function ConnectTheDotsDemo() {
       <AnimatePresence>
         {!isComplete && connectedDots.length === 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute top-1/3 text-center pointer-events-none z-20"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="absolute top-8 left-8 pointer-events-none z-20"
           >
-            <p className="text-white text-lg font-light tracking-widest uppercase bg-black/40 px-6 py-2 rounded-full backdrop-blur-sm border border-white/10">
+            <p className="text-black text-sm md:text-base font-mono tracking-[0.3em] uppercase">
               Connect the dots
             </p>
           </motion.div>
@@ -200,7 +200,7 @@ export default function ConnectTheDotsDemo() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 2, duration: 1 }}
-              className="absolute top-8 left-8 text-white text-sm md:text-base font-mono tracking-[0.3em] uppercase bg-black/60 px-6 py-3 rounded-full z-30 backdrop-blur-md border border-brand-gold/30"
+              className="absolute top-8 left-8 text-black text-sm md:text-base font-mono tracking-[0.3em] uppercase z-30"
             >
               Intelligence Activated
             </motion.p>
