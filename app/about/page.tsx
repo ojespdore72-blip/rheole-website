@@ -80,6 +80,9 @@ const chapters: Chapter[] = [
     visual: (
       <div className="relative w-full aspect-square rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border border-brand-blue/10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,100,224,0.15),transparent_70%)]" />
+        <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20">
+          <p className="text-white/90 font-sans font-light text-xl tracking-wide">Select a feature.</p>
+        </div>
         {[
           { name: "Maps", icon: MapIcon },
           { name: "Messaging", icon: MessageCircle },
