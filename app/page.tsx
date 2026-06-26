@@ -217,7 +217,7 @@ export default function Home() {
         </div>
         
         {/* Horizontal Scroll Gallery */}
-        <div className="flex gap-8 px-6 lg:px-12 overflow-x-auto pb-12 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-0 md:gap-8 px-0 lg:px-12 overflow-x-auto pb-12 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden">
           {photos.map((photo, i) => (
             <motion.div 
               key={i}
@@ -225,7 +225,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: i * 0.1 }}
-              className="relative w-[300px] md:w-[450px] aspect-[4/5] flex-shrink-0 snap-center rounded-3xl overflow-hidden group"
+              className="relative w-[100vw] md:w-[450px] aspect-[4/5] flex-shrink-0 snap-center rounded-none md:rounded-3xl overflow-hidden group"
             >
               <div className="absolute inset-0 bg-white/5 group-hover:scale-105 transition-transform duration-[2s] ease-out">
                 {/* Real Image */}
