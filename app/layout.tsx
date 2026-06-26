@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CookieConsent from "@/components/CookieConsent";
 import ClientMotionConfig from "@/components/ClientMotionConfig";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -51,9 +52,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${playfair.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-luxury-white dark:bg-luxury-black text-brand-blue dark:text-luxury-white selection:bg-brand-gold/30 selection:text-brand-blue dark:selection:text-luxury-white">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -81,6 +84,7 @@ export default function RootLayout({
         </main>
         <Footer isGlobal />
         <CookieConsent />
+        </ThemeProvider>
       </body>
     </html>
   );
