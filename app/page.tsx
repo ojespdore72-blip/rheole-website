@@ -11,6 +11,7 @@ import ProgressiveReveal from "@/components/ProgressiveReveal";
 
 export default function Home() {
   const [activeScenario, setActiveScenario] = useState(0);
+  const [activeFeatureMenu, setActiveFeatureMenu] = useState(0);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -105,6 +106,34 @@ export default function Home() {
     }
   ];
 
+  const featureSections = [
+    {
+      title: "Discovery",
+      desc: "Captures the joy of discovering places nearby",
+      images: ["/web_image_1.png", "/web_image_3.jpg", "/web_image_4.jpg"]
+    },
+    {
+      title: "Communities",
+      desc: "Connect with local circles built around shared interests",
+      images: []
+    },
+    {
+      title: "Events",
+      desc: "Live, context-aware event discovery",
+      images: []
+    },
+    {
+      title: "Virtual Intelligence",
+      desc: "An AI-powered spatial intelligence platform",
+      images: []
+    },
+    {
+      title: "Future",
+      desc: "Experience the next generation of digital interaction",
+      images: []
+    }
+  ];
+
   return (
     <div className="relative w-full min-h-screen bg-white overflow-hidden selection:bg-brand-gold/20 text-brand-blue font-sans">
       <Navbar />
@@ -161,56 +190,88 @@ export default function Home() {
       {/* 2. PROGRESSIVE SCROLL NARRATIVE & 3. EARLY PRODUCT REVEAL */}
       <ProgressiveReveal />
 
-      {/* DISCOVERY SECTION */}
-      <section className="relative w-full py-24 md:py-32 px-0 md:px-12 lg:px-24 bg-[#05050C] text-white flex flex-col items-center justify-center overflow-hidden border-t border-white/5">
+      {/* FEATURE MENU SECTION (Replaces Discovery) */}
+      <section className="relative w-full bg-[#05050C] text-white flex flex-col items-center justify-center overflow-hidden border-t border-white/5 py-16 md:py-24">
         {/* Background atmospheric glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(197,168,128,0.1),transparent_50%)]" />
         
-        <motion.div {...fadeInUp} className="relative z-10 flex flex-col items-center gap-12 md:gap-16 w-full max-w-[90rem]">
-          <div className="text-center space-y-6 max-w-3xl px-6 md:px-0">
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-light font-serif-editorial tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-[#F5F2EB] to-white/70">
-              Discovery
-            </h2>
-            <p className="text-sm md:text-lg text-brand-gold/90 font-light tracking-[0.2em] uppercase">
-              Captures the joy of discovering places nearby
-            </p>
+        <div className="relative z-10 w-full flex flex-col">
+          
+          {/* Menu */}
+          <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-6 mb-10">
+            <div className="flex items-center gap-8 md:gap-16 w-max mx-auto border-b border-white/10 pb-4">
+              {featureSections.map((feature, idx) => (
+                <button 
+                  key={idx}
+                  onClick={() => setActiveFeatureMenu(idx)}
+                  className={`text-sm md:text-base lg:text-lg font-light tracking-[0.1em] uppercase transition-all duration-300 relative whitespace-nowrap ${
+                    activeFeatureMenu === idx ? 'text-brand-gold' : 'text-white/50 hover:text-white/80'
+                  }`}
+                >
+                  {feature.title}
+                  {activeFeatureMenu === idx && (
+                    <motion.div 
+                      layoutId="activeFeatureIndicator"
+                      className="absolute -bottom-[17px] left-0 right-0 h-[2px] bg-brand-gold" 
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
-
-          <div className="w-full flex md:grid md:grid-cols-3 gap-6 md:gap-8 lg:gap-10 overflow-x-auto snap-x snap-mandatory px-6 md:px-0 pb-8 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            {[
-              "/web_image_1.png",
-              "/web_image_3.jpg",
-              "/web_image_4.jpg"
-            ].map((src, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 1.2, delay: idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative w-[85vw] md:w-full flex-shrink-0 snap-center rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 hover:border-brand-gold/40 transition-colors duration-700 bg-white/[0.02]"
+          
+          {/* Content Area */}
+          <div className="w-full">
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={activeFeatureMenu}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="w-full flex flex-col items-center gap-8"
               >
-                {/* 
-                  Aspect ratio 2:3 on mobile (aspect-[2/3])
-                  Aspect ratio 16:9 on desktop (md:aspect-[16/9]) 
-                */}
-                <div className="relative w-full aspect-[2/3] md:aspect-[16/9] overflow-hidden">
-                  <img
-                    src={src}
-                    alt={`Discovery Image ${idx + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-[1.03] will-change-transform"
-                    loading="lazy"
-                  />
-                  {/* Subtle overlay gradient for premium depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#05050C]/90 via-transparent to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-700" />
-                  
-                  {/* Premium inner border highlight */}
-                  <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/10 group-hover:ring-brand-gold/30 transition-all duration-700 pointer-events-none" />
+                <div className="text-center space-y-4 max-w-3xl px-6">
+                  <h2 className="text-4xl md:text-5xl lg:text-7xl font-light font-serif-editorial tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-[#F5F2EB] to-white/70">
+                    {featureSections[activeFeatureMenu].title}
+                  </h2>
+                  <p className="text-xs md:text-sm lg:text-lg text-brand-gold/90 font-light tracking-[0.2em] uppercase">
+                    {featureSections[activeFeatureMenu].desc}
+                  </p>
+                </div>
+
+                {/* 100% Width Image Carousel without wasting side spaces */}
+                <div className="w-full flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                  {featureSections[activeFeatureMenu].images.length > 0 ? (
+                    featureSections[activeFeatureMenu].images.map((src, idx) => (
+                      <div
+                        key={idx}
+                        className="relative w-full flex-shrink-0 snap-center"
+                      >
+                        <div className="relative w-full aspect-[4/5] md:aspect-[21/9] overflow-hidden">
+                          <img
+                            src={src}
+                            alt={`${featureSections[activeFeatureMenu].title} Image ${idx + 1}`}
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-[1.03] will-change-transform"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#05050C]/90 via-transparent to-transparent opacity-60 pointer-events-none" />
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="relative w-full flex-shrink-0 snap-center">
+                      <div className="relative w-full aspect-[4/5] md:aspect-[21/9] overflow-hidden bg-[#05050C] flex flex-col items-center justify-center border-y border-white/5">
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(197,168,128,0.05),transparent_50%)]" />
+                        <span className="text-white/20 tracking-[0.3em] uppercase text-xs md:text-sm font-light z-10">Visuals coming soon</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </motion.div>
-            ))}
+            </AnimatePresence>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* 4. HOW RHEOLE WORKS */}
