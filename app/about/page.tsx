@@ -6,6 +6,7 @@ import ProgressiveReveal from "@/components/ProgressiveReveal";
 import InteractiveEcosystemDemo from "@/components/InteractiveEcosystemDemo";
 import ContextDemoAnimation from "@/components/ContextDemoAnimation";
 import PrivacyTogglesDemo from "@/components/PrivacyTogglesDemo";
+import ConnectTheDotsDemo from "@/components/ConnectTheDotsDemo";
 
 // Types
 type Chapter = {
@@ -31,40 +32,7 @@ const chapters: Chapter[] = [
         </p>
       </>
     ),
-    visual: (
-      <div className="relative w-full aspect-square rounded-[40px] spatial-glass border border-brand-blue/10 dark:border-white/10 overflow-hidden flex items-center justify-center">
-        <img src="/disconnected_nodes.png" alt="Disconnected Nodes" className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50" />
-        {/* Floating disconnected nodes */}
-        {Array.from({ length: 15 }).map((_, i) => (
-          <motion.div
-            key={i}
-            animate={{
-              y: [0, Math.random() * -20 - 10, 0],
-              x: [0, Math.random() * 20 - 10, 0],
-              opacity: [0.3, 0.8, 0.3]
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 2
-            }}
-            className="absolute w-2 h-2 rounded-full bg-brand-blue dark:bg-white"
-            style={{
-              top: `${20 + Math.random() * 60}%`,
-              left: `${20 + Math.random() * 60}%`,
-            }}
-          />
-        ))}
-        {/* Subtle connecting signals */}
-        <motion.div
-          animate={{ scale: [1, 1.5, 1], opacity: [0, 0.1, 0] }}
-          transition={{ duration: 4, repeat: Infinity }}
-          className="absolute w-1/2 h-1/2 rounded-full border border-brand-gold/30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-luxury-white via-transparent to-transparent dark:from-luxury-black opacity-80" />
-      </div>
-    )
+    visual: <ConnectTheDotsDemo />
   },
   {
     id: "chapter-02",
