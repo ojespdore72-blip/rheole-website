@@ -5,8 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import RheoleLogo from "./logo";
-import ThemeToggle from "./ThemeToggle";
-
 export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -79,7 +77,6 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
 
         {/* Action Button */}
         <div className="flex items-center gap-4 pl-2 pr-1">
-          <ThemeToggle />
           <Link
             href="/founding-access"
             className="text-xs uppercase tracking-widest font-medium bg-brand-blue text-white dark:bg-luxury-white dark:text-brand-blue rounded-full px-5 py-2.5 haptic-press relative overflow-hidden group shadow-[0_0_20px_rgba(10,37,64,0.2)] dark:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
