@@ -96,18 +96,15 @@ export default function InteractiveEcosystemDemo() {
 
 function FloatingTags({ onSelect }: { onSelect: (id: string) => void }) {
   const NUM_TAGS = features.length;
-  const RADIUS = 160;
-  const REPULSION_STRENGTH = 10000;
-  const DAMPING = 0.95;
-  const WANDER_STRENGTH = 0.5;
 
   const nodes = useRef(features.map((f, i) => {
-    const angle = (i / NUM_TAGS) * Math.PI * 2;
     return {
-      x: Math.cos(angle) * 120,
-      y: Math.sin(angle) * 120,
-      vx: 0,
-      vy: 0
+      // Start them scattered randomly
+      x: (Math.random() - 0.5) * 300,
+      y: (Math.random() - 0.5) * 300,
+      // Give them initial velocity
+      vx: (Math.random() - 0.5) * 4,
+      vy: (Math.random() - 0.5) * 4
     };
   }));
 
@@ -127,15 +124,11 @@ function FloatingTags({ onSelect }: { onSelect: (id: string) => void }) {
     for (let i = 0; i < NUM_TAGS; i++) {
       const node = nodes.current[i];
       
-      // Wander force
-      node.vx += (Math.random() - 0.5) * WANDER_STRENGTH;
-      node.vy += (Math.random() - 0.5) * WANDER_STRENGTH;
+      // Brownian motion kicks (atoms getting hit by air)
+      node.vx += (Math.random() - 0.5) * 0.5;
+      node.vy += (Math.random() - 0.5) * 0.5;
 
-      // Center gravity
-      node.vx += -node.x * 0.002;
-      node.vy += -node.y * 0.002;
-
-      // Repulsion from others
+      // Repulsion from others (billiard balls collision)
       for (let j = 0; j < NUM_TAGS; j++) {
         if (i === j) continue;
         const other = nodes.current[j];
@@ -144,29 +137,40 @@ function FloatingTags({ onSelect }: { onSelect: (id: string) => void }) {
         const distSq = dx * dx + dy * dy;
         const dist = Math.sqrt(distSq);
         
-        const MIN_DIST = 160; 
+        const MIN_DIST = 170; // Repulsion radius to prevent overlapping
         if (dist > 0 && dist < MIN_DIST) {
-          const force = Math.min((MIN_DIST - dist) * 0.1, 8);
+          const force = (MIN_DIST - dist) * 0.05;
           node.vx += (dx / dist) * force;
           node.vy += (dy / dist) * force;
         }
       }
 
-      // Boundary collision
-      const currentRadius = Math.sqrt(node.x * node.x + node.y * node.y);
-      if (currentRadius > RADIUS) {
-        node.vx += -node.x * 0.01;
-        node.vy += -node.y * 0.01;
+      // Terminal velocity (prevent them from flying too fast)
+      const speed = Math.sqrt(node.vx * node.vx + node.vy * node.vy);
+      const MAX_SPEED = 3.5;
+      if (speed > MAX_SPEED) {
+        node.vx = (node.vx / speed) * MAX_SPEED;
+        node.vy = (node.vy / speed) * MAX_SPEED;
       }
 
-      node.vx *= DAMPING;
-      node.vy *= DAMPING;
+      // Move
       node.x += node.vx * dt;
       node.y += node.vy * dt;
 
+      // Boundary collision (bouncing off the invisible walls of the container)
+      const BOUND_X = 180; // Keep within horizontal bounds
+      const BOUND_Y = 240; // Keep within vertical bounds
+      
+      if (node.x > BOUND_X) { node.x = BOUND_X; node.vx *= -1; }
+      if (node.x < -BOUND_X) { node.x = -BOUND_X; node.vx *= -1; }
+      if (node.y > BOUND_Y) { node.y = BOUND_Y; node.vy *= -1; }
+      if (node.y < -BOUND_Y) { node.y = -BOUND_Y; node.vy *= -1; }
+
+      // Update motion values
       mvs[i].x.set(node.x);
       mvs[i].y.set(node.y);
-      mvs[i].r.set(node.vx * 2);
+      // Gentle rotation based on velocity to simulate free-floating
+      mvs[i].r.set(node.vx * 3);
     }
   });
 
