@@ -34,7 +34,7 @@ export default function PrivacyTogglesDemo() {
   };
 
   return (
-    <div className="relative w-full aspect-square rounded-[40px] spatial-glass border border-brand-blue/10 dark:border-white/10 overflow-hidden flex items-center justify-center transition-colors duration-1000">
+    <div className="relative w-full h-[600px] md:h-auto md:aspect-square rounded-none md:rounded-[40px] spatial-glass border-y md:border border-brand-blue/10 dark:border-white/10 overflow-hidden flex items-center justify-center transition-colors duration-1000">
       
       {/* Background Layer */}
       <div className="absolute inset-0 z-0">

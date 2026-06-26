@@ -65,7 +65,7 @@ const chapters: Chapter[] = [
       </>
     ),
     visual: (
-      <div className="relative w-full aspect-square rounded-[40px] spatial-glass border border-brand-gold/20 overflow-hidden flex items-center justify-center">
+      <div className="relative w-full aspect-square rounded-none md:rounded-[40px] spatial-glass border border-brand-gold/20 overflow-hidden flex items-center justify-center">
         <img src="/intelligence_layer.png" alt="Intelligence Layer" className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50" />
         <svg className="absolute inset-0 w-full h-full opacity-30">
           <motion.path
@@ -124,7 +124,7 @@ const chapters: Chapter[] = [
       </>
     ),
     visual: (
-      <div className="relative w-full aspect-[4/5] md:aspect-square rounded-[40px] overflow-hidden group">
+      <div className="relative w-full aspect-[4/5] md:aspect-square rounded-none md:rounded-[40px] overflow-hidden group">
         <img src="/web_image_4.jpg" alt="Local Discovery" className="absolute inset-0 w-full h-full object-cover mix-blend-overlay transition-all duration-[2s] scale-105 group-hover:scale-100" />
         <div className="absolute inset-0 bg-brand-blue/10 mix-blend-overlay" />
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -154,7 +154,7 @@ const chapters: Chapter[] = [
       </>
     ),
     visual: (
-      <div className="relative w-full aspect-square rounded-[40px] overflow-hidden flex items-center justify-center">
+      <div className="relative w-full aspect-square rounded-none md:rounded-[40px] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 flex items-center justify-center">
           {[1, 2, 3].map((ring) => (
             <motion.div
@@ -205,7 +205,7 @@ const chapters: Chapter[] = [
       </>
     ),
     visual: (
-      <div className="relative w-full aspect-square rounded-[40px] overflow-hidden flex flex-col items-center justify-center bg-luxury-black text-luxury-white">
+      <div className="relative w-full aspect-square rounded-none md:rounded-[40px] overflow-hidden flex flex-col items-center justify-center bg-luxury-black text-luxury-white">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(197,168,128,0.1),transparent_70%)]" />
         <div className="z-10 flex flex-col items-center text-center">
           <motion.div 
