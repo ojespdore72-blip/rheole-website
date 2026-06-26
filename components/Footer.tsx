@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import RheoleLogo from "./logo";
+import { motion } from "framer-motion";
 
 export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
   const currentYear = new Date().getFullYear();
@@ -16,10 +17,15 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
         {/* Brand Column */}
         <div className="flex flex-col items-start gap-4">
-          <div className="flex items-center gap-4">
-            <RheoleLogo className="h-8 w-auto md:h-10.5" />
-            <RheoleLogo variant="wordmark" className="h-7 md:h-9 w-auto" />
-          </div>
+          <Link href="/">
+            <motion.div 
+              className="flex items-center gap-4 cursor-pointer group"
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <RheoleLogo className="h-8 w-auto md:h-10.5 group-hover:drop-shadow-lg group-hover:rotate-180 transition-all duration-500" />
+              <RheoleLogo variant="wordmark" className="h-7 md:h-9 w-auto group-hover:drop-shadow-lg transition-all duration-300" />
+            </motion.div>
+          </Link>
           <p className="text-xs text-brand-blue/50 max-w-xs leading-relaxed">
             The intelligence layer between people and the physical world.
           </p>
