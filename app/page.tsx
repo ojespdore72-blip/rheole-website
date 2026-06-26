@@ -129,7 +129,7 @@ export default function Home() {
       {/* 2. THE CORE PRINCIPLE */}
       <motion.section 
         style={{ opacity: introOpacity, y: introY }}
-        className="relative z-10 min-h-screen flex items-center justify-center px-6"
+        className="relative z-10 min-h-screen flex items-center justify-center px-6 bg-luxury-white dark:bg-luxury-black"
       >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl lg:text-7xl font-light leading-tight font-serif-editorial text-brand-blue dark:text-white">

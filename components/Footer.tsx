@@ -12,7 +12,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
 
   // Global Footer will always render
   return (
-    <footer className="w-full border-t border-brand-blue/5 bg-transparent py-10 px-6 md:px-16 mt-auto">
+    <footer className="w-full relative z-10 border-t border-brand-blue/5 bg-luxury-white dark:bg-luxury-black py-10 px-6 md:px-16 mt-auto">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
         {/* Brand Column */}
         <div className="flex flex-col items-start gap-4">
