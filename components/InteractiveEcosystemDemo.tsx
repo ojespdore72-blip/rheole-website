@@ -98,13 +98,14 @@ function FloatingTags({ onSelect }: { onSelect: (id: string) => void }) {
   const NUM_TAGS = features.length;
 
   const nodes = useRef(features.map((f, i) => {
+    // Start them deterministically in a circle to avoid hydration mismatch
+    const angle = (i / NUM_TAGS) * Math.PI * 2;
     return {
-      // Start them scattered randomly
-      x: (Math.random() - 0.5) * 300,
-      y: (Math.random() - 0.5) * 300,
-      // Give them initial velocity
-      vx: (Math.random() - 0.5) * 4,
-      vy: (Math.random() - 0.5) * 4
+      x: Math.cos(angle) * 120,
+      y: Math.sin(angle) * 120,
+      // Give them a deterministic initial velocity based on index
+      vx: Math.cos(angle + 1) * 2,
+      vy: Math.sin(angle + 1) * 2
     };
   }));
 
