@@ -56,7 +56,7 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-luxury-white dark:bg-luxury-black text-brand-blue dark:text-luxury-white selection:bg-brand-gold/30 selection:text-brand-blue dark:selection:text-luxury-white">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
