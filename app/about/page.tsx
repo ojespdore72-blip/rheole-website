@@ -5,6 +5,7 @@ import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "fra
 import ProgressiveReveal from "@/components/ProgressiveReveal";
 import InteractiveEcosystemDemo from "@/components/InteractiveEcosystemDemo";
 import ContextDemoAnimation from "@/components/ContextDemoAnimation";
+import PrivacyTogglesDemo from "@/components/PrivacyTogglesDemo";
 
 // Types
 type Chapter = {
@@ -216,25 +217,7 @@ const chapters: Chapter[] = [
         </p>
       </>
     ),
-    visual: (
-      <div className="relative w-full aspect-square rounded-[40px] spatial-glass border border-brand-blue/10 dark:border-white/10 overflow-hidden flex items-center justify-center">
-        <div className="flex flex-col gap-6 w-3/4">
-          {["Location Tracking", "Data Synthesis", "Network Discovery"].map((setting, i) => (
-            <div key={i} className="flex justify-between items-center pb-6 border-b border-brand-blue/10 dark:border-white/10">
-              <span className="text-sm font-mono tracking-widest uppercase text-brand-blue dark:text-white">{setting}</span>
-              <motion.div 
-                className={`w-12 h-6 rounded-full flex items-center p-1 ${i === 1 ? 'bg-brand-blue/20 dark:bg-white/20' : 'bg-brand-gold'}`}
-              >
-                <motion.div 
-                  initial={{ x: i === 1 ? 0 : 24 }}
-                  className="w-4 h-4 bg-white rounded-full shadow-sm"
-                />
-              </motion.div>
-            </div>
-          ))}
-        </div>
-      </div>
-    )
+    visual: <PrivacyTogglesDemo />
   },
   {
     id: "chapter-08",
