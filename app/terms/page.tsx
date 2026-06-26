@@ -90,43 +90,56 @@ export default function TermsOfService() {
           </div>
 
           <Section id="acceptance" title="1. Acceptance of Terms" summary="By using Rheole, you agree to these terms. If you don't agree, please do not use the service.">
-            <p>These Terms of Service ("Terms") dictate your access to and use of Rheole and its associated infrastructure (collectively, the "Platform"), operated by Rheole Technologies Private Limited ("Rheole", "we", "us", or "our").</p>
-            <p>By registering, accessing, or utilizing the Platform, you acknowledge that you have read, comprehended, and agreed to be legally bound by these Terms. If you do not agree, you must immediately cease all use of the Platform.</p>
+            <p>These Terms of Service ("Terms") constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Rheole Technologies Private Limited ("Rheole", "we", "us", or "our"). These Terms govern your access to and use of the Rheole website, applications, and all associated infrastructure, products, and services (collectively, the "Platform").</p>
+            <p className="mt-4">By registering for an account, accessing, browsing, or in any way utilizing the Platform, you acknowledge that you have read, comprehended, and unconditionally agreed to be bound by these Terms, as well as our Privacy Policy. This forms a legal contract. If you do not agree with all of these Terms, you are expressly prohibited from using the Platform and must discontinue use immediately.</p>
+            <p className="mt-4">We reserve the right to make changes or modifications to these Terms at any time and for any reason. We will alert you about any changes by updating the "Last Updated" date of these Terms, and you waive any right to receive specific notice of each such change. Your continued use of the Platform after such modifications constitutes your acceptance of the revised Terms.</p>
           </Section>
 
-          <Section id="eligibility" title="2. Eligibility" summary="You must be at least 13 years old to use Rheole.">
-            <p>You must be at least 13 years of age (or the age of digital consent in your jurisdiction, whichever is greater) to use the Platform. By agreeing to these Terms, you represent and warrant that you meet these age requirements and possess the legal capacity to enter into a binding contract.</p>
+          <Section id="eligibility" title="2. Eligibility and Registration" summary="You must be at least 13 years old and provide accurate information to use Rheole.">
+            <p>To access certain features of the Platform, you may be required to register for an account. By creating an account and agreeing to these Terms, you represent and warrant that:</p>
+            <ul className="list-disc pl-6 space-y-3 mt-4 text-brand-blue/80 dark:text-white/80">
+              <li><strong>Age Requirement:</strong> You are at least 13 years of age. If you are under the age of majority in your jurisdiction (typically 18), you must have the permission of, and be directly supervised by, your parent or guardian to use the Platform.</li>
+              <li><strong>Accuracy of Information:</strong> All registration information you submit is truthful, accurate, current, and complete, and you will maintain the accuracy of such information.</li>
+              <li><strong>Legal Capacity:</strong> You possess the legal capacity to enter into binding contracts under applicable law.</li>
+            </ul>
+            <p className="mt-4">You are entirely responsible for maintaining the confidentiality of your account password and for all activities that occur under your account. You agree to notify Rheole immediately of any unauthorized use of your account.</p>
           </Section>
 
-          <Section id="platform-usage" title="3. Use of the Platform" summary="Use the platform legally and respectfully. Don't hack us, scrape us, or harass others.">
-            <p>We grant you a personal, worldwide, royalty-free, non-assignable, and non-exclusive license to use the software provided to you as part of the Platform. This license is for the sole purpose of enabling you to use and enjoy the benefit of the Platform as provided by Rheole, in the manner permitted by these Terms.</p>
-            <p>You explicitly agree NOT to:</p>
-            <ul className="list-disc pl-6 space-y-2 mt-4 text-brand-blue/80 dark:text-white/80">
-              <li>Use the Platform for any unlawful purpose or for the promotion of illegal activities.</li>
-              <li>Attempt to reverse engineer, decompile, or extract the source code of the Platform.</li>
-              <li>Scrape, datamine, or deploy automated scripts to extract spatial intelligence data.</li>
-              <li>Interfere with or disrupt the access of any user, host, or network.</li>
+          <Section id="platform-usage" title="3. Acceptable Use of the Platform" summary="Use the platform legally and respectfully. Don't hack us, scrape us, or harass others.">
+            <p>Subject to your compliance with these Terms, Rheole grants you a personal, worldwide, royalty-free, non-assignable, non-transferable, and non-exclusive license to use the software provided to you as part of the Platform. This license is strictly for your personal, non-commercial use.</p>
+            <p className="mt-4">As a condition of use, you explicitly agree <strong>NOT</strong> to engage in any of the following prohibited activities:</p>
+            <ul className="list-disc pl-6 space-y-3 mt-4 text-brand-blue/80 dark:text-white/80">
+              <li><strong>Illegal Acts:</strong> Using the Platform for any unlawful purpose, or to solicit others to perform or participate in any unlawful acts.</li>
+              <li><strong>Reverse Engineering:</strong> Attempting to reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code, underlying ideas, algorithms, or architecture of the Platform.</li>
+              <li><strong>Data Extraction:</strong> Deploying automated scripts, spiders, robots, or scrapers to extract, harvest, or datamine spatial intelligence data, user information, or proprietary algorithms from the Platform.</li>
+              <li><strong>Interference:</strong> Interfering with, bypassing, or disrupting the security features of the Platform, or placing an unreasonable load on our infrastructure (e.g., Denial of Service attacks).</li>
+              <li><strong>Harassment:</strong> Using the platform to harass, abuse, insult, harm, defame, slander, disparage, intimidate, or discriminate based on gender, sexual orientation, religion, ethnicity, race, age, national origin, or disability.</li>
             </ul>
           </Section>
 
-          <Section id="content" title="4. User Content" summary="You own what you post. But you give us permission to display it on the platform.">
-            <p>You retain your rights to any content you submit, post, or display on or through the Platform. By submitting content, you grant us a worldwide, non-exclusive, royalty-free license to use, copy, reproduce, process, adapt, modify, publish, transmit, display, and distribute such content in any and all media or distribution methods.</p>
-            <p>You are solely responsible for your use of the Platform, for any content you provide, and for any consequences thereof. Rheole assumes no liability for content posted by users.</p>
+          <Section id="content" title="4. User-Generated Content" summary="You own what you post. But you give us permission to display it on the platform.">
+            <p>The Platform may allow you to create, submit, post, display, transmit, or otherwise make available content, including but not limited to text, images, location notes, and feedback (collectively, "User Content").</p>
+            <p className="mt-4"><strong>Ownership:</strong> You retain full ownership of all your intellectual property rights in your User Content. Rheole does not claim ownership over what you post.</p>
+            <p className="mt-4"><strong>License Granted to Rheole:</strong> However, by submitting User Content to the Platform, you automatically grant Rheole a worldwide, non-exclusive, royalty-free, fully paid, sublicensable, and transferable license to use, host, store, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, and display such content in connection with operating, providing, and improving the Platform.</p>
+            <p className="mt-4"><strong>Responsibility:</strong> You are solely responsible for your User Content and the consequences of posting it. You warrant that you own or have the necessary licenses to use and authorize us to use all intellectual property rights in your User Content. Rheole assumes absolutely no liability for any content posted by you or any third party.</p>
           </Section>
 
-          <Section id="liability" title="5. Limitation of Liability" summary="Rheole is provided 'as is'. We aren't liable if things break, or if you rely on our recommendations and get lost.">
-            <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, RHEOLE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM:</p>
+          <Section id="liability" title="5. Disclaimers and Limitation of Liability" summary="Rheole is provided 'as-is'. We aren't liable if things break, or if you rely on our recommendations and incur losses.">
+            <p><strong>Disclaimer of Warranties:</strong> THE PLATFORM IS PROVIDED ON AN "AS-IS" AND "AS-AVAILABLE" BASIS. RHEOLE EXPRESSLY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE PLATFORM WILL BE UNINTERRUPTED, SECURE, ERROR-FREE, OR FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS. YOU USE THE SPATIAL INTELLIGENCE AND RECOMMENDATIONS AT YOUR OWN RISK.</p>
+            <p className="mt-4"><strong>Limitation of Liability:</strong> TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL RHEOLE, ITS AFFILIATES, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFIT, LOST REVENUE, LOSS OF DATA, OR OTHER DAMAGES ARISING FROM:</p>
             <ul className="list-disc pl-6 space-y-2 mt-4 text-brand-blue/80 dark:text-white/80">
-              <li>YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE PLATFORM.</li>
-              <li>ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE PLATFORM.</li>
-              <li>ANY CONTENT OBTAINED FROM THE PLATFORM.</li>
-              <li>UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT.</li>
+              <li>YOUR USE OF OR INABILITY TO USE THE PLATFORM;</li>
+              <li>ANY CONDUCT, CONTENT, OR ACTIONS OF ANY THIRD PARTY ON THE PLATFORM;</li>
+              <li>ANY RELIANCE ON AMBIENT OR SPATIAL DATA OBTAINED FROM THE PLATFORM;</li>
+              <li>UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR DATA.</li>
             </ul>
+            <p className="mt-4">Notwithstanding anything to the contrary contained herein, our liability to you for any cause whatsoever and regardless of the form of the action, will at all times be limited to the amount paid, if any, by you to us during the six (6) month period prior to any cause of action arising.</p>
           </Section>
 
-          <Section id="termination" title="6. Termination" summary="We can suspend or terminate your account if you violate these terms.">
-            <p>We may suspend or terminate your account or cease providing you with all or part of the Platform at any time for any or no reason, including, but not limited to, if we reasonably believe you have violated these Terms.</p>
-            <p>You may end your legal agreement with us at any time by deactivating your account and discontinuing your use of the Platform.</p>
+          <Section id="termination" title="6. Term and Termination" summary="We can suspend or terminate your account if you violate these terms. You can also leave at any time.">
+            <p>These Terms shall remain in full force and effect while you use the Platform. WITHOUT LIMITING ANY OTHER PROVISION OF THESE TERMS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE PLATFORM (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON, INCLUDING WITHOUT LIMITATION FOR BREACH OF ANY REPRESENTATION, WARRANTY, OR COVENANT CONTAINED IN THESE TERMS OR OF ANY APPLICABLE LAW OR REGULATION.</p>
+            <p className="mt-4">We may terminate your use or participation in the Platform or delete your account and any content or information that you posted at any time, without warning, in our sole discretion.</p>
+            <p className="mt-4">You may terminate your agreement to these Terms at any time by completely deactivating your account and ceasing all use of the Platform. Upon termination, provisions of these Terms that by their nature should survive termination shall survive, including ownership provisions, warranty disclaimers, indemnity, and limitations of liability.</p>
           </Section>
 
         </article>

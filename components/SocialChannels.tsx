@@ -20,10 +20,10 @@ const RedditIcon = ({ className }: { className?: string }) => (
 );
 
 const socialLinks = [
-  { name: "Instagram", icon: <InstagramIcon />, url: "https://instagram.com/rheole" },
-  { name: "Twitter", icon: <TwitterIcon />, url: "https://x.com/rheole" },
-  { name: "Facebook", icon: <FacebookIcon />, url: "https://facebook.com/rheole" },
-  { name: "Reddit", icon: <RedditIcon />, url: "https://reddit.com/r/rheole" }
+  { name: "Instagram", icon: <InstagramIcon />, url: "https://www.instagram.com/rheole_?igsh=MTV5dnF2ODU0ODVjMg==" },
+  { name: "Twitter", icon: <TwitterIcon />, url: "https://x.com/rheole_" },
+  { name: "Facebook", icon: <FacebookIcon />, url: "https://www.facebook.com/share/1cR5NhDCZm/" },
+  { name: "Reddit", icon: <RedditIcon />, url: "https://www.reddit.com/u/Rheole_/s/f2JFUndaOE" }
 ];
 
 export default function SocialChannels() {

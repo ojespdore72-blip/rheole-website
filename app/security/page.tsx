@@ -131,7 +131,6 @@ export default function Security() {
         <div className="flex flex-col gap-16 items-center w-full py-20 border-t border-brand-blue/10 dark:border-white/10">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-light font-serif-editorial">The Invisible Shield</h2>
-            <p className="mt-4 text-brand-blue/60 dark:text-white/60 font-light">Instead of bullet points, here is exactly how our encryption infrastructure is built.</p>
           </div>
           
           <div className="w-full max-w-5xl h-[400px] md:h-[600px] rounded-[40px] bg-black border border-white/10 p-8 flex flex-col md:flex-row items-center justify-between relative overflow-hidden group">
@@ -166,42 +165,68 @@ export default function Security() {
                 <span className="text-brand-indigo text-[10px] font-mono">Blind</span>
               </div>
             </div>
-            
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] text-white/40 uppercase tracking-widest font-mono hidden md:block">
-              Zero-Knowledge Architecture Overview
-            </div>
           </div>
         </div>
 
         {/* 3. Identity Protection Controls */}
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center border-t border-brand-blue/10 dark:border-white/10 pt-20">
-          <div className="w-full lg:w-1/2 h-[400px] spatial-glass rounded-[40px] border border-white/10 p-10 relative overflow-hidden flex flex-col justify-center">
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent pointer-events-none" />
-            <h3 className="text-xs uppercase tracking-widest font-mono text-white/50 mb-8">Identity Controls</h3>
-            
-            <div className="flex flex-col gap-6 w-full max-w-sm">
-              {[
-                { label: "Precise Location", active: false },
-                { label: "Social Graph", active: false },
-                { label: "Behavioral Analytics", active: false },
-                { label: "Local Caching", active: true }
-              ].map((setting, i) => (
-                <div key={i} className="flex items-center justify-between group">
-                  <span className={`text-sm md:text-base font-light transition-colors ${setting.active ? 'text-white' : 'text-white/40'}`}>
-                    {setting.label}
-                  </span>
-                  <div className={`w-12 h-6 rounded-full p-1 flex items-center transition-colors ${setting.active ? 'bg-green-500' : 'bg-white/10'} cursor-not-allowed`}>
-                    <motion.div 
-                      layout
-                      className="w-4 h-4 rounded-full bg-white shadow-sm"
-                      style={{ transform: setting.active ? 'translateX(24px)' : 'translateX(0px)' }}
-                    />
-                  </div>
-                </div>
-              ))}
+          <div className="w-full lg:w-1/2 h-[400px] rounded-[40px] border border-brand-blue/10 dark:border-white/10 relative overflow-hidden flex flex-col">
+            {/* Top Bar with Toggle */}
+            <div className="w-full p-6 border-b border-brand-blue/10 dark:border-white/10 flex items-center justify-between bg-luxury-white/50 dark:bg-black/50 backdrop-blur z-20">
+              <span className="text-sm font-medium tracking-wide">Protect privacy</span>
+              <button 
+                onClick={() => setPrivacyLevel(privacyLevel === "public" ? "protected" : "public")} 
+                className={`relative w-14 h-7 rounded-full p-1 flex items-center transition-colors duration-300 flex-shrink-0 ${privacyLevel !== "public" ? "bg-green-500" : "bg-gray-300 dark:bg-white/20"}`}
+              >
+                <motion.div 
+                  animate={{ x: privacyLevel !== "public" ? 28 : 0 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  className="w-5 h-5 rounded-full bg-white shadow-md"
+                />
+              </button>
             </div>
-            <div className="absolute bottom-10 right-10 opacity-20">
-              <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+
+            {/* Content Area */}
+            <div className="flex-1 relative w-full h-full bg-luxury-white dark:bg-[#020205]">
+              <AnimatePresence mode="wait">
+                {privacyLevel === "public" ? (
+                  <motion.div 
+                    key="shared"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 50 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="absolute inset-0 p-6 flex flex-col gap-4"
+                  >
+                    <div className="w-full h-full grid grid-cols-2 gap-4">
+                       <div className="bg-brand-blue/5 dark:bg-white/5 rounded-2xl overflow-hidden relative group">
+                          <img src="/web_image_1.png" alt="Context" className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
+                       </div>
+                       <div className="grid grid-rows-2 gap-4">
+                          <div className="bg-brand-gold/20 rounded-2xl overflow-hidden relative group">
+                            <img src="/web_image_3.jpg" alt="Context" className="w-full h-full object-cover mix-blend-overlay opacity-60 group-hover:scale-105 transition-transform duration-700" />
+                          </div>
+                          <div className="bg-brand-indigo/10 rounded-2xl flex items-center justify-center p-4">
+                            <p className="text-xs font-mono text-brand-blue/50 dark:text-white/50 text-center">Processing<br/>Local Inferences</p>
+                          </div>
+                       </div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div 
+                    key="hidden"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 50 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="absolute inset-0 bg-[#D2B48C]/20 dark:bg-[#D2B48C]/10 flex flex-col items-center justify-center text-center p-8"
+                  >
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-brand-gold mb-6 stroke-1"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <p className="text-xl font-serif-editorial text-brand-blue dark:text-white">Data not shared with Rheole</p>
+                    <p className="text-sm font-light text-brand-blue/60 dark:text-white/50 mt-2">we respect your privacy</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 

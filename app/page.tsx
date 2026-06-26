@@ -3,7 +3,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import ClientMotionConfig from "@/components/ClientMotionConfig";
+import InteractiveHeroCanvas from "@/components/InteractiveHeroCanvas";
+import InteractiveCard from "@/components/InteractiveCard";
+import MagneticButton from "@/components/MagneticButton";
+import LivingImage from "@/components/LivingImage";
 import SocialChannels from "@/components/SocialChannels";
 import RheoleLogo from "@/components/logo";
 
@@ -100,8 +103,7 @@ export default function Home() {
           <div className="absolute w-[80vw] h-[80vw] md:w-[50vw] md:h-[50vw] bg-brand-gold/10 dark:bg-brand-gold/5 rounded-full blur-[100px] md:blur-[150px] animate-pulse-slow" />
           <div className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] bg-brand-indigo/10 dark:bg-brand-indigo/5 rounded-full blur-[120px]" style={{ animation: 'pulse-slow 15s infinite reverse' }} />
           
-          {/* Abstract Grid Map */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(10,37,64,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(10,37,64,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_10%,transparent_100%)]" />
+          <InteractiveHeroCanvas />
         </motion.div>
 
         <div className="relative z-10 flex flex-col items-center gap-8 text-center px-4">
@@ -155,24 +157,25 @@ export default function Home() {
             {/* Context Inputs */}
             <div className="w-full lg:w-1/3 flex flex-col gap-4">
               {scenarios.map((scenario, idx) => (
-                <button
-                  key={scenario.id}
-                  onClick={() => setActiveScenario(idx)}
-                  className={`text-left p-6 rounded-3xl transition-spring backdrop-blur-xl border ${
-                    activeScenario === idx 
-                      ? "bg-white/10 border-brand-gold/40 shadow-[0_20px_40px_-10px_rgba(197,168,128,0.15)] scale-[1.02]" 
-                      : "bg-transparent border-white/5 hover:bg-white/5"
-                  }`}
-                >
-                  <p className="text-lg font-medium text-white leading-relaxed">
-                    "{scenario.prompt}"
-                  </p>
-                </button>
+                <MagneticButton key={scenario.id} className="w-full text-left">
+                  <button
+                    onClick={() => setActiveScenario(idx)}
+                    className={`w-full text-left p-6 rounded-3xl transition-spring backdrop-blur-xl border ${
+                      activeScenario === idx 
+                        ? "bg-white/10 border-brand-gold/40 shadow-[0_20px_40px_-10px_rgba(197,168,128,0.15)] scale-[1.02]" 
+                        : "bg-transparent border-white/5 hover:bg-white/5"
+                    }`}
+                  >
+                    <p className="text-lg font-medium text-white leading-relaxed">
+                      "{scenario.prompt}"
+                    </p>
+                  </button>
+                </MagneticButton>
               ))}
             </div>
 
             {/* Spatial Output Interface */}
-            <div className="w-full lg:w-2/3 h-[500px] md:h-[600px] spatial-glass rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] dark:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] overflow-hidden relative group">
+            <InteractiveCard className="w-full lg:w-2/3 h-[500px] md:h-[600px] spatial-glass border border-white/20 dark:border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] dark:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] overflow-hidden group">
               {/* Glass Glare */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-50 pointer-events-none z-20 mix-blend-overlay" />
               
@@ -199,7 +202,7 @@ export default function Home() {
                   </div>
                 </motion.div>
               </AnimatePresence>
-            </div>
+            </InteractiveCard>
             
           </div>
         </div>
@@ -227,16 +230,11 @@ export default function Home() {
               transition={{ duration: 0.8, delay: i * 0.1 }}
               className="relative w-[100vw] md:w-[450px] aspect-[4/5] flex-shrink-0 snap-center rounded-none md:rounded-3xl overflow-hidden group"
             >
-              <div className="absolute inset-0 bg-white/5 group-hover:scale-105 transition-transform duration-[2s] ease-out">
-                {/* Real Image */}
-                <img src={photo} alt={`Location ${i + 1}`} className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50" />
-                {/* Fallback pattern */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1),transparent)]" />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-8 left-8">
+              <LivingImage src={photo} alt={`Location ${i + 1}`} className="absolute inset-0 w-full h-full" />
+              
+              <div className="absolute bottom-8 left-8 z-40 pointer-events-none">
                 <p className="text-xs uppercase tracking-widest font-mono text-brand-gold mb-2">Location {i + 1}</p>
-                <p className="text-lg font-light">Bengaluru</p>
+                <p className="text-lg font-light text-white">Bengaluru</p>
               </div>
             </motion.div>
           ))}
@@ -256,13 +254,15 @@ export default function Home() {
           <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">
             Join the new future.
           </h2>
-          <Link 
-            href="/founding-access" 
-            className="group relative px-12 py-5 bg-brand-blue dark:bg-white text-white dark:text-brand-blue rounded-full text-sm font-medium tracking-widest uppercase overflow-hidden haptic-press shadow-2xl"
-          >
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-brand-blue dark:group-hover:text-white">Request Early Access</span>
-            <div className="absolute inset-0 bg-brand-gold dark:bg-brand-blue scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-          </Link>
+          <MagneticButton strength={0.3}>
+            <Link 
+              href="/founding-access" 
+              className="group relative px-12 py-5 bg-brand-blue dark:bg-white text-white dark:text-brand-blue rounded-full text-sm font-medium tracking-widest uppercase overflow-hidden haptic-press shadow-2xl block"
+            >
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-brand-blue dark:group-hover:text-white">Request Early Access</span>
+              <div className="absolute inset-0 bg-brand-gold dark:bg-brand-blue scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+            </Link>
+          </MagneticButton>
         </motion.div>
       </section>
 
