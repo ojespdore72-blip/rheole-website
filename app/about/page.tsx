@@ -90,9 +90,32 @@ const chapters: Chapter[] = [
           { name: "Routes", icon: Route }
         ].map((app, i) => {
           const Icon = app.icon;
-          const baseX = Math.cos(i * (Math.PI * 2) / 7) * 120;
-          const baseY = Math.sin(i * (Math.PI * 2) / 7) * 120;
-          const baseRotate = (i - 3) * 5;
+          // Generate pseudo-random long-distance paths for each element
+          // Using different prime multipliers to make the paths feel random and organic
+          const xPath = [
+            Math.sin(i * 1.1 + 1) * 180,
+            Math.cos(i * 1.3 + 2) * 190,
+            Math.sin(i * 1.7 + 3) * 170,
+            Math.cos(i * 1.9 + 4) * 180,
+            Math.sin(i * 2.3 + 5) * 190,
+            Math.sin(i * 1.1 + 1) * 180, // return to start
+          ];
+          const yPath = [
+            Math.cos(i * 1.2 + 1) * 180,
+            Math.sin(i * 1.4 + 2) * 170,
+            Math.cos(i * 1.6 + 3) * 190,
+            Math.sin(i * 1.8 + 4) * 180,
+            Math.cos(i * 2.2 + 5) * 170,
+            Math.cos(i * 1.2 + 1) * 180, // return to start
+          ];
+          const rotatePath = [
+            0,
+            Math.sin(i * 2) * 15,
+            Math.cos(i * 3) * -15,
+            Math.sin(i * 4) * 15,
+            Math.cos(i * 5) * -15,
+            0
+          ];
           
           return (
           <motion.div
@@ -101,31 +124,16 @@ const chapters: Chapter[] = [
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, margin: "-100px" }}
             animate={{
-              x: [
-                baseX, 
-                baseX + Math.sin(i * 13) * 15, 
-                baseX + Math.cos(i * 23) * 15, 
-                baseX
-              ],
-              y: [
-                baseY, 
-                baseY + Math.cos(i * 17) * 15, 
-                baseY + Math.sin(i * 29) * 15, 
-                baseY
-              ],
-              rotate: [
-                baseRotate,
-                baseRotate + Math.sin(i * 11) * 5,
-                baseRotate - Math.cos(i * 19) * 5,
-                baseRotate
-              ]
+              x: xPath,
+              y: yPath,
+              rotate: rotatePath
             }}
             transition={{ 
-              duration: 6 + (i % 3) * 2, 
+              duration: 25 + (i % 4) * 5, // Long duration for lazy, continuous floating
               repeat: Infinity,
-              ease: "easeInOut" 
+              ease: "linear" 
             }}
-            className="absolute bg-white/80 dark:bg-[#020205]/80 backdrop-blur-md px-6 py-4 rounded-2xl border border-[#0064e0]/20 dark:border-[#0064e0]/30 shadow-[0_0_30px_rgba(0,100,224,0.15)] whitespace-nowrap hover:scale-105 transition-transform"
+            className="absolute bg-white/80 dark:bg-[#020205]/80 backdrop-blur-md px-6 py-4 rounded-2xl border border-[#0064e0]/20 dark:border-[#0064e0]/30 shadow-[0_0_30px_rgba(0,100,224,0.15)] whitespace-nowrap hover:scale-110 transition-transform hover:z-50 cursor-default"
           >
             <div className="flex items-center gap-2">
               <Icon size={16} className="text-[#0064e0]" />
