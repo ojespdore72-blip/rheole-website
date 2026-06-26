@@ -212,9 +212,7 @@ export default function ConnectTheDotsDemo() {
               transition={{ duration: 1, delay: 0.5, type: "spring" }}
               className="absolute top-16 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center"
             >
-              <div className="bg-black/60 p-4 rounded-full backdrop-blur-md border border-brand-gold/30 shadow-[0_0_50px_rgba(198,168,124,0.3)]">
-                <Logo />
-              </div>
+              <Logo />
             </motion.div>
           </>
         )}
