@@ -21,7 +21,7 @@ export default function InteractiveEcosystemDemo() {
   const activeFeatureObj = features.find(f => f.id === activeFeature);
 
   return (
-    <div className="relative w-full aspect-square rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border border-brand-blue/10">
+    <div className="relative w-full h-[80vh] min-h-[600px] md:h-auto md:aspect-video rounded-none md:rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border-y md:border border-brand-blue/10">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,100,224,0.15),transparent_70%)]" />
       
       {/* Header & Controls */}
@@ -160,8 +160,9 @@ function FloatingTags({ onSelect }: { onSelect: (id: string) => void }) {
       node.y += node.vy * dt;
 
       // Boundary collision (bouncing off the invisible walls of the container)
-      const BOUND_X = 180; // Keep within horizontal bounds
-      const BOUND_Y = 240; // Keep within vertical bounds
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+      const BOUND_X = isMobile ? 120 : 180; // Keep within horizontal bounds
+      const BOUND_Y = isMobile ? 140 : 240; // Keep within vertical bounds
       
       if (node.x > BOUND_X) { node.x = BOUND_X; node.vx *= -1; }
       if (node.x < -BOUND_X) { node.x = -BOUND_X; node.vx *= -1; }

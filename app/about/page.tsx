@@ -292,7 +292,7 @@ export default function About() {
                 </h2>
               </div>
               
-              <div className="w-full">
+              <div className="w-[calc(100%+3rem)] -mx-6 md:w-full md:mx-0">
                 {chapter.visual}
               </div>
 

@@ -60,7 +60,7 @@ export default function ContextDemoAnimation() {
   }, []);
 
   return (
-    <div className="relative w-full aspect-[2/3] min-h-[500px] rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border border-brand-blue/10">
+    <div className="relative w-full h-[80vh] min-h-[600px] md:h-auto md:aspect-[2/3] md:min-h-[700px] rounded-none md:rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border-y md:border border-brand-blue/10">
       
       {/* Background Image of Girl Holding Phone */}
       <div 
@@ -70,8 +70,8 @@ export default function ContextDemoAnimation() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#03030A] via-transparent to-[#03030A]/50" />
 
       {/* The Phone Screen Overlay */}
-      {/* 60% height leaves exactly 20% gap on top and 20% gap on bottom. aspect-[9/19.5] maintains standard phone proportions */}
-      <div className="relative z-10 h-[60%] aspect-[9/19.5] bg-black rounded-[3rem] border-8 border-gray-900 shadow-2xl overflow-hidden flex flex-col">
+      {/* Dynamic size to breathe on mobile, capped at standard phone ratios */}
+      <div className="relative z-10 h-[80%] max-h-[750px] w-auto max-w-[85%] aspect-[9/19.5] bg-black rounded-[2rem] md:rounded-[3rem] border-4 md:border-8 border-gray-900 shadow-2xl overflow-hidden flex flex-col">
         
         {/* Dynamic content inside phone */}
         <AnimatePresence mode="wait">

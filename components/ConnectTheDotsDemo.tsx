@@ -59,7 +59,7 @@ export default function ConnectTheDotsDemo() {
     <div 
       ref={containerRef}
       onPointerMove={handlePointerMove}
-      className="relative w-full aspect-square rounded-[40px] spatial-glass border border-brand-blue/10 dark:border-white/10 overflow-hidden flex items-center justify-center select-none"
+      className="relative w-full h-[80vh] min-h-[600px] md:h-auto md:aspect-square rounded-none md:rounded-[40px] spatial-glass border-y md:border border-brand-blue/10 dark:border-white/10 overflow-hidden flex items-center justify-center select-none"
     >
       {/* Background Images */}
       <AnimatePresence>
@@ -182,7 +182,7 @@ export default function ConnectTheDotsDemo() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="absolute top-8 left-8 pointer-events-none z-20"
+            className="absolute top-12 left-6 md:top-8 md:left-8 pointer-events-none z-20"
           >
             <p className="text-black text-sm md:text-base font-mono tracking-[0.3em] uppercase">
               Connect the dots
@@ -200,7 +200,7 @@ export default function ConnectTheDotsDemo() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 2, duration: 1 }}
-              className="absolute top-8 left-8 text-black text-sm md:text-base font-mono tracking-[0.3em] uppercase z-30"
+              className="absolute top-12 left-6 md:top-8 md:left-8 text-black text-sm md:text-base font-mono tracking-[0.3em] uppercase z-30"
             >
               Intelligence Activated
             </motion.p>
@@ -210,7 +210,7 @@ export default function ConnectTheDotsDemo() {
               initial={{ opacity: 0, y: -20, scale: 0.5 }}
               animate={{ opacity: 1, y: 0, scale: 2 }}
               transition={{ duration: 1, delay: 0.5, type: "spring" }}
-              className="absolute top-16 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center"
+              className="absolute top-24 md:top-16 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center"
             >
               <Logo />
             </motion.div>
