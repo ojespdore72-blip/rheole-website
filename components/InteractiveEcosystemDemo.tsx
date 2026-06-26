@@ -103,7 +103,8 @@ export default function InteractiveEcosystemDemo() {
                     repeat: Infinity,
                     ease: "linear" 
                   }}
-                  className="absolute left-1/2 top-1/2 -ml-[100px] -mt-[30px] bg-white backdrop-blur-md px-6 py-4 rounded-2xl border border-[#0000FF]/20 shadow-[0_0_30px_rgba(0,0,255,0.15)] whitespace-nowrap hover:scale-110 transition-transform hover:z-50 cursor-pointer flex items-center justify-center"
+                  className="absolute left-1/2 top-1/2 -ml-[100px] -mt-[30px] px-6 py-4 rounded-2xl border border-[#0000FF]/20 shadow-[0_0_30px_rgba(0,0,255,0.15)] whitespace-nowrap hover:scale-110 transition-transform hover:z-50 cursor-pointer flex items-center justify-center"
+                  style={{ backgroundColor: "#ffffff" }}
                 >
                   <div className="flex items-center gap-2 pointer-events-none">
                     <Icon size={16} className="text-[#0000FF]" />
