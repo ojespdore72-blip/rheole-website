@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { Map as MapIcon, MessageCircle, Calendar, Users, Sparkles, DoorOpen, Route } from "lucide-react";
+import { Map as MapIcon, MessageCircle, Calendar, Users, Sparkles, Mic, Route } from "lucide-react";
 
 // Types
 type Chapter = {
@@ -85,7 +85,7 @@ const chapters: Chapter[] = [
           { name: "Events", icon: Calendar },
           { name: "Communities", icon: Users },
           { name: "Recommendations", icon: Sparkles },
-          { name: "Rooms", icon: DoorOpen },
+          { name: "Rooms", icon: Mic },
           { name: "Routes", icon: Route }
         ].map((app, i) => {
           const Icon = app.icon;
