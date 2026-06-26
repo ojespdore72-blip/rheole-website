@@ -78,7 +78,8 @@ const chapters: Chapter[] = [
       </>
     ),
     visual: (
-      <div className="relative w-full aspect-square rounded-[40px] overflow-hidden flex items-center justify-center">
+      <div className="relative w-full aspect-square rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border border-brand-blue/10">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,100,224,0.15),transparent_70%)]" />
         {[
           { name: "Maps", icon: MapIcon },
           { name: "Messaging", icon: MessageCircle },
@@ -89,6 +90,10 @@ const chapters: Chapter[] = [
           { name: "Routes", icon: Route }
         ].map((app, i) => {
           const Icon = app.icon;
+          const baseX = Math.cos(i * (Math.PI * 2) / 7) * 120;
+          const baseY = Math.sin(i * (Math.PI * 2) / 7) * 120;
+          const baseRotate = (i - 3) * 5;
+          
           return (
           <motion.div
             key={app.name}
@@ -96,11 +101,30 @@ const chapters: Chapter[] = [
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, margin: "-100px" }}
             animate={{
-              x: Math.cos(i * (Math.PI * 2) / 7) * 120,
-              y: Math.sin(i * (Math.PI * 2) / 7) * 120,
-              rotate: (i - 3) * 5
+              x: [
+                baseX, 
+                baseX + Math.sin(i * 13) * 15, 
+                baseX + Math.cos(i * 23) * 15, 
+                baseX
+              ],
+              y: [
+                baseY, 
+                baseY + Math.cos(i * 17) * 15, 
+                baseY + Math.sin(i * 29) * 15, 
+                baseY
+              ],
+              rotate: [
+                baseRotate,
+                baseRotate + Math.sin(i * 11) * 5,
+                baseRotate - Math.cos(i * 19) * 5,
+                baseRotate
+              ]
             }}
-            transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ 
+              duration: 6 + (i % 3) * 2, 
+              repeat: Infinity,
+              ease: "easeInOut" 
+            }}
             className="absolute bg-white/80 dark:bg-[#020205]/80 backdrop-blur-md px-6 py-4 rounded-2xl border border-[#0064e0]/20 dark:border-[#0064e0]/30 shadow-[0_0_30px_rgba(0,100,224,0.15)] whitespace-nowrap hover:scale-105 transition-transform"
           >
             <div className="flex items-center gap-2">
