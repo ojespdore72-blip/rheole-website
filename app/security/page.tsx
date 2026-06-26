@@ -1,229 +1,220 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-interface SecurityBlock {
-  title: string;
-  points: string[];
-  statement: string;
-}
+// Interactive Simulator: Data Flow
+const DataFlowVisualizer = ({ level }: { level: "public" | "protected" | "local" }) => {
+  return (
+    <div className="w-full h-full relative flex items-center justify-center p-8">
+      {/* Device Node */}
+      <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20">
+        <div className="w-16 h-16 rounded-full bg-black border-2 border-brand-gold shadow-[0_0_20px_rgba(197,168,128,0.3)] flex items-center justify-center backdrop-blur-xl">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C5A880" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <span className="text-[10px] font-mono uppercase tracking-widest text-brand-gold">Your Device</span>
+      </div>
+
+      {/* Server Node */}
+      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20">
+        <div className="w-16 h-16 rounded-full bg-black border-2 border-brand-blue shadow-[0_0_20px_rgba(79,70,229,0.2)] flex items-center justify-center backdrop-blur-xl">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <span className="text-[10px] font-mono uppercase tracking-widest text-brand-blue/50 dark:text-white/50">Rheole Cloud</span>
+      </div>
+
+      {/* Data Path */}
+      <svg className="absolute inset-0 w-full h-full z-10" style={{ pointerEvents: 'none' }}>
+        <path d="M 50% 80% L 50% 20%" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeDasharray="4 4" />
+        
+        <AnimatePresence>
+          {level === "public" && (
+            <motion.circle
+              initial={{ cy: "80%", opacity: 1 }}
+              animate={{ cy: "20%", opacity: 1 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              cx="50%" r="4" fill="#EF4444"
+            />
+          )}
+          {level === "protected" && (
+            <motion.circle
+              initial={{ cy: "80%", opacity: 1, r: 4 }}
+              animate={{ cy: "20%", opacity: 0.2, r: 10 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              cx="50%" fill="#4F46E5"
+            />
+          )}
+          {level === "local" && (
+            <motion.circle
+              initial={{ cy: "80%", opacity: 1, r: 4 }}
+              animate={{ cy: "70%", opacity: 0, r: 8 }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+              cx="50%" fill="#10B981"
+            />
+          )}
+        </AnimatePresence>
+      </svg>
+      
+      {/* Shield overlay for protected/local */}
+      <AnimatePresence>
+        {(level === "protected" || level === "local") && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
+          >
+            <div className="w-24 h-24 border border-brand-gold/30 bg-brand-gold/5 backdrop-blur-sm rounded-full flex items-center justify-center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C5A880" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            {level === "local" && (
+              <div className="absolute top-[80%] left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] font-mono text-green-400 bg-black/80 px-2 py-1 rounded">Never leaves device</div>
+            )}
+            {level === "protected" && (
+              <div className="absolute top-[80%] left-1/2 -translate-x-1/2 whitespace-nowrap text-[9px] font-mono text-brand-gold bg-black/80 px-2 py-1 rounded">End-to-End Encrypted</div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export default function Security() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const },
-  };
-
-  const sections: SecurityBlock[] = [
-    {
-      title: "Account Protection",
-      points: [
-        "Multi-factor authentication support",
-        "Device verification",
-        "Suspicious activity detection",
-        "Secure sign-in protections",
-        "Session management"
-      ],
-      statement: "Your account should remain yours. Our systems continuously work to help identify unusual activity and reduce unauthorized access."
-    },
-    {
-      title: "Privacy & Data Protection",
-      points: [
-        "Data minimization principles",
-        "Permission-based access",
-        "User-controlled privacy settings",
-        "Protected account information",
-        "Secure data handling practices"
-      ],
-      statement: "Privacy and security work together. Users should always understand and control how their information is used."
-    },
-    {
-      title: "Message Security",
-      points: [
-        "Private conversations",
-        "Secure communication channels",
-        "Integrity protection",
-        "Account-based access controls",
-        "Continuous security improvements"
-      ],
-      statement: "Communication is personal. We design our systems with privacy, security, and trust in mind."
-    },
-    {
-      title: "Location Safety",
-      points: [
-        "Permission-based location access",
-        "User-controlled location settings",
-        "Granular controls",
-        "Security-focused processing",
-        "Privacy-conscious design"
-      ],
-      statement: "Location information powers discovery. Users remain in control of how location information is shared and used."
-    }
-  ];
+  const [privacyLevel, setPrivacyLevel] = useState<"public" | "protected" | "local">("protected");
 
   return (
-    <div className="w-full min-h-screen py-32 px-6 md:px-12 max-w-4xl mx-auto flex flex-col gap-16 md:gap-24 selection:bg-brand-gold/20">
-      
-      {/* Title */}
-      <motion.div {...fadeInUp} className="flex flex-col gap-4 border-b border-brand-blue/15 dark:border-luxury-white/10 pb-8">
-        <h1 className="text-4xl md:text-6xl font-light tracking-wide uppercase text-brand-blue dark:text-luxury-white font-serif-editorial">
-          SECURITY
-        </h1>
-        <p className="text-xs uppercase tracking-widest text-brand-gold font-semibold">
-          Designed to protect people, communities, conversations, and trust.
-        </p>
-      </motion.div>
+    <div className="relative w-full min-h-screen bg-luxury-white dark:bg-[#020205] text-brand-blue dark:text-luxury-white overflow-hidden selection:bg-brand-gold/20">
 
-      {/* Opening Statement */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.2 }}
-        className="flex flex-col gap-8 text-brand-blue/80 dark:text-luxury-white/80 font-light text-md md:text-lg leading-relaxed"
-      >
-        <p className="font-serif-editorial italic text-xl md:text-3xl text-brand-blue dark:text-luxury-white leading-relaxed">
-          &ldquo;Security is not a feature added later. It is a foundation built from the beginning.&rdquo;
-        </p>
-
-        <p className="text-brand-blue/70 dark:text-luxury-white/70">
-          Rheole is designed to help people connect with communities, events, places, and local intelligence. Protecting those experiences is one of our most important responsibilities.
-        </p>
-      </motion.div>
-
-      {/* Section 1-4 Grid */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.4 }}
-        className="flex flex-col gap-12 mt-8 border-t border-brand-blue/15 dark:border-luxury-white/10 pt-16"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 gap-y-16">
-          {sections.map((section, index) => (
-            <div key={index} className="flex flex-col gap-5 border-l border-brand-blue/10 dark:border-luxury-white/10 pl-6 text-left">
-              <h3 className="text-lg md:text-xl font-medium text-brand-blue dark:text-luxury-white uppercase tracking-wider">
-                {section.title}
-              </h3>
-              
-              <ul className="flex flex-col gap-1.5 mt-2">
-                {section.points.map((point, idx) => (
-                  <li key={idx} className="text-xs text-brand-blue/60 dark:text-luxury-white/50 flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand-gold shrink-0" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="text-xs italic text-brand-blue/70 dark:text-luxury-white/70 leading-relaxed pt-2 border-t border-brand-blue/5 dark:border-luxury-white/5 mt-2">
-                {section.statement}
-              </p>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Section 5: Security Principles */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.4 }}
-        className="border-t border-brand-blue/15 dark:border-luxury-white/10 pt-16 mt-8 flex flex-col gap-8 text-center"
-      >
-        <span className="text-[10px] tracking-widest uppercase text-brand-gold font-semibold">
-          Security Principles
-        </span>
-        <div className="flex flex-col gap-4 text-3xl md:text-6xl font-light tracking-[0.1em] uppercase leading-tight font-serif-editorial">
-          <p className="opacity-30">Never Trust.</p>
-          <p className="opacity-50">Always Verify.</p>
-          <p className="opacity-70">Protect User Control.</p>
-          <p className="opacity-90">Minimize Data Exposure.</p>
-          <p className="text-brand-gold">Continuously Improve.</p>
-        </div>
-      </motion.div>
-
-      {/* Section 6: Platform Monitoring */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2 }}
-        className="border-t border-brand-blue/15 dark:border-luxury-white/10 pt-16 mt-8 flex flex-col md:flex-row gap-8 items-start"
-      >
-        <div className="flex flex-col gap-4 border-l border-brand-blue/10 dark:border-luxury-white/10 pl-6 text-left w-full md:w-1/2">
-          <h3 className="text-lg md:text-xl font-medium text-brand-blue dark:text-luxury-white uppercase tracking-wider">
-            Platform Protection
-          </h3>
-          <p className="text-xs italic text-brand-blue/70 dark:text-luxury-white/70 leading-relaxed mt-2">
-            Security is an ongoing process. Our systems continuously evolve to improve protection and resilience.
+      <main className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-24 min-h-screen flex flex-col gap-32">
+        
+        {/* Header */}
+        <div className="flex flex-col gap-6 text-center max-w-3xl mx-auto mt-10">
+          <span className="text-xs tracking-[0.4em] uppercase font-mono text-brand-gold">Trust & Security</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light font-serif-editorial leading-tight">
+            Designed for <span className="italic text-brand-gold">trust.</span>
+          </h1>
+          <p className="text-lg md:text-xl font-light text-brand-blue/60 dark:text-white/60 tracking-wide mt-4 max-w-2xl mx-auto">
+            We believe that ambient intelligence requires absolute privacy. Experience exactly how your data flows, where it stays, and what you control.
           </p>
         </div>
 
-        <div className="w-full md:w-1/2 text-left">
-          <ul className="flex flex-col gap-3 font-sans text-xs">
-            {[
-              "Threat monitoring",
-              "Abuse detection",
-              "Account protection systems",
-              "Security reviews",
-              "Platform integrity measures"
-            ].map((item, idx) => (
-              <li key={idx} className="border border-brand-blue/5 dark:border-luxury-white/5 rounded-xl p-3 bg-brand-blue/[0.01] dark:bg-luxury-white/[0.01] flex items-center gap-3">
-                <span className="h-2 w-2 rounded-full bg-brand-gold" />
-                <span className="text-brand-blue/75 dark:text-luxury-white/75">{item}</span>
-              </li>
-            ))}
-          </ul>
+        {/* 1. Interactive Data Flow Simulation */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
+          <div className="w-full lg:w-1/2 flex flex-col gap-8">
+            <h2 className="text-3xl md:text-5xl font-light font-serif-editorial">Data Architecture</h2>
+            <p className="text-base md:text-lg font-light text-brand-blue/70 dark:text-white/70 leading-relaxed">
+              Toggle the privacy models below to understand how Rheole handles your location, preferences, and identity.
+            </p>
+            
+            <div className="flex flex-col gap-4 mt-4">
+              <button onClick={() => setPrivacyLevel("public")} className={`text-left p-4 rounded-2xl border transition-spring ${privacyLevel === 'public' ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 hover:bg-white/5'}`}>
+                <h3 className="font-medium text-red-400 mb-1">Standard Cloud Model (Competitors)</h3>
+                <p className="text-xs text-white/50 font-light">Data leaves your device, is processed in plaintext on servers, and stored permanently.</p>
+              </button>
+              <button onClick={() => setPrivacyLevel("protected")} className={`text-left p-4 rounded-2xl border transition-spring ${privacyLevel === 'protected' ? 'border-brand-gold/50 bg-brand-gold/5' : 'border-white/10 hover:bg-white/5'}`}>
+                <h3 className="font-medium text-brand-gold mb-1">Rheole Secure Tunnel</h3>
+                <p className="text-xs text-white/50 font-light">End-to-End encrypted. Processed in ephemeral memory enclaves. Destroyed immediately after.</p>
+              </button>
+              <button onClick={() => setPrivacyLevel("local")} className={`text-left p-4 rounded-2xl border transition-spring ${privacyLevel === 'local' ? 'border-green-500/50 bg-green-500/5' : 'border-white/10 hover:bg-white/5'}`}>
+                <h3 className="font-medium text-green-400 mb-1">Rheole Local Core</h3>
+                <p className="text-xs text-white/50 font-light">Highly sensitive inferences (e.g. daily routines) are processed entirely on-device and never leave your phone.</p>
+              </button>
+            </div>
+          </div>
+          <div className="w-full lg:w-1/2 h-[500px] spatial-glass rounded-[40px] border border-white/10 overflow-hidden relative">
+            <DataFlowVisualizer level={privacyLevel} />
+          </div>
         </div>
-      </motion.div>
 
-      {/* Section 7: Responsible Disclosure */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2 }}
-        className="border-t border-brand-blue/15 dark:border-luxury-white/10 pt-16 mt-8 text-center flex flex-col gap-4 max-w-xl mx-auto"
-      >
-        <h3 className="text-lg font-medium text-brand-blue dark:text-luxury-white uppercase tracking-wider">
-          Help us improve.
-        </h3>
-        <p className="text-xs text-brand-blue/60 dark:text-luxury-white/60 leading-relaxed font-sans">
-          Security researchers and responsible reporters play an important role in making technology safer. If you believe you have identified a security issue, please contact:
-        </p>
-        <a
-          href="mailto:security@rheole.com"
-          className="inline-block mx-auto text-xs uppercase tracking-[0.25em] font-medium border border-brand-blue/30 dark:border-luxury-white/20 hover:border-brand-gold hover:text-brand-gold rounded-full px-8 py-4 transition-all duration-300 text-brand-blue dark:text-luxury-white mt-2 font-mono"
-        >
-          security@rheole.com
-        </a>
-        <p className="text-[10px] text-brand-blue/40 dark:text-luxury-white/40 mt-1 uppercase tracking-widest">
-          We appreciate responsible disclosure and review legitimate reports promptly.
-        </p>
-      </motion.div>
+        {/* 2. Visual Architecture Diagram */}
+        <div className="flex flex-col gap-16 items-center w-full py-20 border-t border-brand-blue/10 dark:border-white/10">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-light font-serif-editorial">The Invisible Shield</h2>
+            <p className="mt-4 text-brand-blue/60 dark:text-white/60 font-light">Instead of bullet points, here is exactly how our encryption infrastructure is built.</p>
+          </div>
+          
+          <div className="w-full max-w-5xl h-[400px] md:h-[600px] rounded-[40px] bg-black border border-white/10 p-8 flex flex-col md:flex-row items-center justify-between relative overflow-hidden group">
+            {/* Background nodes */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(79,70,229,0.1),transparent_70%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
+            
+            {/* Alice (User) */}
+            <div className="relative z-10 w-48 h-48 rounded-full border border-white/20 bg-black/80 backdrop-blur-xl flex flex-col items-center justify-center gap-4">
+              <span className="text-xs uppercase tracking-widest text-white/50 font-mono">Client</span>
+              <div className="w-12 h-12 rounded bg-brand-gold/20 flex items-center justify-center border border-brand-gold/50">
+                <span className="text-brand-gold text-[10px] font-mono">Keys</span>
+              </div>
+            </div>
 
-      {/* Section 8: Our Commitment */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2 }}
-        className="border-t border-brand-blue/15 dark:border-luxury-white/10 pt-16 mt-8 text-center flex flex-col gap-6"
-      >
-        <span className="text-[10px] tracking-widest uppercase text-brand-gold font-semibold">
-          Our Commitment
-        </span>
-        <div className="flex flex-col gap-3 text-3xl md:text-5xl font-light font-serif-editorial uppercase tracking-widest text-brand-blue dark:text-luxury-white leading-tight">
-          <p className="opacity-40">Trust is earned.</p>
-          <p className="opacity-60">Every day.</p>
-          <p className="opacity-75">With every interaction.</p>
-          <p className="opacity-90">With every conversation.</p>
-          <p className="opacity-95">With every community.</p>
-          <p className="text-brand-gold">With every event.</p>
+            {/* The connection */}
+            <div className="relative z-0 flex-1 h-[2px] bg-white/10 mx-4 md:mx-8 flex items-center justify-center">
+              <motion.div 
+                animate={{ x: [-100, 100], opacity: [0, 1, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                className="w-24 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent absolute"
+              />
+              <div className="px-4 py-2 bg-[#020205] border border-white/20 rounded-full text-[10px] uppercase tracking-widest font-mono text-white/70 absolute">
+                AES-256-GCM
+              </div>
+            </div>
+
+            {/* Bob (Server) */}
+            <div className="relative z-10 w-48 h-48 rounded-full border border-white/20 bg-black/80 backdrop-blur-xl flex flex-col items-center justify-center gap-4">
+              <span className="text-xs uppercase tracking-widest text-white/50 font-mono">Enclave</span>
+              <div className="w-12 h-12 rounded bg-brand-indigo/20 flex items-center justify-center border border-brand-indigo/50">
+                <span className="text-brand-indigo text-[10px] font-mono">Blind</span>
+              </div>
+            </div>
+            
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] text-white/40 uppercase tracking-widest font-mono hidden md:block">
+              Zero-Knowledge Architecture Overview
+            </div>
+          </div>
         </div>
-      </motion.div>
 
+        {/* 3. Identity Protection Controls */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center border-t border-brand-blue/10 dark:border-white/10 pt-20">
+          <div className="w-full lg:w-1/2 h-[400px] spatial-glass rounded-[40px] border border-white/10 p-10 relative overflow-hidden flex flex-col justify-center">
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent pointer-events-none" />
+            <h3 className="text-xs uppercase tracking-widest font-mono text-white/50 mb-8">Identity Controls</h3>
+            
+            <div className="flex flex-col gap-6 w-full max-w-sm">
+              {[
+                { label: "Precise Location", active: false },
+                { label: "Social Graph", active: false },
+                { label: "Behavioral Analytics", active: false },
+                { label: "Local Caching", active: true }
+              ].map((setting, i) => (
+                <div key={i} className="flex items-center justify-between group">
+                  <span className={`text-sm md:text-base font-light transition-colors ${setting.active ? 'text-white' : 'text-white/40'}`}>
+                    {setting.label}
+                  </span>
+                  <div className={`w-12 h-6 rounded-full p-1 flex items-center transition-colors ${setting.active ? 'bg-green-500' : 'bg-white/10'} cursor-not-allowed`}>
+                    <motion.div 
+                      layout
+                      className="w-4 h-4 rounded-full bg-white shadow-sm"
+                      style={{ transform: setting.active ? 'translateX(24px)' : 'translateX(0px)' }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="absolute bottom-10 right-10 opacity-20">
+              <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+          </div>
+
+          <div className="w-full lg:w-1/2 flex flex-col gap-6 text-center lg:text-left">
+            <h2 className="text-3xl md:text-5xl font-light font-serif-editorial">Absolute Control.</h2>
+            <p className="text-base md:text-lg font-light text-brand-blue/70 dark:text-white/70 leading-relaxed">
+              You are the administrator of your digital footprint. Rheole does not monetize data, so we have no incentive to hoard it. 
+              Turn off anything you don't want to share. The intelligence layer will gracefully degrade, providing the best possible recommendations using only the context you permit.
+            </p>
+          </div>
+        </div>
+
+      </main>
     </div>
   );
 }

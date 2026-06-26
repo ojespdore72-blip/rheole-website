@@ -10,8 +10,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
 
-  if (isGlobal && (pathname === "/" || pathname === "/about" || pathname === "/intelligence" || pathname === "/experience")) return null;
-
+  // Global Footer will always render
   return (
     <footer className="w-full border-t border-brand-blue/5 bg-transparent py-10 px-6 md:px-16 mt-auto">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">

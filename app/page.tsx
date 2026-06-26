@@ -1,459 +1,273 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import WaitlistForm from "@/components/WaitlistForm";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import ClientMotionConfig from "@/components/ClientMotionConfig";
+import SocialChannels from "@/components/SocialChannels";
 import RheoleLogo from "@/components/logo";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import ProgressiveReveal from "@/components/ProgressiveReveal";
+
+// Dummy Editorial Photos (can be replaced with real assets later)
+const photos = [
+  "/web_image_1.png",
+  "/web_image_3.jpg",
+  "/web_image_4.jpg"
+];
 
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
+  
+  // Parallax and Opacity transforms
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.9]);
+  const introOpacity = useTransform(scrollYProgress, [0.1, 0.25, 0.35], [0, 1, 0]);
+  const introY = useTransform(scrollYProgress, [0.1, 0.25], [100, 0]);
+  
   const [activeScenario, setActiveScenario] = useState(0);
-  const [activeFeatureMenu, setActiveFeatureMenu] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ 
-        x: (e.clientX / window.innerWidth - 0.5) * 20, 
-        y: (e.clientY / window.innerHeight - 0.5) * 20 
+        x: (e.clientX / window.innerWidth - 0.5) * 30, 
+        y: (e.clientY / window.innerHeight - 0.5) * 30 
       });
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 40 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-100px" },
-    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const },
-  };
-
   const scenarios = [
     {
       id: "visit",
-      title: "I'm visiting a new city.",
-      desc: "Rheole's intelligence layer instantly maps high-density areas, active events, and local rhythms without needing a search query.",
-      ui: (
-        <div className="w-full h-full bg-[#05050C] p-4 flex flex-col gap-4">
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
-            <span className="text-[10px] uppercase text-brand-gold font-mono">Spatial Map</span>
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+      prompt: "I'm visiting Bengaluru for the first time.",
+      response: "Analyzing local density... Found 3 active tech hubs, 12 live acoustic events, and an emerging startup mixer near Indiranagar.",
+      visual: (
+        <div className="relative w-full h-full flex items-center justify-center">
+          <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 20, ease: "linear" }} className="absolute w-[200px] h-[200px] border border-brand-gold/20 rounded-full border-dashed" />
+          <motion.div animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 30, ease: "linear" }} className="absolute w-[300px] h-[300px] border border-brand-blue/30 dark:border-white/10 rounded-full" />
+          <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 4 }} className="w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_20px_#C5A880]" />
+          {/* Data nodes */}
+          <div className="absolute top-[20%] right-[20%] p-2 bg-black/80 backdrop-blur border border-white/10 rounded-xl shadow-2xl">
+            <p className="text-[10px] text-white/80 font-mono">Indiranagar Mixer</p>
+            <p className="text-[8px] text-brand-gold mt-1">120+ Active</p>
           </div>
-          <div className="flex-1 bg-white/[0.02] border border-white/5 rounded-2xl relative overflow-hidden flex items-center justify-center">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(197,168,128,0.2),transparent_70%)]" />
-            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute w-16 h-16 rounded-full border border-brand-gold/20" />
-            <div className="absolute top-1/4 left-1/4 p-1.5 bg-black/80 border border-white/10 rounded text-[8px] text-white font-mono">Central Plaza: High Activity</div>
-            <div className="absolute bottom-1/3 right-1/4 p-1.5 bg-black/80 border border-white/10 rounded text-[8px] text-white font-mono">South St: 4 Events</div>
+          <div className="absolute bottom-[30%] left-[10%] p-2 bg-black/80 backdrop-blur border border-white/10 rounded-xl shadow-2xl">
+            <p className="text-[10px] text-white/80 font-mono">Tech Hub</p>
+            <p className="text-[8px] text-green-400 mt-1">High Density</p>
           </div>
         </div>
       )
     },
     {
-      id: "communities",
-      title: "I want to discover communities.",
-      desc: "Connect with local circles built around shared interests, anchored to real physical coordinates.",
-      ui: (
-        <div className="w-full h-full bg-[#05050C] p-4 flex flex-col gap-4">
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
-            <span className="text-[10px] uppercase text-brand-gold font-mono">Local Circles</span>
-            <span className="text-[10px] text-white/50">Nearby</span>
-          </div>
-          <div className="flex flex-col gap-2">
-            {['Creative Builders', 'SOMA Run Club', 'Founders Breakfast'].map((c, i) => (
-              <motion.div key={c} initial={{ x: -10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.1 }} className="p-3 bg-white/[0.02] border border-white/10 rounded-xl flex justify-between items-center">
-                <span className="text-xs text-white">{c}</span>
-                <span className="text-[9px] text-white/50 font-mono">+{Math.floor(Math.random()*100)+20} Mem</span>
-              </motion.div>
+      id: "hungry",
+      prompt: "Find somewhere peaceful to eat.",
+      response: "Filtering for low ambient noise... 'The Courtyard' currently has 30% occupancy and matches your aesthetic preferences.",
+      visual: (
+        <div className="relative w-full h-full flex flex-col items-center justify-center p-8 gap-4">
+          <div className="w-full flex items-end h-32 gap-2 border-b border-brand-blue/20 dark:border-white/10 pb-2">
+            {[40, 70, 30, 80, 20, 50, 10].map((h, i) => (
+              <motion.div 
+                key={i}
+                initial={{ height: 0 }}
+                animate={{ height: `${h}%` }}
+                transition={{ duration: 1, delay: i * 0.1 }}
+                className={`flex-1 rounded-t-sm ${h > 50 ? 'bg-red-400/50' : h > 30 ? 'bg-brand-gold/50' : 'bg-green-400/50'}`}
+              />
             ))}
           </div>
+          <p className="text-xs uppercase tracking-widest text-brand-blue/50 dark:text-white/50 font-mono">Live Audio Topology</p>
         </div>
       )
-    },
-    {
-      id: "events",
-      title: "I want to know what's happening nearby.",
-      desc: "Live, context-aware event discovery prioritized by your interests and real-time community density.",
-      ui: (
-        <div className="w-full h-full bg-[#05050C] p-4 flex flex-col gap-4">
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
-            <span className="text-[10px] uppercase text-brand-gold font-mono">Live Events</span>
-          </div>
-          <div className="p-4 bg-gradient-to-br from-brand-gold/10 to-transparent border border-brand-gold/20 rounded-2xl flex flex-col gap-2">
-            <span className="text-[8px] uppercase tracking-widest text-brand-gold bg-brand-gold/10 px-2 py-0.5 rounded-sm w-max">98% AI Match</span>
-            <span className="text-sm text-white font-medium">Underground Acoustic Session</span>
-            <div className="flex gap-4 mt-2">
-              <span className="text-[9px] text-white/50 font-mono">1.2 mi</span>
-              <span className="text-[9px] text-white/50 font-mono">Starts 8PM</span>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: "route",
-      title: "I need the fastest route to an event.",
-      desc: "Intelligent navigation that adapts dynamically to street festivals, crowd congestion, and localized weather.",
-      ui: (
-        <div className="w-full h-full bg-[#05050C] p-4 flex flex-col gap-4">
-          <div className="flex items-center justify-between border-b border-white/10 pb-2">
-            <span className="text-[10px] uppercase text-brand-gold font-mono">Routing Matrix</span>
-          </div>
-          <div className="flex-1 bg-white/[0.02] border border-white/5 rounded-2xl relative overflow-hidden flex flex-col p-4 justify-between">
-            <div className="w-full h-1/2 flex items-center justify-center relative">
-              <svg viewBox="0 0 100 50" className="w-full h-full overflow-visible">
-                <path d="M0,25 Q25,5 50,25 T100,25" fill="none" stroke="#C5A880" strokeWidth="2" strokeDasharray="4 4" className="animate-[dash_2s_linear_infinite]" />
-                <circle cx="50" cy="25" r="8" fill="rgba(239,68,68,0.2)" stroke="rgba(239,68,68,0.5)" />
-              </svg>
-            </div>
-            <div className="p-2 bg-red-500/10 border border-red-500/20 rounded-lg">
-              <span className="text-[9px] text-red-400 font-mono">Detour: Festival Block Detected</span>
-            </div>
-          </div>
-        </div>
-      )
-    }
-  ];
-
-  const featureSections = [
-    {
-      title: "Discovery",
-      desc: "Captures the joy of discovering places nearby",
-      images: ["/web_image_1.png", "/web_image_3.jpg", "/web_image_4.jpg"]
-    },
-    {
-      title: "Communities",
-      desc: "Connect with local circles built around shared interests",
-      images: []
-    },
-    {
-      title: "Events",
-      desc: "Live, context-aware event discovery",
-      images: []
-    },
-    {
-      title: "Virtual Intelligence",
-      desc: "An AI-powered spatial intelligence platform",
-      images: []
-    },
-    {
-      title: "Future",
-      desc: "Experience the next generation of digital interaction",
-      images: []
     }
   ];
 
   return (
-    <div className="relative w-full min-h-screen bg-white overflow-hidden selection:bg-brand-gold/20 text-brand-blue font-sans">
-      <Navbar />
+    <div ref={containerRef} className="relative w-full bg-luxury-white dark:bg-luxury-black text-brand-blue dark:text-luxury-white font-sans overflow-clip">
+
       
-      {/* 1. SPATIAL HERO SECTION */}
-      <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-32 pb-24 px-6 md:px-12 overflow-hidden">
-        
-        {/* Ambient Spatial Mesh Background */}
+      {/* 1. HERO - Living City Visualization */}
+      <motion.section 
+        style={{ opacity: heroOpacity, scale: heroScale }}
+        className="fixed inset-0 z-0 flex flex-col items-center justify-center pointer-events-none"
+      >
         <motion.div 
-          animate={{ x: mousePos.x * -2, y: mousePos.y * -2 }}
-          transition={{ type: "spring", stiffness: 40, damping: 20 }}
-          className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center"
+          animate={{ x: mousePos.x, y: mousePos.y }}
+          className="absolute inset-0 flex items-center justify-center"
         >
-          {/* Liquid Orbs */}
-          <div className="absolute top-[10%] left-[20%] w-[600px] h-[600px] bg-brand-gold/15 rounded-full blur-[100px] mix-blend-multiply animate-pulse-slow" />
-          <div className="absolute bottom-[10%] right-[15%] w-[500px] h-[500px] bg-brand-indigo/10 rounded-full blur-[120px] mix-blend-multiply" style={{ animation: 'pulse-slow 12s infinite ease-in-out reverse' }} />
-          <div className="absolute top-[30%] left-[50%] w-[800px] h-[800px] bg-brand-blue/5 rounded-full blur-[150px] mix-blend-multiply ambient-breathe" />
+          {/* Spatial OS Glows */}
+          <div className="absolute w-[80vw] h-[80vw] md:w-[50vw] md:h-[50vw] bg-brand-gold/10 dark:bg-brand-gold/5 rounded-full blur-[100px] md:blur-[150px] animate-pulse-slow" />
+          <div className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] bg-brand-indigo/10 dark:bg-brand-indigo/5 rounded-full blur-[120px]" style={{ animation: 'pulse-slow 15s infinite reverse' }} />
           
-          {/* Subtle grid to anchor the space */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(10,37,64,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(10,37,64,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)]" />
+          {/* Abstract Grid Map */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(10,37,64,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(10,37,64,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_10%,transparent_100%)]" />
         </motion.div>
 
-        {/* Foreground Content */}
-        <div className="relative z-10 flex flex-col items-center gap-10 text-center max-w-5xl mt-12">
-          
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0, filter: "blur(20px)" }}
-            animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-            className="ambient-breathe"
-          >
-            <motion.div 
-              animate={{ x: mousePos.x * 1, y: mousePos.y * 1 }} 
-              transition={{ type: "spring", stiffness: 100, damping: 30 }}
-            >
-              <RheoleLogo className="h-24 w-24 md:h-32 md:w-32 drop-shadow-[0_0_50px_rgba(197,168,128,0.4)]" />
-            </motion.div>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] font-light font-serif-editorial tracking-tight leading-[1.05] text-brand-blue"
-          >
-            The pulse of<br/><span className="text-gradient-gold-blue italic">your world.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg md:text-2xl font-light text-brand-blue/70 max-w-3xl leading-relaxed mt-2"
-          >
-            An ambient spatial intelligence layer. Connect effortlessly to the people, communities, and live rhythms shaping your reality.
-          </motion.p>
-
+        <div className="relative z-10 flex flex-col items-center gap-8 text-center px-4">
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.0, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-center gap-6 mt-8"
+            initial={{ scale: 0.9, filter: "blur(10px)", opacity: 0 }}
+            animate={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link href="/experience" className="group relative px-10 py-5 bg-brand-blue text-luxury-white rounded-full text-sm font-medium tracking-widest uppercase overflow-hidden haptic-press shadow-[0_20px_40px_-10px_rgba(10,37,64,0.4)]">
-              <span className="relative z-10 group-hover:text-brand-blue transition-colors duration-500">See the Pulse</span>
-              <div className="absolute inset-0 bg-brand-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-            </Link>
+            <RheoleLogo className="h-20 w-20 md:h-28 md:w-28 drop-shadow-[0_0_40px_rgba(197,168,128,0.3)]" />
           </motion.div>
+          <motion.h1
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 1.2 }}
+            className="text-5xl sm:text-6xl md:text-8xl lg:text-[100px] font-light font-serif-editorial tracking-tight leading-[1.1] md:leading-[1]"
+          >
+            The pulse of<br/><span className="italic text-gradient-gold-blue">your city.</span>
+          </motion.h1>
         </div>
-      </section>
+      </motion.section>
 
-      {/* 2. PROGRESSIVE SCROLL NARRATIVE & 3. EARLY PRODUCT REVEAL */}
-      <ProgressiveReveal />
+      {/* Spacer for Hero */}
+      <div className="h-[120vh]" />
 
-      {/* FEATURE MENU SECTION (Replaces Discovery) */}
-      <section className="relative w-full bg-[#05050C] text-white flex flex-col items-center justify-center overflow-hidden border-t border-white/5 py-16 md:py-24">
-        {/* Background atmospheric glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(197,168,128,0.1),transparent_50%)]" />
-        
-        <div className="relative z-10 w-full flex flex-col">
+      {/* 2. THE CORE PRINCIPLE */}
+      <motion.section 
+        style={{ opacity: introOpacity, y: introY }}
+        className="relative z-10 min-h-screen flex items-center justify-center px-6"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-light leading-tight font-serif-editorial text-brand-blue dark:text-white">
+            Rheole is not another application.
+            <br />
+            <br />
+            <span className="text-brand-gold italic">It is the intelligence layer</span> between people and the physical world.
+          </h2>
+        </div>
+      </motion.section>
+
+      {/* 3. INTERACTIVE SPATIAL DEMO (VisionOS Style) */}
+      <section className="relative z-10 min-h-[150vh] py-32 px-4 md:px-12 bg-[#020205] text-white">
+        <div className="max-w-7xl mx-auto flex flex-col gap-24">
           
-          {/* Menu */}
-          <div className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-6 mb-10">
-            <div className="flex items-center gap-8 md:gap-16 w-max mx-auto border-b border-white/10 pb-4">
-              {featureSections.map((feature, idx) => (
-                <button 
-                  key={idx}
-                  onClick={() => setActiveFeatureMenu(idx)}
-                  className={`text-sm md:text-base lg:text-lg font-light tracking-[0.1em] uppercase transition-all duration-300 relative whitespace-nowrap ${
-                    activeFeatureMenu === idx ? 'text-brand-gold' : 'text-white/50 hover:text-white/80'
+          <div className="text-center max-w-2xl mx-auto">
+            <h3 className="text-xs uppercase tracking-[0.3em] font-mono text-brand-gold mb-6">Live Demonstration</h3>
+            <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">Experience ambient intelligence.</h2>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
+            
+            {/* Context Inputs */}
+            <div className="w-full lg:w-1/3 flex flex-col gap-4">
+              {scenarios.map((scenario, idx) => (
+                <button
+                  key={scenario.id}
+                  onClick={() => setActiveScenario(idx)}
+                  className={`text-left p-6 rounded-3xl transition-spring backdrop-blur-xl border ${
+                    activeScenario === idx 
+                      ? "bg-white/10 border-brand-gold/40 shadow-[0_20px_40px_-10px_rgba(197,168,128,0.15)] scale-[1.02]" 
+                      : "bg-transparent border-white/5 hover:bg-white/5"
                   }`}
                 >
-                  {feature.title}
-                  {activeFeatureMenu === idx && (
-                    <motion.div 
-                      layoutId="activeFeatureIndicator"
-                      className="absolute -bottom-[17px] left-0 right-0 h-[2px] bg-brand-gold" 
-                    />
-                  )}
+                  <p className="text-lg font-medium text-white leading-relaxed">
+                    "{scenario.prompt}"
+                  </p>
                 </button>
               ))}
             </div>
-          </div>
-          
-          {/* Content Area */}
-          <div className="w-full">
-            <AnimatePresence mode="wait">
-              <motion.div 
-                key={activeFeatureMenu}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="w-full flex flex-col items-center gap-8"
-              >
-                <div className="text-center space-y-4 max-w-3xl px-6">
-                  <h2 className="text-4xl md:text-5xl lg:text-7xl font-light font-serif-editorial tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-white via-[#F5F2EB] to-white/70">
-                    {featureSections[activeFeatureMenu].title}
-                  </h2>
-                  <p className="text-xs md:text-sm lg:text-lg text-brand-gold/90 font-light tracking-[0.2em] uppercase">
-                    {featureSections[activeFeatureMenu].desc}
-                  </p>
-                </div>
 
-                {/* 100% Width Image Carousel without wasting side spaces */}
-                <div className="w-full flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                  {featureSections[activeFeatureMenu].images.length > 0 ? (
-                    featureSections[activeFeatureMenu].images.map((src, idx) => (
-                      <div
-                        key={idx}
-                        className="relative w-full flex-shrink-0 snap-center"
-                      >
-                        <div className="relative w-full aspect-[4/5] md:aspect-[21/9] overflow-hidden">
-                          <img
-                            src={src}
-                            alt={`${featureSections[activeFeatureMenu].title} Image ${idx + 1}`}
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-[1.03] will-change-transform"
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#05050C]/90 via-transparent to-transparent opacity-60 pointer-events-none" />
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="relative w-full flex-shrink-0 snap-center">
-                      <div className="relative w-full aspect-[4/5] md:aspect-[21/9] overflow-hidden bg-[#05050C] flex flex-col items-center justify-center border-y border-white/5">
-                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(197,168,128,0.05),transparent_50%)]" />
-                        <span className="text-white/20 tracking-[0.3em] uppercase text-xs md:text-sm font-light z-10">Visuals coming soon</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. HOW RHEOLE WORKS */}
-      <section id="how-it-works" className="relative w-full py-24 lg:py-32 px-6 md:px-12 border-t border-brand-blue/5">
-        <div className="max-w-6xl mx-auto flex flex-col gap-20">
-          <motion.div {...fadeInUp} className="flex flex-col gap-4 text-center max-w-2xl mx-auto">
-            <span className="text-xs uppercase tracking-widest font-medium text-brand-gold">The Mechanism</span>
-            <h2 className="text-4xl md:text-5xl font-light font-serif-editorial text-brand-blue">How Rheole Works</h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-8">
-            {[
-              { num: "01", title: "Understand your context.", desc: "The platform ingests real-time spatial data, community signals, and local events to map the reality of your surroundings." },
-              { num: "02", title: "Connect relevant people, places and events.", desc: "Information is synthesized and structured. Abstract noise becomes clear, actionable connections." },
-              { num: "03", title: "Continuously adapt with AI.", desc: "Rheole's local engine learns your specific interests, ensuring recommendations remain hyper-relevant and entirely personalized." }
-            ].map((step, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: idx * 0.2 }}
-                className="flex flex-col gap-6"
-              >
-                <span className="text-5xl font-light font-serif-editorial text-brand-gold/30">{step.num}</span>
-                <h3 className="text-xl font-medium text-brand-blue tracking-wide">{step.title}</h3>
-                <p className="text-brand-blue/70 leading-relaxed font-light">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. REAL SCENARIOS (IMAGINE YOUR DAY) */}
-      <section className="relative w-full py-24 lg:py-32 px-6 md:px-12 border-t border-brand-blue/5 bg-luxury-black text-luxury-white">
-        <div className="max-w-7xl mx-auto flex flex-col gap-16">
-          <motion.div {...fadeInUp} className="flex flex-col gap-4">
-            <span className="text-xs uppercase tracking-widest font-mono text-brand-gold">Use Cases</span>
-            <h2 className="text-4xl md:text-5xl font-light font-serif-editorial text-white">Imagine your day.</h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
-            
-            {/* Scenario Selector */}
-            <div className="lg:col-span-5 flex flex-col gap-4">
-              {scenarios.map((scenario, idx) => (
-                <motion.button
-                  key={scenario.id}
-                  onClick={() => setActiveScenario(idx)}
-                  className={`w-full text-left p-6 rounded-2xl border transition-all duration-300 ${
-                    activeScenario === idx 
-                      ? "bg-white/[0.05] border-brand-gold text-white shadow-[0_0_30px_rgba(197,168,128,0.1)]" 
-                      : "bg-transparent border-white/10 text-white/50 hover:bg-white/[0.02] hover:text-white/80"
-                  }`}
+            {/* Spatial Output Interface */}
+            <div className="w-full lg:w-2/3 h-[500px] md:h-[600px] spatial-glass rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] dark:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] overflow-hidden relative group">
+              {/* Glass Glare */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-50 pointer-events-none z-20 mix-blend-overlay" />
+              
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeScenario}
+                  initial={{ opacity: 0, filter: "blur(20px)", scale: 0.95 }}
+                  animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+                  exit={{ opacity: 0, filter: "blur(20px)", scale: 1.05 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 flex flex-col z-10"
                 >
-                  <h3 className="text-lg md:text-xl font-medium mb-2">{scenario.title}</h3>
-                  <AnimatePresence>
-                    {activeScenario === idx && (
-                      <motion.p 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="text-sm font-light text-white/70 leading-relaxed overflow-hidden"
-                      >
-                        {scenario.desc}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </motion.button>
-              ))}
+                  {/* Visualizer Area */}
+                  <div className="flex-1 relative overflow-hidden bg-gradient-to-b from-transparent to-white/5">
+                    {scenarios[activeScenario].visual}
+                  </div>
+                  
+                  {/* AI Response Area */}
+                  <div className="p-8 border-t border-white/10 bg-black/40 backdrop-blur-3xl min-h-[160px] flex items-center">
+                    <p className="text-lg md:text-xl font-light leading-relaxed text-white">
+                      <span className="inline-block w-2 h-2 rounded-full bg-brand-gold animate-pulse mr-4" />
+                      {scenarios[activeScenario].response}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
-
-            {/* Reactive Device Mockup */}
-            <div className="lg:col-span-7 flex justify-center">
-              <div className="w-[300px] h-[600px] lg:w-[340px] lg:h-[680px] rounded-[40px] bg-black border-[6px] border-[#222] shadow-2xl overflow-hidden p-2 relative">
-                <div className="w-full h-full rounded-[30px] overflow-hidden bg-[#05050C]">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeScenario}
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.4 }}
-                      className="w-full h-full pt-10"
-                    >
-                      {scenarios[activeScenario].ui}
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </div>
-            </div>
-
+            
           </div>
         </div>
       </section>
 
-      {/* 6. DESIGNED FOR TRUST */}
-      <section className="relative w-full py-24 lg:py-32 px-6 md:px-12 border-t border-brand-blue/5">
-        <div className="max-w-6xl mx-auto flex flex-col gap-16">
-          <motion.div {...fadeInUp} className="flex flex-col gap-4 text-center max-w-2xl mx-auto">
-            <span className="text-xs uppercase tracking-widest font-medium text-brand-gold">Security & Architecture</span>
-            <h2 className="text-4xl md:text-5xl font-light font-serif-editorial text-brand-blue">Designed for Trust</h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "Privacy-first architecture", desc: "Built from the ground up to minimize data collection and prioritize local-first processing." },
-              { title: "Granular user controls", desc: "You decide exactly what is shared, with whom, and for how long." },
-              { title: "Human-centered AI", desc: "Our models act as transparent assistants, not opaque psychological manipulators." },
-              { title: "Modern authentication", desc: "Secure, frictionless identity verification using the latest cryptographic standards." },
-              { title: "Encrypted communication", desc: "Private and community messages are locked behind robust encryption protocols." },
-              { title: "Transparent data practices", desc: "No hidden data brokers. No targeted advertising profiles. Absolute clarity." }
-            ].map((feature, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: idx * 0.1 }}
-                className="p-8 rounded-2xl border border-brand-blue/10 bg-white hover:shadow-xl hover:border-brand-gold/30 transition-all duration-300"
-              >
-                <h3 className="text-sm font-semibold uppercase tracking-wide text-brand-blue mb-3">{feature.title}</h3>
-                <p className="text-sm font-light text-brand-blue/70 leading-relaxed">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      {/* 8. FINAL CTA & PRODUCT PREVIEW LINK */}
-      <section className="relative w-full py-32 px-6 bg-brand-blue text-white flex flex-col items-center justify-center text-center">
-        <motion.div {...fadeInUp} className="max-w-3xl flex flex-col items-center gap-10">
-          <RheoleLogo className="h-16 w-auto invert opacity-90" />
-          <h2 className="text-4xl md:text-6xl font-light font-serif-editorial leading-tight">
-            See it for yourself.
+      {/* 4. EDITORIAL PHOTOGRAPHY / LIVING CITY */}
+      <section className="relative z-10 py-32 overflow-hidden bg-brand-blue text-luxury-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-16">
+          <h2 className="text-3xl md:text-5xl font-light font-serif-editorial">
+            Rooted in <span className="text-brand-gold italic">reality.</span>
           </h2>
-          <p className="text-lg md:text-xl font-light text-white/70 max-w-xl">
-            Dive into the full interactive narrative to experience exactly how Rheole connects your world.
+          <p className="mt-6 text-lg font-light text-white/70 max-w-xl">
+            We are not building an escape to the metaverse. We are building the tools to fall back in love with your physical city.
           </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full sm:w-auto">
-            <Link href="/experience" className="w-full sm:w-auto px-10 py-5 bg-brand-gold text-brand-blue hover:bg-[#d6b78c] transition-colors rounded-full text-xs font-semibold uppercase tracking-widest shadow-xl">
-              Launch Product Preview
-            </Link>
-            <Link href="/founding-access" className="w-full sm:w-auto px-10 py-5 border border-white/20 hover:border-white transition-colors rounded-full text-xs font-semibold uppercase tracking-widest">
-              Join Founding Access
-            </Link>
-          </div>
+        </div>
+        
+        {/* Horizontal Scroll Gallery */}
+        <div className="flex gap-8 px-6 lg:px-12 overflow-x-auto pb-12 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden">
+          {photos.map((photo, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: i * 0.1 }}
+              className="relative w-[300px] md:w-[450px] aspect-[4/5] flex-shrink-0 snap-center rounded-3xl overflow-hidden group"
+            >
+              <div className="absolute inset-0 bg-white/5 group-hover:scale-105 transition-transform duration-[2s] ease-out">
+                {/* Real Image */}
+                <img src={photo} alt={`Location ${i + 1}`} className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50" />
+                {/* Fallback pattern */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1),transparent)]" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute bottom-8 left-8">
+                <p className="text-xs uppercase tracking-widest font-mono text-brand-gold mb-2">Location {i + 1}</p>
+                <p className="text-lg font-light">Bengaluru</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. IMMERSIVE CTA */}
+      <section className="relative z-10 py-40 px-6 flex flex-col items-center text-center bg-luxury-white dark:bg-luxury-black border-t border-brand-blue/10 dark:border-white/10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="max-w-2xl flex flex-col items-center gap-10"
+        >
+          <RheoleLogo className="h-16 w-16 drop-shadow-xl" />
+          <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">
+            Join the new future.
+          </h2>
+          <Link 
+            href="/founding-access" 
+            className="group relative px-12 py-5 bg-brand-blue dark:bg-white text-white dark:text-brand-blue rounded-full text-sm font-medium tracking-widest uppercase overflow-hidden haptic-press shadow-2xl"
+          >
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-brand-blue dark:group-hover:text-white">Request Early Access</span>
+            <div className="absolute inset-0 bg-brand-gold dark:bg-brand-blue scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+          </Link>
         </motion.div>
       </section>
 
-      <Footer />
+      {/* 6. SOCIAL CHANNELS */}
+      <SocialChannels />
     </div>
   );
 }

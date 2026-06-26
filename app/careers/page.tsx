@@ -1,280 +1,224 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-interface Position {
-  title: string;
-  location: string;
-  responsibilities: string[];
-  idealCandidate: string[];
-}
+const ChallengeWidget = ({ title, desc, visual }: any) => (
+  <div className="w-full lg:w-1/3 flex flex-col gap-6">
+    <div className="w-full aspect-square spatial-glass rounded-3xl border border-brand-blue/10 dark:border-white/10 overflow-hidden relative flex items-center justify-center p-6 group hover:border-brand-gold/50 transition-colors duration-500">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-blue/5 dark:from-white/5 to-transparent z-0" />
+      <div className="relative z-10 w-full h-full flex items-center justify-center">
+        {visual}
+      </div>
+    </div>
+    <div>
+      <h3 className="text-xl font-medium text-brand-blue dark:text-white mb-2">{title}</h3>
+      <p className="text-sm font-light text-brand-blue/60 dark:text-white/60 leading-relaxed">{desc}</p>
+    </div>
+  </div>
+);
 
 export default function Careers() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const },
-  };
-
-  const roles: Position[] = [
-    {
-      title: "Founding Full Stack Engineer",
-      location: "Remote / Hybrid",
-      responsibilities: [
-        "Build core platform experiences",
-        "Develop scalable architecture",
-        "Improve performance and reliability",
-        "Work across frontend and backend systems"
-      ],
-      idealCandidate: [
-        "React / Next.js",
-        "TypeScript",
-        "PostgreSQL",
-        "Supabase",
-        "Product-focused mindset"
-      ]
-    },
-    {
-      title: "Founding Mobile Engineer",
-      location: "Remote / Hybrid",
-      responsibilities: [
-        "Build premium mobile experiences",
-        "Optimize Android and iOS performance",
-        "Deliver smooth user interactions",
-        "Improve platform stability"
-      ],
-      idealCandidate: [
-        "Flutter",
-        "React Native",
-        "Mobile performance optimization",
-        "Strong UI craftsmanship"
-      ]
-    },
-    {
-      title: "Product Designer",
-      location: "Remote",
-      responsibilities: [
-        "Shape the visual future of Rheole",
-        "Design elegant interfaces",
-        "Create world-class user experiences",
-        "Maintain design consistency"
-      ],
-      idealCandidate: [
-        "Figma",
-        "Interaction Design",
-        "Motion Design",
-        "Systems Thinking"
-      ]
-    },
-    {
-      title: "Community Operations Lead",
-      location: "Remote",
-      responsibilities: [
-        "Support communities",
-        "Improve user engagement",
-        "Monitor platform health",
-        "Assist with moderation initiatives"
-      ],
-      idealCandidate: [
-        "Strong communication skills",
-        "Community management experience",
-        "Problem solving mindset"
-      ]
-    },
-    {
-      title: "Trust & Safety Associate",
-      location: "Remote",
-      responsibilities: [
-        "Review reports",
-        "Improve platform safety",
-        "Help enforce community standards",
-        "Support user trust initiatives"
-      ],
-      idealCandidate: [
-        "Strong judgment",
-        "Attention to detail",
-        "Community safety experience"
-      ]
-    },
-    {
-      title: "Local Intelligence Analyst",
-      location: "Remote",
-      responsibilities: [
-        "Improve locality insights",
-        "Evaluate recommendation quality",
-        "Support routing and discovery systems",
-        "Analyze platform trends"
-      ],
-      idealCandidate: [
-        "Analytical mindset",
-        "Data interpretation skills",
-        "Interest in cities and communities"
-      ]
-    },
-    {
-      title: "Growth & Partnerships Lead",
-      location: "Remote",
-      responsibilities: [
-        "Build local partnerships",
-        "Support launch initiatives",
-        "Develop growth strategies",
-        "Expand community reach"
-      ],
-      idealCandidate: [
-        "Partnership experience",
-        "Startup mindset",
-        "Strong communication skills"
-      ]
-    }
-  ];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
+  
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
 
   return (
-    <div className="w-full min-h-screen py-32 px-6 md:px-12 max-w-4xl mx-auto flex flex-col gap-16 md:gap-24">
-      {/* Title */}
-      <motion.div {...fadeInUp} className="flex flex-col gap-4 border-b border-brand-blue/15 dark:border-luxury-white/10 pb-8">
-        <h1 className="text-4xl md:text-6xl font-light tracking-wide uppercase text-brand-blue dark:text-luxury-white font-serif-editorial">
-          Careers
-        </h1>
-        <p className="text-xs uppercase tracking-widest text-brand-gold font-semibold">
-          Build the intelligence layer between people and the world around them.
-        </p>
-      </motion.div>
-
-      {/* Narrative Section */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.2 }}
-        className="flex flex-col gap-10 text-brand-blue/80 dark:text-luxury-white/80 font-light text-md md:text-lg leading-relaxed"
+    <div ref={containerRef} className="relative w-full min-h-screen bg-luxury-white dark:bg-[#020205] text-brand-blue dark:text-white overflow-hidden selection:bg-brand-gold/20 font-sans">
+      {/* 1. HERO - Emotional Aspiration */}
+      <motion.section 
+        style={{ opacity: heroOpacity, scale: heroScale }}
+        className="fixed inset-0 z-0 flex flex-col items-center justify-center pt-20 px-6"
       >
-        <p className="font-serif-editorial italic text-xl md:text-2xl text-brand-blue dark:text-luxury-white leading-relaxed">
-          &ldquo;We are not building another social network. We are building a new way for people to understand the places around them.&rdquo;
-        </p>
-
-        <p className="text-sm tracking-wide uppercase text-brand-blue/60 dark:text-luxury-white/60">
-          Communities. Events. Discovery. Local intelligence. Real-world awareness.
-        </p>
-        <p>
-          If that excites you, we'd love to hear from you.
-        </p>
-      </motion.div>
-
-      {/* Values & Culture Info */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 0.3 }}
-        className="flex flex-col gap-6 border-t border-brand-blue/15 dark:border-luxury-white/10 pt-12"
-      >
-        <div className="flex flex-col gap-2">
-          <span className="text-[10px] tracking-widest uppercase text-brand-gold font-semibold">Culture</span>
-          <h3 className="text-xl font-medium text-brand-blue dark:text-luxury-white uppercase tracking-wider">
-            Why Work at Rheole
-          </h3>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(79,70,229,0.15),transparent_60%)]" />
+        <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center gap-8">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="w-20 h-20 rounded-full border border-brand-gold/30 bg-brand-gold/5 flex items-center justify-center mb-4"
+          >
+            <div className="w-2 h-2 rounded-full bg-brand-gold animate-pulse" />
+          </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+            className="text-5xl md:text-7xl lg:text-[100px] font-light font-serif-editorial leading-[1.1] tracking-tight"
+          >
+            Build the <span className="italic text-brand-gold">layer</span> <br/>that connects the world.
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.4 }}
+            className="text-lg md:text-2xl font-light text-brand-blue/60 dark:text-white/60 max-w-2xl leading-relaxed"
+          >
+            We don't need more social feeds. We need engineers, designers, and thinkers who want to make physical reality legible, intelligent, and deeply human again.
+          </motion.p>
         </div>
-        <p className="text-sm text-brand-blue/70 dark:text-luxury-white/70 leading-relaxed">
-          We are intentionally building a small team of exceptional people driven by craftsmanship, ownership, and long-term thinking. We care deeply about details, quality of code, user experience, and the real-world impact of our spatial infrastructure.
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
-          {[
-            { title: "Craftsmanship", desc: "Attention to detail." },
-            { title: "Ownership", desc: "Autonomous execution." },
-            { title: "Long-term thinking", desc: "Build to persist." },
-            { title: "Mission-driven", desc: "Restore real connection." }
-          ].map((val, i) => (
-            <div key={i} className="border border-brand-blue/5 dark:border-luxury-white/5 rounded-xl p-4 bg-brand-blue/[0.01] dark:bg-luxury-white/[0.01] flex flex-col gap-1 text-center">
-              <span className="text-xs uppercase tracking-widest text-brand-gold font-semibold">{val.title}</span>
-              <span className="text-[10px] text-brand-blue/40 dark:text-luxury-white/40">{val.desc}</span>
+      </motion.section>
+
+      {/* Spacer for fixed hero */}
+      <div className="h-[100vh]" />
+
+      {/* 2. CULTURE & PHILOSOPHY */}
+      <section className="relative z-10 w-full py-32 px-6 md:px-12 bg-brand-blue/[0.02] dark:bg-[#05050C] border-t border-brand-blue/5 dark:border-white/5">
+        <div className="max-w-7xl mx-auto flex flex-col gap-24">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+            <div className="w-full lg:w-1/2 flex flex-col gap-8">
+              <span className="text-xs uppercase tracking-[0.4em] font-mono text-brand-gold">Engineering Culture</span>
+              <h2 className="text-4xl md:text-6xl font-light font-serif-editorial leading-tight">
+                Originality over conformity.
+              </h2>
+              <div className="flex flex-col gap-6 text-lg font-light text-brand-blue/70 dark:text-white/70 leading-relaxed">
+                <p>
+                  At Rheole, we do not follow standard playbooks. We are building an operating system for the physical world. This requires first-principles thinking across every discipline.
+                </p>
+                <p>
+                  <strong className="text-brand-blue dark:text-white font-medium">Ownership:</strong> There are no cogs here. You own entire domains. If you see a problem, you have the authority to solve it.
+                </p>
+                <p>
+                  <strong className="text-brand-blue dark:text-white font-medium">Learning:</strong> We are tackling unmapped territory in spatial AI and distributed systems. We expect you to be comfortable in the unknown.
+                </p>
+              </div>
             </div>
-          ))}
+            
+            <div className="w-full lg:w-1/2">
+              <div className="w-full aspect-[4/3] rounded-[40px] overflow-hidden relative">
+                <img src="/web_image_1.png" alt="Culture" className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40 hover:mix-blend-normal hover:opacity-100 transition-all duration-1000" />
+                <div className="absolute inset-0 bg-gradient-to-t from-luxury-white dark:from-black via-transparent to-transparent opacity-80" />
+                <div className="absolute bottom-8 left-8">
+                  <p className="text-xs uppercase tracking-widest font-mono text-brand-blue/50 dark:text-white/50">Bengaluru Lab</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </section>
 
-      {/* Open Roles list */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.4 }}
-        className="flex flex-col gap-12 mt-8 border-t border-brand-blue/15 dark:border-luxury-white/10 pt-12"
-      >
-        <div className="flex flex-col gap-12">
-          {roles.map((role, index) => (
-            <div
-              key={index}
-              className="flex flex-col gap-6 border-b border-brand-blue/5 dark:border-luxury-white/5 pb-8"
-            >
-              <div className="flex flex-col md:flex-row justify-between items-start gap-4">
-                <div className="flex flex-col gap-1">
-                  <h3 className="text-lg md:text-xl font-medium text-brand-blue dark:text-luxury-white uppercase tracking-wider">
+      {/* 3. ENGINEERING CHALLENGES (WIDGETS) */}
+      <section className="relative z-10 w-full py-32 px-6 md:px-12 bg-luxury-white dark:bg-black">
+        <div className="max-w-7xl mx-auto flex flex-col gap-20">
+          <div className="text-center max-w-3xl mx-auto flex flex-col gap-6">
+            <span className="text-xs uppercase tracking-[0.4em] font-mono text-brand-gold">The Work</span>
+            <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">Problems worth solving.</h2>
+            <p className="text-lg font-light text-brand-blue/60 dark:text-white/60">We are not optimizing ad clicks. We are solving core infrastructure challenges in spatial computing.</p>
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-8">
+            <ChallengeWidget 
+              title="Spatial AI & Reasoning"
+              desc="Building ambient models that understand the implicit context of a user's location, intent, and local density without requiring explicit search queries."
+              visual={
+                <div className="w-full h-full relative flex items-center justify-center">
+                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="w-32 h-32 border border-brand-indigo/30 rounded-full flex items-center justify-center">
+                    <motion.div animate={{ rotate: -360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="w-20 h-20 border border-brand-gold/30 rounded-full border-dashed flex items-center justify-center">
+                      <div className="w-2 h-2 bg-brand-blue dark:bg-white rounded-full shadow-[0_0_10px_rgba(79,70,229,0.5)] dark:shadow-[0_0_10px_white]" />
+                    </motion.div>
+                  </motion.div>
+                </div>
+              }
+            />
+            <ChallengeWidget 
+              title="Distributed Local Maps"
+              desc="Ingesting millions of ephemeral events, pop-ups, and community gatherings into a dynamic topology that updates in milliseconds."
+              visual={
+                <div className="w-full h-full relative flex flex-col items-center justify-center gap-4">
+                   <div className="w-full h-1/2 flex items-end justify-center gap-2">
+                     {[30, 70, 40, 90, 50].map((h, i) => (
+                       <motion.div 
+                        key={i}
+                        animate={{ height: [`${h}%`, `${Math.max(10, h - 20)}%`, `${h}%`] }}
+                        transition={{ duration: 2 + i * 0.5, repeat: Infinity }}
+                        className="w-4 bg-brand-blue/20 dark:bg-white/20 rounded-t"
+                       />
+                     ))}
+                   </div>
+                   <div className="w-3/4 h-[1px] bg-brand-blue/10 dark:bg-white/10" />
+                </div>
+              }
+            />
+            <ChallengeWidget 
+              title="Design & Motion"
+              desc="Crafting interfaces that feel alive. Fluid physics, spatial depth, and micro-interactions that communicate intelligence instantly."
+              visual={
+                <div className="w-full h-full relative flex items-center justify-center">
+                  <motion.div 
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-24 h-24 rounded-3xl bg-brand-blue/5 dark:bg-white/10 backdrop-blur-md border border-brand-blue/10 dark:border-white/20 shadow-2xl flex items-center justify-center cursor-pointer"
+                  >
+                    <span className="text-xs font-mono text-brand-blue/50 dark:text-white/50">Hover</span>
+                  </motion.div>
+                </div>
+              }
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 4. OPEN ROLES */}
+      <section className="relative z-10 w-full py-32 px-6 md:px-12 bg-brand-blue/[0.02] dark:bg-[#020205] border-t border-brand-blue/5 dark:border-white/5">
+        <div className="max-w-4xl mx-auto flex flex-col gap-16">
+          <div className="text-center max-w-3xl mx-auto flex flex-col gap-6">
+            <span className="text-xs uppercase tracking-[0.4em] font-mono text-brand-gold">Open Roles</span>
+            <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">Join the team.</h2>
+            <p className="text-lg font-light text-brand-blue/60 dark:text-white/60">We are intentionally building a small, exceptional team. If you are world-class at what you do, we want to hear from you.</p>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            {[
+              {
+                title: "Founding Engineer (Backend)",
+                location: "Bengaluru / Remote",
+                desc: "Build robust scalable APIs, design data pipelines, and architect low-latency spatial queries."
+              },
+              {
+                title: "Senior Machine Learning Engineer",
+                location: "Bengaluru / Remote",
+                desc: "Develop contextual recommendation algorithms, work on NLP models, and optimize inference performance."
+              },
+              {
+                title: "Data Analyst",
+                location: "Remote",
+                desc: "Analyze user interaction patterns, build core dashboards, and interpret spatial data at scale."
+              }
+            ].map((role, index) => (
+              <div
+                key={index}
+                className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 p-8 border border-brand-blue/10 dark:border-white/10 rounded-3xl bg-luxury-white/50 dark:bg-black/50 spatial-glass group hover:border-brand-gold/30 transition-colors"
+              >
+                <div className="flex flex-col gap-3">
+                  <h3 className="text-xl font-medium text-brand-blue dark:text-white uppercase tracking-wider group-hover:text-brand-gold transition-colors">
                     {role.title}
                   </h3>
-                  <span className="text-[10px] uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40">
+                  <p className="text-sm font-light text-brand-blue/60 dark:text-white/60 max-w-xl">
+                    {role.desc}
+                  </p>
+                  <span className="text-[10px] uppercase tracking-widest font-mono text-brand-blue/40 dark:text-white/40 mt-2">
                     Location: {role.location}
                   </span>
                 </div>
-
                 <Link
                   href={`/careers/apply?role=${encodeURIComponent(role.title)}`}
-                  className="text-[10px] tracking-widest uppercase border border-brand-blue/20 dark:border-luxury-white/20 hover:border-brand-gold hover:text-brand-gold px-5 py-2 rounded-full transition-all duration-300 self-start md:self-center"
+                  className="shrink-0 px-8 py-3 border border-brand-blue/20 dark:border-white/20 rounded-full text-xs font-mono uppercase tracking-widest text-brand-blue dark:text-white hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all"
                 >
                   Apply
                 </Link>
               </div>
+            ))}
+          </div>
 
-              {/* Responsibilities & Ideal Candidate details */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2 text-xs">
-                <div className="flex flex-col gap-2">
-                  <span className="uppercase tracking-widest font-semibold text-brand-blue/50 dark:text-luxury-white/50 text-[10px]">
-                    Responsibilities
-                  </span>
-                  <ul className="list-disc list-inside flex flex-col gap-1 text-brand-blue/70 dark:text-luxury-white/70">
-                    {role.responsibilities.map((res, i) => (
-                      <li key={i}>{res}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <span className="uppercase tracking-widest font-semibold text-brand-blue/50 dark:text-luxury-white/50 text-[10px]">
-                    Ideal Candidate
-                  </span>
-                  <ul className="list-disc list-inside flex flex-col gap-1 text-brand-blue/70 dark:text-luxury-white/70">
-                    {role.idealCandidate.map((cand, i) => (
-                      <li key={i}>{cand}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          ))}
+          <div className="mt-16 text-center">
+            <p className="text-sm text-brand-blue/40 dark:text-white/40 italic">
+              Don't see a role that fits? We hire for talent, curiosity, and craftsmanship. <a href="mailto:founders@rheole.com" className="text-brand-gold hover:underline">Email the founders.</a>
+            </p>
+          </div>
         </div>
-      </motion.div>
-
-      {/* CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2 }}
-        className="flex flex-col gap-8 text-center border-t border-brand-blue/15 dark:border-luxury-white/10 pt-16 mt-8"
-      >
-        <h2 className="text-xl md:text-3xl font-light uppercase tracking-widest text-brand-blue dark:text-luxury-white leading-relaxed">
-          Join us in building the future of local intelligence.
-        </h2>
-        <a
-          href="mailto:careers@rheole.com"
-          className="inline-block mx-auto text-xs uppercase tracking-[0.25em] font-medium border border-brand-blue/30 dark:border-luxury-white/20 hover:border-brand-gold hover:text-brand-gold rounded-full px-8 py-4 transition-all duration-300 text-brand-blue dark:text-luxury-white"
-        >
-          careers@rheole.com
-        </a>
-
-        {/* Footer Note */}
-        <p className="text-xs text-brand-blue/45 dark:text-luxury-white/45 italic leading-relaxed max-w-xl mx-auto mt-4">
-          We hire for talent, curiosity, and craftsmanship. Even if you do not see a role that matches your experience, we welcome exceptional people to reach out.
-        </p>
-      </motion.div>
+      </section>
     </div>
   );
 }

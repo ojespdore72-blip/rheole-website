@@ -2,384 +2,249 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Atmosphere from "@/components/Atmosphere";
-import Footer from "@/components/Footer";
-import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import AskWorld from "@/components/AskWorld";
-import RoutingDemo from "@/components/RoutingDemo";
 
-interface CategoryItem {
-  id: string;
-  label: string;
-  description: string;
-}
-
-const categories: CategoryItem[] = [
-  {
-    id: "communities",
-    label: "Communities",
-    description: "Locally organized nodes. Connect with neighborhood circles and collectives sharing your space.",
-  },
-  {
-    id: "events",
-    label: "Events",
-    description: "Moments in motion. Live gatherings, exhibitions, and spontaneous meets happening now.",
-  },
-  {
-    id: "places",
-    label: "Places",
-    description: "Rediscover the physical. Unearth hidden spaces, cafes, and urban landmarks down your street.",
-  },
-  {
-    id: "conversations",
-    label: "Conversations",
-    description: "Hyperlocal wavelengths. Real-time dialogues and discussions anchored to where you stand.",
-  },
-  {
-    id: "movement",
-    label: "Movement",
-    description: "Kinetic routing. Understanding how the city flows, routes, and travels in real time.",
-  },
-  {
-    id: "localActivity",
-    label: "Local activity",
-    description: "The city's active pulse. Real-time density, events, and evolving local signals.",
-  },
-];
-
-function InteractiveCategories() {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-
-  const activeDescription = hoveredId
-    ? categories.find((c) => c.id === hoveredId)?.description
-    : "The world becoming more visible.";
-
-  return (
-    <div className="flex flex-col gap-12 items-center w-full max-w-3xl mx-auto">
-      {/* Category Labels Grid */}
-      <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-4 md:gap-x-8">
-        {categories.map((category, index) => {
-          const isHovered = hoveredId === category.id;
-          const isAnyHovered = hoveredId !== null;
-          const opacity = isHovered ? 1 : isAnyHovered ? 0.35 : 0.85;
-
-          return (
-            <React.Fragment key={category.id}>
-              {index > 0 && (
-                <span className="text-brand-blue/20 dark:text-luxury-white/10 select-none hidden sm:inline text-sm">
-                  •
-                </span>
-              )}
-              <div
-                className="relative cursor-pointer group py-1"
-                onMouseEnter={() => setHoveredId(category.id)}
-                onMouseLeave={() => setHoveredId(null)}
-              >
-                <motion.span
-                  animate={{ opacity }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
-                  className={`text-sm md:text-lg tracking-[0.2em] uppercase font-medium transition-colors duration-300 font-sans ${
-                    isHovered
-                      ? "text-brand-gold"
-                      : "text-brand-blue/80 dark:text-luxury-white/80 group-hover:text-brand-blue dark:group-hover:text-luxury-white"
-                  }`}
-                >
-                  {category.label}
-                </motion.span>
-                {isHovered && (
-                  <motion.div
-                    layoutId="activeUnderline"
-                    className="absolute -bottom-1 left-0 right-0 h-[1px] bg-brand-gold"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </div>
-            </React.Fragment>
-          );
-        })}
-      </div>
-
-      {/* Dynamic Description Box */}
-      <div className="h-16 flex items-center justify-center px-4 w-full">
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={hoveredId || "default"}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className={`text-xs md:text-sm tracking-widest uppercase text-center leading-relaxed ${
-              hoveredId
-                ? "text-brand-blue/90 dark:text-luxury-white/90 font-medium"
-                : "text-brand-blue/40 dark:text-luxury-white/45 italic"
-            }`}
-          >
-            {activeDescription}
-          </motion.p>
-        </AnimatePresence>
-      </div>
-    </div>
-  );
-}
+// Simulated AI Processing Steps
+const ProcessingStep = ({ text, delay }: { text: string, delay: number }) => (
+  <motion.div 
+    initial={{ opacity: 0, x: -10 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay, duration: 0.5 }}
+    className="flex items-center gap-3 text-xs md:text-sm font-mono text-brand-blue/60 dark:text-white/60 mb-2"
+  >
+    <div className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
+    {text}
+  </motion.div>
+);
 
 export default function Intelligence() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 40 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-100px" },
-    transition: { duration: 1.6, ease: [0.16, 1, 0.3, 1] as const },
-  };
+  const [activeQuery, setActiveQuery] = useState<number | null>(null);
+
+  const queries = [
+    {
+      prompt: "I'm hungry.",
+      context: "Time: 12:45 PM | Location: Indiranagar | Weather: 28°C",
+      steps: [
+        "Analyzing local density...",
+        "Cross-referencing historical wait times...",
+        "Filtering out high-decibel locations...",
+        "Identifying optimal routing..."
+      ],
+      result: "We recommend 'The Courtyard'. It is currently operating at 30% capacity, offering a peaceful environment. A 5-minute walk from your location.",
+      visual: (
+        <div className="w-full h-full relative rounded-2xl overflow-hidden border border-brand-blue/10 dark:border-white/10 bg-white/50 dark:bg-black/50 flex flex-col justify-end p-4">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(197,168,128,0.2),transparent_50%)]" />
+          {/* Audio/Density Visualizer */}
+          <div className="flex items-end h-24 gap-2 border-b border-brand-blue/20 dark:border-white/20 pb-2">
+            {[40, 70, 90, 80, 20, 50, 10, 30, 60, 40, 20].map((h, i) => (
+              <motion.div 
+                key={i}
+                initial={{ height: 0 }}
+                animate={{ height: `${h}%` }}
+                transition={{ duration: 1, delay: i * 0.05 }}
+                className={`flex-1 rounded-t-sm ${h > 70 ? 'bg-red-400/50' : h > 40 ? 'bg-brand-gold/50' : 'bg-green-400/50'}`}
+              />
+            ))}
+          </div>
+          <p className="text-[10px] uppercase tracking-widest text-brand-blue/50 dark:text-white/50 font-mono mt-2">Ambient Audio Mapping</p>
+        </div>
+      )
+    },
+    {
+      prompt: "I'm visiting Bengaluru.",
+      context: "Context: First time visitor | Interests: Culture, Tech",
+      steps: [
+        "Mapping high-activity tech hubs...",
+        "Correlating with cultural landmarks...",
+        "Checking live event schedules...",
+        "Synthesizing introductory route..."
+      ],
+      result: "An acoustic indie session is starting in 20 minutes near the Koramangala Tech Park. High concentration of designers and founders detected nearby.",
+      visual: (
+        <div className="w-full h-full relative rounded-2xl overflow-hidden border border-brand-blue/10 dark:border-white/10 bg-white/50 dark:bg-black/50 flex items-center justify-center">
+          <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 20, ease: "linear" }} className="absolute w-[80%] aspect-square border border-brand-gold/20 rounded-full border-dashed" />
+          <motion.div animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 30, ease: "linear" }} className="absolute w-[60%] aspect-square border border-brand-blue/30 dark:border-white/10 rounded-full" />
+          <div className="w-3 h-3 bg-brand-gold rounded-full shadow-[0_0_15px_#C5A880]" />
+          
+          <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 1.5 }} className="absolute top-[20%] right-[10%] p-2 bg-black/80 rounded border border-white/10 text-[10px] font-mono text-white">Event: Indie Acoustic</motion.div>
+          <motion.div initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 2.0 }} className="absolute bottom-[20%] left-[10%] p-2 bg-black/80 rounded border border-white/10 text-[10px] font-mono text-white">Density: Tech/Design</motion.div>
+        </div>
+      )
+    },
+    {
+      prompt: "Find startup founders.",
+      context: "Intent: Networking | Radius: 5km",
+      steps: [
+        "Scanning local co-working densities...",
+        "Analyzing live event attendance patterns...",
+        "Detecting anomalous clusters...",
+      ],
+      result: "A spontaneous founders breakfast is forming at Third Wave Coffee, HSR Layout. 15+ confirmed builders. Density is currently peaking.",
+      visual: (
+        <div className="w-full h-full relative rounded-2xl overflow-hidden border border-brand-blue/10 dark:border-white/10 bg-white/50 dark:bg-black/50 p-6 flex flex-col justify-center gap-4">
+          <div className="flex gap-4 items-end justify-center">
+            {[1, 2, 3].map((cluster, i) => (
+              <div key={i} className="flex flex-col items-center gap-2">
+                <motion.div 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: cluster === 2 ? 1.2 : 1, opacity: cluster === 2 ? 1 : 0.4 }}
+                  transition={{ delay: 1 + i * 0.2 }}
+                  className={`rounded-full ${cluster === 2 ? 'bg-brand-gold w-16 h-16 shadow-[0_0_30px_rgba(197,168,128,0.5)]' : 'bg-white/20 w-10 h-10'}`}
+                />
+                <span className="text-[9px] font-mono text-brand-blue/50 dark:text-white/50">Node {cluster}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-[10px] uppercase tracking-widest text-brand-gold font-mono mt-4">Cluster Identified</p>
+        </div>
+      )
+    },
+    {
+      prompt: "I'm bored.",
+      context: "Context: Unstructured time | Preferences: Dynamic",
+      steps: [
+        "Evaluating real-time city pulse...",
+        "Cross-referencing implicit interests...",
+        "Identifying spontaneous gatherings...",
+      ],
+      result: "There is an unlisted underground art pop-up currently active 2 miles away. Entry is open for the next hour. Low crowd density detected.",
+      visual: (
+        <div className="w-full h-full relative rounded-2xl overflow-hidden border border-brand-blue/10 dark:border-white/10 bg-white/50 dark:bg-black/50 flex items-center justify-center">
+           <motion.div 
+            animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.8, 0.3] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="absolute w-32 h-32 bg-brand-indigo/30 blur-2xl rounded-full" 
+          />
+          <div className="relative z-10 px-4 py-2 border border-brand-indigo/50 bg-brand-indigo/10 text-brand-indigo dark:text-indigo-300 font-mono text-[10px] uppercase tracking-widest rounded-full backdrop-blur-md">
+            Signal Detected
+          </div>
+        </div>
+      )
+    }
+  ];
 
   return (
-    <div className="relative w-full min-h-screen bg-luxury-white dark:bg-luxury-black overflow-hidden selection:bg-brand-gold/20 text-brand-blue dark:text-luxury-white">
-      {/* Atmosphere background */}
-      <Atmosphere />
-
-      <Navbar />
-
-      {/* Main Snap-Scroll Container */}
-      <div className="relative w-full h-auto scroll-smooth z-10">
-        
-        {/* TITLE SECTION */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-4xl text-center flex flex-col gap-6"
-          >
-            <h1 className="text-5xl md:text-8xl font-light tracking-[0.2em] uppercase leading-none font-serif-editorial">
-              INTELLIGENCE
-            </h1>
-            <div className="flex flex-col gap-4 text-md md:text-xl font-light text-brand-blue/60 dark:text-luxury-white/60 font-serif-editorial italic leading-relaxed max-w-2xl mx-auto mt-6">
-              <p>Understanding the world around you.</p>
-              <p>In real time.</p>
-              <p className="text-brand-blue dark:text-luxury-white mt-4 not-italic uppercase tracking-widest text-xs md:text-sm font-sans font-semibold">
-                Every day, millions of events unfold around us. Communities form. Conversations begin. Places come alive. Opportunities appear. Most of it goes unnoticed.
-              </p>
-              <p className="text-brand-gold mt-4">Rheole Intelligence exists to change that.</p>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* SECTION 1 — THE PROBLEM */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-3xl text-center flex flex-col gap-8"
-          >
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold mb-4">
-              THE PROBLEM
-            </p>
-            <p className="text-2xl md:text-4xl font-light leading-relaxed font-serif-editorial text-brand-blue/90 dark:text-luxury-white/95">
-              Information has never been more accessible.
-            </p>
-            <p className="text-xl md:text-2xl font-light leading-relaxed font-serif-editorial text-brand-blue/60 dark:text-luxury-white/60 italic">
-              Yet local understanding remains fragmented.
-            </p>
-            <div className="w-[1px] h-12 bg-brand-gold/30 mx-auto mt-4" />
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-blue/50 dark:text-luxury-white/50 leading-relaxed max-w-xl mx-auto">
-              You can discover what is happening across the world in seconds. Yet you may not know: What is happening nearby. Which communities matter to you. Which events are worth attending. Where the city is most alive. The world around us remains surprisingly invisible.
-            </p>
-          </motion.div>
-        </section>
-
-        {/* SECTION 2 — THE INTELLIGENCE LAYER */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-4xl text-center flex flex-col gap-8"
-          >
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold">
-              THE INTELLIGENCE LAYER
-            </p>
-            <h2 className="text-2xl md:text-4xl font-light uppercase tracking-widest text-brand-blue dark:text-luxury-white font-serif-editorial">
-              Rheole Intelligence
-            </h2>
-            <p className="text-md md:text-xl font-light text-brand-blue/70 dark:text-luxury-white/70 max-w-2xl mx-auto leading-relaxed">
-              Rheole Intelligence is designed to help people better understand the places they live, work, travel, and explore. It continuously interprets signals from:
-            </p>
-
-            <InteractiveCategories />
-
-            <div className="flex flex-col gap-2 mt-4">
-              <p className="text-sm md:text-base tracking-widest uppercase text-brand-blue/50 dark:text-luxury-white/50">
-                to create a more complete understanding of what matters.
-              </p>
-              <p className="text-brand-gold tracking-[0.2em] uppercase text-xs md:text-sm font-semibold">
-                Not globally. Locally.
-              </p>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* SECTION 3 — ASK YOUR WORLD */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6">
-          <div className="max-w-4xl w-full flex flex-col gap-12 text-center">
-            <motion.div {...fadeInUp} className="flex flex-col gap-4">
-              <span className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold">
-                ASK YOUR WORLD
-              </span>
-              <p className="text-md md:text-lg font-light text-brand-blue/60 dark:text-luxury-white/60 italic max-w-xl mx-auto">
-                Imagine asking your surroundings for context, resolved in real time.
-              </p>
-            </motion.div>
-
-            <AskWorld />
-
-            <motion.div {...fadeInUp} className="mt-4">
-              <p className="text-sm md:text-base tracking-widest uppercase text-brand-blue/50 dark:text-luxury-white/50">
-                Rheole Intelligence transforms local information into useful understanding.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* SECTION 4 — LOCAL INTELLIGENCE */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-3xl text-center flex flex-col gap-8"
-          >
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold">
-              LOCAL INTELLIGENCE
-            </p>
-            <p className="text-2xl md:text-4xl font-light leading-relaxed font-serif-editorial text-brand-blue/90 dark:text-luxury-white/95">
-              Every city has its own rhythm. Every neighborhood has its own pulse. Every community has its own story.
-            </p>
-            <p className="text-xl md:text-2xl font-light leading-relaxed font-serif-editorial text-brand-blue/60 dark:text-luxury-white/60 italic">
-              Rheole Intelligence helps reveal those patterns.
-            </p>
-            <div className="w-[1px] h-12 bg-brand-gold/30 mx-auto mt-4" />
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-blue/50 dark:text-luxury-white/50 leading-relaxed max-w-xl mx-auto">
-              Not through endless feeds. Not through noise. But through meaningful context.
-            </p>
-          </motion.div>
-        </section>
-
-        {/* SECTION 5 — INTELLIGENT DISCOVERY */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-3xl text-center flex flex-col gap-8"
-          >
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold">
-              INTELLIGENT DISCOVERY
-            </p>
-            <p className="text-2xl md:text-4xl font-light leading-relaxed font-serif-editorial text-brand-blue/90 dark:text-luxury-white/95">
-              Discovery should feel natural.
-            </p>
-            <div className="flex flex-col gap-2 text-xl md:text-2xl font-light text-brand-blue/60 dark:text-luxury-white/60 font-serif-editorial italic leading-relaxed">
-              <p>The best places.</p>
-              <p>The most relevant events.</p>
-              <p>The communities that matter.</p>
-              <p>The moments worth experiencing.</p>
-            </div>
-            <div className="w-[1px] h-12 bg-brand-gold/30 mx-auto mt-4" />
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-blue/50 dark:text-luxury-white/50 leading-relaxed max-w-xl mx-auto">
-              Rheole Intelligence helps people discover them with less effort and greater confidence.
-            </p>
-          </motion.div>
-        </section>
-
-        {/* SECTION 6 — INTELLIGENT ROUTING */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6">
-          <div className="max-w-4xl w-full flex flex-col gap-12 text-center">
-            <motion.div {...fadeInUp} className="flex flex-col gap-4">
-              <span className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold">
-                INTELLIGENT ROUTING
-              </span>
-              <p className="text-md md:text-lg font-light text-brand-blue/60 dark:text-luxury-white/60 italic max-w-xl mx-auto">
-                Movement is more than navigation. The shortest path is not always the best path.
-              </p>
-            </motion.div>
-
-            <RoutingDemo />
-
-            <motion.div {...fadeInUp} className="mt-4">
-              <p className="text-sm md:text-base tracking-widest uppercase text-brand-blue/50 dark:text-luxury-white/50 leading-relaxed max-w-xl mx-auto">
-                Rheole Intelligence evaluates Traffic, Weather, Local activity, Events, and Road conditions in real time to optimize decisions.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* SECTION 7 — CITY PULSE */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-3xl text-center flex flex-col gap-8"
-          >
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold">
-              CITY PULSE
-            </p>
-            <p className="text-2xl md:text-4xl font-light leading-relaxed font-serif-editorial text-brand-blue/90 dark:text-luxury-white/95">
-              Cities are constantly changing.
-            </p>
-            <div className="flex flex-col gap-2 text-xl md:text-2xl font-light text-brand-blue/60 dark:text-luxury-white/60 font-serif-editorial italic leading-relaxed">
-              <p>Activity shifts.</p>
-              <p>Events emerge.</p>
-              <p>Communities gather.</p>
-              <p>Conversations evolve.</p>
-            </div>
-            <div className="w-[1px] h-12 bg-brand-gold/30 mx-auto mt-4" />
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-blue/50 dark:text-luxury-white/50 leading-relaxed max-w-xl mx-auto">
-              Rheole Intelligence helps transform those changes into meaningful awareness.
-            </p>
-          </motion.div>
-        </section>
-
-        {/* SECTION 8 — THE FUTURE */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 px-6">
-          <motion.div 
-            {...fadeInUp}
-            className="max-w-4xl text-center flex flex-col gap-6"
-          >
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-gold font-semibold mb-4">
-              THE FUTURE
-            </p>
-            <div className="flex flex-col gap-4 text-4xl md:text-7xl font-light tracking-[0.15em] uppercase leading-tight font-serif-editorial">
-              <p className="opacity-60">The future is better understanding.</p>
-              <p className="text-brand-gold">Rheole Intelligence</p>
-            </div>
-            <p className="text-sm md:text-base tracking-widest uppercase text-brand-blue/50 dark:text-luxury-white/50 leading-relaxed max-w-xl mx-auto mt-6">
-              is being built to help people make sense of the places around them. Simply. Naturally. Instantly.
-            </p>
-          </motion.div>
-        </section>
-
-        {/* FINAL STATEMENT & CALL TO ACTION */}
-        <section className="relative w-full min-h-screen flex flex-col justify-center items-center py-20 px-6 bg-brand-blue/[0.01] dark:bg-luxury-white/[0.01]">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-lg flex flex-col gap-10 text-center"
-          >
-            <div className="flex flex-col gap-4">
-              <p className="text-brand-gold uppercase tracking-[0.2em] text-xs md:text-sm font-semibold">
-                The world is already speaking.
-              </p>
-              <h2 className="text-3xl md:text-5xl font-light font-serif-editorial uppercase tracking-widest text-brand-blue dark:text-luxury-white leading-tight">
-                Rheole Intelligence helps you hear it.
-              </h2>
-            </div>
-
-            <Link
-              href="/founding-access"
-              className="inline-block mx-auto text-xs uppercase tracking-[0.25em] font-medium border border-brand-blue/30 dark:border-luxury-white/20 hover:border-brand-gold hover:text-brand-gold rounded-full px-8 py-4 transition-all duration-300 text-brand-blue dark:text-luxury-white"
-            >
-              Request Early Access
-            </Link>
-          </motion.div>
-        </section>
-
-        {/* FOOTER SECTION */}
-        <section className="relative w-full mt-auto">
-          <Footer />
-        </section>
-
+    <div className="relative w-full min-h-screen bg-luxury-white dark:bg-luxury-black text-brand-blue dark:text-luxury-white overflow-hidden selection:bg-brand-gold/20">
+      {/* Background ambient lighting */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[20%] left-[10%] w-[50vw] h-[50vw] bg-brand-blue/5 dark:bg-white/5 rounded-full blur-[150px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[40vw] h-[40vw] bg-brand-gold/5 rounded-full blur-[120px]" />
       </div>
+
+      <main className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-24 min-h-screen flex flex-col">
+        
+        {/* Header */}
+        <div className="flex flex-col gap-6 text-center max-w-3xl mx-auto mb-20">
+          <span className="text-xs tracking-[0.4em] uppercase font-mono text-brand-gold">Ambient Intelligence</span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light font-serif-editorial leading-tight">
+            Experience the <span className="italic text-brand-gold">intelligence</span> layer.
+          </h1>
+          <p className="text-sm md:text-base font-light text-brand-blue/60 dark:text-white/60 tracking-wide mt-4">
+            Select an intention below to see how Rheole resolves context in real-time. No fake chatbots. Just pure spatial reasoning.
+          </p>
+        </div>
+
+        {/* Interactive Workspace */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 h-full flex-grow">
+          
+          {/* Prompts Column */}
+          <div className="w-full lg:w-1/3 flex flex-col gap-4">
+            <p className="text-xs uppercase tracking-widest font-mono text-brand-blue/40 dark:text-white/40 mb-2">Intentions</p>
+            {queries.map((q, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveQuery(idx)}
+                className={`text-left p-6 rounded-3xl transition-spring border backdrop-blur-sm ${
+                  activeQuery === idx 
+                    ? "bg-brand-blue/5 dark:bg-white/10 border-brand-gold/40 shadow-[0_10px_30px_rgba(197,168,128,0.15)] scale-[1.02]" 
+                    : "bg-transparent border-brand-blue/10 dark:border-white/10 hover:bg-brand-blue/5 dark:hover:bg-white/5"
+                }`}
+              >
+                <h3 className="text-lg md:text-xl font-light text-brand-blue dark:text-white">
+                  "{q.prompt}"
+                </h3>
+              </button>
+            ))}
+          </div>
+
+          {/* Reasoning & Visualizer Column */}
+          <div className="w-full lg:w-2/3 flex flex-col gap-6">
+             <p className="text-xs uppercase tracking-widest font-mono text-brand-blue/40 dark:text-white/40 mb-2 lg:hidden">Processing</p>
+            
+            <div className="flex-grow w-full rounded-[40px] spatial-glass border border-brand-blue/10 dark:border-white/10 p-6 md:p-10 flex flex-col shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] relative overflow-hidden min-h-[500px]">
+              
+              <AnimatePresence mode="wait">
+                {activeQuery === null ? (
+                  <motion.div 
+                    key="empty"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 flex flex-col items-center justify-center text-center p-8"
+                  >
+                    <div className="w-16 h-16 rounded-full border border-brand-blue/20 dark:border-white/20 border-t-brand-gold animate-spin mb-6" />
+                    <p className="text-sm uppercase tracking-widest font-mono text-brand-blue/40 dark:text-white/40">Waiting for intention</p>
+                  </motion.div>
+                ) : (
+                  <motion.div 
+                    key={activeQuery}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full h-full flex flex-col gap-8"
+                  >
+                    {/* Context Header */}
+                    <div className="border-b border-brand-blue/10 dark:border-white/10 pb-4">
+                      <p className="text-[10px] md:text-xs font-mono uppercase tracking-widest text-brand-gold mb-2">Active Context</p>
+                      <p className="text-sm text-brand-blue/80 dark:text-white/80 font-mono">{queries[activeQuery].context}</p>
+                    </div>
+
+                    {/* Content Grid */}
+                    <div className="flex flex-col md:flex-row gap-8 flex-grow">
+                      
+                      {/* Left: Reasoning Steps */}
+                      <div className="w-full md:w-1/2 flex flex-col">
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-brand-blue/40 dark:text-white/40 mb-6">Reasoning Path</p>
+                        <div className="flex flex-col flex-grow">
+                          {queries[activeQuery].steps.map((step, i) => (
+                            <ProcessingStep key={i} text={step} delay={i * 0.6} />
+                          ))}
+                        </div>
+                        
+                        <motion.div 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: queries[activeQuery].steps.length * 0.6 + 0.5 }}
+                          className="mt-auto pt-6 border-t border-brand-blue/10 dark:border-white/10"
+                        >
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-brand-gold mb-3">Resolution</p>
+                          <p className="text-base md:text-lg font-light leading-relaxed text-brand-blue dark:text-white italic font-serif-editorial">
+                            {queries[activeQuery].result}
+                          </p>
+                        </motion.div>
+                      </div>
+
+                      {/* Right: Visualizer */}
+                      <div className="w-full md:w-1/2 h-48 md:h-auto">
+                        <motion.div 
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 1, duration: 1 }}
+                          className="w-full h-full"
+                        >
+                          {queries[activeQuery].visual}
+                        </motion.div>
+                      </div>
+
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+
+      </main>
     </div>
   );
 }
