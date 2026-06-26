@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { Map as MapIcon, MessageCircle, Calendar, Users, Sparkles, Mic, Route } from "lucide-react";
+import InteractiveEcosystemDemo from "@/components/InteractiveEcosystemDemo";
 
 // Types
 type Chapter = {
@@ -77,75 +77,7 @@ const chapters: Chapter[] = [
         </p>
       </>
     ),
-    visual: (
-      <div className="relative w-full aspect-square rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border border-brand-blue/10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,100,224,0.15),transparent_70%)]" />
-        <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20">
-          <p className="text-white/90 font-sans font-light text-xl tracking-wide">Select a feature.</p>
-        </div>
-        {[
-          { name: "Maps", icon: MapIcon },
-          { name: "Messaging", icon: MessageCircle },
-          { name: "Events", icon: Calendar },
-          { name: "Communities", icon: Users },
-          { name: "Recommendations", icon: Sparkles },
-          { name: "Rooms", icon: Mic },
-          { name: "Routes", icon: Route }
-        ].map((app, i) => {
-          const Icon = app.icon;
-          // Generate pseudo-random long-distance paths for each element
-          // Using different prime multipliers to make the paths feel random and organic
-          const xPath = [
-            Math.sin(i * 1.1 + 1) * 180,
-            Math.cos(i * 1.3 + 2) * 190,
-            Math.sin(i * 1.7 + 3) * 170,
-            Math.cos(i * 1.9 + 4) * 180,
-            Math.sin(i * 2.3 + 5) * 190,
-            Math.sin(i * 1.1 + 1) * 180, // return to start
-          ];
-          const yPath = [
-            Math.cos(i * 1.2 + 1) * 180,
-            Math.sin(i * 1.4 + 2) * 170,
-            Math.cos(i * 1.6 + 3) * 190,
-            Math.sin(i * 1.8 + 4) * 180,
-            Math.cos(i * 2.2 + 5) * 170,
-            Math.cos(i * 1.2 + 1) * 180, // return to start
-          ];
-          const rotatePath = [
-            0,
-            Math.sin(i * 2) * 15,
-            Math.cos(i * 3) * -15,
-            Math.sin(i * 4) * 15,
-            Math.cos(i * 5) * -15,
-            0
-          ];
-          
-          return (
-          <motion.div
-            key={app.name}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, margin: "-100px" }}
-            animate={{
-              x: xPath,
-              y: yPath,
-              rotate: rotatePath
-            }}
-            transition={{ 
-              duration: 25 + (i % 4) * 5, // Long duration for lazy, continuous floating
-              repeat: Infinity,
-              ease: "linear" 
-            }}
-            className="absolute bg-white backdrop-blur-md px-6 py-4 rounded-2xl border border-[#0000FF]/20 shadow-[0_0_30px_rgba(0,0,255,0.15)] whitespace-nowrap hover:scale-110 transition-transform hover:z-50 cursor-default"
-          >
-            <div className="flex items-center gap-2">
-              <Icon size={16} className="text-[#0000FF]" />
-              <span className="text-sm font-mono tracking-widest uppercase text-[#0000FF] font-semibold">{app.name}</span>
-            </div>
-          </motion.div>
-        )})}
-      </div>
-    )
+    visual: <InteractiveEcosystemDemo />
   },
   {
     id: "chapter-03",
