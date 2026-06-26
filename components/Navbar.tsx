@@ -32,16 +32,16 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.1 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 flex justify-center pointer-events-none ${scrolled ? "pt-4" : "pt-8"}`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 pointer-events-none"
     >
       <motion.div 
         layout
-        className="pointer-events-auto flex items-center gap-6 px-4 py-2 spatial-glass rounded-full transition-spring"
+        className="pointer-events-auto flex items-center justify-between w-full px-6 md:px-12 py-4 spatial-glass transition-spring border-b border-brand-blue/5 dark:border-white/5"
         style={{
-          boxShadow: scrolled ? "0 20px 40px -10px rgba(0,0,0,0.2), 0 0 20px rgba(10,37,64,0.1)" : "0 10px 20px -5px rgba(0,0,0,0.1)",
+          boxShadow: scrolled ? "0 10px 30px -10px rgba(0,0,0,0.1)" : "none",
         }}
       >
-        <Link href="/" className="flex items-center gap-2 group haptic-press relative z-10 pl-2 pr-4">
+        <Link href="/" className="flex items-center gap-2 group haptic-press relative z-10">
           <RheoleLogo className="h-6 w-auto md:h-7 transition-spring group-hover:scale-105 group-hover:rotate-[360deg] drop-shadow-md" />
         </Link>
 

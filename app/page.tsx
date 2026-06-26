@@ -267,7 +267,9 @@ export default function Home() {
       </section>
 
       {/* 6. SOCIAL CHANNELS */}
-      <SocialChannels />
+      <section className="relative z-10 bg-luxury-white dark:bg-luxury-black w-full border-t border-brand-blue/5 dark:border-white/5">
+        <SocialChannels />
+      </section>
     </div>
   );
 }
