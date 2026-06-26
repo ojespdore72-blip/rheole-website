@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { Map as MapIcon, MessageCircle, Calendar, Users, Sparkles, DoorOpen, Route } from "lucide-react";
 
 // Types
 type Chapter = {
@@ -78,23 +79,36 @@ const chapters: Chapter[] = [
     ),
     visual: (
       <div className="relative w-full aspect-square rounded-[40px] overflow-hidden flex items-center justify-center">
-        {["Maps", "Messaging", "Events", "Communities", "Recommendations"].map((app, i) => (
+        {[
+          { name: "Maps", icon: MapIcon },
+          { name: "Messaging", icon: MessageCircle },
+          { name: "Events", icon: Calendar },
+          { name: "Communities", icon: Users },
+          { name: "Recommendations", icon: Sparkles },
+          { name: "Rooms", icon: DoorOpen },
+          { name: "Routes", icon: Route }
+        ].map((app, i) => {
+          const Icon = app.icon;
+          return (
           <motion.div
-            key={app}
+            key={app.name}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, margin: "-100px" }}
             animate={{
-              x: Math.cos(i * (Math.PI * 2) / 5) * 100,
-              y: Math.sin(i * (Math.PI * 2) / 5) * 100,
-              rotate: (i - 2) * 5
+              x: Math.cos(i * (Math.PI * 2) / 7) * 120,
+              y: Math.sin(i * (Math.PI * 2) / 7) * 120,
+              rotate: (i - 3) * 5
             }}
             transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute bg-white/80 dark:bg-[#020205]/80 backdrop-blur-md px-6 py-4 rounded-2xl border border-[#0064e0]/20 dark:border-[#0064e0]/30 shadow-[0_0_30px_rgba(0,100,224,0.15)] whitespace-nowrap hover:scale-105 transition-transform"
           >
-            <span className="text-sm font-mono tracking-widest uppercase text-[#0064e0] font-semibold">{app}</span>
+            <div className="flex items-center gap-2">
+              <Icon size={16} className="text-[#0064e0]" />
+              <span className="text-sm font-mono tracking-widest uppercase text-[#0064e0] font-semibold">{app.name}</span>
+            </div>
           </motion.div>
-        ))}
+        )})}
       </div>
     )
   },
