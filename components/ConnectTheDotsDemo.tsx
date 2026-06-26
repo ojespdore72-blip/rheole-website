@@ -59,7 +59,7 @@ export default function ConnectTheDotsDemo() {
     <div 
       ref={containerRef}
       onPointerMove={handlePointerMove}
-      className="relative w-full h-[80vh] min-h-[600px] md:h-auto md:aspect-square rounded-none md:rounded-[40px] spatial-glass border-y md:border border-brand-blue/10 dark:border-white/10 overflow-hidden flex items-center justify-center select-none"
+      className="relative w-full h-[750px] md:h-[800px] rounded-none md:rounded-[40px] spatial-glass border-y md:border border-brand-blue/10 dark:border-white/10 overflow-hidden flex items-center justify-center select-none"
     >
       {/* Background Images */}
       <AnimatePresence>

@@ -21,7 +21,7 @@ export default function InteractiveEcosystemDemo() {
   const activeFeatureObj = features.find(f => f.id === activeFeature);
 
   return (
-    <div className="relative w-full h-[80vh] min-h-[600px] md:h-auto md:aspect-video rounded-none md:rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border-y md:border border-brand-blue/10">
+    <div className="relative w-full h-[750px] md:h-[800px] rounded-none md:rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border-y md:border border-brand-blue/10">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,100,224,0.15),transparent_70%)]" />
       
       {/* Header & Controls */}
@@ -332,7 +332,7 @@ function RecommendationsDemo() {
 
 function RoomsDemo() {
   return (
-    <div className="relative w-full max-w-xl aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-[#050515] to-[#020205] border border-white/10 shadow-2xl flex flex-col items-center justify-center p-8 font-sans">
+    <div className="relative w-full max-w-xl h-[650px] md:h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-[#050515] to-[#020205] border border-white/10 shadow-2xl flex flex-col items-center justify-center p-8 font-sans">
       {/* Active Space */}
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
@@ -406,7 +406,7 @@ function RoomsDemo() {
 
 function MessagingDemo() {
   return (
-    <div className="relative w-full max-w-sm aspect-[3/4] rounded-3xl overflow-hidden bg-[#03030A] border border-white/10 shadow-2xl flex flex-col font-sans">
+    <div className="relative w-full max-w-sm h-[600px] rounded-3xl overflow-hidden bg-[#03030A] border border-white/10 shadow-2xl flex flex-col font-sans">
       {/* Header */}
       <div className="flex items-center gap-3 p-4 border-b border-white/10 bg-white/5 backdrop-blur-md">
         <div className="w-10 h-10 rounded-full overflow-hidden">
