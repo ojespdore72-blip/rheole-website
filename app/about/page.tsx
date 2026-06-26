@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import ProgressiveReveal from "@/components/ProgressiveReveal";
 import InteractiveEcosystemDemo from "@/components/InteractiveEcosystemDemo";
+import ContextDemoAnimation from "@/components/ContextDemoAnimation";
 
 // Types
 type Chapter = {
@@ -136,31 +138,7 @@ const chapters: Chapter[] = [
         </p>
       </>
     ),
-    visual: (
-      <div className="relative w-full aspect-square rounded-[40px] overflow-hidden flex flex-col gap-4 items-center justify-center">
-        {["I'm hungry.", "I'm new here.", "I want to meet founders."].map((scenario, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{ duration: 1, delay: i * 0.3 }}
-            className="spatial-glass px-8 py-5 rounded-full border border-brand-blue/10 dark:border-white/10"
-          >
-            <p className="text-lg font-light text-brand-blue dark:text-white italic">"{scenario}"</p>
-          </motion.div>
-        ))}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="mt-8 text-center"
-        >
-          <div className="w-1 h-10 bg-gradient-to-b from-brand-gold to-transparent mx-auto mb-4" />
-          <span className="text-xs font-mono uppercase tracking-[0.3em] text-brand-gold">Contextual Resolution</span>
-        </motion.div>
-      </div>
-    )
+    visual: <ContextDemoAnimation />
   },
   {
     id: "chapter-05",
