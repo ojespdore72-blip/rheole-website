@@ -208,7 +208,7 @@ function FloatingTags({ onSelect }: { onSelect: (id: string) => void }) {
 
 function MapsDemo() {
   return (
-    <div className="relative w-full max-w-xl aspect-[4/3] rounded-3xl overflow-hidden bg-[#0a0a0f] border border-white/10 shadow-2xl flex items-center justify-center">
+    <div className="relative w-full max-w-xl h-[600px] md:h-[500px] rounded-3xl overflow-hidden bg-[#0a0a0f] border border-white/10 shadow-2xl flex items-center justify-center">
       {/* Simulated Satellite Map Background */}
       <div className="absolute inset-0 opacity-40">
         {/* Fallback to CSS grid styling for map aesthetic */}
@@ -269,7 +269,7 @@ function MapsDemo() {
 
 function RecommendationsDemo() {
   return (
-    <div className="relative w-full max-w-xl aspect-[4/3] rounded-3xl overflow-hidden bg-[#03030A] border border-white/10 shadow-2xl flex flex-col p-6 font-sans">
+    <div className="relative w-full max-w-xl h-[600px] md:h-[500px] rounded-3xl overflow-hidden bg-[#03030A] border border-white/10 shadow-2xl flex flex-col p-6 font-sans">
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
         <div className="w-8 h-8 rounded-full bg-[#0000FF] flex items-center justify-center">
           <Sparkles size={16} className="text-white" />
@@ -475,7 +475,7 @@ function MessagingDemo() {
 
 function CommunitiesDemo() {
   return (
-    <div className="relative w-full max-w-xl aspect-[4/3] rounded-3xl overflow-hidden bg-[#03030A] border border-white/10 shadow-2xl flex flex-col font-sans">
+    <div className="relative w-full max-w-xl h-[600px] md:h-[500px] rounded-3xl overflow-hidden bg-[#03030A] border border-white/10 shadow-2xl flex flex-col font-sans">
       {/* Header */}
       <div className="relative h-32 bg-gradient-to-r from-blue-900 to-[#0000FF] p-6 flex flex-col justify-end">
         <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-2 border border-white/10">
@@ -544,7 +544,7 @@ function EventsDemo() {
   }, []);
 
   return (
-    <div className="relative w-full max-w-xl aspect-[4/3] rounded-3xl overflow-hidden bg-[#03030A] border border-white/10 shadow-2xl flex items-center justify-center p-6 font-sans">
+    <div className="relative w-full max-w-xl h-[600px] md:h-[500px] rounded-3xl overflow-hidden bg-[#03030A] border border-white/10 shadow-2xl flex items-center justify-center p-6 font-sans">
       <AnimatePresence mode="wait">
         {phase === 0 ? (
           <motion.div
@@ -620,7 +620,7 @@ function EventsDemo() {
 
 function RoutesDemo() {
   return (
-    <div className="relative w-full max-w-xl aspect-[4/3] rounded-3xl overflow-hidden bg-[#0a0a0f] border border-white/10 shadow-2xl flex items-center justify-center font-sans">
+    <div className="relative w-full max-w-xl h-[600px] md:h-[500px] rounded-3xl overflow-hidden bg-[#0a0a0f] border border-white/10 shadow-2xl flex items-center justify-center font-sans">
       {/* Abstract Map Background */}
       <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300">
         <path d="M 0 50 L 100 100 L 200 80 L 400 150 M 0 200 L 150 250 L 300 200 L 400 280" stroke="white" strokeWidth="1" fill="none" />

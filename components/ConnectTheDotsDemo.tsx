@@ -39,6 +39,18 @@ export default function ConnectTheDotsDemo() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setMousePos({ x, y });
+
+    // Auto-connect dots if we drag near them
+    const CONNECT_RADIUS = 8; // 8% threshold for connecting
+    const nearestDot = DOTS.find(d => 
+      !connectedDots.includes(d.id) && 
+      Math.abs(d.x - x) < CONNECT_RADIUS && 
+      Math.abs(d.y - y) < CONNECT_RADIUS
+    );
+    
+    if (nearestDot) {
+      handleDotClick(nearestDot.id);
+    }
   };
 
   const handleDotClick = (id: number) => {
