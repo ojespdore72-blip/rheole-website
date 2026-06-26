@@ -53,7 +53,7 @@ export default function Contact() {
     }
   };
 
-  const spring = { type: "spring", stiffness: 300, damping: 30 };
+  const spring = { type: "spring" as const, stiffness: 300, damping: 30 };
 
   return (
     <div className="w-full min-h-screen bg-luxury-white dark:bg-[#020205] text-brand-blue dark:text-white overflow-hidden selection:bg-brand-gold/20 font-sans flex flex-col relative">

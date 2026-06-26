@@ -28,7 +28,7 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const ip = (request as any).ip || request.headers.get("x-forwarded-for") || "127.0.0.1";
 
   // Rate limit public API endpoints and form submissions
