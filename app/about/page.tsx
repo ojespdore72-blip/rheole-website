@@ -136,11 +136,11 @@ const chapters: Chapter[] = [
               repeat: Infinity,
               ease: "linear" 
             }}
-            className="absolute bg-white/80 dark:bg-[#020205]/80 backdrop-blur-md px-6 py-4 rounded-2xl border border-[#0064e0]/20 dark:border-[#0064e0]/30 shadow-[0_0_30px_rgba(0,100,224,0.15)] whitespace-nowrap hover:scale-110 transition-transform hover:z-50 cursor-default"
+            className="absolute bg-white backdrop-blur-md px-6 py-4 rounded-2xl border border-[#0000FF]/20 shadow-[0_0_30px_rgba(0,0,255,0.15)] whitespace-nowrap hover:scale-110 transition-transform hover:z-50 cursor-default"
           >
             <div className="flex items-center gap-2">
-              <Icon size={16} className="text-[#0064e0]" />
-              <span className="text-sm font-mono tracking-widest uppercase text-[#0064e0] font-semibold">{app.name}</span>
+              <Icon size={16} className="text-[#0000FF]" />
+              <span className="text-sm font-mono tracking-widest uppercase text-[#0000FF] font-semibold">{app.name}</span>
             </div>
           </motion.div>
         )})}
