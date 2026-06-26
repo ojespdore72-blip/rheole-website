@@ -87,7 +87,8 @@ export default function ConnectTheDotsDemo() {
         )}
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-luxury-white via-transparent to-transparent dark:from-luxury-black opacity-80" />
+      {/* Smoke Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
 
       {/* SVG Drawing Layer */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" style={{ overflow: "visible" }}>
@@ -128,7 +129,7 @@ export default function ConnectTheDotsDemo() {
         {isComplete && PEOPLE_TARGETS.map((target, i) => (
           <motion.line
             key={`shoot-${i}`}
-            x1="50%" y1="50%"
+            x1="50%" y1="12%"
             x2={`${target.x}%`} y2={`${target.y}%`}
             stroke="url(#goldGradient)"
             strokeWidth="1.5"
@@ -193,24 +194,29 @@ export default function ConnectTheDotsDemo() {
       {/* Completion Logo Overlay */}
       <AnimatePresence>
         {isComplete && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5, type: "spring" }}
-            className="absolute z-30 flex flex-col items-center"
-          >
-            <div className="bg-black/60 p-6 rounded-full backdrop-blur-md border border-brand-gold/30 shadow-[0_0_50px_rgba(198,168,124,0.3)]">
-              <Logo />
-            </div>
+          <>
+            {/* Heading in top left */}
             <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2 }}
-              className="mt-6 text-white text-sm font-mono tracking-[0.3em] uppercase bg-black/40 px-4 py-2 rounded-full"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 2, duration: 1 }}
+              className="absolute top-8 left-8 text-white text-sm md:text-base font-mono tracking-[0.3em] uppercase bg-black/60 px-6 py-3 rounded-full z-30 backdrop-blur-md border border-brand-gold/30"
             >
               Intelligence Activated
             </motion.p>
-          </motion.div>
+
+            {/* Logo in top center, scaled up 2x */}
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.5 }}
+              animate={{ opacity: 1, y: 0, scale: 2 }}
+              transition={{ duration: 1, delay: 0.5, type: "spring" }}
+              className="absolute top-16 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center"
+            >
+              <div className="bg-black/60 p-4 rounded-full backdrop-blur-md border border-brand-gold/30 shadow-[0_0_50px_rgba(198,168,124,0.3)]">
+                <Logo />
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>
