@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { transitionSpring } from "@/lib/motion";
 
 export default function MagneticButton({ 
   children, 
@@ -18,9 +19,8 @@ export default function MagneticButton({
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springConfig = { damping: 15, stiffness: 150, mass: 0.1 };
-  const xSpring = useSpring(x, springConfig);
-  const ySpring = useSpring(y, springConfig);
+  const xSpring = useSpring(x, transitionSpring);
+  const ySpring = useSpring(y, transitionSpring);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
