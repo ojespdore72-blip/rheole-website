@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { Logger } from "@/lib/monitoring/logger";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Simple in-memory store for OTPs (for development)
 // In production, use Redis (e.g., Upstash) or database
@@ -35,6 +34,8 @@ export async function POST(request: NextRequest) {
       expiresAt: now + 10 * 60 * 1000, // 10 minutes
       lastSentAt: now,
     });
+
+    const resend = new Resend(process.env.RESEND_API_KEY || "re_dummy");
 
     const { error: emailError } = await resend.emails.send({
       from: 'Rheole <hello@rheole.com>',
