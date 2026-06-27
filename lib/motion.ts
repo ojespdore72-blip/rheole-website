@@ -1,16 +1,16 @@
-import { Variants } from 'framer-motion';
+import { Variants, Transition } from 'framer-motion';
 
 // Rheole Motion System
 // Characteristics: Organic, Spatial, Calm, Purposeful, Continuous, Physics-driven.
 
-export const transitionSpring = {
+export const transitionSpring: Transition = {
   type: 'spring',
   stiffness: 100,
   damping: 20,
   mass: 1,
 };
 
-export const transitionSmooth = {
+export const transitionSmooth: Transition = {
   type: 'tween',
   ease: [0.16, 1, 0.3, 1], // Apple-like smooth ease out
   duration: 0.8,
