@@ -31,9 +31,9 @@ export default function Careers() {
       {/* 1. HERO - Emotional Aspiration */}
       <motion.section 
         style={{ opacity: heroOpacity, scale: heroScale }}
-        className="fixed inset-0 z-0 flex flex-col items-center justify-center pt-20 px-6"
+        className="relative z-0 flex flex-col items-center justify-center pt-32 pb-20 px-6 min-h-[80vh]"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(79,70,229,0.15),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(79,70,229,0.15),transparent_60%)] pointer-events-none" />
         <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center gap-8">
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
@@ -61,9 +61,6 @@ export default function Careers() {
           </motion.p>
         </div>
       </motion.section>
-
-      {/* Spacer for fixed hero */}
-      <div className="h-[100vh]" />
 
       {/* 2. CULTURE & PHILOSOPHY */}
       <section className="relative z-10 w-full py-32 px-6 md:px-12 bg-brand-blue/[0.02] dark:bg-[#05050C] border-t border-brand-blue/5 dark:border-white/5">

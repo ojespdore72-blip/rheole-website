@@ -193,11 +193,10 @@ function FloatingTags({ onSelect }: { onSelect: (id: string) => void }) {
             }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="absolute left-1/2 top-1/2 -ml-[100px] -mt-[30px] px-6 py-4 rounded-2xl border border-[#0000FF]/20 shadow-[0_0_30px_rgba(0,0,255,0.15)] whitespace-nowrap hover:scale-110 transition-transform hover:z-50 cursor-pointer flex items-center justify-center"
+            className="absolute left-1/2 top-1/2 -ml-[28px] -mt-[28px] w-14 h-14 rounded-full border border-[#0000FF]/20 shadow-[0_0_30px_rgba(0,0,255,0.15)] hover:scale-110 transition-transform hover:z-50 cursor-pointer flex items-center justify-center"
           >
-            <div className="flex items-center gap-2 pointer-events-none">
-              <Icon size={16} className="text-[#0000FF]" />
-              <span className="text-sm font-mono tracking-widest uppercase text-[#0000FF] font-semibold">{app.name}</span>
+            <div className="flex items-center justify-center pointer-events-none">
+              <Icon size={24} className="text-[#0000FF]" />
             </div>
           </motion.button>
         );
@@ -350,9 +349,9 @@ function RoomsDemo() {
       {/* Speakers */}
       <div className="flex gap-8 items-center justify-center mb-12">
         {[
-          { img: "https://i.pravatar.cc/150?u=1", speaking: true, delay: 0.4 },
-          { img: "https://i.pravatar.cc/150?u=2", speaking: false, delay: 0.5 },
-          { img: "https://i.pravatar.cc/150?u=3", speaking: false, delay: 0.6 },
+          { img: "/avatars/avatar_1.png", speaking: true, delay: 0.4 },
+          { img: "/avatars/avatar_2.png", speaking: false, delay: 0.5 },
+          { img: "/avatars/avatar_3.png", speaking: false, delay: 0.6 },
         ].map((speaker, i) => (
           <motion.div
             key={i}
@@ -410,7 +409,7 @@ function MessagingDemo() {
       {/* Header */}
       <div className="flex items-center gap-3 p-4 border-b border-white/10 bg-white/5 backdrop-blur-md">
         <div className="w-10 h-10 rounded-full overflow-hidden">
-          <img src="https://i.pravatar.cc/150?u=4" alt="Alex" className="w-full h-full object-cover" />
+          <img src="/avatars/avatar_1.png" alt="Alex" className="w-full h-full object-cover" />
         </div>
         <div>
           <p className="text-white font-medium text-sm">Alex Chen</p>
@@ -695,7 +694,7 @@ function RoutesDemo() {
 function BackgroundDots() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 100 }).map((_, i) => {
+      {Array.from({ length: 500 }).map((_, i) => {
         const colors = ["bg-brand-blue", "bg-brand-gold", "bg-white"];
         const color = colors[i % colors.length];
         
@@ -716,11 +715,11 @@ function BackgroundDots() {
             key={`bg-dot-${i}`}
             className={`absolute rounded-full ${color}`}
             style={{
-              width: size,
-              height: size,
-              top: `${startTop}%`,
-              left: `${startLeft}%`,
-              opacity: Math.abs(random1) * 0.4 + 0.2
+              width: `${size.toFixed(5)}px`,
+              height: `${size.toFixed(5)}px`,
+              top: `${startTop.toFixed(5)}%`,
+              left: `${startLeft.toFixed(5)}%`,
+              opacity: (Math.abs(random1) * 0.4 + 0.2).toFixed(5)
             }}
             animate={{
               y: [0, -1000],

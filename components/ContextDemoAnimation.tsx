@@ -61,17 +61,12 @@ export default function ContextDemoAnimation() {
 
   return (
     <div className="relative w-full h-[750px] md:h-[850px] rounded-none md:rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border-y md:border border-brand-blue/10">
-      
-      {/* Background Image of Girl Holding Phone */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity"
-        style={{ backgroundImage: "url('/images/context-demo-bg.png')" }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#03030A] via-transparent to-[#03030A]/50" />
+      {/* Solid Dark Background Container */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#03030A] to-[#0A0A15]" />
 
       {/* The Phone Screen Overlay */}
       {/* Explicit pixel sizing so it never shrinks unreadably on mobile */}
-      <div className="relative z-10 w-[320px] h-[650px] md:w-[350px] md:h-[700px] bg-black rounded-[2.5rem] md:rounded-[3rem] border-4 md:border-8 border-gray-900 shadow-2xl overflow-hidden flex flex-col shrink-0">
+      <div className="relative z-10 w-[320px] h-[650px] md:w-[350px] md:h-[700px] bg-black rounded-[2.5rem] md:rounded-[3rem] border-4 md:border-8 border-gray-900 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col shrink-0">
         
         {/* Dynamic content inside phone */}
         <AnimatePresence mode="wait">
