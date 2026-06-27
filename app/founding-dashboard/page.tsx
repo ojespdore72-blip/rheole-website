@@ -101,7 +101,7 @@ function DashboardContent() {
               Application Status
             </p>
             <div className="flex flex-col gap-2">
-              <span className="text-2xl font-serif-editorial italic text-brand-blue dark:text-luxury-white capitalize">
+              <span className="text-2xl font-serif-editorial text-brand-blue dark:text-luxury-white capitalize">
                 {status}
               </span>
               <span className="text-xs text-brand-blue/70 dark:text-luxury-white/60">

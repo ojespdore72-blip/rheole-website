@@ -271,7 +271,7 @@ export default function About() {
           
           <div className="flex flex-col gap-6 text-center lg:text-left mb-16 lg:mb-32 pt-16">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-light font-serif-editorial tracking-tight">
-              The Story of <br/><span className="italic text-brand-gold">Intelligence.</span>
+              The Story of <br/><span className="text-brand-gold">Intelligence.</span>
             </h1>
           </div>
 
@@ -305,7 +305,7 @@ export default function About() {
           {/* Outro */}
           <section className="pt-32 pb-16 flex flex-col items-center text-center gap-10">
             <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">
-              Ready to <span className="italic text-brand-gold">experience</span> it?
+              Ready to <span className="text-brand-gold">experience</span> it?
             </h2>
             <a 
               href="/founding-access" 

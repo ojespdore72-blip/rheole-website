@@ -316,7 +316,7 @@ const Experiment3 = () => {
           <div key={rec.id} className="relative flex flex-col items-center w-full max-w-sm">
             <div className="w-full p-6 bg-white/10 dark:bg-black/30 backdrop-blur-xl border border-brand-blue/10 dark:border-white/10 rounded-3xl shadow-2xl flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 shrink-0 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold font-serif-editorial italic text-xl">{rec.initial}</div>
+                <div className="w-12 h-12 shrink-0 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold font-serif-editorial text-xl">{rec.initial}</div>
                 <div>
                   <p className="text-sm font-bold text-brand-blue dark:text-white leading-tight">{rec.title}</p>
                   <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Recommended</p>

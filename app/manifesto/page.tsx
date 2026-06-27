@@ -22,10 +22,10 @@ const CHAPTERS = [
   { id: "pulse", title: "The Pulse" },
 ];
 
-const TableOfContents = ({ activeIndex }: { activeIndex: number }) => {
+const TableOfContents = ({ activeIndex, isAtBottom }: { activeIndex: number, isAtBottom: boolean }) => {
   return (
     <div 
-      className={`fixed left-0 top-0 h-screen z-50 hidden lg:flex flex-col justify-center w-96 pl-12 transition-all duration-1000 pointer-events-none ${activeIndex === 0 ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'}`}
+      className={`fixed left-0 top-0 h-screen z-50 hidden lg:flex flex-col justify-center w-96 pl-12 transition-all duration-1000 pointer-events-none ${activeIndex === 0 || isAtBottom ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'}`}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent pointer-events-none" />
       <div className="relative z-10 h-[70vh] flex flex-col justify-between border-l border-white/10 pl-8 pointer-events-auto">
@@ -275,8 +275,8 @@ const Exhibit10 = () => (
 // ---------------------------------------------------------
 
 export default function Manifesto() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [activeExhibit, setActiveExhibit] = useState(0);
+  const [isAtBottom, setIsAtBottom] = useState(false);
 
   // Monitor scroll to update active exhibit
   useEffect(() => {
@@ -285,9 +285,17 @@ export default function Manifesto() {
       const windowHeight = window.innerHeight;
       const current = Math.round(scrollTop / windowHeight);
       setActiveExhibit(current);
+
+      const scrollPosition = scrollTop + windowHeight;
+      const totalHeight = document.documentElement.scrollHeight;
+      // We check if the user is within 150px of the bottom of the page
+      setIsAtBottom(scrollPosition >= totalHeight - 150);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
+    // Call once initially to set correct state on mount
+    handleScroll();
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -295,7 +303,7 @@ export default function Manifesto() {
 
   return (
     <div className="relative w-full min-h-screen bg-black text-white selection:bg-brand-gold/20">
-      <TableOfContents activeIndex={activeExhibit} />
+      <TableOfContents activeIndex={activeExhibit} isAtBottom={isAtBottom} />
       
         {/* Intro sequence */}
       <div className="h-screen flex flex-col items-center justify-center relative sticky top-0 bg-black">

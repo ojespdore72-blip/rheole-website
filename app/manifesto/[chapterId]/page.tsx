@@ -95,7 +95,7 @@ export default function ChapterDetail({ params }: { params: { chapterId: string 
         <Link href="/manifesto" className="text-sm font-mono uppercase tracking-widest text-gray-300 hover:text-white transition-colors flex items-center gap-2">
           <span>&larr;</span> Back to Manifesto
         </Link>
-        <span className="text-brand-gold font-serif-editorial text-xl italic">{chapter.subtitle}</span>
+        <span className="text-brand-gold font-serif-editorial text-xl">{chapter.subtitle}</span>
       </nav>
 
       <main className="max-w-5xl mx-auto px-8 pt-40 pb-32">

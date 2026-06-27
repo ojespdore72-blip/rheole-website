@@ -12,6 +12,27 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const allLinks = [
+    { name: "About", path: "/about" },
+    { name: "Manifesto", path: "/manifesto" },
+    { name: "Intelligence", path: "/intelligence" },
+    { name: "Security Policy", path: "/security" },
+    { name: "Careers", path: "/careers" },
+    { name: "Contact", path: "/contact" },
+    { name: "How it Works", path: "/how-it-works" },
+    { name: "Security Architecture", path: "/security-architecture" },
+    { name: "Privacy Architecture", path: "/privacy-architecture" },
+    { name: "Privacy Policy", path: "/privacy" },
+    { name: "Terms of Service", path: "/terms" },
+    { name: "Community Guidelines", path: "/community-guidelines" }
+  ];
+
+  const filteredLinks = searchQuery 
+    ? allLinks.filter(link => link.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    : [];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -36,7 +57,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
       links: [
         { name: "How it Works", path: "/how-it-works" },
         { name: "Intelligence", path: "/intelligence" },
-        { name: "Security Policy", path: "/security-policy" },
+        { name: "Security Policy", path: "/security" },
         { name: "Security Architecture", path: "/security-architecture" },
         { name: "Privacy Architecture", path: "/privacy-architecture" },
       ],
@@ -44,8 +65,8 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
     {
       title: "Legal",
       links: [
-        { name: "Privacy Policy", path: "/privacy-policy" },
-        { name: "Terms of Service", path: "/terms-of-service" },
+        { name: "Privacy Policy", path: "/privacy" },
+        { name: "Terms of Service", path: "/terms" },
         { name: "Community Guidelines", path: "/community-guidelines" },
       ],
     },
@@ -62,15 +83,15 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
   ];
 
   return (
-    <motion.header 
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.1 }}
-      className="fixed top-0 left-0 right-0 z-[999] transition-all duration-700 pointer-events-none"
-    >
-      <motion.div 
+    <>
+      <header className="fixed top-0 left-0 right-0 z-[999] pointer-events-none">
+        <motion.div 
         layout
-        className="pointer-events-auto flex items-center justify-between w-full px-6 md:px-12 py-4 spatial-glass transition-spring border-b border-brand-blue/5 dark:border-white/5 relative z-[100]"
+        className={`pointer-events-auto flex items-center justify-between w-full px-6 md:px-12 py-4 transition-all duration-500 relative z-[100] ${
+          scrolled
+            ? "bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-brand-blue/10 dark:border-white/10"
+            : "bg-transparent border-b border-transparent"
+        }`}
         style={{
           boxShadow: scrolled ? "0 10px 30px -10px rgba(0,0,0,0.1)" : "none",
         }}
@@ -114,9 +135,59 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
 
         {/* Action Button & Search */}
         <div className="flex items-center gap-2 md:gap-4 pl-2 pr-1 text-brand-blue dark:text-luxury-white">
-          <button className="p-2 hover:bg-brand-blue/5 dark:hover:bg-white/5 rounded-full transition-colors">
-            <Search size={20} />
-          </button>
+          <div className="relative flex items-center">
+            <AnimatePresence>
+              {searchOpen && (
+                <motion.div
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: 200, opacity: 1 }}
+                  exit={{ width: 0, opacity: 0 }}
+                  className="absolute right-full mr-2 overflow-visible"
+                >
+                  <input
+                    type="text"
+                    autoFocus
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Navigate..."
+                    style={{ outline: 'none', boxShadow: 'none', borderTop: 'none', borderLeft: 'none', borderRight: 'none' }}
+                    className="w-[200px] bg-transparent !border-t-0 !border-x-0 border-b-2 border-brand-blue/30 dark:border-white/30 !outline-none !ring-0 focus:!ring-0 focus:!outline-none focus:!border-t-0 focus:!border-x-0 focus:border-b-brand-gold text-sm py-1 placeholder:text-brand-blue/40 dark:placeholder:text-white/40 appearance-none"
+                  />
+                  
+                  {/* Suggestions Dropdown */}
+                  {searchQuery && (
+                    <div className="absolute top-full mt-2 w-full bg-white dark:bg-black border border-brand-blue/10 dark:border-white/10 rounded-lg shadow-xl overflow-hidden py-2 z-[1001]">
+                      {filteredLinks.length > 0 ? (
+                        filteredLinks.map((link) => (
+                          <Link
+                            key={link.name}
+                            href={link.path}
+                            onClick={() => {
+                              setSearchOpen(false);
+                              setSearchQuery("");
+                            }}
+                            className="block px-4 py-2 text-sm text-brand-blue/70 dark:text-white/70 hover:bg-brand-blue/5 dark:hover:bg-white/5 hover:text-brand-blue dark:hover:text-white transition-colors"
+                          >
+                            {link.name}
+                          </Link>
+                        ))
+                      ) : (
+                        <div className="px-4 py-2 text-sm text-brand-blue/50 dark:text-white/50">
+                          No sections found.
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <button 
+              onClick={() => setSearchOpen(!searchOpen)} 
+              className="p-2 hover:bg-brand-blue/5 dark:hover:bg-white/5 rounded-full transition-colors z-10"
+            >
+              {searchOpen ? <X size={20} /> : <Search size={20} />}
+            </button>
+          </div>
           <Link
             href="/founding-access"
             className="p-2 hover:bg-brand-blue/5 dark:hover:bg-white/5 rounded-full transition-colors"
@@ -172,6 +243,8 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
           </div>
         </div>
       </motion.div>
-    </motion.header>
+    </header>
+
+    </>
   );
 }

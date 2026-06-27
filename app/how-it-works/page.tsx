@@ -75,7 +75,7 @@ export default function HowItWorks() {
         transition={{ duration: 1.5, delay: 0.2 }}
         className="flex flex-col gap-8 text-brand-blue/80 dark:text-luxury-white/80 font-light text-md md:text-lg leading-relaxed max-w-3xl"
       >
-        <p className="font-serif-editorial italic text-xl md:text-3xl text-brand-blue dark:text-luxury-white leading-relaxed">
+        <p className="font-serif-editorial text-xl md:text-3xl text-brand-blue dark:text-luxury-white leading-relaxed">
           &ldquo;We don't build maps to track individuals. We compile real-time spatial frequencies to help people discover the world around them.&rdquo;
         </p>
         <p className="text-sm tracking-wide uppercase text-brand-blue/70 dark:text-luxury-white/50">

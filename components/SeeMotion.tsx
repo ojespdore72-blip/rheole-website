@@ -231,7 +231,7 @@ export default function SeeMotion() {
                     <h3 className="text-xs uppercase tracking-widest font-semibold text-brand-blue dark:text-luxury-white">
                       {activeScreen.title}
                     </h3>
-                    <p className="text-[9px] text-brand-blue/70 dark:text-luxury-white/40 italic">
+                    <p className="text-[9px] text-brand-blue/70 dark:text-luxury-white/40">
                       {activeScreen.tagline}
                     </p>
                   </div>

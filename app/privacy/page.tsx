@@ -127,7 +127,7 @@ export default function PrivacyPolicy() {
               <li><strong>Personalization:</strong> To tailor the ambient intelligence to your specific environment and explicit preferences, ensuring high-quality, relevant outputs.</li>
             </ul>
             <div className="mt-6 p-4 border-l-2 border-brand-gold bg-brand-gold/5">
-              <p className="italic font-medium text-brand-gold">Crucial Guarantee: We do not construct persistent behavioral profiles for the purpose of third-party advertising, nor do we monetize your attention through ad-tracking.</p>
+              <p className="font-medium text-brand-gold">Crucial Guarantee: We do not construct persistent behavioral profiles for the purpose of third-party advertising, nor do we monetize your attention through ad-tracking.</p>
             </div>
           </Section>
 

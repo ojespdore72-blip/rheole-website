@@ -91,7 +91,7 @@ export default function ProgressiveReveal() {
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-light font-serif-editorial text-brand-blue leading-[1.1]">Everything nearby. Instantly understood.</h2>
                 <div className="text-lg md:text-xl font-light text-brand-blue/80 leading-relaxed max-w-lg flex flex-col gap-4">
                   <p>Ask naturally.</p>
-                  <div className="flex flex-col gap-2 pl-4 border-l border-brand-gold/40 italic text-brand-blue/90 font-medium">
+                  <div className="flex flex-col gap-2 pl-4 border-l border-brand-gold/40 text-brand-blue/90 font-medium">
                     {time >= 19 && <motion.span initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>"I'm hungry."</motion.span>}
                     {time >= 21 && <motion.span initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>"I'm new here."</motion.span>}
                     {time >= 23 && <motion.span initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>"What's happening tonight?"</motion.span>}

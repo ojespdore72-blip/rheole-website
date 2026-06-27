@@ -57,7 +57,7 @@ const HeroSection = () => {
           className="text-5xl md:text-7xl lg:text-8xl font-serif-editorial text-brand-blue dark:text-luxury-white leading-tight"
         >
           Trust isn't claimed.<br/>
-          <span className="italic text-brand-gold">It's designed.</span>
+          <span className="text-brand-gold">It's designed.</span>
         </motion.h1>
         
         <motion.div 
@@ -217,7 +217,7 @@ const DataMovesSection = () => {
               <motion.div key="s5" initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} exit={{ opacity: 0 }} transition={{ duration: 1.5 }} className="text-center max-w-lg">
                 <p className="text-3xl font-serif-editorial text-white leading-relaxed">
                   Privacy should disappear into the background.<br/>
-                  <span className="text-brand-gold italic">Trust should not.</span>
+                  <span className="text-brand-gold">Trust should not.</span>
                 </p>
               </motion.div>
             )}
@@ -456,7 +456,7 @@ const ClosingSection = () => {
     <div className="w-full min-h-[70vh] flex flex-col items-center justify-center px-6 text-center border-t border-brand-blue/5 dark:border-white/5">
       <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif-editorial text-brand-blue dark:text-luxury-white max-w-4xl leading-tight">
         Designed to understand your world.<br/>
-        <span className="italic text-brand-gold">Built to respect it.</span>
+        <span className="text-brand-gold">Built to respect it.</span>
       </h2>
       <p className="mt-8 text-lg font-light text-brand-blue/70 dark:text-white/70 max-w-xl mx-auto">
         The most intelligent experiences are the ones that feel effortless, transparent and trustworthy.

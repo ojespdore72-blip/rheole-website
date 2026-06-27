@@ -109,7 +109,7 @@ export default function AskWorld() {
             {/* Question */}
             <div className="flex flex-col gap-1 border-b border-brand-blue/5 dark:border-luxury-white/5 pb-4">
               <span className="text-[9px] uppercase tracking-widest text-brand-gold font-semibold">User Query</span>
-              <h4 className="text-md md:text-lg font-medium font-serif-editorial italic text-brand-blue dark:text-luxury-white">
+              <h4 className="text-md md:text-lg font-medium font-serif-editorial text-brand-blue dark:text-luxury-white">
                 &ldquo;{activeFlow.question}&rdquo;
               </h4>
             </div>

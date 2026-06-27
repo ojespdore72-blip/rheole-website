@@ -129,7 +129,7 @@ export default function Home() {
             transition={{ delay: 0.3, duration: 1.2 }}
             className="text-5xl sm:text-6xl md:text-8xl lg:text-[100px] font-light font-serif-editorial tracking-tight leading-[1.1] md:leading-[1]"
           >
-            The pulse of<br/><span className="italic text-gradient-gold-blue">your city.</span>
+            The pulse of<br/>your city.
           </motion.h1>
         </div>
       </motion.section>
@@ -142,13 +142,18 @@ export default function Home() {
         style={{ opacity: introOpacity, y: introY }}
         className="relative z-10 min-h-screen flex items-center justify-center px-6 bg-luxury-white dark:bg-luxury-black"
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
           <h2 className="text-3xl md:text-5xl lg:text-7xl font-light leading-tight font-serif-editorial text-brand-blue dark:text-white">
-            Rheole is not another application.
-            <br />
-            <br />
-            <span className="text-brand-gold italic">It is the intelligence layer</span> between people and the physical world.
+            A hyperlocal application made exclusively for the people of Bengaluru.
           </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+            <a href="#" className="hover:scale-105 transition-transform duration-300" aria-label="Get it on Google Play">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="h-16 w-auto" />
+            </a>
+            <a href="#" className="hover:scale-105 transition-transform duration-300" aria-label="Download on the App Store">
+              <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1276560000&amp;h=7e7b68bf1aa5ce96c8d80fb8d026f73e" alt="Download on the App Store" className="h-12 w-auto ml-2" />
+            </a>
+          </div>
         </div>
       </motion.section>
 
@@ -225,7 +230,7 @@ export default function Home() {
       <section className="relative z-10 py-32 overflow-hidden bg-brand-blue text-luxury-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-16">
           <h2 className="text-3xl md:text-5xl font-light font-serif-editorial">
-            Rooted in <span className="text-brand-gold italic">reality.</span>
+            Rooted in reality.
           </h2>
           <p className="mt-6 text-lg font-light text-white/70 max-w-xl">
             We are not building an escape to the metaverse. We are building the tools to fall back in love with your physical city.

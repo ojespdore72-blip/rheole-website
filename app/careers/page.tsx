@@ -49,7 +49,7 @@ export default function Careers() {
             transition={{ duration: 1.2, delay: 0.2 }}
             className="text-5xl md:text-7xl lg:text-[100px] font-light font-serif-editorial leading-[1.1] tracking-tight"
           >
-            Build the <span className="italic text-brand-gold">layer</span> <br/>that connects the world.
+            Build the <span className="text-brand-gold">layer</span> <br/>that connects the world.
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -210,7 +210,7 @@ export default function Careers() {
           </div>
 
           <div className="mt-16 text-center">
-            <p className="text-sm text-brand-blue/70 dark:text-white/70 italic">
+            <p className="text-sm text-brand-blue/70 dark:text-white/70">
               Don't see a role that fits? We hire for talent, curiosity, and craftsmanship. <a href="mailto:founders@rheole.com" className="text-brand-gold hover:underline">Email the founders.</a>
             </p>
           </div>

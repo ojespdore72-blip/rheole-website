@@ -58,8 +58,8 @@ html, body {
 
 /* Custom styling utilities */
 .font-serif-editorial {
-  font-family: var(--font-serif), serif;
-  letter-spacing: -0.01em;
+  font-family: var(--font-sans), sans-serif;
+  letter-spacing: -0.02em;
 }
 
 .text-gradient-gold-blue {

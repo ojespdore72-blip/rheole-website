@@ -136,7 +136,7 @@ export default function QueryPrompt() {
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-gold animate-ping" />
                   Rheole Local Engine
                 </span>
-                <p className="text-md md:text-lg text-brand-blue/90 dark:text-luxury-white/95 leading-relaxed font-light font-serif-editorial italic">
+                <p className="text-md md:text-lg text-brand-blue/90 dark:text-luxury-white/95 leading-relaxed font-light font-serif-editorial">
                   &ldquo;{activeResponse.answer}&rdquo;
                 </p>
               </div>
