@@ -95,7 +95,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                 className={`relative px-4 py-2 text-sm tracking-wide transition-spring z-10 ${
                   isActive || isHovered
                     ? "text-brand-blue font-medium dark:text-luxury-white"
-                    : "text-brand-blue/60 hover:text-brand-blue dark:text-luxury-white/60 dark:hover:text-luxury-white"
+                    : "text-brand-blue/70 hover:text-brand-blue dark:text-luxury-white/60 dark:hover:text-luxury-white"
                 }`}
               >
                 {isActive && (

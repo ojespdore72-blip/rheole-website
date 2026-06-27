@@ -120,7 +120,7 @@ const FormFlow = () => {
 
       {/* Top Navigation */}
       <header className="relative z-10 w-full p-6 md:p-12 flex justify-between items-center">
-        <button onClick={() => router.back()} className="text-xs font-mono uppercase tracking-widest text-brand-blue/60 dark:text-white/60 hover:text-brand-gold transition-colors">
+        <button onClick={() => router.back()} className="text-xs font-mono uppercase tracking-widest text-brand-blue/70 dark:text-white/70 hover:text-brand-gold transition-colors">
           ← Back
         </button>
         <span className="text-xs font-mono uppercase tracking-[0.3em] text-brand-gold text-center hidden md:block">
@@ -147,7 +147,7 @@ const FormFlow = () => {
               >
                 <div>
                   <h1 className="text-4xl md:text-5xl font-light font-serif-editorial mb-4">Let's start with the basics.</h1>
-                  <p className="text-sm font-light text-brand-blue/60 dark:text-white/60 tracking-wide uppercase">Step 1 of 3</p>
+                  <p className="text-sm font-light text-brand-blue/70 dark:text-white/70 tracking-wide uppercase">Step 1 of 3</p>
                 </div>
 
                 <div className="flex flex-col gap-6">
@@ -194,7 +194,7 @@ const FormFlow = () => {
               >
                 <div>
                   <h1 className="text-4xl md:text-5xl font-light font-serif-editorial mb-4">Your digital footprint.</h1>
-                  <p className="text-sm font-light text-brand-blue/60 dark:text-white/60 tracking-wide uppercase">Step 2 of 3</p>
+                  <p className="text-sm font-light text-brand-blue/70 dark:text-white/70 tracking-wide uppercase">Step 2 of 3</p>
                 </div>
 
                 <div className="flex flex-col gap-6">
@@ -214,7 +214,7 @@ const FormFlow = () => {
                 </div>
 
                 <div className="mt-8 flex justify-between items-center">
-                  <button onClick={prevStep} className="text-xs uppercase tracking-widest text-brand-blue/60 dark:text-white/60 hover:text-brand-gold transition-colors">
+                  <button onClick={prevStep} className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-white/70 hover:text-brand-gold transition-colors">
                     Back
                   </button>
                   <button 
@@ -239,7 +239,7 @@ const FormFlow = () => {
               >
                 <div>
                   <h1 className="text-4xl md:text-5xl font-light font-serif-editorial mb-4">Why Rheole?</h1>
-                  <p className="text-sm font-light text-brand-blue/60 dark:text-white/60 tracking-wide uppercase">Final Step</p>
+                  <p className="text-sm font-light text-brand-blue/70 dark:text-white/70 tracking-wide uppercase">Final Step</p>
                 </div>
 
                 <div className="flex flex-col gap-6">
@@ -251,7 +251,7 @@ const FormFlow = () => {
                 </div>
 
                 <div className="mt-8 flex justify-between items-center">
-                  <button onClick={prevStep} className="text-xs uppercase tracking-widest text-brand-blue/60 dark:text-white/60 hover:text-brand-gold transition-colors">
+                  <button onClick={prevStep} className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-white/70 hover:text-brand-gold transition-colors">
                     Back
                   </button>
                   <button 
@@ -281,7 +281,7 @@ const FormFlow = () => {
                 </div>
                 <div>
                   <h1 className="text-4xl md:text-5xl font-light font-serif-editorial mb-4">Application Received.</h1>
-                  <p className="text-lg font-light text-brand-blue/60 dark:text-white/60 max-w-md mx-auto">
+                  <p className="text-lg font-light text-brand-blue/70 dark:text-white/70 max-w-md mx-auto">
                     Thank you, {formData.name.split(' ')[0]}. We appreciate your interest in building the future of physical intelligence with us. We will be in touch shortly.
                   </p>
                 </div>

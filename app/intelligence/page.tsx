@@ -235,13 +235,13 @@ const Experiment2 = () => {
         
         <div className="mt-12 flex flex-col gap-8">
           <div className="flex flex-col gap-2">
-             <div className="flex justify-between text-[10px] font-mono uppercase text-brand-blue/50 dark:text-white/50">
+             <div className="flex justify-between text-[10px] font-mono uppercase text-brand-blue/70 dark:text-white/70">
                <span>Morning</span><span>Time</span><span>Night</span>
              </div>
              <input type="range" min="0" max="100" value={time} onChange={(e) => setTime(Number(e.target.value))} className="accent-brand-gold" />
           </div>
           <div className="flex flex-col gap-2">
-             <div className="flex justify-between text-[10px] font-mono uppercase text-brand-blue/50 dark:text-white/50">
+             <div className="flex justify-between text-[10px] font-mono uppercase text-brand-blue/70 dark:text-white/70">
                <span>Rain</span><span>Weather</span><span>Sunny</span>
              </div>
              <input type="range" min="0" max="100" value={weather} onChange={(e) => setWeather(Number(e.target.value))} className="accent-brand-gold" />
@@ -389,7 +389,7 @@ const Experiment4 = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-12 text-[10px] uppercase font-mono tracking-widest text-brand-blue/50 dark:text-white/50 animate-pulse z-10">
+      <div className="absolute bottom-12 text-[10px] uppercase font-mono tracking-widest text-brand-blue/70 dark:text-white/70 animate-pulse z-10">
         Observing Spatial Shifts...
       </div>
     </div>
@@ -424,7 +424,7 @@ const Experiment5 = () => {
           <p className="text-sm text-gray-700 dark:text-gray-400 mt-4 max-w-sm mb-8 drop-shadow-sm">Adjust your physical constraints. The entire environment instantly reorganizes around you.</p>
           
           <div className="p-6 rounded-[24px] bg-white/40 dark:bg-black/40 border border-brand-blue/10 dark:border-white/10 backdrop-blur-xl shadow-lg">
-            <p className="text-xs uppercase tracking-widest font-mono text-brand-blue/60 dark:text-white/60 mb-6">Travel Radius</p>
+            <p className="text-xs uppercase tracking-widest font-mono text-brand-blue/70 dark:text-white/70 mb-6">Travel Radius</p>
             <input 
               type="range" 
               min="0" max="100" 
@@ -545,7 +545,7 @@ const Experiment6 = () => {
       <div className="text-center z-20 mb-16 pointer-events-none">
         <p className="text-brand-gold text-xs font-mono uppercase tracking-[0.2em] mb-4">Experiment 06</p>
         <h2 className="text-3xl md:text-5xl font-serif-editorial text-white drop-shadow-lg">Ambient Intelligence</h2>
-        <p className="text-sm text-white/50 mt-4 max-w-sm mx-auto drop-shadow-md">True intelligence works quietly. Reducing effort rather than demanding attention.</p>
+        <p className="text-sm text-white/70 mt-4 max-w-sm mx-auto drop-shadow-md">True intelligence works quietly. Reducing effort rather than demanding attention.</p>
       </div>
 
       <div className="relative z-10 flex flex-col gap-6 items-center w-full max-w-5xl">

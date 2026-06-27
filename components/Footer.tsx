@@ -25,7 +25,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
               <RheoleLogo variant="wordmark" className="h-7 md:h-9 w-auto group-hover:drop-shadow-lg transition-all duration-300" />
             </motion.div>
           </Link>
-          <p className="text-xs text-brand-blue/50 dark:text-luxury-white/50 max-w-xs leading-relaxed">
+          <p className="text-xs text-brand-blue/70 dark:text-luxury-white/50 max-w-xs leading-relaxed">
             The intelligence layer between people and the physical world.
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-12 md:gap-24">
           {/* Company */}
           <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40 font-medium">
+            <span className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 font-medium">
               Company
             </span>
             <Link
@@ -71,7 +71,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
 
           {/* Platform */}
           <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40 font-medium">
+            <span className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 font-medium">
               Platform
             </span>
             <Link
@@ -108,7 +108,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
 
           {/* Legal */}
           <div className="flex flex-col gap-3 col-span-2 sm:col-span-1">
-            <span className="text-xs uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40 font-medium">
+            <span className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 font-medium">
               Legal
             </span>
             <Link
@@ -128,10 +128,10 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
       </div>
 
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between border-t border-brand-blue/5 dark:border-white/5 mt-10 pt-6 gap-4">
-        <span className="text-[10px] uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40">
+        <span className="text-[10px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40">
           © {currentYear} RHEOLE PVT. LTD. ALL RIGHTS RESERVED.
         </span>
-        <span className="text-[10px] uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40">
+        <span className="text-[10px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40">
           A PRODUCT OF IKHAGA LTD.
         </span>
       </div>

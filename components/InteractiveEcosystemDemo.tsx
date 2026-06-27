@@ -257,7 +257,7 @@ function MapsDemo() {
           <div className="flex gap-2 items-start">
             <div className="flex-1">
               <p className="text-white text-xs font-medium leading-relaxed">Just discovered this hidden cafe! ☕</p>
-              <p className="text-white/50 text-[10px] mt-1">2 mins ago • 150m away</p>
+              <p className="text-white/70 text-[10px] mt-1">2 mins ago • 150m away</p>
             </div>
           </div>
         </motion.div>
@@ -314,11 +314,11 @@ function RecommendationsDemo() {
               >
                 <div className="flex items-center gap-2">
                   <item.icon size={14} className={item.color} />
-                  <span className="text-[10px] uppercase tracking-wider text-white/50">{item.type}</span>
+                  <span className="text-[10px] uppercase tracking-wider text-white/70">{item.type}</span>
                 </div>
                 <div>
                   <p className="text-white text-sm font-medium">{item.title}</p>
-                  <p className="text-white/60 text-xs mt-1">{item.sub}</p>
+                  <p className="text-white/70 text-xs mt-1">{item.sub}</p>
                 </div>
               </motion.div>
             ))}
@@ -343,7 +343,7 @@ function RoomsDemo() {
           <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" /> Live Now
         </div>
         <h3 className="text-white text-2xl font-light">Local Tech Founders</h3>
-        <p className="text-white/50 text-sm mt-2">124 tuned in • 1.5km away</p>
+        <p className="text-white/70 text-sm mt-2">124 tuned in • 1.5km away</p>
       </motion.div>
 
       {/* Speakers */}
@@ -392,7 +392,7 @@ function RoomsDemo() {
           </div>
           <div>
             <p className="text-white text-sm font-medium">Design Critique Open</p>
-            <p className="text-white/50 text-xs">Open to Everyone</p>
+            <p className="text-white/70 text-xs">Open to Everyone</p>
           </div>
         </div>
         <button className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs transition-colors">
@@ -444,7 +444,7 @@ function MessagingDemo() {
           className="self-end bg-[#0000FF] text-white p-2 rounded-2xl rounded-tr-sm max-w-[80%] text-sm flex flex-col gap-2"
         >
           <div className="w-full h-24 bg-black/20 rounded-xl overflow-hidden relative flex items-center justify-center">
-            <MapIcon size={24} className="text-white/50" />
+            <MapIcon size={24} className="text-white/70" />
           </div>
           <span className="px-2 pb-1">It's at the Downtown Hub. Shared the pin!</span>
         </motion.div>
@@ -454,7 +454,7 @@ function MessagingDemo() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.8 }}
-          className="self-start bg-white/5 text-white/50 px-4 py-2 rounded-full text-xs flex gap-1 items-center"
+          className="self-start bg-white/5 text-white/70 px-4 py-2 rounded-full text-xs flex gap-1 items-center"
         >
           <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1, repeat: Infinity, delay: 0 }} className="w-1.5 h-1.5 bg-white/50 rounded-full" />
           <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1, repeat: Infinity, delay: 0.2 }} className="w-1.5 h-1.5 bg-white/50 rounded-full" />
@@ -465,7 +465,7 @@ function MessagingDemo() {
       {/* Input Bar */}
       <div className="p-4 border-t border-white/10 bg-white/5 flex gap-2">
         <div className="flex-1 bg-white/10 rounded-full h-10 flex items-center px-4">
-          <span className="text-white/30 text-sm">Message...</span>
+          <span className="text-white/70 text-sm">Message...</span>
         </div>
       </div>
     </div>
@@ -502,7 +502,7 @@ function CommunitiesDemo() {
             </div>
             <div>
               <p className="text-white text-sm font-medium">Sarah Jenkins</p>
-              <p className="text-white/40 text-xs">1 hr ago</p>
+              <p className="text-white/70 text-xs">1 hr ago</p>
             </div>
           </div>
           <p className="text-white/90 text-sm mb-4">Hey everyone! Where should we host the next photo walk?</p>
@@ -568,7 +568,7 @@ function EventsDemo() {
                 <Calendar className="text-white" size={20} />
               </div>
               <h3 className="text-white text-lg font-medium">Event Created!</h3>
-              <p className="text-white/60 text-sm mt-2">Notification blasted to 450 users within a 30km radius.</p>
+              <p className="text-white/70 text-sm mt-2">Notification blasted to 450 users within a 30km radius.</p>
             </div>
           </motion.div>
         ) : (
@@ -683,7 +683,7 @@ function RoutesDemo() {
             className="flex-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-3 text-center shadow-lg flex flex-col justify-center"
           >
             <p className={`text-[10px] sm:text-xs font-bold ${metric.color} whitespace-nowrap`}>{metric.text}</p>
-            <p className="text-[9px] sm:text-[10px] text-white/50 mt-1 whitespace-nowrap">{metric.sub}</p>
+            <p className="text-[9px] sm:text-[10px] text-white/70 mt-1 whitespace-nowrap">{metric.sub}</p>
           </motion.div>
         ))}
       </div>

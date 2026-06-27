@@ -161,7 +161,7 @@ export default function ProgressiveReveal() {
                             className="bg-white/[0.03] border border-white/10 p-4 rounded-2xl flex flex-col gap-1 relative z-10 backdrop-blur-sm"
                           >
                             <span className="text-sm font-medium text-white">{place.n}</span>
-                            <div className="flex justify-between items-center text-[10px] font-mono text-white/50">
+                            <div className="flex justify-between items-center text-[10px] font-mono text-white/70">
                               <span>{place.t}</span>
                               <span className="text-brand-gold">{place.d}</span>
                             </div>
@@ -195,7 +195,7 @@ export default function ProgressiveReveal() {
                       </motion.div>
 
                       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="bg-white/[0.03] border border-white/10 p-5 rounded-2xl mt-2 flex flex-col gap-3">
-                        <span className="text-[9px] uppercase font-mono text-white/50">Your Communities</span>
+                        <span className="text-[9px] uppercase font-mono text-white/70">Your Communities</span>
                         <div className="flex gap-2">
                            <span className="px-3 py-1.5 bg-white/10 rounded-lg text-xs text-white">Designers</span>
                            <span className="px-3 py-1.5 bg-white/10 rounded-lg text-xs text-white">Founders</span>
@@ -228,7 +228,7 @@ export default function ProgressiveReveal() {
                              <div className="self-end bg-white/10 text-white px-3 py-2 rounded-2xl rounded-tr-sm text-sm">I'm hungry.</div>
                              {time >= 19.5 && (
                                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="self-start bg-white/[0.05] border border-white/10 p-3 rounded-2xl rounded-tl-sm w-[85%]">
-                                   <span className="text-xs text-white/50 mb-1 block">Found 3 places</span>
+                                   <span className="text-xs text-white/70 mb-1 block">Found 3 places</span>
                                    <div className="bg-brand-gold/10 p-2 rounded-xl border border-brand-gold/20">
                                      <span className="text-sm text-white block">Soma Cafe</span>
                                      <span className="text-[10px] text-brand-gold">0.2 mi • High match</span>
@@ -257,7 +257,7 @@ export default function ProgressiveReveal() {
                              <div className="self-end bg-white/10 text-white px-3 py-2 rounded-2xl rounded-tr-sm text-sm">What's happening tonight?</div>
                              {time >= 23.5 && (
                                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="self-start bg-white/[0.05] border border-white/10 p-3 rounded-2xl rounded-tl-sm w-[85%]">
-                                   <span className="text-[10px] text-white/50 block mb-1">Live Events</span>
+                                   <span className="text-[10px] text-white/70 block mb-1">Live Events</span>
                                    <span className="text-sm text-white block">Jazz Night at Blue Room</span>
                                 </motion.div>
                              )}

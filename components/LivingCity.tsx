@@ -468,7 +468,7 @@ export default function LivingCity() {
         <span className="text-[10px] tracking-widest uppercase font-semibold text-brand-gold">
           Spatial Cityscape Engine
         </span>
-        <span className="text-[9px] tracking-wider text-brand-blue/40 dark:text-luxury-white/40">
+        <span className="text-[9px] tracking-wider text-brand-blue/70 dark:text-luxury-white/40">
           Scroll to modulate structural activity
         </span>
       </div>

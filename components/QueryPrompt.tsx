@@ -108,7 +108,7 @@ export default function QueryPrompt() {
           placeholder={inputValue ? "" : placeholderText}
           className="w-full text-2xl md:text-4xl font-light tracking-tight text-center py-6 px-8 rounded-2xl bg-brand-blue/[0.02] dark:bg-luxury-white/[0.01] border border-brand-blue/10 dark:border-luxury-white/5 focus:outline-none focus:border-brand-gold/60 dark:focus:border-brand-gold/60 focus:bg-white dark:focus:bg-luxury-black transition-all duration-500 placeholder-brand-blue/20 dark:placeholder-luxury-white/20 uppercase tracking-widest text-[16px] md:text-[22px] selection:bg-brand-gold/20"
         />
-        <div className="absolute bottom-2 right-4 text-[9px] uppercase tracking-widest text-brand-blue/30 dark:text-luxury-white/30 hidden sm:block">
+        <div className="absolute bottom-2 right-4 text-[9px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/30 hidden sm:block">
           Press Enter to query
         </div>
       </div>
@@ -146,7 +146,7 @@ export default function QueryPrompt() {
                 {activeResponse.metadata.map((meta, i) => (
                   <span
                     key={i}
-                    className="text-[9px] uppercase tracking-widest bg-brand-blue/[0.03] dark:bg-luxury-white/[0.03] px-3 py-1 rounded-full border border-brand-blue/5 dark:border-luxury-white/5 text-brand-blue/50 dark:text-luxury-white/40"
+                    className="text-[9px] uppercase tracking-widest bg-brand-blue/[0.03] dark:bg-luxury-white/[0.03] px-3 py-1 rounded-full border border-brand-blue/5 dark:border-luxury-white/5 text-brand-blue/70 dark:text-luxury-white/40"
                   >
                     {meta}
                   </span>

@@ -89,7 +89,7 @@ function DashboardContent() {
           <h1 className="text-3xl md:text-5xl font-light tracking-wide uppercase text-brand-blue dark:text-luxury-white font-serif-editorial">
             Founding Dashboard
           </h1>
-          <p className="text-sm uppercase tracking-widest text-brand-blue/60 dark:text-luxury-white/60 font-medium">
+          <p className="text-sm uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/60 font-medium">
             Welcome back, {fullName}
           </p>
         </div>
@@ -97,14 +97,14 @@ function DashboardContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Status Card */}
           <div className="border border-brand-blue/10 dark:border-luxury-white/10 rounded-2xl p-8 flex flex-col gap-6 backdrop-blur-sm bg-brand-blue/[0.02] dark:bg-luxury-white/[0.02]">
-            <p className="text-xs uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/50 border-b border-brand-blue/5 dark:border-luxury-white/5 pb-4">
+            <p className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/50 border-b border-brand-blue/5 dark:border-luxury-white/5 pb-4">
               Application Status
             </p>
             <div className="flex flex-col gap-2">
               <span className="text-2xl font-serif-editorial italic text-brand-blue dark:text-luxury-white capitalize">
                 {status}
               </span>
-              <span className="text-xs text-brand-blue/60 dark:text-luxury-white/60">
+              <span className="text-xs text-brand-blue/70 dark:text-luxury-white/60">
                 You will receive an email when your access is ready.
               </span>
             </div>
@@ -119,7 +119,7 @@ function DashboardContent() {
               <span className="text-3xl tracking-widest font-medium text-brand-gold">
                 {referralCode}
               </span>
-              <span className="text-xs text-brand-blue/60 dark:text-luxury-white/60">
+              <span className="text-xs text-brand-blue/70 dark:text-luxury-white/60">
                 Current Referrals: <strong className="text-brand-blue dark:text-luxury-white">{referralCount}</strong>
               </span>
             </div>
@@ -142,7 +142,7 @@ function DashboardContent() {
                 const isUnlocked = referralCount >= tier.threshold;
                 return (
                   <div key={index} className={`p-4 rounded-xl border ${isUnlocked ? 'border-brand-gold/30 bg-brand-gold/5' : 'border-brand-blue/10 dark:border-luxury-white/10 opacity-50'}`}>
-                    <p className="text-[10px] uppercase tracking-widest mb-2 text-brand-blue/60 dark:text-luxury-white/60">
+                    <p className="text-[10px] uppercase tracking-widest mb-2 text-brand-blue/70 dark:text-luxury-white/60">
                       {tier.threshold} Referral{tier.threshold > 1 ? 's' : ''}
                     </p>
                     <p className={`text-xs ${isUnlocked ? 'text-brand-gold' : 'text-brand-blue dark:text-luxury-white'}`}>

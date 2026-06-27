@@ -79,7 +79,7 @@ export default function FounderLetter() {
       >
         <a
           href="/"
-          className="text-xs uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/40 hover:text-brand-gold transition-colors duration-300"
+          className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 hover:text-brand-gold transition-colors duration-300"
         >
           Return to home
         </a>

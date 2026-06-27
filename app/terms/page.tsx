@@ -15,7 +15,7 @@ const Section = ({ id, title, summary, children }: any) => (
           </div>
         </div>
       </div>
-      <div className="w-full xl:w-2/3 prose prose-invert max-w-none text-brand-blue/60 dark:text-white/60 font-light text-base md:text-lg leading-relaxed">
+      <div className="w-full xl:w-2/3 prose prose-invert max-w-none text-brand-blue/70 dark:text-white/70 font-light text-base md:text-lg leading-relaxed">
         {children}
       </div>
     </div>
@@ -70,7 +70,7 @@ export default function TermsOfService() {
                 <a 
                   key={item.id} 
                   href={`#${item.id}`}
-                  className={`pl-4 text-xs tracking-widest uppercase transition-colors relative ${activeSection === item.id ? 'text-brand-gold' : 'text-brand-blue/40 dark:text-white/40 hover:text-brand-blue dark:hover:text-white'}`}
+                  className={`pl-4 text-xs tracking-widest uppercase transition-colors relative ${activeSection === item.id ? 'text-brand-gold' : 'text-brand-blue/70 dark:text-white/70 hover:text-brand-blue dark:hover:text-white'}`}
                 >
                   {activeSection === item.id && (
                     <motion.div layoutId="active-toc" className="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-brand-gold" />
@@ -86,7 +86,7 @@ export default function TermsOfService() {
         <article className="flex-grow max-w-4xl">
           <div className="mb-24">
             <h1 className="text-5xl md:text-7xl font-light font-serif-editorial leading-tight mb-6">Terms of Service</h1>
-            <p className="text-sm font-mono text-brand-blue/40 dark:text-white/40 tracking-widest uppercase">Last Updated: October 24, 2024</p>
+            <p className="text-sm font-mono text-brand-blue/70 dark:text-white/70 tracking-widest uppercase">Last Updated: October 24, 2024</p>
           </div>
 
           <Section id="acceptance" title="1. Acceptance of Terms" summary="By using Rheole, you agree to these terms. If you don't agree, please do not use the service.">

@@ -74,7 +74,7 @@ export default function SecurityArchitecture() {
             <h3 className="text-xs uppercase tracking-widest text-brand-gold font-semibold mb-2">
               Interactive Trust Visualization
             </h3>
-            <p className="text-sm font-light text-brand-blue/60 dark:text-white/60 max-w-md">
+            <p className="text-sm font-light text-brand-blue/70 dark:text-white/70 max-w-md">
               Toggle the privacy controls below to see how Rheole routes and protects your spatial data in real-time.
             </p>
           </div>
@@ -86,13 +86,13 @@ export default function SecurityArchitecture() {
               <div className="flex gap-2">
                 <button 
                   onClick={() => setPrecision("blurred")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${precision === "blurred" ? "bg-brand-gold text-brand-blue shadow-lg scale-105" : "text-white/50 hover:text-white"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${precision === "blurred" ? "bg-brand-gold text-brand-blue shadow-lg scale-105" : "text-white/70 hover:text-white"}`}
                 >
                   Blurred
                 </button>
                 <button 
                   onClick={() => setPrecision("exact")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${precision === "exact" ? "bg-brand-gold text-brand-blue shadow-lg scale-105" : "text-white/50 hover:text-white"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${precision === "exact" ? "bg-brand-gold text-brand-blue shadow-lg scale-105" : "text-white/70 hover:text-white"}`}
                 >
                   Exact
                 </button>
@@ -104,13 +104,13 @@ export default function SecurityArchitecture() {
               <div className="flex gap-2">
                 <button 
                   onClick={() => setRetention("ephemeral")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${retention === "ephemeral" ? "bg-brand-blue text-white border border-white/20 shadow-lg scale-105" : "text-white/50 hover:text-white"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${retention === "ephemeral" ? "bg-brand-blue text-white border border-white/20 shadow-lg scale-105" : "text-white/70 hover:text-white"}`}
                 >
                   Ephemeral
                 </button>
                 <button 
                   onClick={() => setRetention("persistent")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${retention === "persistent" ? "bg-brand-blue text-white border border-white/20 shadow-lg scale-105" : "text-white/50 hover:text-white"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${retention === "persistent" ? "bg-brand-blue text-white border border-white/20 shadow-lg scale-105" : "text-white/70 hover:text-white"}`}
                 >
                   Persistent
                 </button>
@@ -132,7 +132,7 @@ export default function SecurityArchitecture() {
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0 rounded-full border border-brand-gold border-dashed animate-spin-slow" />
               )}
             </motion.div>
-            <span className="text-[10px] uppercase font-mono text-white/60">Source</span>
+            <span className="text-[10px] uppercase font-mono text-white/70">Source</span>
           </div>
 
           {/* Encryption Tunnel */}
@@ -159,7 +159,7 @@ export default function SecurityArchitecture() {
                 <>
                   <motion.div animate={{ opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 1.5 }} className="w-12 h-1 bg-white/20 rounded-full" />
                   <motion.div animate={{ opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 1.5, delay: 0.2 }} className="w-10 h-1 bg-white/20 rounded-full" />
-                  <p className="text-[8px] text-white/40 mt-2 font-mono">Auto-Delete</p>
+                  <p className="text-[8px] text-white/70 mt-2 font-mono">Auto-Delete</p>
                 </>
               ) : (
                 <>
@@ -170,7 +170,7 @@ export default function SecurityArchitecture() {
                 </>
               )}
             </motion.div>
-            <span className="text-[10px] uppercase font-mono text-white/60">Enclave</span>
+            <span className="text-[10px] uppercase font-mono text-white/70">Enclave</span>
           </div>
         </div>
 
@@ -200,7 +200,7 @@ export default function SecurityArchitecture() {
             
             <ul className="flex flex-col gap-1.5 mt-2">
               {layer.points.map((point, idx) => (
-                <li key={idx} className="text-[10px] uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/45 flex items-center gap-2">
+                <li key={idx} className="text-[10px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/45 flex items-center gap-2">
                   <span className="h-1 w-1 rounded-full bg-brand-gold transition-transform group-hover:scale-150" />
                   {point}
                 </li>

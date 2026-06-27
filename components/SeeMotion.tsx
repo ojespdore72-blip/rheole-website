@@ -28,10 +28,10 @@ export default function SeeMotion() {
               <span className="h-2 w-2 rounded-full bg-green-500 animate-ping" />
             </div>
             <p className="font-medium text-sm text-brand-blue dark:text-luxury-white">Bespoke Vinyl Listening Session</p>
-            <p className="text-xs text-brand-blue/60 dark:text-luxury-white/50 leading-relaxed">
+            <p className="text-xs text-brand-blue/70 dark:text-luxury-white/50 leading-relaxed">
               Meeting at Horizon Sound Labs. Spinning rare ambient releases and discussing regional networks.
             </p>
-            <div className="flex gap-2 mt-2 pt-2 border-t border-brand-blue/5 dark:border-luxury-white/5 text-[9px] uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40">
+            <div className="flex gap-2 mt-2 pt-2 border-t border-brand-blue/5 dark:border-luxury-white/5 text-[9px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40">
               <span>18 active</span>
               <span>•</span>
               <span>2h remaining</span>
@@ -40,10 +40,10 @@ export default function SeeMotion() {
 
           <div className="border border-brand-blue/10 dark:border-luxury-white/10 rounded-xl p-4 bg-brand-blue/[0.02] dark:bg-luxury-white/[0.01] flex flex-col gap-2 opacity-65">
             <div className="flex justify-between items-center">
-              <span className="text-[9px] uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40 font-semibold">Broad St Relays • 400m</span>
+              <span className="text-[9px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 font-semibold">Broad St Relays • 400m</span>
             </div>
             <p className="font-medium text-sm text-brand-blue/80 dark:text-luxury-white/80">Public Art Pop-Up Installation</p>
-            <p className="text-xs text-brand-blue/50 dark:text-luxury-white/40 leading-relaxed">
+            <p className="text-xs text-brand-blue/70 dark:text-luxury-white/40 leading-relaxed">
               Collaborative street mural assembly.
             </p>
           </div>
@@ -73,7 +73,7 @@ export default function SeeMotion() {
               ))}
             </div>
             
-            <div className="flex justify-between items-center text-[10px] text-brand-blue/60 dark:text-luxury-white/50 font-medium">
+            <div className="flex justify-between items-center text-[10px] text-brand-blue/70 dark:text-luxury-white/50 font-medium">
               <span>08:00 AM</span>
               <span className="text-brand-gold">PEAK DENSITY NOW</span>
               <span>08:00 PM</span>
@@ -93,7 +93,7 @@ export default function SeeMotion() {
             <div className="flex flex-col gap-1">
               <span className="text-[9px] uppercase tracking-widest text-brand-gold font-semibold">TONIGHT • 8:00 PM</span>
               <p className="font-semibold text-brand-blue dark:text-luxury-white">Sunset Acoustical Suite</p>
-              <p className="text-[10px] text-brand-blue/50 dark:text-luxury-white/40">Highline Crest (elevation 180m)</p>
+              <p className="text-[10px] text-brand-blue/70 dark:text-luxury-white/40">Highline Crest (elevation 180m)</p>
             </div>
             <span className="text-[10px] uppercase tracking-widest border border-brand-blue/20 dark:border-luxury-white/20 px-3 py-1 rounded-full font-medium text-brand-gold">
               Verified
@@ -102,11 +102,11 @@ export default function SeeMotion() {
 
           <div className="border border-brand-blue/10 dark:border-luxury-white/10 rounded-xl p-4 bg-brand-blue/[0.02] dark:bg-luxury-white/[0.01] flex justify-between items-center">
             <div className="flex flex-col gap-1">
-              <span className="text-[9px] uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40 font-semibold">TONIGHT • 11:00 PM</span>
+              <span className="text-[9px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 font-semibold">TONIGHT • 11:00 PM</span>
               <p className="font-semibold text-brand-blue dark:text-luxury-white">Midnight Hack Club</p>
-              <p className="text-[10px] text-brand-blue/50 dark:text-luxury-white/40">Relay Node 42</p>
+              <p className="text-[10px] text-brand-blue/70 dark:text-luxury-white/40">Relay Node 42</p>
             </div>
-            <span className="text-[10px] uppercase tracking-widest border border-brand-blue/20 dark:border-luxury-white/20 px-3 py-1 rounded-full font-medium text-brand-blue/40 dark:text-luxury-white/40">
+            <span className="text-[10px] uppercase tracking-widest border border-brand-blue/20 dark:border-luxury-white/20 px-3 py-1 rounded-full font-medium text-brand-blue/70 dark:text-luxury-white/40">
               Open Node
             </span>
           </div>
@@ -122,7 +122,7 @@ export default function SeeMotion() {
         <div className="flex flex-col gap-4 text-left font-sans text-xs w-full">
           <div className="border border-brand-blue/10 dark:border-luxury-white/10 rounded-xl p-4 bg-brand-blue/[0.02] dark:bg-luxury-white/[0.01] flex flex-col gap-3 h-48 justify-end">
             <div className="flex flex-col gap-1 items-start max-w-[80%]">
-              <span className="text-[8px] uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/45 font-medium">Node_74a</span>
+              <span className="text-[8px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/45 font-medium">Node_74a</span>
               <div className="bg-brand-blue/5 dark:bg-luxury-white/5 rounded-2xl rounded-tl-none px-3.5 py-2 text-brand-blue dark:text-luxury-white text-xs">
                 Hey, is the local acoustic set starting soon?
               </div>
@@ -150,19 +150,19 @@ export default function SeeMotion() {
             
             <div className="grid grid-cols-2 gap-2 text-[10px]">
               <div className="border border-brand-blue/5 dark:border-luxury-white/5 rounded-lg p-2.5 flex items-center justify-between">
-                <span className="text-brand-blue/60 dark:text-luxury-white/40 uppercase tracking-widest text-[8px]">Weather</span>
+                <span className="text-brand-blue/70 dark:text-luxury-white/40 uppercase tracking-widest text-[8px]">Weather</span>
                 <span className="font-semibold text-brand-gold">12 Lux / Dry</span>
               </div>
               <div className="border border-brand-blue/5 dark:border-luxury-white/5 rounded-lg p-2.5 flex items-center justify-between">
-                <span className="text-brand-blue/60 dark:text-luxury-white/40 uppercase tracking-widest text-[8px]">Congestion</span>
+                <span className="text-brand-blue/70 dark:text-luxury-white/40 uppercase tracking-widest text-[8px]">Congestion</span>
                 <span className="font-semibold text-brand-blue dark:text-luxury-white">Avoided -14m</span>
               </div>
               <div className="border border-brand-blue/5 dark:border-luxury-white/5 rounded-lg p-2.5 flex items-center justify-between">
-                <span className="text-brand-blue/60 dark:text-luxury-white/40 uppercase tracking-widest text-[8px]">Events</span>
+                <span className="text-brand-blue/70 dark:text-luxury-white/40 uppercase tracking-widest text-[8px]">Events</span>
                 <span className="font-semibold text-brand-gold">Street Fair Active</span>
               </div>
               <div className="border border-brand-blue/5 dark:border-luxury-white/5 rounded-lg p-2.5 flex items-center justify-between">
-                <span className="text-brand-blue/60 dark:text-luxury-white/40 uppercase tracking-widest text-[8px]">Roads</span>
+                <span className="text-brand-blue/70 dark:text-luxury-white/40 uppercase tracking-widest text-[8px]">Roads</span>
                 <span className="font-semibold text-brand-blue dark:text-luxury-white">Optimal Path Cache</span>
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function SeeMotion() {
                 className={`w-auto lg:w-full text-left px-6 py-4 rounded-xl border transition-all duration-300 font-sans ${
                   isActive
                     ? "border-brand-gold bg-brand-blue/[0.02] dark:bg-luxury-white/[0.02] text-brand-gold"
-                    : "border-brand-blue/5 dark:border-luxury-white/5 hover:border-brand-blue/20 dark:hover:border-luxury-white/20 text-brand-blue/60 dark:text-luxury-white/60"
+                    : "border-brand-blue/5 dark:border-luxury-white/5 hover:border-brand-blue/20 dark:hover:border-luxury-white/20 text-brand-blue/70 dark:text-luxury-white/60"
                 }`}
               >
                 <span className="text-[10px] uppercase tracking-widest font-semibold block">
@@ -231,7 +231,7 @@ export default function SeeMotion() {
                     <h3 className="text-xs uppercase tracking-widest font-semibold text-brand-blue dark:text-luxury-white">
                       {activeScreen.title}
                     </h3>
-                    <p className="text-[9px] text-brand-blue/50 dark:text-luxury-white/40 italic">
+                    <p className="text-[9px] text-brand-blue/70 dark:text-luxury-white/40 italic">
                       {activeScreen.tagline}
                     </p>
                   </div>

@@ -52,7 +52,7 @@ export default function CookieConsent() {
             <button
               onClick={handleDecline}
               aria-label="Decline performance cookies"
-              className="text-brand-blue/50 dark:text-luxury-white/40 hover:text-brand-blue dark:hover:text-luxury-white transition-colors duration-300 py-2 px-3 focus:outline-none"
+              className="text-brand-blue/70 dark:text-luxury-white/40 hover:text-brand-blue dark:hover:text-luxury-white transition-colors duration-300 py-2 px-3 focus:outline-none"
             >
               Decline
             </button>

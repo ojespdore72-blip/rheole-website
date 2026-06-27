@@ -78,7 +78,7 @@ export default function HowItWorks() {
         <p className="font-serif-editorial italic text-xl md:text-3xl text-brand-blue dark:text-luxury-white leading-relaxed">
           &ldquo;We don't build maps to track individuals. We compile real-time spatial frequencies to help people discover the world around them.&rdquo;
         </p>
-        <p className="text-sm tracking-wide uppercase text-brand-blue/50 dark:text-luxury-white/50">
+        <p className="text-sm tracking-wide uppercase text-brand-blue/70 dark:text-luxury-white/50">
           The underlying design shifts data control back to the edge, processing proximity without compromising privacy.
         </p>
       </motion.div>
@@ -134,7 +134,7 @@ export default function HowItWorks() {
           </svg>
         </div>
 
-        <p className="text-xs text-brand-blue/50 dark:text-luxury-white/40 leading-relaxed text-center max-w-xl mx-auto mt-2">
+        <p className="text-xs text-brand-blue/70 dark:text-luxury-white/40 leading-relaxed text-center max-w-xl mx-auto mt-2">
           Your coordinates are immediately scrubbed and hashed locally. The network only receives spatial indexes, preventing continuous activity tracking back to specific profiles.
         </p>
       </motion.div>
@@ -163,7 +163,7 @@ export default function HowItWorks() {
               
               <ul className="flex flex-col gap-1 mt-2">
                 {pillar.details.map((detail, idx) => (
-                  <li key={idx} className="text-[10px] uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/45 flex items-center gap-2">
+                  <li key={idx} className="text-[10px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/45 flex items-center gap-2">
                     <span className="h-1 w-1 rounded-full bg-brand-gold" />
                     {detail}
                   </li>

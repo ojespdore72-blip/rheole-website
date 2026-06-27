@@ -64,7 +64,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="mt-12 text-lg md:text-xl font-light text-brand-blue/70 dark:text-white/60 leading-relaxed max-w-2xl"
+          className="mt-12 text-lg md:text-xl font-light text-brand-blue/70 dark:text-white/70 leading-relaxed max-w-2xl"
         >
           <p className="mb-4">Every interaction inside Rheole is built around a simple principle:</p>
           <ul className="space-y-2 font-medium text-brand-blue dark:text-white/80">
@@ -117,7 +117,7 @@ const DataMovesSection = () => {
                 className="relative z-10 flex flex-col items-center gap-2 group"
               >
                 <div className={`w-3 h-3 rounded-full border-2 transition-all duration-500 ${scene === i ? 'bg-brand-gold border-brand-gold scale-125 shadow-[0_0_10px_rgba(197,168,128,0.8)]' : scene > i ? 'bg-brand-gold border-brand-gold' : 'bg-[#020205] border-white/30 group-hover:border-white/60'}`} />
-                <span className={`text-[10px] uppercase tracking-wider font-mono absolute top-6 whitespace-nowrap transition-colors duration-300 ${scene === i ? 'text-brand-gold' : 'text-white/40 group-hover:text-white/60'}`}>
+                <span className={`text-[10px] uppercase tracking-wider font-mono absolute top-6 whitespace-nowrap transition-colors duration-300 ${scene === i ? 'text-brand-gold' : 'text-white/70 group-hover:text-white/70'}`}>
                   {label}
                 </span>
               </button>
@@ -184,14 +184,14 @@ const DataMovesSection = () => {
                    <div className="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center"><Navigation size={14}/></div>
                    <div>
                      <p className="text-white text-sm font-medium">Nearby Spots</p>
-                     <p className="text-white/40 text-[10px] mt-1 font-mono">Location Data</p>
+                     <p className="text-white/70 text-[10px] mt-1 font-mono">Location Data</p>
                    </div>
                 </div>
                 <div className="w-48 h-48 bg-white/5 border border-green-500/20 rounded-[30px] p-6 flex flex-col justify-between backdrop-blur-md">
                    <div className="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center"><Activity size={14}/></div>
                    <div>
                      <p className="text-white text-sm font-medium">Open Now</p>
-                     <p className="text-white/40 text-[10px] mt-1 font-mono">Real-time DB</p>
+                     <p className="text-white/70 text-[10px] mt-1 font-mono">Real-time DB</p>
                    </div>
                 </div>
                 <p className="absolute -top-12 text-xs font-mono uppercase tracking-widest text-brand-gold">Only relevant context. Only when needed.</p>
@@ -206,7 +206,7 @@ const DataMovesSection = () => {
                    <div className="w-12 h-12 bg-[#D2B48C] rounded-full shrink-0" />
                    <div>
                      <p className="text-white text-sm font-medium">The Artisan Cafe</p>
-                     <p className="text-white/60 text-xs mt-1">3 mins walk • Open</p>
+                     <p className="text-white/70 text-xs mt-1">3 mins walk • Open</p>
                    </div>
                  </div>
               </motion.div>
@@ -247,7 +247,7 @@ const TrustPrinciplesSection = () => {
     <div className="w-full py-32 px-6 lg:px-24">
       <div className="text-center mb-20 max-w-2xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-serif-editorial text-brand-blue dark:text-luxury-white">The Architecture of Trust</h2>
-        <p className="text-brand-blue/60 dark:text-white/60 mt-6 font-light">Instead of burying our philosophy in legal documents, we engineered it into the product.</p>
+        <p className="text-brand-blue/70 dark:text-white/70 mt-6 font-light">Instead of burying our philosophy in legal documents, we engineered it into the product.</p>
       </div>
 
       <div className="flex flex-col gap-4 max-w-4xl mx-auto">
@@ -262,7 +262,7 @@ const TrustPrinciplesSection = () => {
             <div className="px-8 py-6 flex items-center justify-between">
               <h3 className={`text-lg font-medium transition-colors duration-300 ${hoveredIndex === i ? 'text-brand-gold' : 'text-brand-blue dark:text-white'}`}>{p.title}</h3>
               <div className="w-6 h-6 rounded-full border border-brand-blue/20 dark:border-white/20 flex items-center justify-center">
-                <motion.div animate={{ rotate: hoveredIndex === i ? 45 : 0 }} className="text-brand-blue/50 dark:text-white/50 text-xs">+</motion.div>
+                <motion.div animate={{ rotate: hoveredIndex === i ? 45 : 0 }} className="text-brand-blue/70 dark:text-white/70 text-xs">+</motion.div>
               </div>
             </div>
             <motion.div 
@@ -270,7 +270,7 @@ const TrustPrinciplesSection = () => {
               animate={{ opacity: hoveredIndex === i ? 1 : 0 }} 
               className="px-8 pb-8 pt-0"
             >
-              <p className="text-brand-blue/70 dark:text-white/60 font-light leading-relaxed max-w-2xl">{p.desc}</p>
+              <p className="text-brand-blue/70 dark:text-white/70 font-light leading-relaxed max-w-2xl">{p.desc}</p>
             </motion.div>
           </motion.div>
         ))}
@@ -324,7 +324,7 @@ const ControlCentreSection = ({ privacyLevel, setPrivacyLevel }: { privacyLevel:
                             <img src="/web_image_3.jpg" alt="Context" className="w-full h-full object-cover mix-blend-overlay opacity-60 group-hover:scale-105 transition-transform duration-700" />
                           </div>
                           <div className="bg-brand-indigo/10 rounded-2xl flex items-center justify-center p-4">
-                            <p className="text-xs font-mono text-brand-blue/50 dark:text-white/50 text-center">Processing<br/>Local Inferences</p>
+                            <p className="text-xs font-mono text-brand-blue/70 dark:text-white/70 text-center">Processing<br/>Local Inferences</p>
                           </div>
                        </div>
                     </div>
@@ -340,7 +340,7 @@ const ControlCentreSection = ({ privacyLevel, setPrivacyLevel }: { privacyLevel:
                   >
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-brand-gold mb-6 stroke-1"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                     <p className="text-xl font-serif-editorial text-brand-blue dark:text-white">Data not shared with Rheole</p>
-                    <p className="text-sm font-light text-brand-blue/60 dark:text-white/50 mt-2">we respect your privacy</p>
+                    <p className="text-sm font-light text-brand-blue/70 dark:text-white/70 mt-2">we respect your privacy</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -369,7 +369,7 @@ const TrustInMotionSection = () => {
     <div className="w-full py-32 px-6 overflow-hidden flex flex-col items-center justify-center border-t border-brand-blue/5 dark:border-white/5">
        <div className="text-center mb-24 max-w-2xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-serif-editorial text-brand-blue dark:text-luxury-white">Trust in Motion</h2>
-        <p className="text-brand-blue/60 dark:text-white/60 mt-6 font-light">Watch how raw data is seamlessly refined into personal value without ever exposing your core identity.</p>
+        <p className="text-brand-blue/70 dark:text-white/70 mt-6 font-light">Watch how raw data is seamlessly refined into personal value without ever exposing your core identity.</p>
       </div>
 
       <div className="relative w-full max-w-5xl h-64 flex flex-col md:flex-row items-center justify-between z-10 px-12 md:px-0">
@@ -392,7 +392,7 @@ const TrustInMotionSection = () => {
              >
                <div className="w-2 h-2 bg-brand-gold rounded-full" />
              </motion.div>
-             <span className="text-xs font-mono uppercase tracking-widest text-brand-blue/60 dark:text-white/60">{node}</span>
+             <span className="text-xs font-mono uppercase tracking-widest text-brand-blue/70 dark:text-white/70">{node}</span>
            </div>
          ))}
       </div>
@@ -435,7 +435,7 @@ const FAQSection = () => {
                     exit={{ opacity: 0, height: 0, marginTop: 0 }}
                     className="overflow-hidden"
                   >
-                    <p className="text-brand-blue/70 dark:text-white/60 font-light leading-relaxed">{faq.a}</p>
+                    <p className="text-brand-blue/70 dark:text-white/70 font-light leading-relaxed">{faq.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -457,7 +457,7 @@ const ClosingSection = () => {
         Designed to understand your world.<br/>
         <span className="italic text-brand-gold">Built to respect it.</span>
       </h2>
-      <p className="mt-8 text-lg font-light text-brand-blue/60 dark:text-white/60 max-w-xl mx-auto">
+      <p className="mt-8 text-lg font-light text-brand-blue/70 dark:text-white/70 max-w-xl mx-auto">
         The most intelligent experiences are the ones that feel effortless, transparent and trustworthy.
       </p>
       

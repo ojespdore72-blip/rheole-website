@@ -136,7 +136,7 @@ export default function ContextDemoAnimation() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="self-start text-white/40 text-xs px-2 flex gap-1 items-center"
+                    className="self-start text-white/70 text-xs px-2 flex gap-1 items-center"
                   >
                     <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1 }} className="w-1 h-1 bg-white/50 rounded-full" />
                     <motion.span animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }} className="w-1 h-1 bg-white/50 rounded-full" />
@@ -148,9 +148,9 @@ export default function ContextDemoAnimation() {
               {/* Chat Input */}
               <div className="h-16 px-4 pb-4 bg-transparent z-20">
                 <div className="w-full h-full bg-white/5 border border-white/10 rounded-full flex items-center px-4">
-                  <span className="text-white/30 text-xs flex-1">Ask anything...</span>
+                  <span className="text-white/70 text-xs flex-1">Ask anything...</span>
                   <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-                    <ArrowRight size={12} className="text-white/50" />
+                    <ArrowRight size={12} className="text-white/70" />
                   </div>
                 </div>
               </div>

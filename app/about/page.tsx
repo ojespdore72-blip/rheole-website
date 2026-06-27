@@ -27,7 +27,7 @@ const chapters: Chapter[] = [
         <p className="text-xl md:text-2xl font-light leading-relaxed">
           We are surrounded by information, yet completely disconnected from what matters nearby.
         </p>
-        <p className="text-lg text-brand-blue/60 dark:text-white/60 font-light leading-relaxed mt-6">
+        <p className="text-lg text-brand-blue/70 dark:text-white/70 font-light leading-relaxed mt-6">
           We built the internet to connect the world, but in doing so, we built interfaces that pull our gaze away from our physical surroundings. We sit in crowded rooms, staring at screens, entirely unaware of the invisible opportunities passing us by.
         </p>
       </>
@@ -43,7 +43,7 @@ const chapters: Chapter[] = [
         <p className="text-xl md:text-2xl font-light leading-relaxed">
           Today's digital experiences understand destinations. They rarely understand context.
         </p>
-        <p className="text-lg text-brand-blue/60 dark:text-white/60 font-light leading-relaxed mt-6">
+        <p className="text-lg text-brand-blue/70 dark:text-white/70 font-light leading-relaxed mt-6">
           Look at your phone. Your maps, your messages, your events, your communities, and your recommendations all live inside separate, isolated silos. They don't talk to each other. They don't know where you are or what you need right now.
         </p>
       </>
@@ -59,7 +59,7 @@ const chapters: Chapter[] = [
         <p className="text-xl md:text-2xl font-light leading-relaxed">
           Everything becomes connected through one living intelligence layer.
         </p>
-        <p className="text-lg text-brand-blue/60 dark:text-white/60 font-light leading-relaxed mt-6">
+        <p className="text-lg text-brand-blue/70 dark:text-white/70 font-light leading-relaxed mt-6">
           Rheole isn't just another application to check. It's an underlying fabric. It takes the disparate threads of people, places, events, and local knowledge, and weaves them together instantly. It makes the invisible visible.
         </p>
       </>
@@ -102,7 +102,7 @@ const chapters: Chapter[] = [
         <p className="text-xl md:text-2xl font-light leading-relaxed">
           Ambient intelligence, without the chatbox.
         </p>
-        <p className="text-lg text-brand-blue/60 dark:text-white/60 font-light leading-relaxed mt-6">
+        <p className="text-lg text-brand-blue/70 dark:text-white/70 font-light leading-relaxed mt-6">
           We don't expect you to formulate perfect prompts. Real life isn't a search bar. Rheole understands human scenarios naturally. Whether you're hungry, bored, new in town, or looking to meet founders—it anticipates your needs based on time, location, and the rhythm of the city.
         </p>
       </>
@@ -118,7 +118,7 @@ const chapters: Chapter[] = [
         <p className="text-xl md:text-2xl font-light leading-relaxed">
           The interface overlays subtle spatial intelligence without overwhelming the imagery.
         </p>
-        <p className="text-lg text-brand-blue/60 dark:text-white/60 font-light leading-relaxed mt-6">
+        <p className="text-lg text-brand-blue/70 dark:text-white/70 font-light leading-relaxed mt-6">
           We want you to look up, not down. Rheole brings local communities, events, and meaningful conversations to the surface exactly when you are near them.
         </p>
       </>
@@ -148,7 +148,7 @@ const chapters: Chapter[] = [
         <p className="text-xl md:text-2xl font-light leading-relaxed">
           AI becomes quieter as it becomes smarter.
         </p>
-        <p className="text-lg text-brand-blue/60 dark:text-white/60 font-light leading-relaxed mt-6">
+        <p className="text-lg text-brand-blue/70 dark:text-white/70 font-light leading-relaxed mt-6">
           Intelligence shouldn't scream for your attention. It should process intent, context, and nearby relevance silently in the background. Rheole's AI adapts to you perfectly, providing ambient recommendations that feel inevitable rather than intrusive.
         </p>
       </>
@@ -180,7 +180,7 @@ const chapters: Chapter[] = [
         <p className="text-xl md:text-2xl font-light leading-relaxed">
           Private by default. User ownership.
         </p>
-        <p className="text-lg text-brand-blue/60 dark:text-white/60 font-light leading-relaxed mt-6">
+        <p className="text-lg text-brand-blue/70 dark:text-white/70 font-light leading-relaxed mt-6">
           Trust is demonstrated, not claimed. Every interaction within Rheole is built on granular permissions, location control, and encrypted communication. You own your footprint.
         </p>
       </>
@@ -196,7 +196,7 @@ const chapters: Chapter[] = [
         <p className="text-xl md:text-2xl font-light leading-relaxed">
           The interface gradually expands beyond today's smartphones.
         </p>
-        <p className="text-lg text-brand-blue/60 dark:text-white/60 font-light leading-relaxed mt-6 mb-12">
+        <p className="text-lg text-brand-blue/70 dark:text-white/70 font-light leading-relaxed mt-6 mb-12">
           From discovery to communities, navigation to AI, moving steadily toward ambient spatial intelligence. Rheole is building for a future of wearables, vehicles, and devices yet to be invented.
         </p>
         <p className="text-3xl md:text-4xl lg:text-5xl font-light font-serif-editorial text-brand-blue dark:text-white">
@@ -256,7 +256,7 @@ export default function About() {
             </AnimatePresence>
           </div>
           <div className="flex flex-col gap-4 mt-auto">
-            <span className="text-[10px] uppercase tracking-widest font-mono text-brand-blue/40 dark:text-white/40">Reading Progress</span>
+            <span className="text-[10px] uppercase tracking-widest font-mono text-brand-blue/70 dark:text-white/70">Reading Progress</span>
             <div className="h-40 w-[1px] bg-brand-blue/10 dark:bg-white/10 relative">
               <motion.div 
                 className="absolute top-0 left-0 w-[2px] -ml-[0.5px] bg-brand-gold" 
@@ -319,7 +319,7 @@ export default function About() {
 
         {/* RIGHT COLUMN: Table of Contents */}
         <aside className="hidden lg:flex w-1/5 flex-col sticky top-0 h-screen py-32 pr-12 pl-8 border-l border-brand-blue/5 dark:border-white/5">
-          <span className="text-[10px] uppercase tracking-[0.4em] font-mono text-brand-blue/40 dark:text-white/40 mb-8 block">Index</span>
+          <span className="text-[10px] uppercase tracking-[0.4em] font-mono text-brand-blue/70 dark:text-white/70 mb-8 block">Index</span>
           <nav className="flex flex-col gap-6">
             {chapters.map((c) => (
               <a 
@@ -328,7 +328,7 @@ export default function About() {
                 className={`text-xs uppercase tracking-widest transition-all duration-300 ${
                   activeChapter === c.id 
                     ? "text-brand-gold font-medium translate-x-2" 
-                    : "text-brand-blue/30 dark:text-white/30 hover:text-brand-blue dark:hover:text-white"
+                    : "text-brand-blue/70 dark:text-white/70 hover:text-brand-blue dark:hover:text-white"
                 }`}
               >
                 {c.number}. {c.title}

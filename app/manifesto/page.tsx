@@ -25,7 +25,7 @@ const CHAPTERS = [
 const TableOfContents = ({ activeIndex }: { activeIndex: number }) => {
   return (
     <div 
-      className={`absolute left-0 top-0 h-full z-50 hidden lg:flex flex-col justify-center w-96 pl-12 transition-all duration-1000 pointer-events-none ${activeIndex === 0 ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'}`}
+      className={`fixed left-0 top-0 h-screen z-50 hidden lg:flex flex-col justify-center w-96 pl-12 transition-all duration-1000 pointer-events-none ${activeIndex === 0 ? 'opacity-0 -translate-x-10' : 'opacity-100 translate-x-0'}`}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent pointer-events-none" />
       <div className="relative z-10 h-[70vh] flex flex-col justify-between border-l border-white/10 pl-8 pointer-events-auto">
@@ -73,7 +73,7 @@ const ReadMoreBtn = ({ href }: { href: string }) => (
 // ---------------------------------------------------------
 
 const Exhibit01 = () => (
-  <div id="fragmented-world" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#0a0f1c] text-white">
+  <div id="fragmented-world" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#0a0f1c] text-white">
     <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div className="flex flex-col gap-6 z-10">
         <span className="text-brand-gold text-xs font-mono tracking-widest uppercase">Exhibit 01</span>
@@ -92,7 +92,7 @@ const Exhibit01 = () => (
 );
 
 const Exhibit02 = () => (
-  <div id="contextual-void" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#110c14] text-white">
+  <div id="contextual-void" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#110c14] text-white">
     <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
        <div className="relative h-64 lg:h-[500px] w-full rounded-xl overflow-hidden group border border-white/5 shadow-2xl order-2 lg:order-1">
         <Image src="/obsidian_ai_1782537375889.png" alt="Context" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
@@ -111,7 +111,7 @@ const Exhibit02 = () => (
 );
 
 const Exhibit03 = () => (
-  <div id="understanding-over-search" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#0b131a] text-white">
+  <div id="understanding-over-search" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#0b131a] text-white">
     <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div className="flex flex-col gap-6 z-10">
         <span className="text-brand-gold text-xs font-mono tracking-widest uppercase">Exhibit 03</span>
@@ -130,7 +130,7 @@ const Exhibit03 = () => (
 );
 
 const Exhibit04 = () => (
-  <div id="quiet-ai" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#0f1012] text-white">
+  <div id="quiet-ai" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#0f1012] text-white">
     <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
        <div className="relative h-64 lg:h-[500px] w-full rounded-xl overflow-hidden group border border-white/5 shadow-2xl order-2 lg:order-1">
         <Image src="/obsidian_ai_1782537375889.png" alt="Quiet AI" fill className="object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80" />
@@ -148,7 +148,7 @@ const Exhibit04 = () => (
 );
 
 const Exhibit05 = () => (
-  <div id="invisible-infrastructure" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#1c1815] text-white">
+  <div id="invisible-infrastructure" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#1c1815] text-white">
     <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div className="flex flex-col gap-6 z-10">
         <span className="text-brand-gold text-xs font-mono tracking-widest uppercase">Exhibit 05</span>
@@ -167,7 +167,7 @@ const Exhibit05 = () => (
 );
 
 const Exhibit06 = () => (
-  <div id="presence" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#0b1715] text-white">
+  <div id="presence" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#0b1715] text-white">
     <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
        <div className="relative h-64 lg:h-[500px] w-full rounded-xl overflow-hidden group border border-white/5 shadow-2xl order-2 lg:order-1">
         <Image src="/glass_network_1782537362606.png" alt="Presence" fill className="object-cover transition-transform duration-1000 group-hover:scale-105 grayscale hover:grayscale-0" />
@@ -185,7 +185,7 @@ const Exhibit06 = () => (
 );
 
 const Exhibit07 = () => (
-  <div id="privacy" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#111111] text-white">
+  <div id="privacy" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#111111] text-white">
     <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div className="flex flex-col gap-6 z-10">
         <span className="text-brand-gold text-xs font-mono tracking-widest uppercase">Exhibit 07</span>
@@ -203,7 +203,7 @@ const Exhibit07 = () => (
 );
 
 const Exhibit08 = () => (
-  <div id="contextual-intelligence" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#0b111e] text-white">
+  <div id="contextual-intelligence" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#0b111e] text-white">
     <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
        <div className="relative h-64 lg:h-[500px] w-full rounded-xl overflow-hidden group border border-white/5 shadow-2xl order-2 lg:order-1">
         <Image src="/contextual_landscape_1782537401766.png" alt="Contextual Intelligence" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
@@ -221,7 +221,7 @@ const Exhibit08 = () => (
 );
 
 const Exhibit09 = () => (
-  <div id="intelligence-layer" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#14100c] text-white">
+  <div id="intelligence-layer" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#14100c] text-white">
     <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div className="flex flex-col gap-6 z-10">
         <span className="text-brand-gold text-xs font-mono tracking-widest uppercase">Exhibit 09</span>
@@ -239,7 +239,7 @@ const Exhibit09 = () => (
 );
 
 const Exhibit10 = () => (
-  <div id="pulse" className="h-screen w-full flex items-center justify-center snap-center relative overflow-hidden px-8 lg:pl-80 bg-[#050505] text-white">
+  <div id="pulse" className="h-screen w-full flex items-center justify-center sticky top-0 relative overflow-hidden px-8 lg:pl-80 bg-[#050505] text-white">
     <motion.div 
       animate={{ opacity: [0.3, 0.6, 0.3] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -281,33 +281,24 @@ export default function Manifesto() {
   // Monitor scroll to update active exhibit
   useEffect(() => {
     const handleScroll = () => {
-      if (containerRef.current) {
-        const scrollTop = containerRef.current.scrollTop;
-        const windowHeight = window.innerHeight;
-        // Calculate which exhibit is mostly in view
-        const current = Math.round(scrollTop / windowHeight);
-        setActiveExhibit(current);
-      }
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const current = Math.round(scrollTop / windowHeight);
+      setActiveExhibit(current);
     };
     
-    const ref = containerRef.current;
-    if (ref) {
-      ref.addEventListener('scroll', handleScroll, { passive: true });
-    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      if (ref) ref.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full min-h-screen bg-black text-white selection:bg-brand-gold/20">
       <TableOfContents activeIndex={activeExhibit} />
-      <div 
-        ref={containerRef}
-        className="absolute inset-0 overflow-y-auto overflow-x-hidden snap-y snap-mandatory bg-black text-white selection:bg-brand-gold/20 scroll-smooth"
-      >
+      
         {/* Intro sequence */}
-      <div className="h-screen flex flex-col items-center justify-center relative snap-start bg-black">
+      <div className="h-screen flex flex-col items-center justify-center relative sticky top-0 bg-black">
         <div className="absolute inset-0 z-0">
            <Image src="/glass_network_1782537362606.png" alt="Hero" fill className="object-cover opacity-10 blur-xl" />
         </div>
@@ -347,7 +338,6 @@ export default function Manifesto() {
       <Exhibit09 />
       <Exhibit10 />
 
-      </div>
     </div>
   );
 }

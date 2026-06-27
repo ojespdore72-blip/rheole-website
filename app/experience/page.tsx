@@ -308,7 +308,7 @@ export default function ExperienceNarrative() {
               </div>
 
               {/* Status Bar */}
-              <div className="w-full h-12 flex justify-between items-center px-6 pt-3 text-[11px] font-medium text-white/50 z-40 absolute top-0">
+              <div className="w-full h-12 flex justify-between items-center px-6 pt-3 text-[11px] font-medium text-white/70 z-40 absolute top-0">
                 <span>9:41</span>
                 <div className="flex items-center gap-1.5">
                   <svg width="16" height="10" viewBox="0 0 16 10" fill="currentColor"><path d="M14 0H2C0.9 0 0 0.9 0 2V8C0 9.1 0.9 10 2 10H14C15.1 10 16 9.1 16 8V2C16 0.9 15.1 0 14 0ZM14 8H2V2H14V8Z"/><rect x="4" y="4" width="8" height="2"/></svg>
@@ -343,11 +343,11 @@ export default function ExperienceNarrative() {
                         <div className="grid grid-cols-2 gap-4">
                           <div>
                             <p className="text-3xl font-light text-white">12</p>
-                            <p className="text-[10px] uppercase tracking-widest text-white/50 mt-1">Communities</p>
+                            <p className="text-[10px] uppercase tracking-widest text-white/70 mt-1">Communities</p>
                           </div>
                           <div>
                             <p className="text-3xl font-light text-white">3</p>
-                            <p className="text-[10px] uppercase tracking-widest text-white/50 mt-1">Live Events</p>
+                            <p className="text-[10px] uppercase tracking-widest text-white/70 mt-1">Live Events</p>
                           </div>
                         </div>
                       </motion.div>
@@ -371,10 +371,10 @@ export default function ExperienceNarrative() {
                       <motion.div initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.6 }} className="w-full bg-luxury-white/5 border border-luxury-white/10 rounded-2xl p-4 flex flex-col gap-2">
                         <div className="flex justify-between items-center">
                           <span className="text-[9px] uppercase tracking-widest text-brand-gold">Trending Neighbourhood</span>
-                          <span className="text-[9px] font-mono text-white/40">JUST NOW</span>
+                          <span className="text-[9px] font-mono text-white/70">JUST NOW</span>
                         </div>
                         <span className="text-sm font-medium text-white/90">SOMA District</span>
-                        <span className="text-xs text-white/50">Density spiking. 4 new events starting in 30 mins.</span>
+                        <span className="text-xs text-white/70">Density spiking. 4 new events starting in 30 mins.</span>
                       </motion.div>
                       <motion.div initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 1 }} className="w-full bg-luxury-white/5 border border-luxury-white/10 rounded-2xl p-4 flex flex-col gap-2">
                         <span className="text-[9px] uppercase tracking-widest text-brand-gold">People Joining</span>
@@ -397,7 +397,7 @@ export default function ExperienceNarrative() {
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1, backgroundColor: i < 2 ? 'rgba(197,168,128,0.2)' : 'rgba(255,255,255,0.05)' }}
                             transition={{ delay: i * 0.1 }}
-                            className={`px-4 py-2 rounded-full border text-xs font-medium ${i < 2 ? 'border-brand-gold/50 text-brand-gold' : 'border-white/10 text-white/50'}`}
+                            className={`px-4 py-2 rounded-full border text-xs font-medium ${i < 2 ? 'border-brand-gold/50 text-brand-gold' : 'border-white/10 text-white/70'}`}
                           >
                             {tag}
                           </motion.div>
@@ -409,7 +409,7 @@ export default function ExperienceNarrative() {
                           <span className="text-lg font-serif-editorial text-white">Hardware Builders Meetup</span>
                         </motion.div>
                         <motion.div layoutId="card-cycle" className="w-full h-24 rounded-3xl bg-luxury-white/5 border border-luxury-white/10 p-5 flex flex-col justify-between">
-                          <span className="text-[10px] uppercase tracking-widest text-white/50">Because you like Cycling</span>
+                          <span className="text-[10px] uppercase tracking-widest text-white/70">Because you like Cycling</span>
                           <span className="text-sm font-medium text-white">Morning City Loop</span>
                         </motion.div>
                       </div>
@@ -439,10 +439,10 @@ export default function ExperienceNarrative() {
                               <span className="text-sm font-medium text-white">{com.name}</span>
                             </div>
                             <div className="flex flex-col items-end gap-1 text-right">
-                              <span className="text-xs text-white/60">{com.members} mem</span>
+                              <span className="text-xs text-white/70">{com.members} mem</span>
                               <div className="flex items-center gap-1.5">
                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                                <span className="text-[10px] text-white/40 font-mono">{com.active} active</span>
+                                <span className="text-[10px] text-white/70 font-mono">{com.active} active</span>
                               </div>
                             </div>
                           </motion.div>
@@ -467,24 +467,24 @@ export default function ExperienceNarrative() {
                         </div>
                         <div className="p-5 flex flex-col gap-4">
                           <div className="flex flex-col gap-1">
-                            <span className="text-[10px] text-white/50 uppercase tracking-widest">Live Music</span>
+                            <span className="text-[10px] text-white/70 uppercase tracking-widest">Live Music</span>
                             <span className="text-lg font-medium text-white leading-tight">Underground Acoustic Session</span>
                           </div>
                           <div className="grid grid-cols-2 gap-y-3 border-t border-white/5 pt-4">
                             <div className="flex flex-col gap-1 text-left">
-                              <span className="text-[9px] font-mono text-white/40">WEATHER</span>
+                              <span className="text-[9px] font-mono text-white/70">WEATHER</span>
                               <span className="text-xs text-white/80">Clear • 68°</span>
                             </div>
                             <div className="flex flex-col gap-1 text-left">
-                              <span className="text-[9px] font-mono text-white/40">TRANSIT</span>
+                              <span className="text-[9px] font-mono text-white/70">TRANSIT</span>
                               <span className="text-xs text-white/80">12 min walk</span>
                             </div>
                             <div className="flex flex-col gap-1 text-left">
-                              <span className="text-[9px] font-mono text-white/40">CROWD</span>
+                              <span className="text-[9px] font-mono text-white/70">CROWD</span>
                               <span className="text-xs text-brand-gold">High (Est. 150)</span>
                             </div>
                             <div className="flex flex-col gap-1 text-left">
-                              <span className="text-[9px] font-mono text-white/40">FRIENDS</span>
+                              <span className="text-[9px] font-mono text-white/70">FRIENDS</span>
                               <span className="text-xs text-white/80">3 attending</span>
                             </div>
                           </div>
@@ -522,7 +522,7 @@ export default function ExperienceNarrative() {
                           className="w-full bg-white/[0.02] border border-white/10 p-5 rounded-2xl flex flex-col gap-2"
                         >
                           <span className="text-sm font-medium text-brand-gold">{item.title}</span>
-                          <span className="text-xs text-white/50">{item.desc}</span>
+                          <span className="text-xs text-white/70">{item.desc}</span>
                         </motion.div>
                       ))}
                     </motion.div>

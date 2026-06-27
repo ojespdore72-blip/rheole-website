@@ -84,7 +84,7 @@ export default function AskWorld() {
               className={`text-xs uppercase tracking-widest px-4 py-2.5 rounded-full border transition-all duration-300 ${
                 isActive
                   ? "border-brand-gold bg-brand-gold/10 text-brand-gold font-medium"
-                  : "border-brand-blue/10 dark:border-luxury-white/5 hover:border-brand-blue/30 dark:hover:border-luxury-white/20 text-brand-blue/60 dark:text-luxury-white/60"
+                  : "border-brand-blue/10 dark:border-luxury-white/5 hover:border-brand-blue/30 dark:hover:border-luxury-white/20 text-brand-blue/70 dark:text-luxury-white/60"
               }`}
             >
               {flow.question}
@@ -117,7 +117,7 @@ export default function AskWorld() {
             {/* Reasoning, Insight, Action */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs leading-relaxed font-sans">
               <div className="flex flex-col gap-2 border-l border-brand-blue/10 dark:border-luxury-white/10 pl-4">
-                <span className="text-[9px] uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/40 font-semibold">1. Reasoning</span>
+                <span className="text-[9px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 font-semibold">1. Reasoning</span>
                 <p className="text-brand-blue/80 dark:text-luxury-white/80">{activeFlow.steps.reasoning}</p>
               </div>
 
@@ -127,7 +127,7 @@ export default function AskWorld() {
               </div>
 
               <div className="flex flex-col gap-2 border-l border-brand-blue/10 dark:border-luxury-white/10 pl-4">
-                <span className="text-[9px] uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/40 font-semibold">3. Action</span>
+                <span className="text-[9px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 font-semibold">3. Action</span>
                 <p className="text-brand-blue/80 dark:text-luxury-white/80 font-medium">{activeFlow.steps.action}</p>
               </div>
             </div>

@@ -118,7 +118,7 @@ export default function Contact() {
               >
                 <div className="flex justify-between items-center border-b border-brand-blue/10 dark:border-white/10 pb-6">
                   <span className="text-xs uppercase tracking-[0.4em] font-mono text-brand-gold">{intention}</span>
-                  <button type="button" onClick={() => setStep(0)} className="text-xs text-brand-blue/50 dark:text-white/50 hover:text-brand-blue dark:hover:text-white uppercase tracking-widest transition-colors">Restart</button>
+                  <button type="button" onClick={() => setStep(0)} className="text-xs text-brand-blue/70 dark:text-white/70 hover:text-brand-blue dark:hover:text-white uppercase tracking-widest transition-colors">Restart</button>
                 </div>
                 
                 <h2 className="text-3xl font-light font-serif-editorial">Who are we speaking with?</h2>
@@ -131,7 +131,7 @@ export default function Contact() {
                       onChange={e => setName(e.target.value)}
                       placeholder="Your Name" 
                       required
-                      className="w-full bg-transparent border-b border-brand-blue/20 dark:border-white/20 py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-gold placeholder:text-brand-blue/30 dark:placeholder:text-white/20 transition-colors"
+                      className="w-full bg-transparent border-b border-brand-blue/20 dark:border-white/20 py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-gold placeholder:text-brand-blue/70 dark:placeholder:text-white/20 transition-colors"
                     />
                   </div>
                   <div className="relative group">
@@ -141,7 +141,7 @@ export default function Contact() {
                       onChange={e => setEmail(e.target.value)}
                       placeholder="Your Email" 
                       required
-                      className="w-full bg-transparent border-b border-brand-blue/20 dark:border-white/20 py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-gold placeholder:text-brand-blue/30 dark:placeholder:text-white/20 transition-colors"
+                      className="w-full bg-transparent border-b border-brand-blue/20 dark:border-white/20 py-4 text-xl md:text-2xl font-light focus:outline-none focus:border-brand-gold placeholder:text-brand-blue/70 dark:placeholder:text-white/20 transition-colors"
                     />
                   </div>
                 </div>
@@ -167,7 +167,7 @@ export default function Contact() {
               >
                 <div className="flex justify-between items-center border-b border-brand-blue/10 dark:border-white/10 pb-6">
                   <span className="text-xs uppercase tracking-[0.4em] font-mono text-brand-gold">Hello, {name.split(' ')[0]}</span>
-                  <button type="button" onClick={() => setStep(1)} className="text-xs text-brand-blue/50 dark:text-white/50 hover:text-brand-blue dark:hover:text-white uppercase tracking-widest transition-colors">Back</button>
+                  <button type="button" onClick={() => setStep(1)} className="text-xs text-brand-blue/70 dark:text-white/70 hover:text-brand-blue dark:hover:text-white uppercase tracking-widest transition-colors">Back</button>
                 </div>
                 
                 <h2 className="text-3xl font-light font-serif-editorial">What's on your mind?</h2>
@@ -179,7 +179,7 @@ export default function Contact() {
                     placeholder={`Write your message regarding ${intention?.toLowerCase()}...`} 
                     required
                     rows={5}
-                    className="w-full bg-transparent border border-brand-blue/10 dark:border-white/10 rounded-2xl p-6 text-lg font-light focus:outline-none focus:border-brand-gold placeholder:text-brand-blue/30 dark:placeholder:text-white/20 transition-colors resize-none bg-brand-blue/5 dark:bg-black/20"
+                    className="w-full bg-transparent border border-brand-blue/10 dark:border-white/10 rounded-2xl p-6 text-lg font-light focus:outline-none focus:border-brand-gold placeholder:text-brand-blue/70 dark:placeholder:text-white/20 transition-colors resize-none bg-brand-blue/5 dark:bg-black/20"
                   />
                 </div>
 
@@ -220,7 +220,7 @@ export default function Contact() {
                   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C5A880" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </div>
                 <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">Received.</h2>
-                <p className="text-lg font-light text-brand-blue/60 dark:text-white/60">
+                <p className="text-lg font-light text-brand-blue/70 dark:text-white/70">
                   Thank you, {name.split(' ')[0]}. Your message has been routed to the appropriate team. We will respond thoughtfully.
                 </p>
                 <button onClick={() => { setStep(0); setName(''); setEmail(''); setMessage(''); setIntention(null); setFeedback(''); }} className="mt-8 text-xs text-brand-gold uppercase tracking-widest hover:underline">

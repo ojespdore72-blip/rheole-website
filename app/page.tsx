@@ -28,6 +28,7 @@ export default function Home() {
   const introY = useTransform(scrollYProgress, [0.1, 0.25], [100, 0]);
   
   const [activeScenario, setActiveScenario] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -80,11 +81,19 @@ export default function Home() {
               />
             ))}
           </div>
-          <p className="text-xs uppercase tracking-widest text-brand-blue/50 dark:text-white/50 font-mono">Live Audio Topology</p>
+          <p className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-white/70 font-mono">Live Audio Topology</p>
         </div>
       )
     }
   ];
+
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      setActiveScenario((prev) => (prev + 1) % scenarios.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isHovered, scenarios.length]);
 
   return (
     <div ref={containerRef} className="relative w-full bg-luxury-white dark:bg-luxury-black text-brand-blue dark:text-luxury-white font-sans overflow-clip">
@@ -152,7 +161,11 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">Experience ambient intelligence.</h2>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
+          <div 
+            className="flex flex-col lg:flex-row gap-8 items-center justify-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             
             {/* Context Inputs */}
             <div className="w-full lg:w-1/3 flex flex-col gap-4">

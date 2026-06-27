@@ -7,7 +7,7 @@ import { Loader2 } from "lucide-react";
 
 const InputField = ({ label, name, type = "text", required = true, value, onChange }: any) => (
   <div className="flex flex-col gap-2">
-    <label className="text-[10px] md:text-xs uppercase tracking-widest text-brand-blue/60 dark:text-luxury-white/60 font-medium">
+    <label className="text-[10px] md:text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/60 font-medium">
       {label} {required && <span className="text-brand-gold">*</span>}
     </label>
     <input
@@ -159,7 +159,7 @@ export default function FoundingAccessPage() {
             <h1 className="text-3xl md:text-5xl font-light tracking-wide uppercase text-brand-blue dark:text-luxury-white font-serif-editorial">
               Founding Access
             </h1>
-            <p className="text-sm md:text-md uppercase tracking-widest text-brand-blue/60 dark:text-luxury-white/60 font-medium">
+            <p className="text-sm md:text-md uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/60 font-medium">
               Join the first generation of people helping shape Rheole.
             </p>
           </div>
@@ -227,14 +227,14 @@ export default function FoundingAccessPage() {
                     type="button"
                     onClick={(e) => { e.preventDefault(); handleSendOTP(e as any); }}
                     disabled={loading || resendTimer > 0}
-                    className="text-xs uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/50 hover:text-brand-blue dark:hover:text-luxury-white transition-colors py-2"
+                    className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/50 hover:text-brand-blue dark:hover:text-luxury-white transition-colors py-2"
                   >
                     {resendTimer > 0 ? `Resend Code in ${resendTimer}s` : "Resend Code"}
                   </button>
                   <button
                     type="button"
                     onClick={prevStep}
-                    className="text-xs uppercase tracking-widest text-brand-blue/40 dark:text-luxury-white/40 hover:text-brand-blue dark:hover:text-luxury-white transition-colors"
+                    className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 hover:text-brand-blue dark:hover:text-luxury-white transition-colors"
                   >
                     Change Email
                   </button>
@@ -250,7 +250,7 @@ export default function FoundingAccessPage() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs uppercase tracking-widest text-brand-blue/60 dark:text-luxury-white/60">
+                  <label className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/60">
                     How did you discover Rheole? (Optional)
                   </label>
                   <input
@@ -263,7 +263,7 @@ export default function FoundingAccessPage() {
                 </div>
 
                 <div className="flex flex-col gap-2 mt-4">
-                  <label className="text-xs uppercase tracking-widest text-brand-blue/60 dark:text-luxury-white/60">
+                  <label className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/60">
                     What excites you most about Rheole? <span className="text-brand-gold">*</span>
                   </label>
                   <textarea
@@ -281,7 +281,7 @@ export default function FoundingAccessPage() {
                   <button
                     type="button"
                     onClick={prevStep}
-                    className="w-1/3 border border-brand-blue/10 dark:border-luxury-white/10 hover:border-brand-blue/30 dark:hover:border-luxury-white/30 text-brand-blue/60 dark:text-luxury-white/60 rounded-full py-4 text-xs uppercase tracking-widest font-medium transition-all"
+                    className="w-1/3 border border-brand-blue/10 dark:border-luxury-white/10 hover:border-brand-blue/30 dark:hover:border-luxury-white/30 text-brand-blue/70 dark:text-luxury-white/60 rounded-full py-4 text-xs uppercase tracking-widest font-medium transition-all"
                   >
                     Back
                   </button>
@@ -304,15 +304,15 @@ export default function FoundingAccessPage() {
 
                 <div className="border border-brand-blue/10 dark:border-luxury-white/10 rounded-xl p-8 flex flex-col gap-6 backdrop-blur-sm bg-brand-blue/[0.02] dark:bg-luxury-white/[0.02]">
                   <div className="flex justify-between border-b border-brand-blue/5 dark:border-luxury-white/5 pb-4">
-                    <span className="text-xs uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/50">Name</span>
+                    <span className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/50">Name</span>
                     <span className="text-sm">{formData.fullName}</span>
                   </div>
                   <div className="flex justify-between border-b border-brand-blue/5 dark:border-luxury-white/5 pb-4">
-                    <span className="text-xs uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/50">Email</span>
+                    <span className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/50">Email</span>
                     <span className="text-sm">{formData.email}</span>
                   </div>
                   <div className="flex justify-between border-b border-brand-blue/5 dark:border-luxury-white/5 pb-4">
-                    <span className="text-xs uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/50">Location</span>
+                    <span className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/50">Location</span>
                     <span className="text-sm">{formData.city}, {formData.country}</span>
                   </div>
                 </div>
@@ -324,7 +324,7 @@ export default function FoundingAccessPage() {
                     type="button"
                     onClick={prevStep}
                     disabled={loading}
-                    className="w-1/3 border border-brand-blue/10 dark:border-luxury-white/10 hover:border-brand-blue/30 dark:hover:border-luxury-white/30 text-brand-blue/60 dark:text-luxury-white/60 rounded-full py-4 text-xs uppercase tracking-widest font-medium transition-all"
+                    className="w-1/3 border border-brand-blue/10 dark:border-luxury-white/10 hover:border-brand-blue/30 dark:hover:border-luxury-white/30 text-brand-blue/70 dark:text-luxury-white/60 rounded-full py-4 text-xs uppercase tracking-widest font-medium transition-all"
                   >
                     Edit
                   </button>
@@ -359,7 +359,7 @@ export default function FoundingAccessPage() {
                 <div className="w-full border border-brand-gold/30 rounded-xl p-8 flex flex-col items-center gap-4 bg-brand-gold/[0.02]">
                   <p className="text-xs uppercase tracking-widest text-brand-gold/70">Your Referral Code</p>
                   <p className="text-2xl md:text-3xl font-medium tracking-widest text-brand-gold">{referralCode}</p>
-                  <p className="text-[10px] uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/50 mt-2">
+                  <p className="text-[10px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/50 mt-2">
                     Share this code to unlock priority access tiers.
                   </p>
                 </div>

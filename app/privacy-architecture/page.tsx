@@ -81,7 +81,7 @@ export default function PrivacyArchitecture() {
         <p className="font-serif-editorial italic text-xl md:text-3xl text-brand-blue dark:text-luxury-white leading-relaxed">
           &ldquo;Privacy is not about hiding information. It is about retaining ownership of your physical presence.&rdquo;
         </p>
-        <p className="text-sm tracking-wide uppercase text-brand-blue/50 dark:text-luxury-white/50">
+        <p className="text-sm tracking-wide uppercase text-brand-blue/70 dark:text-luxury-white/50">
           Our system translates location data into dynamic mathematical indexes, ensuring that your coordinates are never permanently logged.
         </p>
       </motion.div>
@@ -137,7 +137,7 @@ export default function PrivacyArchitecture() {
           </svg>
         </div>
 
-        <p className="text-xs text-brand-blue/50 dark:text-luxury-white/40 leading-relaxed text-center max-w-xl mx-auto">
+        <p className="text-xs text-brand-blue/70 dark:text-luxury-white/40 leading-relaxed text-center max-w-xl mx-auto">
           Coordinates never leave the device in raw format. Hashing coordinates at the client level ensures your path history is cryptographically decoupled from your profile identity before interacting with spatial routing relays.
         </p>
       </motion.div>

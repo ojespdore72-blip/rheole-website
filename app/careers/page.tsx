@@ -14,7 +14,7 @@ const ChallengeWidget = ({ title, desc, visual }: any) => (
     </div>
     <div>
       <h3 className="text-xl font-medium text-brand-blue dark:text-white mb-2">{title}</h3>
-      <p className="text-sm font-light text-brand-blue/60 dark:text-white/60 leading-relaxed">{desc}</p>
+      <p className="text-sm font-light text-brand-blue/70 dark:text-white/70 leading-relaxed">{desc}</p>
     </div>
   </div>
 );
@@ -55,7 +55,7 @@ export default function Careers() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-lg md:text-2xl font-light text-brand-blue/60 dark:text-white/60 max-w-2xl leading-relaxed"
+            className="text-lg md:text-2xl font-light text-brand-blue/70 dark:text-white/70 max-w-2xl leading-relaxed"
           >
             We don't need more social feeds. We need engineers, designers, and thinkers who want to make physical reality legible, intelligent, and deeply human again.
           </motion.p>
@@ -89,7 +89,7 @@ export default function Careers() {
                 <img src="/web_image_1.png" alt="Culture" className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40 hover:mix-blend-normal hover:opacity-100 transition-all duration-1000" />
                 <div className="absolute inset-0 bg-gradient-to-t from-luxury-white dark:from-black via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-8 left-8">
-                  <p className="text-xs uppercase tracking-widest font-mono text-brand-blue/50 dark:text-white/50">Bengaluru Lab</p>
+                  <p className="text-xs uppercase tracking-widest font-mono text-brand-blue/70 dark:text-white/70">Bengaluru Lab</p>
                 </div>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function Careers() {
           <div className="text-center max-w-3xl mx-auto flex flex-col gap-6">
             <span className="text-xs uppercase tracking-[0.4em] font-mono text-brand-gold">The Work</span>
             <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">Problems worth solving.</h2>
-            <p className="text-lg font-light text-brand-blue/60 dark:text-white/60">We are not optimizing ad clicks. We are solving core infrastructure challenges in spatial computing.</p>
+            <p className="text-lg font-light text-brand-blue/70 dark:text-white/70">We are not optimizing ad clicks. We are solving core infrastructure challenges in spatial computing.</p>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-8">
@@ -148,7 +148,7 @@ export default function Careers() {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     className="w-24 h-24 rounded-3xl bg-brand-blue/5 dark:bg-white/10 backdrop-blur-md border border-brand-blue/10 dark:border-white/20 shadow-2xl flex items-center justify-center cursor-pointer"
                   >
-                    <span className="text-xs font-mono text-brand-blue/50 dark:text-white/50">Hover</span>
+                    <span className="text-xs font-mono text-brand-blue/70 dark:text-white/70">Hover</span>
                   </motion.div>
                 </div>
               }
@@ -163,7 +163,7 @@ export default function Careers() {
           <div className="text-center max-w-3xl mx-auto flex flex-col gap-6">
             <span className="text-xs uppercase tracking-[0.4em] font-mono text-brand-gold">Open Roles</span>
             <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">Join the team.</h2>
-            <p className="text-lg font-light text-brand-blue/60 dark:text-white/60">We are intentionally building a small, exceptional team. If you are world-class at what you do, we want to hear from you.</p>
+            <p className="text-lg font-light text-brand-blue/70 dark:text-white/70">We are intentionally building a small, exceptional team. If you are world-class at what you do, we want to hear from you.</p>
           </div>
 
           <div className="flex flex-col gap-6">
@@ -192,10 +192,10 @@ export default function Careers() {
                   <h3 className="text-xl font-medium text-brand-blue dark:text-white uppercase tracking-wider group-hover:text-brand-gold transition-colors">
                     {role.title}
                   </h3>
-                  <p className="text-sm font-light text-brand-blue/60 dark:text-white/60 max-w-xl">
+                  <p className="text-sm font-light text-brand-blue/70 dark:text-white/70 max-w-xl">
                     {role.desc}
                   </p>
-                  <span className="text-[10px] uppercase tracking-widest font-mono text-brand-blue/40 dark:text-white/40 mt-2">
+                  <span className="text-[10px] uppercase tracking-widest font-mono text-brand-blue/70 dark:text-white/70 mt-2">
                     Location: {role.location}
                   </span>
                 </div>
@@ -210,7 +210,7 @@ export default function Careers() {
           </div>
 
           <div className="mt-16 text-center">
-            <p className="text-sm text-brand-blue/40 dark:text-white/40 italic">
+            <p className="text-sm text-brand-blue/70 dark:text-white/70 italic">
               Don't see a role that fits? We hire for talent, curiosity, and craftsmanship. <a href="mailto:founders@rheole.com" className="text-brand-gold hover:underline">Email the founders.</a>
             </p>
           </div>

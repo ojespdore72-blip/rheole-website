@@ -99,12 +99,12 @@ export default function RoutingDemo() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs leading-relaxed">
               <div className="flex flex-col gap-1.5 border-l border-brand-blue/10 dark:border-luxury-white/10 pl-4">
-                <span className="text-[8px] uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/40 font-semibold">Active State Signal</span>
+                <span className="text-[8px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 font-semibold">Active State Signal</span>
                 <p className={`font-semibold uppercase tracking-wider ${active.statusColor}`}>{active.status}</p>
               </div>
 
               <div className="flex flex-col gap-1.5 border-l border-brand-blue/10 dark:border-luxury-white/10 pl-4">
-                <span className="text-[8px] uppercase tracking-widest text-brand-blue/50 dark:text-luxury-white/40 font-semibold">Routing Engine Modification</span>
+                <span className="text-[8px] uppercase tracking-widest text-brand-blue/70 dark:text-luxury-white/40 font-semibold">Routing Engine Modification</span>
                 <p className="text-brand-blue/80 dark:text-luxury-white/80">{active.effect}</p>
               </div>
             </div>

@@ -36,7 +36,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             <h2 className="text-2xl font-serif-editorial uppercase tracking-widest text-brand-blue dark:text-luxury-white">
               Something went quiet.
             </h2>
-            <p className="text-xs text-brand-blue/60 dark:text-luxury-white/60 leading-relaxed font-sans">
+            <p className="text-xs text-brand-blue/70 dark:text-luxury-white/60 leading-relaxed font-sans">
               The page connection was temporarily disrupted. We have logged this occurrence and are working to restore alignment.
             </p>
             <button
