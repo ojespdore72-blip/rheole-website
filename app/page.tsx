@@ -146,12 +146,12 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl lg:text-7xl font-light leading-tight font-serif-editorial text-brand-blue dark:text-white">
             A hyperlocal application made exclusively for the people of Bengaluru.
           </h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
-            <a href="#" className="hover:scale-105 transition-transform duration-300" aria-label="Get it on Google Play">
-              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" className="h-16 w-auto" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-16 mt-12">
+            <a href="#" className="text-lg font-medium text-brand-blue/80 dark:text-white/80 hover:text-[#b08d57] active:text-[#b08d57] dark:hover:text-[#b08d57] dark:active:text-[#b08d57] transition-colors duration-300" aria-label="Get it on Google Play">
+              Get it on Google Play
             </a>
-            <a href="#" className="hover:scale-105 transition-transform duration-300" aria-label="Download on the App Store">
-              <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1276560000&amp;h=7e7b68bf1aa5ce96c8d80fb8d026f73e" alt="Download on the App Store" className="h-12 w-auto ml-2" />
+            <a href="#" className="text-lg font-medium text-brand-blue/80 dark:text-white/80 hover:text-[#b08d57] active:text-[#b08d57] dark:hover:text-[#b08d57] dark:active:text-[#b08d57] transition-colors duration-300" aria-label="Download on the App Store">
+              Download on the App Store
             </a>
           </div>
         </div>
