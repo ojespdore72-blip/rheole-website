@@ -23,7 +23,8 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
     {
       title: "Company",
       links: [
-        { name: "About Manifesto", path: "/manifesto" },
+        { name: "About", path: "/about" },
+        { name: "Manifesto", path: "/manifesto" },
         { name: "Intelligence", path: "/intelligence" },
         { name: "Security", path: "/security" },
         { name: "Careers", path: "/careers" },
@@ -65,11 +66,11 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.1 }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 pointer-events-none"
+      className="fixed top-0 left-0 right-0 z-[999] transition-all duration-700 pointer-events-none"
     >
       <motion.div 
         layout
-        className="pointer-events-auto flex items-center justify-between w-full px-6 md:px-12 py-4 spatial-glass transition-spring border-b border-brand-blue/5 dark:border-white/5 relative"
+        className="pointer-events-auto flex items-center justify-between w-full px-6 md:px-12 py-4 spatial-glass transition-spring border-b border-brand-blue/5 dark:border-white/5 relative z-[100]"
         style={{
           boxShadow: scrolled ? "0 10px 30px -10px rgba(0,0,0,0.1)" : "none",
         }}
@@ -123,11 +124,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
             <User size={20} />
           </Link>
 
-          <div 
-            className="relative flex items-center h-full"
-            onMouseEnter={() => setMenuOpen(true)}
-            onMouseLeave={() => setMenuOpen(false)}
-          >
+          <div className="relative flex items-center h-full">
             <button 
               onClick={() => setMenuOpen(!menuOpen)}
               className="text-brand-blue dark:text-luxury-white hover:opacity-70 transition-opacity z-50 relative p-1"
@@ -143,10 +140,10 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  className="absolute top-full right-0 pt-4 z-50"
+                  className="fixed inset-0 top-[70px] md:absolute md:inset-auto md:top-full md:right-0 md:pt-4 z-50"
                 >
-                  <div className="w-screen max-w-[600px] pointer-events-auto bg-white/95 dark:bg-black/95 backdrop-blur-xl border border-brand-blue/10 dark:border-white/10 rounded-2xl p-8 shadow-2xl overflow-hidden">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                  <div className="w-full h-[calc(100vh-70px)] md:w-screen md:h-auto md:max-w-[600px] pointer-events-auto bg-luxury-white/95 dark:bg-luxury-black/95 backdrop-blur-xl border-t md:border border-brand-blue/10 dark:border-white/10 md:rounded-2xl p-6 md:p-8 shadow-2xl overflow-y-auto md:overflow-hidden">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left pb-24 md:pb-0">
                       {menuCategories.map((category) => (
                         <div key={category.title}>
                           <h3 className="text-sm font-semibold tracking-widest uppercase text-brand-gold mb-4">

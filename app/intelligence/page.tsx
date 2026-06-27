@@ -409,7 +409,7 @@ const Experiment5 = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen flex items-center justify-center p-8 relative bg-gradient-to-br from-[#F5F2EC] via-[#FDFBF7] to-[#EAE4D9] dark:from-[#110E0A] dark:via-[#1A1510] dark:to-[#0D0A07] overflow-hidden">
+    <div className="w-full min-h-[100dvh] md:h-screen flex items-center justify-center pt-24 pb-12 px-6 md:p-8 relative bg-gradient-to-br from-[#F5F2EC] via-[#FDFBF7] to-[#EAE4D9] dark:from-[#110E0A] dark:via-[#1A1510] dark:to-[#0D0A07] overflow-hidden">
       
       {/* Premium Skin Texture Live Background Overlay - reduced opacity */}
       <div 
@@ -440,7 +440,7 @@ const Experiment5 = () => {
           </div>
         </div>
 
-        <div className="flex-1 relative h-[300px] md:h-[400px] w-full border border-brand-blue/10 dark:border-white/10 rounded-full flex items-center justify-center overflow-hidden z-10 shadow-inner bg-white/20 dark:bg-black/20 backdrop-blur-sm">
+        <div className="flex-1 relative w-[280px] h-[280px] md:h-[400px] md:w-full max-w-full border border-brand-blue/10 dark:border-white/10 rounded-full flex items-center justify-center overflow-hidden z-10 shadow-inner bg-white/20 dark:bg-black/20 backdrop-blur-sm mx-auto">
            <motion.div 
              animate={{ width: `${radius}%`, height: `${radius}%` }}
              transition={{ type: "spring", bounce: 0.2 }}

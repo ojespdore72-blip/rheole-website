@@ -101,7 +101,7 @@ const DataMovesSection = () => {
         <h2 className="text-3xl md:text-5xl font-serif-editorial text-brand-blue dark:text-luxury-white">How Your Data Moves</h2>
       </div>
 
-      <div className="w-full max-w-5xl h-[500px] md:h-[600px] bg-[#020205] rounded-[40px] border border-white/10 overflow-hidden relative shadow-2xl">
+      <div className="-mx-6 w-[calc(100%+3rem)] md:mx-0 md:w-full max-w-5xl h-[500px] md:h-[600px] bg-[#020205] md:rounded-[40px] border-y md:border border-white/10 overflow-hidden relative shadow-2xl">
         {/* Timeline Scrub */}
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/80 to-transparent z-30 flex flex-col justify-end px-8 pb-6">
           <div className="flex justify-between w-full relative mb-2">
@@ -256,6 +256,7 @@ const TrustPrinciplesSection = () => {
             key={i}
             onHoverStart={() => setHoveredIndex(i)}
             onHoverEnd={() => setHoveredIndex(null)}
+            onClick={() => setHoveredIndex(hoveredIndex === i ? null : i)}
             className="w-full bg-white/40 dark:bg-black/40 backdrop-blur-md border border-brand-blue/5 dark:border-white/5 rounded-[24px] overflow-hidden transition-all duration-500 cursor-pointer shadow-sm hover:shadow-xl dark:shadow-none"
             animate={{ height: hoveredIndex === i ? 'auto' : '88px' }}
           >
@@ -287,7 +288,7 @@ const ControlCentreSection = ({ privacyLevel, setPrivacyLevel }: { privacyLevel:
     <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 py-20">
         {/* 3. Identity Protection Controls (PRESERVED) */}
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center border-t border-brand-blue/10 dark:border-white/10 pt-20">
-          <div className="w-full lg:w-1/2 h-[400px] rounded-[40px] border border-brand-blue/10 dark:border-white/10 relative overflow-hidden flex flex-col">
+          <div className="w-full lg:w-1/2 min-h-[500px] md:min-h-[400px] rounded-[40px] border border-brand-blue/10 dark:border-white/10 relative overflow-hidden flex flex-col">
             {/* Top Bar with Toggle */}
             <div className="w-full p-6 border-b border-brand-blue/10 dark:border-white/10 flex items-center justify-between bg-luxury-white/50 dark:bg-black/50 backdrop-blur z-20">
               <span className="text-sm font-medium tracking-wide text-brand-blue dark:text-white">Protect privacy</span>

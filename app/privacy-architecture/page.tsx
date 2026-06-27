@@ -92,7 +92,7 @@ export default function PrivacyArchitecture() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.4 }}
-        className="w-full border border-brand-blue/10 dark:border-luxury-white/10 rounded-2xl frosted-glass p-8 flex flex-col gap-8 relative overflow-hidden shadow-xl"
+        className="-mx-6 w-[calc(100%+3rem)] md:mx-0 md:w-full border-y md:border border-brand-blue/10 dark:border-luxury-white/10 rounded-none md:rounded-2xl frosted-glass p-8 flex flex-col gap-8 relative overflow-hidden shadow-xl"
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-gold/10 to-transparent blur-xl pointer-events-none" />
         
