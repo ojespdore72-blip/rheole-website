@@ -21,7 +21,7 @@ export default function InteractiveEcosystemDemo() {
   const activeFeatureObj = features.find(f => f.id === activeFeature);
 
   return (
-    <div className="relative w-full h-[750px] md:h-[800px] rounded-none md:rounded-[40px] overflow-hidden flex items-center justify-center bg-[#03030A] shadow-[inset_0_0_100px_rgba(0,0,0,0.5)] border-y md:border border-brand-blue/10">
+    <div className="relative w-full min-h-[100dvh] bg-[#080808] flex flex-col items-center justify-center overflow-hidden pt-20 pb-20">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,100,224,0.15),transparent_70%)]" />
       
       {/* Header & Controls */}
@@ -189,14 +189,13 @@ function FloatingTags({ onSelect }: { onSelect: (id: string) => void }) {
               x: mvs[i].x, 
               y: mvs[i].y, 
               rotate: mvs[i].r,
-              backgroundColor: "#ffffff"
             }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="absolute left-1/2 top-1/2 -ml-[28px] -mt-[28px] w-14 h-14 rounded-full border border-[#0000FF]/20 shadow-[0_0_30px_rgba(0,0,255,0.15)] hover:scale-110 transition-transform hover:z-50 cursor-pointer flex items-center justify-center"
+            className="absolute left-1/2 top-1/2 -ml-[28px] -mt-[28px] w-14 h-14 rounded-full border border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.05)] backdrop-blur-md hover:border-[rgba(255,255,255,0.35)] hover:bg-[rgba(255,255,255,0.1)] hover:scale-110 transition-all hover:z-50 cursor-pointer flex items-center justify-center"
           >
             <div className="flex items-center justify-center pointer-events-none">
-              <Icon size={24} className="text-[#0000FF]" />
+              <Icon size={24} className="text-[#F2F2F0]" />
             </div>
           </motion.button>
         );

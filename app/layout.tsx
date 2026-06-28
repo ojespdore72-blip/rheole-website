@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CookieConsent from "@/components/CookieConsent";
 import ClientMotionConfig from "@/components/ClientMotionConfig";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,12 +17,12 @@ const inter = Inter({
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "Rheole",
-  description: "The intelligence layer between people and the physical world. Re-imagining local communities, real-world events, and spatial discovery.",
+  title: "Rheole | The pulse of your city.",
+  description: "The intelligence layer between people and the physical world.",
   keywords: "local intelligence, spatial intelligence, communities, discovery, networking, events",
   openGraph: {
     title: "Rheole",
@@ -53,10 +53,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${playfair.variable} h-full antialiased scroll-smooth`}
+      className={`${inter.variable} ${playfair.variable} h-full antialiased scroll-smooth dark`}
     >
-      <body className="min-h-full flex flex-col bg-luxury-white dark:bg-luxury-black text-brand-blue dark:text-luxury-white selection:bg-brand-gold/30 selection:text-brand-blue dark:selection:text-luxury-white">
-        <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" disableTransitionOnChange>
+      <body className="min-h-full flex flex-col bg-[#080808] text-[#F2F2F0] selection:bg-[#4F6EF7]/30 selection:text-[#F2F2F0] animate-in fade-in duration-1000">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -66,7 +65,7 @@ export default function RootLayout({
               "name": "Rheole",
               "url": "https://rheole.com",
               "logo": "https://rheole.com/logo.png",
-              "description": "The intelligence layer between people and the physical world. Re-imagining local communities, real-world events, and spatial discovery.",
+              "description": "The intelligence layer between people and the physical world.",
               "sameAs": [
                 "https://x.com/rheole",
                 "https://github.com/rheole"
@@ -74,8 +73,14 @@ export default function RootLayout({
             })
           }}
         />
+        
+        {/* Subtle top gradient glow */}
+        <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#4F6EF7] rounded-full blur-[120px] opacity-[0.04] pointer-events-none -translate-y-1/2 z-0" />
+        
+        <CustomCursor />
+        
         <Navbar isGlobal />
-        <main className="flex-grow flex flex-col w-full">
+        <main className="flex-grow flex flex-col w-full relative z-10">
           <ClientMotionConfig>
             <ErrorBoundary>
               {children}
@@ -84,7 +89,6 @@ export default function RootLayout({
         </main>
         <Footer isGlobal />
         <CookieConsent />
-        </ThemeProvider>
       </body>
     </html>
   );

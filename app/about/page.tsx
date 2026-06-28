@@ -269,9 +269,9 @@ export default function About() {
         {/* CENTER COLUMN: Editorial Content */}
         <main ref={containerRef} className="w-full lg:w-3/5 flex flex-col px-6 md:px-16 pt-32 pb-40 gap-32 md:gap-48 relative z-10">
           
-          <div className="flex flex-col gap-6 text-center lg:text-left mb-16 lg:mb-32 pt-16">
+          <div className="flex flex-col gap-6 text-left mb-16 lg:mb-32 pt-16">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-light font-serif-editorial tracking-tight">
-              The Story of <br/><span className="text-brand-gold">Intelligence.</span>
+              The Story of <br/><span className="text-brand-gold ml-[0.12em]">Intelligence.</span>
             </h1>
           </div>
 

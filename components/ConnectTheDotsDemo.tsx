@@ -212,9 +212,9 @@ export default function ConnectTheDotsDemo() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 2, duration: 1 }}
-              className="absolute top-12 left-6 md:top-8 md:left-8 text-black text-sm md:text-base font-mono tracking-[0.3em] uppercase z-30"
+              className="absolute top-12 left-6 md:top-8 md:left-8 text-white text-sm md:text-base font-mono tracking-[0.3em] uppercase z-30"
             >
-              Intelligence Activated
+              Contextual Intelligence
             </motion.p>
 
             {/* Logo in top center, scaled up 2x */}

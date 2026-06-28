@@ -1,293 +1,389 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import InteractiveHeroCanvas from "@/components/InteractiveHeroCanvas";
-import InteractiveCard from "@/components/InteractiveCard";
-import MagneticButton from "@/components/MagneticButton";
+import ScrollReveal, { RevealChild } from "@/components/ScrollReveal";
 import LivingImage from "@/components/LivingImage";
-import SocialChannels from "@/components/SocialChannels";
-import RheoleLogo from "@/components/logo";
 
-// Dummy Editorial Photos (can be replaced with real assets later)
+// Dummy Editorial Photos
 const photos = [
   "/web_image_1.png",
   "/web_image_3.jpg",
   "/web_image_4.jpg"
 ];
 
-export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef });
-  
-  // Parallax and Opacity transforms
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.9]);
-  const introOpacity = useTransform(scrollYProgress, [0.1, 0.25, 0.35], [0, 1, 0]);
-  const introY = useTransform(scrollYProgress, [0.1, 0.25], [100, 0]);
-  
-  const [activeScenario, setActiveScenario] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+// Canvas Dot Grid Component for ambient background
+function AmbientDotGrid() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.08]">
+      <motion.div 
+        animate={{ 
+          x: ["0%", "-5%", "0%"],
+          y: ["0%", "5%", "0%"]
+        }}
+        transition={{ 
+          repeat: Infinity, 
+          duration: 60, 
+          ease: "linear" 
+        }}
+        className="w-[200vw] h-[200vw] absolute -top-[50vw] -left-[50vw]"
+        style={{
+          backgroundImage: "radial-gradient(#F2F2F0 1px, transparent 1px)",
+          backgroundSize: "64px 64px"
+        }}
+      />
+    </div>
+  );
+}
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ 
-        x: (e.clientX / window.innerWidth - 0.5) * 30, 
-        y: (e.clientY / window.innerHeight - 0.5) * 30 
-      });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+// Hero Component
+function HeroSection() {
+  const words = "The pulse of your city.".split(" ");
+  
+  return (
+    <section className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden pt-20 pb-24">
+      <AmbientDotGrid />
+      
+      {/* Main content shifted slightly above true center */}
+      <div className="relative z-10 flex flex-col items-center text-center max-w-[1100px] px-6 mt-[-5dvh]">
+        
+        {/* Eyebrow */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex items-center gap-4 mb-8"
+        >
+          <div className="w-8 h-[2px] bg-[#4F6EF7]/50" />
+          <span className="section-eyebrow text-[#4F6EF7]">BENGALURU · HYPERLOCAL INTELLIGENCE</span>
+          <div className="w-8 h-[2px] bg-[#4F6EF7]/50" />
+        </motion.div>
 
+        {/* Headline */}
+        <h1 className="flex flex-wrap justify-center overflow-hidden mb-6">
+          {words.map((word, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.8, 
+                ease: [0.16, 1, 0.3, 1], 
+                delay: 0.4 + (i * 0.08) 
+              }}
+              className="text-[clamp(56px,8vw,96px)] font-serif-editorial leading-[1.05] tracking-tight font-black text-[#F2F2F0] mr-[clamp(12px,2vw,24px)]"
+            >
+              {word}
+            </motion.span>
+          ))}
+        </h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="text-body-editorial max-w-[600px] mb-12"
+        >
+          The intelligence layer between people and the physical world. Re-imagining local communities and spatial discovery.
+        </motion.p>
+
+        {/* App Badges & Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="flex flex-col sm:flex-row items-center gap-8 mb-12"
+        >
+          <a href="#" className="flex items-center justify-center gap-3 w-[160px] py-3 rounded-xl border border-[rgba(255,255,255,0.15)] bg-transparent opacity-60 hover:opacity-100 transition-opacity duration-300 interactive">
+            <span className="text-[13px] tracking-wide font-medium text-[#F2F2F0]">App Store</span>
+          </a>
+
+          {/* Scroll Indicator between buttons */}
+          <div className="w-[1px] h-12 bg-gradient-to-b from-[rgba(255,255,255,0.0)] via-[#6A6A6A] to-[rgba(255,255,255,0.0)] relative overflow-hidden hidden sm:block">
+            <motion.div 
+              animate={{ top: ['-100%', '100%'] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+              className="absolute left-0 w-full h-1/2 bg-[#F2F2F0]"
+            />
+          </div>
+
+          <a href="#" className="flex items-center justify-center gap-3 w-[160px] py-3 rounded-xl border border-[rgba(255,255,255,0.15)] bg-transparent opacity-60 hover:opacity-100 transition-opacity duration-300 interactive">
+            <span className="text-[13px] tracking-wide font-medium text-[#F2F2F0]">Google Play</span>
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Live Intelligence Demo Section
+function LiveDemoSection() {
   const scenarios = [
     {
-      id: "visit",
-      prompt: "I'm visiting Bengaluru for the first time.",
-      response: "Analyzing local density... Found 3 active tech hubs, 12 live acoustic events, and an emerging startup mixer near Indiranagar.",
-      visual: (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 20, ease: "linear" }} className="absolute w-[200px] h-[200px] border border-brand-gold/20 rounded-full border-dashed" />
-          <motion.div animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 30, ease: "linear" }} className="absolute w-[300px] h-[300px] border border-brand-blue/30 dark:border-white/10 rounded-full" />
-          <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 4 }} className="w-4 h-4 bg-brand-gold rounded-full shadow-[0_0_20px_#C5A880]" />
-          {/* Data nodes */}
-          <div className="absolute top-[20%] right-[20%] p-2 bg-black/80 backdrop-blur border border-white/10 rounded-xl shadow-2xl">
-            <p className="text-[10px] text-white/80 font-mono">Indiranagar Mixer</p>
-            <p className="text-[8px] text-brand-gold mt-1">120+ Active</p>
-          </div>
-          <div className="absolute bottom-[30%] left-[10%] p-2 bg-black/80 backdrop-blur border border-white/10 rounded-xl shadow-2xl">
-            <p className="text-[10px] text-white/80 font-mono">Tech Hub</p>
-            <p className="text-[8px] text-green-400 mt-1">High Density</p>
-          </div>
-        </div>
-      )
+      query: "Find me an emerging startup mixer in Indiranagar tonight",
+      responses: [
+        { status: "Active Now", title: "Indiranagar Mixer", desc: "120+ attendees in the last hour. High density of startup founders." },
+        { status: "Trending", title: "Tech Hub 100ft Rd", desc: "Acoustic event starting in 30 mins. Moderate noise level expected." }
+      ]
     },
     {
-      id: "hungry",
-      prompt: "Find somewhere peaceful to eat.",
-      response: "Filtering for low ambient noise... 'The Courtyard' currently has 30% occupancy and matches your aesthetic preferences.",
-      visual: (
-        <div className="relative w-full h-full flex flex-col items-center justify-center p-8 gap-4">
-          <div className="w-full flex items-end h-32 gap-2 border-b border-brand-blue/20 dark:border-white/10 pb-2">
-            {[40, 70, 30, 80, 20, 50, 10].map((h, i) => (
-              <motion.div 
-                key={i}
-                initial={{ height: 0 }}
-                animate={{ height: `${h}%` }}
-                transition={{ duration: 1, delay: i * 0.1 }}
-                className={`flex-1 rounded-t-sm ${h > 50 ? 'bg-red-400/50' : h > 30 ? 'bg-brand-gold/50' : 'bg-green-400/50'}`}
-              />
-            ))}
-          </div>
-          <p className="text-xs uppercase tracking-widest text-brand-blue/70 dark:text-white/70 font-mono">Live Audio Topology</p>
-        </div>
-      )
+      query: "Where is the best quiet spot for deep work near Koramangala?",
+      responses: [
+        { status: "Low Noise", title: "The Courtyard Cafe", desc: "Current noise level: 45dB. 30% capacity, high probability of finding seating." },
+        { status: "Moderate", title: "Third Wave Coffee", desc: "Steady hum. Good for focus, but seating is limited right now." }
+      ]
+    },
+    {
+      query: "Are there any live acoustic music events happening right now?",
+      responses: [
+        { status: "Live Now", title: "Blue Frog Acoustic", desc: "Live jazz trio currently playing. Crowd sentiment is highly positive." },
+        { status: "Starting Soon", title: "The Piano Man", desc: "Next set begins in 15 minutes. Best to grab a table now." }
+      ]
+    },
+    {
+      query: "Show me the highest density of designers right now.",
+      responses: [
+        { status: "High Density", title: "HSR Layout Sector 2", desc: "Unusual concentration of creative agency check-ins detected." },
+        { status: "Trending", title: "Koramangala Social", desc: "Design week after-party gathering momentum. High energy." }
+      ]
+    },
+    {
+      query: "Where can I find a late-night street food cluster with low wait times?",
+      responses: [
+        { status: "Active Now", title: "VV Puram Food Street", desc: "Peak hours are over. Wait times down by 40%. High activity." },
+        { status: "Moderate Wait", title: "Mosque Road", desc: "Still crowded, but movement is fast. Famous rolls highly rated tonight." }
+      ]
     }
   ];
 
+  const [activeScenarioIdx, setActiveScenarioIdx] = useState(0);
+  const [displayedQuery, setDisplayedQuery] = useState("");
+  const [messagesShown, setMessagesShown] = useState(0);
+
   useEffect(() => {
-    if (isHovered) return;
-    const interval = setInterval(() => {
-      setActiveScenario((prev) => (prev + 1) % scenarios.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isHovered, scenarios.length]);
+    let currentQuery = scenarios[activeScenarioIdx].query;
+    let charIndex = 0;
+    
+    // Reset state for new scenario
+    setDisplayedQuery("");
+    setMessagesShown(0);
+
+    // 1. Typewriter effect for query
+    const typeInterval = setInterval(() => {
+      if (charIndex < currentQuery.length) {
+        setDisplayedQuery(currentQuery.substring(0, charIndex + 1));
+        charIndex++;
+      } else {
+        clearInterval(typeInterval);
+        
+        // 2. Show first response after typing
+        setTimeout(() => setMessagesShown(1), 600);
+        // 3. Show second response
+        setTimeout(() => setMessagesShown(2), 1400);
+        // 4. Wait, then go to next scenario
+        setTimeout(() => {
+          setMessagesShown(0); // fade out responses
+          setTimeout(() => {
+            setActiveScenarioIdx((prev) => (prev + 1) % scenarios.length);
+          }, 600);
+        }, 6000);
+      }
+    }, 40); // typing speed
+
+    return () => {
+      clearInterval(typeInterval);
+    };
+  }, [activeScenarioIdx]); // Only re-run when scenario changes
+
+  const activeScenario = scenarios[activeScenarioIdx];
 
   return (
-    <div ref={containerRef} className="relative w-full bg-luxury-white dark:bg-luxury-black text-brand-blue dark:text-luxury-white font-sans overflow-clip">
-
-      
-      {/* 1. HERO - Living City Visualization */}
-      <motion.section 
-        style={{ opacity: heroOpacity, scale: heroScale }}
-        className="fixed inset-0 z-0 flex flex-col items-center justify-center pointer-events-none"
-      >
-        <motion.div 
-          animate={{ x: mousePos.x, y: mousePos.y }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          {/* Spatial OS Glows */}
-          <div className="absolute w-[80vw] h-[80vw] md:w-[50vw] md:h-[50vw] bg-brand-gold/10 dark:bg-brand-gold/5 rounded-full blur-[100px] md:blur-[150px] animate-pulse-slow" />
-          <div className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] bg-brand-indigo/10 dark:bg-brand-indigo/5 rounded-full blur-[120px]" style={{ animation: 'pulse-slow 15s infinite reverse' }} />
-          
-          <InteractiveHeroCanvas />
-        </motion.div>
-
-        <div className="relative z-10 flex flex-col items-center gap-8 text-center px-4">
-          <motion.div 
-            initial={{ scale: 0.9, filter: "blur(10px)", opacity: 0 }}
-            animate={{ scale: 1, filter: "blur(0px)", opacity: 1 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <RheoleLogo className="h-20 w-20 md:h-28 md:w-28 drop-shadow-[0_0_40px_rgba(197,168,128,0.3)]" />
-          </motion.div>
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 1.2 }}
-            className="text-5xl sm:text-6xl md:text-8xl lg:text-[100px] font-light font-serif-editorial tracking-tight leading-[1.1] md:leading-[1]"
-          >
-            The pulse of<br/>your city.
-          </motion.h1>
-        </div>
-      </motion.section>
-
-      {/* Spacer for Hero */}
-      <div className="h-[120vh]" />
-
-      {/* 2. THE CORE PRINCIPLE */}
-      <motion.section 
-        style={{ opacity: introOpacity, y: introY }}
-        className="relative z-10 min-h-screen flex items-center justify-center px-6 bg-luxury-white dark:bg-luxury-black"
-      >
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-light leading-tight font-serif-editorial text-brand-blue dark:text-white">
-            A hyperlocal application made exclusively for the people of Bengaluru.
-          </h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-16 mt-12">
-            <a href="#" className="text-lg font-medium text-brand-blue/80 dark:text-white/80 hover:text-[#b08d57] active:text-[#b08d57] dark:hover:text-[#b08d57] dark:active:text-[#b08d57] transition-colors duration-300" aria-label="Get it on Google Play">
-              Get it on Google Play
-            </a>
-            <a href="#" className="text-lg font-medium text-brand-blue/80 dark:text-white/80 hover:text-[#b08d57] active:text-[#b08d57] dark:hover:text-[#b08d57] dark:active:text-[#b08d57] transition-colors duration-300" aria-label="Download on the App Store">
-              Download on the App Store
-            </a>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* 3. INTERACTIVE SPATIAL DEMO (VisionOS Style) */}
-      <section className="relative z-10 min-h-[150vh] py-32 px-4 md:px-12 bg-[#020205] text-white">
-        <div className="max-w-7xl mx-auto flex flex-col gap-24">
-          
-          <div className="text-center max-w-2xl mx-auto">
-            <h3 className="text-xs uppercase tracking-[0.3em] font-mono text-brand-gold mb-6">Live Demonstration</h3>
-            <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">Experience ambient intelligence.</h2>
-          </div>
-
-          <div 
-            className="flex flex-col lg:flex-row gap-8 items-center justify-center"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            
-            {/* Context Inputs */}
-            <div className="w-full lg:w-1/3 flex flex-col gap-4">
-              {scenarios.map((scenario, idx) => (
-                <MagneticButton key={scenario.id} className="w-full text-left">
-                  <button
-                    onClick={() => setActiveScenario(idx)}
-                    className={`w-full text-left p-6 rounded-3xl transition-spring backdrop-blur-xl border ${
-                      activeScenario === idx 
-                        ? "bg-white/10 border-brand-gold/40 shadow-[0_20px_40px_-10px_rgba(197,168,128,0.15)] scale-[1.02]" 
-                        : "bg-transparent border-white/5 hover:bg-white/5"
-                    }`}
-                  >
-                    <p className="text-lg font-medium text-white leading-relaxed">
-                      "{scenario.prompt}"
-                    </p>
-                  </button>
-                </MagneticButton>
-              ))}
-            </div>
-
-            {/* Spatial Output Interface */}
-            <InteractiveCard className="w-full lg:w-2/3 h-[500px] md:h-[600px] spatial-glass border border-white/20 dark:border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] dark:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] overflow-hidden group">
-              {/* Glass Glare */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-50 pointer-events-none z-20 mix-blend-overlay" />
-              
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeScenario}
-                  initial={{ opacity: 0, filter: "blur(20px)", scale: 0.95 }}
-                  animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-                  exit={{ opacity: 0, filter: "blur(20px)", scale: 1.05 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute inset-0 flex flex-col z-10"
-                >
-                  {/* Visualizer Area */}
-                  <div className="flex-1 relative overflow-hidden bg-gradient-to-b from-transparent to-white/5">
-                    {scenarios[activeScenario].visual}
-                  </div>
-                  
-                  {/* AI Response Area */}
-                  <div className="p-8 border-t border-white/10 bg-black/40 backdrop-blur-3xl min-h-[160px] flex items-center">
-                    <p className="text-lg md:text-xl font-light leading-relaxed text-white">
-                      <span className="inline-block w-2 h-2 rounded-full bg-brand-gold animate-pulse mr-4" />
-                      {scenarios[activeScenario].response}
-                    </p>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </InteractiveCard>
-            
-          </div>
-        </div>
-      </section>
-
-      {/* 4. EDITORIAL PHOTOGRAPHY / LIVING CITY */}
-      <section className="relative z-10 py-32 overflow-hidden bg-brand-blue text-luxury-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-16">
-          <h2 className="text-3xl md:text-5xl font-light font-serif-editorial">
-            Rooted in reality.
-          </h2>
-          <p className="mt-6 text-lg font-light text-white/70 max-w-xl">
-            We are not building an escape to the metaverse. We are building the tools to fall back in love with your physical city.
-          </p>
-        </div>
+    <section className="w-full py-[160px] px-6 flex justify-center">
+      <ScrollReveal className="w-full max-w-[1100px] flex flex-col gap-8">
         
-        {/* Horizontal Scroll Gallery */}
-        <div className="flex gap-0 md:gap-8 px-0 lg:px-12 overflow-x-auto pb-12 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden">
-          {photos.map((photo, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: i * 0.1 }}
-              className="relative w-[100vw] md:w-[450px] aspect-[4/5] flex-shrink-0 snap-center rounded-none md:rounded-3xl overflow-hidden group"
-            >
-              <LivingImage src={photo} alt={`Location ${i + 1}`} className="absolute inset-0 w-full h-full" />
-              
-              <div className="absolute bottom-8 left-8 z-40 pointer-events-none">
-                <p className="text-xs uppercase tracking-widest font-mono text-brand-gold mb-2">Location {i + 1}</p>
-                <p className="text-lg font-light text-white">Bengaluru</p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="flex flex-col gap-2">
+          <span className="section-eyebrow">LIVE INTELLIGENCE LAYER</span>
         </div>
-      </section>
 
-      {/* 5. IMMERSIVE CTA */}
-      <section className="relative z-10 py-40 px-6 flex flex-col items-center text-center bg-luxury-white dark:bg-luxury-black border-t border-brand-blue/10 dark:border-white/10">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="max-w-2xl flex flex-col items-center gap-10"
-        >
-          <RheoleLogo className="h-16 w-16 drop-shadow-xl" />
-          <h2 className="text-4xl md:text-6xl font-light font-serif-editorial">
-            Join the new future.
-          </h2>
-          <MagneticButton strength={0.3}>
-            <Link 
-              href="/founding-access" 
-              className="group relative px-12 py-5 bg-brand-blue dark:bg-white text-white dark:text-brand-blue rounded-full text-sm font-medium tracking-widest uppercase overflow-hidden haptic-press shadow-2xl block"
+        <div className="luxury-glass-panel p-8 md:p-12 min-h-[400px] flex flex-col gap-8 relative overflow-hidden group">
+          {/* Subtle Accent Glow */}
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#4F6EF7]/5 rounded-full blur-[80px] pointer-events-none" />
+
+          {/* Chat / Query */}
+          <div className="flex flex-col gap-4 max-w-[600px] z-10 min-h-[96px]">
+            <p className="text-[#6A6A6A] font-mono text-[13px]">
+              {">"} User Query
+            </p>
+            <div className="text-[20px] md:text-[24px] text-[#F2F2F0] font-light leading-relaxed">
+              <span className="mr-1">"{displayedQuery}"</span>
+              <motion.span 
+                animate={{ opacity: [1, 0] }} 
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="inline-block w-3 h-[24px] bg-[#4F6EF7] align-middle"
+              />
+            </div>
+          </div>
+
+          {/* Responses */}
+          <div className="flex flex-col md:flex-row gap-6 mt-4 md:mt-8 z-10 h-[180px]">
+            <AnimatePresence>
+              {messagesShown >= 1 && (
+                <motion.div 
+                  key={`msg-1-${activeScenarioIdx}`}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12, transition: { duration: 0.4 } }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex-1 bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-[12px] p-6 border-l-2 !border-l-[#4F6EF7]"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#4ade80] shadow-[0_0_8px_rgba(74,222,128,0.8)] animate-pulse" />
+                    <span className="text-[11px] text-[#4ade80] uppercase tracking-wider font-medium">{activeScenario.responses[0].status}</span>
+                  </div>
+                  <h3 className="text-[#F2F2F0] text-[18px] mb-2 font-medium">{activeScenario.responses[0].title}</h3>
+                  <p className="text-[#6A6A6A] text-[14px]">{activeScenario.responses[0].desc}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {messagesShown >= 2 && (
+                <motion.div 
+                  key={`msg-2-${activeScenarioIdx}`}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12, transition: { duration: 0.4 } }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex-1 bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-[12px] p-6 border-l-2 !border-l-[#4F6EF7]"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#4ade80] shadow-[0_0_8px_rgba(74,222,128,0.8)] animate-pulse" />
+                    <span className="text-[11px] text-[#4ade80] uppercase tracking-wider font-medium">{activeScenario.responses[1].status}</span>
+                  </div>
+                  <h3 className="text-[#F2F2F0] text-[18px] mb-2 font-medium">{activeScenario.responses[1].title}</h3>
+                  <p className="text-[#6A6A6A] text-[14px]">{activeScenario.responses[1].desc}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+// Roots Section
+function RootsSection() {
+  return (
+    <section className="w-full py-[160px] px-6">
+      <div className="max-w-[1100px] mx-auto flex flex-col gap-24">
+        
+        {/* Mosaic */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
+          {/* Large Left */}
+          <ScrollReveal className="md:col-span-7 h-[400px] md:h-full relative rounded-lg overflow-hidden border border-[rgba(255,255,255,0.06)] group">
+            <motion.div 
+              initial={{ scale: 0.96 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0"
             >
-              <span className="relative z-10 transition-colors duration-500 group-hover:text-brand-blue dark:group-hover:text-white">Request Early Access</span>
-              <div className="absolute inset-0 bg-brand-gold dark:bg-brand-blue scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-            </Link>
-          </MagneticButton>
-        </motion.div>
-      </section>
+              <LivingImage src={photos[0]} alt="Bengaluru City" className="w-full h-full object-cover" />
+            </motion.div>
+            <div className="absolute bottom-0 left-0 w-full h-[20%] bg-gradient-to-t from-[rgba(0,0,0,0.4)] to-transparent" />
+          </ScrollReveal>
 
-      {/* 6. SOCIAL CHANNELS */}
-      <section className="relative z-10 bg-luxury-white dark:bg-luxury-black w-full border-t border-brand-blue/5 dark:border-white/5">
-        <SocialChannels />
-      </section>
+          {/* Stacked Right */}
+          <div className="md:col-span-5 flex flex-col gap-6 h-[800px] md:h-full">
+            <ScrollReveal delay={0.12} className="flex-1 relative rounded-lg overflow-hidden border border-[rgba(255,255,255,0.06)]">
+              <motion.div 
+                initial={{ scale: 0.96 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0"
+              >
+                <LivingImage src={photos[1]} alt="Local community" className="w-full h-full object-cover" />
+              </motion.div>
+              <div className="absolute bottom-0 left-0 w-full h-[20%] bg-gradient-to-t from-[rgba(0,0,0,0.4)] to-transparent" />
+            </ScrollReveal>
+            <ScrollReveal delay={0.24} className="flex-1 relative rounded-lg overflow-hidden border border-[rgba(255,255,255,0.06)]">
+              <motion.div 
+                initial={{ scale: 0.96 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0"
+              >
+                <LivingImage src={photos[2]} alt="Spatial architecture" className="w-full h-full object-cover" />
+              </motion.div>
+              <div className="absolute bottom-0 left-0 w-full h-[20%] bg-gradient-to-t from-[rgba(0,0,0,0.4)] to-transparent" />
+            </ScrollReveal>
+          </div>
+        </div>
+
+        {/* Copy Block */}
+        <ScrollReveal>
+          <div className="flex flex-col items-center">
+            <div className="w-full max-w-[680px] h-[1px] bg-[rgba(255,255,255,0.06)] mb-12" />
+            <p className="text-[24px] md:text-[32px] font-light font-serif-editorial text-[#F2F2F0] text-center max-w-[680px] leading-[1.4]">
+              We are not building an escape to the metaverse. We are building the tools to fall back in love with your physical city.
+            </p>
+            <div className="w-full max-w-[680px] h-[1px] bg-[rgba(255,255,255,0.06)] mt-12" />
+          </div>
+        </ScrollReveal>
+
+      </div>
+    </section>
+  );
+}
+
+// Join Section
+function JoinSection() {
+  return (
+    <section className="w-full py-[200px] px-6 relative overflow-hidden flex flex-col items-center">
+      {/* Massive radial glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#4F6EF7] rounded-full blur-[160px] opacity-[0.08] pointer-events-none" />
+      
+      <ScrollReveal className="relative z-10 flex flex-col items-center text-center">
+        <h2 className="text-[clamp(48px,6vw,72px)] font-serif-editorial font-light text-[#F2F2F0] mb-16 tracking-tight">
+          Join the new future.
+        </h2>
+        
+        <Link 
+          href="/founding-access"
+          className="group relative h-[52px] px-[28px] rounded-full border border-[#4F6EF7] text-[#4F6EF7] bg-transparent overflow-hidden flex items-center justify-center interactive transition-all duration-300 hover:shadow-[0_0_24px_rgba(79,110,247,0.3)] mb-12"
+        >
+          <span className="relative z-10 text-[14px] font-medium tracking-wide uppercase transition-colors group-hover:text-white">
+            Request Early Access
+          </span>
+          <div className="absolute inset-0 bg-[#4F6EF7] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+        </Link>
+        
+        {/* Socials */}
+        <div className="flex items-center gap-6">
+          <a href="#" className="text-[12px] text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors uppercase tracking-widest interactive">Twitter</a>
+          <span className="w-1 h-1 rounded-full bg-[rgba(255,255,255,0.1)]" />
+          <a href="#" className="text-[12px] text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors uppercase tracking-widest interactive">Instagram</a>
+          <span className="w-1 h-1 rounded-full bg-[rgba(255,255,255,0.1)]" />
+          <a href="#" className="text-[12px] text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors uppercase tracking-widest interactive">LinkedIn</a>
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+export default function Home() {
+  return (
+    <div className="relative w-full bg-[#080808]">
+      <HeroSection />
+      <LiveDemoSection />
+      <RootsSection />
+      <JoinSection />
     </div>
   );
 }
