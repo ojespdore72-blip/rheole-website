@@ -26,7 +26,7 @@ export default function ScrollReveal({
       y: 0,
       transition: {
         duration: 0.7,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as const,
         delay: delay,
         when: "beforeChildren",
         staggerChildren: staggerChildren ? 0.1 : 0
@@ -56,7 +56,7 @@ export function RevealChild({ children, className = "" }: { children: React.Reac
       y: 0,
       transition: {
         duration: 0.5,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1] as const,
       }
     }
   };
