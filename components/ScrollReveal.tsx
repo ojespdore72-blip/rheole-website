@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -19,7 +19,7 @@ export default function ScrollReveal({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.15 });
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0, y: 24 },
     visible: {
       opacity: 1,
@@ -49,7 +49,7 @@ export default function ScrollReveal({
 
 // Optional child wrapper for staggered effects
 export function RevealChild({ children, className = "" }: { children: React.ReactNode, className?: string }) {
-  const childVariants = {
+  const childVariants: Variants = {
     hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
