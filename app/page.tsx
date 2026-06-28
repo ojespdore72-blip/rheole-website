@@ -366,11 +366,11 @@ function JoinSection() {
         
         {/* Socials */}
         <div className="flex items-center gap-6">
-          <a href="#" className="text-[12px] text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors uppercase tracking-widest interactive">Twitter</a>
+          <a href="https://www.instagram.com/rheole_?igsh=MTV5dnF2ODU0ODVjMg==" target="_blank" rel="noopener noreferrer" className="text-[12px] text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors uppercase tracking-widest interactive">Instagram</a>
           <span className="w-1 h-1 rounded-full bg-[rgba(255,255,255,0.1)]" />
-          <a href="#" className="text-[12px] text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors uppercase tracking-widest interactive">Instagram</a>
+          <a href="https://www.facebook.com/share/1cR5NhDCZm/" target="_blank" rel="noopener noreferrer" className="text-[12px] text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors uppercase tracking-widest interactive">Facebook</a>
           <span className="w-1 h-1 rounded-full bg-[rgba(255,255,255,0.1)]" />
-          <a href="#" className="text-[12px] text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors uppercase tracking-widest interactive">LinkedIn</a>
+          <a href="https://x.com/rheole_" target="_blank" rel="noopener noreferrer" className="text-[12px] text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors uppercase tracking-widest interactive">Twitter</a>
         </div>
       </ScrollReveal>
     </section>

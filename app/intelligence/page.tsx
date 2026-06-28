@@ -128,25 +128,71 @@ const VideoDemo = () => {
 const Experiment1 = () => {
   const [input, setInput] = useState("");
   const [hasResults, setHasResults] = useState(false);
+  const [queryContext, setQueryContext] = useState("general");
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && input.trim() !== '') {
-      setHasResults(true);
+      const lower = input.toLowerCase();
+      if (lower.includes('coffee') || lower.includes('cafe')) setQueryContext('coffee');
+      else if (lower.includes('food') || lower.includes('hungry') || lower.includes('eat')) setQueryContext('food');
+      else if (lower.includes('party') || lower.includes('drink') || lower.includes('club') || lower.includes('bar')) setQueryContext('nightlife');
+      else if (lower.includes('work') || lower.includes('study') || lower.includes('quiet')) setQueryContext('work');
+      else setQueryContext('general');
+      
+      setHasResults(false);
+      setTimeout(() => setHasResults(true), 50); // Re-trigger animation
     }
   };
+
+  const getResults = () => {
+    switch (queryContext) {
+      case 'coffee':
+        return [
+          { icon: '☕', color: 'orange', title: 'The Roastery', desc: '2 mins walk • Quiet', pos: '-top-24 -left-12', delay: 0.2, anim: { x: 0, y: 20 } },
+          { icon: '🥐', color: 'yellow', title: 'Artisan Bakery', desc: 'Fresh pastries • 4 mins away', pos: 'top-1/2 -right-24', delay: 0.4, anim: { x: -20, y: 0 } },
+          { icon: '👥', color: 'blue', title: 'Barista Meetup', desc: 'Happening now', pos: '-bottom-20 left-1/2 -translate-x-1/2', delay: 0.6, anim: { x: 0, y: -20 } }
+        ];
+      case 'food':
+        return [
+          { icon: '🍕', color: 'red', title: "Luigi's Pizza", desc: 'Highly rated • 5 mins walk', pos: '-top-24 -left-12', delay: 0.2, anim: { x: 0, y: 20 } },
+          { icon: '🥗', color: 'green', title: 'Green Bowl', desc: 'Healthy • No wait time', pos: 'top-1/2 -right-24', delay: 0.4, anim: { x: -20, y: 0 } },
+          { icon: '🍜', color: 'orange', title: 'Tokyo Ramen', desc: 'Hot right now • 10 mins', pos: '-bottom-20 left-1/2 -translate-x-1/2', delay: 0.6, anim: { x: 0, y: -20 } }
+        ];
+      case 'nightlife':
+        return [
+          { icon: '🍸', color: 'purple', title: 'The Velvet Lounge', desc: 'Live Jazz • 8 mins walk', pos: '-top-24 -left-12', delay: 0.2, anim: { x: 0, y: 20 } },
+          { icon: '🎵', color: 'pink', title: 'Underground Club', desc: 'High energy • Popular', pos: 'top-1/2 -right-24', delay: 0.4, anim: { x: -20, y: 0 } },
+          { icon: '🌙', color: 'indigo', title: 'Rooftop Terrace', desc: 'Great views • Open late', pos: '-bottom-20 left-1/2 -translate-x-1/2', delay: 0.6, anim: { x: 0, y: -20 } }
+        ];
+      case 'work':
+        return [
+          { icon: '💻', color: 'gray', title: 'Tech Hub Coworking', desc: 'Fast Wi-Fi • 3 mins walk', pos: '-top-24 -left-12', delay: 0.2, anim: { x: 0, y: 20 } },
+          { icon: '📚', color: 'amber', title: 'City Library', desc: 'Silent zone • Free entry', pos: 'top-1/2 -right-24', delay: 0.4, anim: { x: -20, y: 0 } },
+          { icon: '🎧', color: 'blue', title: 'Quiet Cafe', desc: 'Focus friendly', pos: '-bottom-20 left-1/2 -translate-x-1/2', delay: 0.6, anim: { x: 0, y: -20 } }
+        ];
+      default:
+        return [
+          { icon: '✨', color: 'yellow', title: 'Trending Nearby', desc: 'High activity score', pos: '-top-24 -left-12', delay: 0.2, anim: { x: 0, y: 20 } },
+          { icon: '🗺️', color: 'emerald', title: 'Hidden Gem', desc: 'Matches your vibe', pos: 'top-1/2 -right-24', delay: 0.4, anim: { x: -20, y: 0 } },
+          { icon: '🚶', color: 'cyan', title: 'Scenic Route', desc: 'Weather is perfect', pos: '-bottom-20 left-1/2 -translate-x-1/2', delay: 0.6, anim: { x: 0, y: -20 } }
+        ];
+    }
+  };
+
+  const results = getResults();
 
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center p-8 relative bg-black/5 dark:bg-black/20">
       <div className="text-center mb-12">
         <p className="text-brand-gold text-xs font-mono uppercase tracking-[0.2em] mb-4">Experiment 01</p>
         <h2 className="text-3xl md:text-5xl font-serif-editorial text-brand-blue dark:text-luxury-white">Natural Intent</h2>
-        <p className="text-sm text-gray-400 mt-4 max-w-md mx-auto">What are you looking for right now? Type naturally and press Enter.</p>
+        <p className="text-sm text-gray-400 mt-4 max-w-md mx-auto">What are you looking for right now? Try typing "hungry", "coffee", "work", or "party" and press Enter.</p>
       </div>
 
       <div className="relative w-full max-w-2xl z-10">
         <input 
           type="text" 
-          placeholder="I'm hungry..."
+          placeholder="I'm looking for..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -156,45 +202,22 @@ const Experiment1 = () => {
         <AnimatePresence>
           {hasResults && (
             <>
-              {/* Fake Results Blooming */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="absolute -top-24 -left-12 p-4 bg-white/80 dark:bg-black/60 backdrop-blur-md border border-brand-blue/5 dark:border-white/5 rounded-2xl shadow-xl flex items-center gap-3"
-              >
-                <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">☕</div>
-                <div>
-                  <p className="text-xs font-bold text-brand-blue dark:text-white">The Roastery</p>
-                  <p className="text-[10px] text-gray-500">2 mins walk • Quiet</p>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8, x: -20 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="absolute top-1/2 -right-24 p-4 bg-white/80 dark:bg-black/60 backdrop-blur-md border border-brand-blue/5 dark:border-white/5 rounded-2xl shadow-xl flex items-center gap-3"
-              >
-                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">👥</div>
-                <div>
-                  <p className="text-xs font-bold text-brand-blue dark:text-white">Design Meetup</p>
-                  <p className="text-[10px] text-gray-500">Starting now • 3 connections</p>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8, y: -20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="absolute -bottom-20 left-1/2 -translate-x-1/2 p-4 bg-white/80 dark:bg-black/60 backdrop-blur-md border border-brand-blue/5 dark:border-white/5 rounded-2xl shadow-xl flex items-center gap-3"
-              >
-                <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">🚶</div>
-                <div>
-                  <p className="text-xs font-bold text-brand-blue dark:text-white">Scenic Route</p>
-                  <p className="text-[10px] text-gray-500">Weather is perfect</p>
-                </div>
-              </motion.div>
+              {results.map((res, idx) => (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.8, x: res.anim.x, y: res.anim.y }}
+                  animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.8, delay: res.delay }}
+                  className={`absolute ${res.pos} p-4 bg-white/80 dark:bg-black/60 backdrop-blur-md border border-brand-blue/5 dark:border-white/5 rounded-2xl shadow-xl flex items-center gap-3`}
+                >
+                  <div className={`w-8 h-8 rounded-full bg-${res.color}-100 dark:bg-${res.color}-900/30 flex items-center justify-center text-${res.color}-600 dark:text-${res.color}-400`}>{res.icon}</div>
+                  <div>
+                    <p className="text-xs font-bold text-brand-blue dark:text-white whitespace-nowrap">{res.title}</p>
+                    <p className="text-[10px] text-gray-500 whitespace-nowrap">{res.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
             </>
           )}
         </AnimatePresence>
