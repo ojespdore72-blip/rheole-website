@@ -8,110 +8,120 @@ import ScrollReveal from "./ScrollReveal";
 export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
   const footerCategories = [
     {
-      title: "Product",
+      title: "Platform",
       links: [
-        { name: "Platform", path: "/platform" },
-        { name: "Models", path: "/models" },
-        { name: "Technology", path: "/technology" },
-        { name: "Architecture", path: "/architecture" },
-      ],
-    },
-    {
-      title: "Developers",
-      links: [
-        { name: "Docs", path: "/docs" },
-        { name: "API Reference", path: "/api-reference" },
-        { name: "SDKs", path: "/sdks" },
-        { name: "Tutorials", path: "/tutorials" },
-        { name: "Integrations", path: "/integrations" },
-      ],
-    },
-    {
-      title: "Solutions",
-      links: [
-        { name: "Overview", path: "/solutions" },
-        { name: "Industries", path: "/industries" },
-        { name: "Case Studies", path: "/case-studies" },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        { name: "About", path: "/about" },
         { name: "Manifesto", path: "/manifesto" },
+        { name: "About", path: "/about" },
         { name: "Intelligence", path: "/intelligence" },
+        { name: "Company", path: "/about" },
+        { name: "Founder Letter", path: "/founder-letter" },
         { name: "Careers", path: "/careers" },
-        { name: "Research", path: "/research" },
-        { name: "Blog", path: "/blog" },
-        { name: "Press", path: "/press" },
+        { name: "Contact", path: "/contact" },
       ],
     },
     {
-      title: "Support",
+      title: "Legal",
       links: [
-        { name: "Trust Center", path: "/trust-center" },
         { name: "Privacy", path: "/privacy" },
-        { name: "Security", path: "/security" },
         { name: "Terms", path: "/terms" },
-        { name: "Contact", path: "/support" },
+      ],
+    },
+    {
+      title: "Resources",
+      links: [
+        { name: "Research", path: "/research" },
+        { name: "Developers", path: "#", badge: "Coming Soon" },
+        { name: "Status", path: "#", badge: "Coming Soon" },
+        { name: "Roadmap", path: "#", badge: "Coming Soon" },
+      ],
+    },
+    {
+      title: "Social",
+      links: [
+        { name: "LinkedIn", path: "#" },
+        { name: "X", path: "#" },
+        { name: "GitHub", path: "#" },
+        { name: "Instagram", path: "#" },
       ],
     },
   ];
 
   return (
-    <footer className="w-full bg-[#080808] border-t border-[rgba(255,255,255,0.02)] pt-24 pb-8 overflow-hidden z-10 relative">
-      <div className="max-w-[1100px] mx-auto px-6">
+    <footer className="w-full bg-[#030303] pt-32 pb-16 overflow-hidden z-10 relative font-sans">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col gap-32">
+        
+        {/* Large Editorial Statement */}
         <ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-24">
-            
-            {/* Brand Column */}
-            <div className="md:col-span-4 flex flex-col gap-6">
-              <Link href="/" className="interactive flex items-center gap-3 w-max">
-                <RheoleLogo className="h-[24px] w-auto opacity-90" />
-                <RheoleLogo variant="wordmark" className="h-[20px] w-auto opacity-90" />
-              </Link>
-              <p className="text-[14px] text-[#6A6A6A] font-light max-w-[280px] leading-relaxed">
-                The intelligence layer between people and the physical world.
-              </p>
-            </div>
+          <div className="flex flex-col gap-8 md:gap-12 max-w-[800px]">
+            <RheoleLogo className="h-[28px] w-auto opacity-90" />
+            <h2 className="text-[32px] md:text-[56px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.1] tracking-tight">
+              The world is already moving.<br className="hidden md:block" />
+              <span className="text-[#A0A0A0]">Rheole simply helps you understand it.</span>
+            </h2>
+          </div>
+        </ScrollReveal>
 
-            {/* Links Columns */}
-            <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-5 gap-8">
-              {footerCategories.map((category) => (
-                <div key={category.title} className="flex flex-col gap-6">
-                  <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#3A3A3A] font-medium">
-                    {category.title}
-                  </h4>
-                  <ul className="flex flex-col gap-4">
-                    {category.links.map((link) => (
-                      <li key={link.name}>
-                        <Link 
-                          href={link.path}
-                          className="text-[14px] text-[#6A6A6A] hover:text-[#F2F2F0] transition-colors duration-150 interactive"
-                        >
+        {/* Navigation Columns */}
+        <ScrollReveal delay={0.1}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
+            {footerCategories.map((category) => (
+              <div key={category.title} className="flex flex-col gap-8">
+                <h4 className="text-[12px] uppercase tracking-[0.2em] text-[#F2F2F0] font-medium">
+                  {category.title}
+                </h4>
+                <ul className="flex flex-col gap-5">
+                  {category.links.map((link) => (
+                    <li key={link.name}>
+                      <Link 
+                        href={link.path}
+                        className="group inline-flex items-center gap-3 text-[15px] text-[#6A6A6A] transition-colors duration-300 hover:text-[#F2F2F0]"
+                      >
+                        <span className="relative">
                           {link.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
+                          <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-[#F2F2F0] transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100" />
+                        </span>
+                        {link.badge && (
+                          <span className="text-[10px] uppercase tracking-wider bg-white/[0.03] border border-white/[0.05] px-2 py-0.5 rounded-full text-[#4A4A4A]">
+                            {link.badge}
+                          </span>
+                        )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </ScrollReveal>
 
-        {/* Bottom Bar */}
+        {/* Bottom Details */}
         <ScrollReveal delay={0.2}>
-          <div className="pt-8 border-t border-[rgba(255,255,255,0.05)] flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-[11px] text-[#3A3A3A]">
-              © {new Date().getFullYear()} Rheole. All rights reserved.
-            </p>
-            <p className="text-[11px] text-[#3A3A3A] uppercase tracking-[0.1em]">
-              A PRODUCT OF IKHAGA LTD.
-            </p>
+          <div className="flex flex-col gap-8">
+            <div className="w-full h-[1px] bg-gradient-to-r from-white/[0.08] via-white/[0.02] to-transparent" />
+            
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+              <div className="flex flex-col gap-2">
+                <p className="text-[13px] text-[#8A8A8A] font-light max-w-[400px] leading-relaxed">
+                  Rheole is an intelligence platform designed to bridge the gap between human intent and physical reality.
+                </p>
+                <div className="flex items-center gap-4 mt-2">
+                  <p className="text-[12px] text-[#4A4A4A]">
+                    © {new Date().getFullYear()} IKHAGA LTD. All rights reserved.
+                  </p>
+                  <span className="w-1 h-1 rounded-full bg-[#4A4A4A]" />
+                  <p className="text-[12px] text-[#4A4A4A]">
+                    Designed in London.
+                  </p>
+                </div>
+              </div>
+
+              <Link href="/" className="opacity-40 hover:opacity-100 transition-opacity duration-300">
+                <RheoleLogo variant="icon" className="h-[24px] w-auto" />
+              </Link>
+            </div>
           </div>
         </ScrollReveal>
+
       </div>
     </footer>
   );
