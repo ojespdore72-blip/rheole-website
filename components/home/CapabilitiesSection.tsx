@@ -23,13 +23,13 @@ const capabilities = [
     id: "connect",
     title: "Connect",
     icon: <Users size={24} strokeWidth={1} />,
-    items: ["Friends", "Founders", "Local groups", "Nearby people", "Colonies"]
+    items: ["Friends", "Opportunities", "Local groups", "Nearby Presence", "Neighbourhood"]
   },
   {
     id: "understand",
     title: "Understand",
     icon: <Brain size={24} strokeWidth={1} />,
-    items: ["Intent", "Context", "Time", "Weather", "Interests", "Routine"]
+    items: ["User intent", "Contextual intelligence", "Environmental Intelligence", "Curiosity Intelligence", "Personal rhythm"]
   }
 ];
 
@@ -99,7 +99,7 @@ export default function CapabilitiesSection() {
                             className={`w-full max-w-[280px] ${idx !== cap.items.length - 1 ? 'border-b border-[rgba(255,255,255,0.06)]' : ''}`}
                           >
                             <Link 
-                              href={item === "Places" ? "/places" : item === "Events" ? "/events" : item === "Businesses" ? "/businesses" : item === "New exploration" ? "/exploration" : item === "Smart routing" ? "/smart-routing" : item === "Live traffic" ? "/live-traffic" : item === "Transit" ? "/transit" : item === "Movement" ? "/movement-intelligence" : item === "Friends" ? "/friends" : item === "Nearby people" ? "/presence-intelligence" : "/in-progress"} 
+                              href={item === "Places" ? "/places" : item === "Events" ? "/events" : item === "Businesses" ? "/businesses" : item === "New exploration" ? "/exploration" : item === "Smart routing" ? "/smart-routing" : item === "Live traffic" ? "/live-traffic" : item === "Transit" ? "/transit" : item === "Movement" ? "/movement-intelligence" : item === "Friends" ? "/friends" : item === "Opportunities" ? "/opportunity-intelligence" : item === "Local groups" ? "/local-coordination" : item === "Nearby Presence" ? "/presence-intelligence" : item === "Neighbourhood" ? "/neighbourhood-intelligence" : item === "User intent" ? "/intent-intelligence" : item === "Contextual intelligence" ? "/context-intelligence" : item === "Environmental Intelligence" ? "/environmental-intelligence" : item === "Curiosity Intelligence" ? "/curiosity-intelligence" : item === "Personal rhythm" ? "/rhythm-intelligence" : "/in-progress"} 
                               className="group/link flex items-center justify-between text-[15px] md:text-[16px] text-[#A0A0A0] font-light transition-colors duration-300 hover:text-[#F2F2F0] py-4 w-full"
                             >
                               {item}
