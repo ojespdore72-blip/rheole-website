@@ -36,18 +36,6 @@ export default function HeroSection() {
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center text-center w-full max-w-[1200px] px-6">
         
-        {/* Eyebrow */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-4 mb-6"
-        >
-          <div className="w-8 h-[1px] bg-[#4F6EF7]/40" />
-          <span className="text-[11px] font-medium tracking-[0.2em] uppercase text-[#4F6EF7]">WHAT IS RHEOLE?</span>
-          <div className="w-8 h-[1px] bg-[#4F6EF7]/40" />
-        </motion.div>
-
         {/* Headline */}
         <h1 className="flex flex-wrap justify-center overflow-hidden mb-6">
           {words.map((word, i) => (

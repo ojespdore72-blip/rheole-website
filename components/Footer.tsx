@@ -8,26 +8,52 @@ import ScrollReveal from "./ScrollReveal";
 export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
   const footerCategories = [
     {
+      title: "Product",
+      links: [
+        { name: "Platform", path: "/platform" },
+        { name: "Models", path: "/models" },
+        { name: "Technology", path: "/technology" },
+        { name: "Architecture", path: "/architecture" },
+      ],
+    },
+    {
+      title: "Developers",
+      links: [
+        { name: "Docs", path: "/docs" },
+        { name: "API Reference", path: "/api-reference" },
+        { name: "SDKs", path: "/sdks" },
+        { name: "Tutorials", path: "/tutorials" },
+        { name: "Integrations", path: "/integrations" },
+      ],
+    },
+    {
+      title: "Solutions",
+      links: [
+        { name: "Overview", path: "/solutions" },
+        { name: "Industries", path: "/industries" },
+        { name: "Case Studies", path: "/case-studies" },
+      ],
+    },
+    {
       title: "Company",
       links: [
         { name: "About", path: "/about" },
         { name: "Manifesto", path: "/manifesto" },
-        { name: "Careers", path: "/careers" },
-        { name: "Contact", path: "/contact" },
-      ],
-    },
-    {
-      title: "Platform",
-      links: [
-        { name: "How it Works", path: "/how-it-works" },
         { name: "Intelligence", path: "/intelligence" },
+        { name: "Careers", path: "/careers" },
+        { name: "Research", path: "/research" },
+        { name: "Blog", path: "/blog" },
+        { name: "Press", path: "/press" },
       ],
     },
     {
-      title: "Legal",
+      title: "Support",
       links: [
-        { name: "Privacy Policy", path: "/privacy" },
-        { name: "Terms of Service", path: "/terms" },
+        { name: "Trust Center", path: "/trust-center" },
+        { name: "Privacy", path: "/privacy" },
+        { name: "Security", path: "/security" },
+        { name: "Terms", path: "/terms" },
+        { name: "Contact", path: "/support" },
       ],
     },
   ];
@@ -50,7 +76,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
             </div>
 
             {/* Links Columns */}
-            <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-5 gap-8">
               {footerCategories.map((category) => (
                 <div key={category.title} className="flex flex-col gap-6">
                   <h4 className="text-[11px] uppercase tracking-[0.15em] text-[#3A3A3A] font-medium">

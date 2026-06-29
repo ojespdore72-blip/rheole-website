@@ -14,33 +14,60 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
   const [mounted, setMounted] = useState(false);
 
   const navLinks = [
-    { name: "About", path: "/about" },
-    { name: "Intelligence", path: "/intelligence" },
-    { name: "Manifesto", path: "/manifesto" },
+    { name: "Platform", path: "/platform" },
+    { name: "Developers", path: "/developers" },
+    { name: "Research", path: "/research" },
+    { name: "Company", path: "/about" },
   ];
 
   const menuCategories = [
+    {
+      title: "Product",
+      links: [
+        { name: "Platform", path: "/platform" },
+        { name: "Models", path: "/models" },
+        { name: "Technology", path: "/technology" },
+        { name: "Architecture", path: "/architecture" },
+      ],
+    },
+    {
+      title: "Developers",
+      links: [
+        { name: "Docs", path: "/docs" },
+        { name: "API Reference", path: "/api-reference" },
+        { name: "SDKs", path: "/sdks" },
+        { name: "Tutorials", path: "/tutorials" },
+        { name: "Integrations", path: "/integrations" },
+      ],
+    },
+    {
+      title: "Solutions",
+      links: [
+        { name: "Overview", path: "/solutions" },
+        { name: "Industries", path: "/industries" },
+        { name: "Case Studies", path: "/case-studies" },
+      ],
+    },
     {
       title: "Company",
       links: [
         { name: "About", path: "/about" },
         { name: "Manifesto", path: "/manifesto" },
-        { name: "Careers", path: "/careers" },
-        { name: "Contact", path: "/contact" },
-      ],
-    },
-    {
-      title: "Platform",
-      links: [
-        { name: "How it Works", path: "/how-it-works" },
         { name: "Intelligence", path: "/intelligence" },
+        { name: "Careers", path: "/careers" },
+        { name: "Research", path: "/research" },
+        { name: "Blog", path: "/blog" },
+        { name: "Press", path: "/press" },
       ],
     },
     {
-      title: "Legal",
+      title: "Legal & Support",
       links: [
-        { name: "Privacy Policy", path: "/privacy" },
-        { name: "Terms of Service", path: "/terms" },
+        { name: "Trust Center", path: "/trust-center" },
+        { name: "Privacy", path: "/privacy" },
+        { name: "Security", path: "/security" },
+        { name: "Terms", path: "/terms" },
+        { name: "Support", path: "/support" },
       ],
     },
   ];
@@ -140,7 +167,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
 
             {/* Overlay Content */}
             <div className="flex-1 overflow-y-auto px-6 md:px-12 py-12 md:py-24">
-              <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
+              <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 md:gap-8">
                 {menuCategories.map((category, catIdx) => (
                   <div key={category.title}>
                     <motion.h3 
@@ -162,7 +189,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                           <Link 
                             href={link.path}
                             onClick={() => setMenuOpen(false)}
-                            className="text-2xl md:text-3xl font-light text-[#6A6A6A] hover:text-[#F2F2F0] transition-colors interactive"
+                            className="text-xl md:text-2xl font-light text-[#6A6A6A] hover:text-[#F2F2F0] transition-colors interactive"
                           >
                             {link.name}
                           </Link>

@@ -154,18 +154,7 @@ export default function PlacesContentArticle() {
         number="08" 
         title="Local Knowledge"
       >
-        <div className="flex flex-col gap-8 max-w-[800px] mx-auto text-center">
-          <p className="text-[18px] text-[#A0A0A0] font-light leading-relaxed">
-            Every city contains deep knowledge utterly unavailable to traditional maps. Neighbourhood personalities, community habits, peak hours, and temporary seasonal experiences. Rheole continuously understands this changing knowledge.
-          </p>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            <FactCard fact="Neighborhood Personalities" />
-            <FactCard fact="Peak Hours" />
-            <FactCard fact="Temporary Experiences" />
-            <FactCard fact="Cultural Significance" />
-          </div>
-        </div>
+        <LocalKnowledgeSection />
       </ChapterSection>
 
       {/* Chapter 9: Example Scenarios */}
@@ -320,7 +309,7 @@ function ExpandableInsight({ title, children }: { title: string, children: React
 function PullQuote({ text }: { text: string }) {
   return (
     <div className="border-l-[2px] border-[#4F6EF7] pl-8 py-2 my-4">
-      <p className="text-[22px] md:text-[28px] font-serif-editorial text-[#F2F2F0] leading-snug italic">
+      <p className="text-[22px] md:text-[28px] font-serif-editorial text-[#F2F2F0] leading-snug">
         "{text}"
       </p>
     </div>
@@ -424,10 +413,133 @@ function NetworkNode({ text }: { text: string }) {
   );
 }
 
-function FactCard({ fact }: { fact: string }) {
+function LocalKnowledgeSection() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const items = [
+    {
+      title: "Neighborhood Personalities",
+      description: (
+        <div className="flex flex-col gap-6">
+          <div>
+            <p className="text-[14px] md:text-[15px] leading-relaxed text-[#A0A0A0]">
+              Rheole builds high-dimensional semantic embeddings of spatial environments by continually ingesting heterogeneous data streams—such as localized Wi-Fi density, aggregate mobility patterns, acoustic signatures, and zoning API updates. By utilizing advanced graph neural networks (GNNs), the system maps the relationships between spatial nodes to dynamically classify the overarching "personality" of a neighborhood in real time, accounting for granular shifts that static maps ignore.
+            </p>
+          </div>
+          <div>
+            <p className="text-[14px] md:text-[15px] leading-relaxed text-[#A0A0A0]">
+              In simple terms, Rheole doesn't just know that a street has five restaurants; it understands the <em>vibe</em> of that street right now. It can distinguish between a neighborhood that is currently acting as a quiet Sunday morning retreat for remote workers, versus one that has transformed into a bustling, high-energy nightlife hub. When you ask Rheole for a place to focus, it inherently understands which neighborhoods match that energy.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Peak Hours",
+      description: (
+        <div className="flex flex-col gap-6">
+          <div>
+            <p className="text-[14px] md:text-[15px] leading-relaxed text-[#A0A0A0]">
+              Through temporal density clustering and predictive time-series analysis (utilizing ARIMA and LSTM models) applied over historical and real-time geospatial telemetry, Rheole calculates precise foot-traffic anomalies. It cross-references this with merchant transaction velocity and localized device density to establish highly accurate, micro-level peak hour predictions that dynamically adjust to weather, holidays, and localized events.
+            </p>
+          </div>
+          <div>
+            <p className="text-[14px] md:text-[15px] leading-relaxed text-[#A0A0A0]">
+              Traditional maps give you a static, generalized bar chart of when a place is busy. Rheole gives you the actual present reality. It knows if your favorite cafe is currently flooded with a sudden influx of college students escaping a rainy day, or if a usually busy gym is surprisingly empty right now. It saves you the trip by forecasting the exact crowd level before you even leave your door.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Temporary Experiences",
+      description: (
+        <div className="flex flex-col gap-6">
+          <div>
+            <p className="text-[14px] md:text-[15px] leading-relaxed text-[#A0A0A0]">
+              Rheole employs continuous spatial anomaly detection algorithms to monitor deviations from baseline environmental states. By processing unstructured data from social media firehoses, local event registries, and sudden spikes in micro-mobility (like scooter drop-offs), the platform can instantly instantiate temporary nodes within its knowledge graph. These ephemeral nodes are given a calculated decay rate based on the event's projected lifespan.
+            </p>
+          </div>
+          <div>
+            <p className="text-[14px] md:text-[15px] leading-relaxed text-[#A0A0A0]">
+              The best things in a city are often temporary—a weekend street food festival, a pop-up thrift market, or an impromptu acoustic set in the park. Because these events aren't permanent businesses, they don't exist on traditional maps. Rheole spots these fleeting experiences the moment they start drawing a crowd and surfaces them to you, ensuring you never miss out on the spontaneous pulse of the city.
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Cultural Significance",
+      description: (
+        <div className="flex flex-col gap-6">
+          <div>
+            <p className="text-[14px] md:text-[15px] leading-relaxed text-[#A0A0A0]">
+              To understand the heritage of a coordinate, Rheole utilizes Natural Language Processing (NLP) and Large Language Models (LLMs) to parse historical archives, local journalism, architectural databases, and community forums. It performs entity extraction and sentiment analysis to build a rich metadata layer of cultural context, weighting locations not just by commercial value, but by their historical resonance and community importance.
+            </p>
+          </div>
+          <div>
+            <p className="text-[14px] md:text-[15px] leading-relaxed text-[#A0A0A0]">
+              A building is more than its address. It might be the site of a historic civil rights movement, a legendary music venue from the 90s, or a culturally significant gathering space for a local community. Rheole brings this rich history to the surface, transforming a simple walk down the street into a deeply educational and immersive experience. It proposes destinations based on the stories they hold, not just the services they sell.
+            </p>
+          </div>
+        </div>
+      )
+    }
+  ];
+
   return (
-    <div className="aspect-square flex items-center justify-center text-center p-4 rounded-xl border border-white/[0.04] bg-white/[0.01] hover:border-[#4F6EF7]/30 transition-colors">
-      <span className="text-[13px] text-[#A0A0A0] font-light">{fact}</span>
+    <div className="flex flex-col gap-8 max-w-[1000px] mx-auto text-center w-full">
+      <p className="text-[18px] text-[#A0A0A0] font-light leading-relaxed max-w-[800px] mx-auto">
+        Every city contains deep knowledge utterly unavailable to traditional maps. Neighbourhood personalities, community habits, peak hours, and temporary seasonal experiences. Rheole continuously understands this changing knowledge.
+      </p>
+      
+      <div className="flex flex-col mt-6 w-full relative">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full items-start">
+          {items.map((item, idx) => {
+            const isActive = activeIndex === idx;
+            return (
+              <div 
+                key={idx}
+                className={`flex flex-col items-center justify-center text-center p-6 rounded-xl border transition-all cursor-pointer h-32 md:h-40 ${
+                  isActive 
+                    ? 'border-[#4F6EF7]/50 bg-[#4F6EF7]/5' 
+                    : 'border-white/[0.04] bg-white/[0.01] hover:border-white/[0.1]'
+                }`}
+                onClick={() => setActiveIndex(isActive ? null : idx)}
+              >
+                <span className="text-[14px] md:text-[15px] text-[#F2F2F0] font-medium mb-4">{item.title}</span>
+                {isActive ? (
+                  <Minus className="w-4 h-4 text-[#4F6EF7]" />
+                ) : (
+                  <Plus className="w-4 h-4 text-[#A0A0A0]" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+        
+        <AnimatePresence>
+          {activeIndex !== null && (
+            <motion.div
+              initial={{ height: 0, opacity: 0, y: -10 }}
+              animate={{ height: "auto", opacity: 1, y: 0 }}
+              exit={{ height: 0, opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="w-full overflow-hidden mt-4"
+            >
+              <div className="p-8 md:p-12 rounded-2xl border border-[#4F6EF7]/20 bg-[#0A0A0A] text-left relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-[#4F6EF7]" />
+                <h4 className="text-[20px] md:text-[24px] text-[#F2F2F0] font-medium mb-4">
+                  {items[activeIndex].title}
+                </h4>
+                <div className="text-[15px] md:text-[16px] text-[#A0A0A0] font-light leading-relaxed max-w-[1000px]">
+                  {items[activeIndex].description}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
@@ -435,7 +547,7 @@ function FactCard({ fact }: { fact: string }) {
 function ScenarioCard({ intent, reason }: { intent: string, reason: string }) {
   return (
     <div className="p-8 rounded-2xl border border-white/[0.06] bg-[#0A0A0A] flex flex-col gap-6 relative overflow-hidden group hover:border-white/[0.12] transition-colors">
-      <span className="text-[20px] font-serif-editorial text-[#F2F2F0] italic">"{intent}"</span>
+      <span className="text-[20px] font-serif-editorial text-[#F2F2F0]">{intent}</span>
       <div className="w-8 h-[1px] bg-[#4F6EF7]/50" />
       <p className="text-[14px] text-[#A0A0A0] font-light leading-relaxed">{reason}</p>
     </div>
@@ -488,7 +600,6 @@ function ConnectedPlacesInteractiveSection() {
             transition={{ duration: 0.4 }}
             className="flex flex-col gap-4 pl-0 md:pl-12 border-l-0 md:border-l border-white/[0.06]"
           >
-            <span className="text-[12px] uppercase tracking-widest text-[#4F6EF7] font-medium">Node {activeIndex + 1}</span>
             <h4 className="text-[28px] md:text-[36px] font-serif-editorial text-[#F2F2F0] leading-snug">{nodes[activeIndex].name}</h4>
             <p className="text-[16px] md:text-[18px] text-[#A0A0A0] font-light leading-relaxed">
               {nodes[activeIndex].summary}
