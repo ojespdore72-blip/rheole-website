@@ -1,5 +1,3 @@
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import LiveTrafficArticle from '@/components/navigation/LiveTrafficArticle'
 
 export const metadata = {

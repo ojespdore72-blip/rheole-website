@@ -1,5 +1,3 @@
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import MovementIntelligenceArticle from '@/components/navigation/MovementIntelligenceArticle'
 
 export const metadata = {

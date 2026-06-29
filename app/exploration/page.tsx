@@ -1,5 +1,3 @@
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import ExplorationJournal from '@/components/exploration/ExplorationJournal'
 
 export const metadata = {

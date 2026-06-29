@@ -1,5 +1,3 @@
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import SmartRoutingArticle from '@/components/navigation/SmartRoutingArticle'
 
 export const metadata = {
