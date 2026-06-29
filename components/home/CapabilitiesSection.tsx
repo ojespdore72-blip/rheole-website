@@ -11,7 +11,7 @@ const capabilities = [
     id: "discover",
     title: "Discover",
     icon: <Compass size={24} strokeWidth={1} />,
-    items: ["Restaurants", "Events", "Communities", "Businesses", "Hidden places"]
+    items: ["Places", "Events", "Communities", "Businesses", "New exploration"]
   },
   {
     id: "navigate",
@@ -89,7 +89,7 @@ export default function CapabilitiesSection() {
                       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                       className="px-4 pb-10"
                     >
-                      <div className="pl-16 flex flex-col">
+                      <div className="pl-2 md:pl-[56px] flex flex-col">
                         {cap.items.map((item, idx) => (
                           <motion.div
                             key={item}
@@ -99,7 +99,7 @@ export default function CapabilitiesSection() {
                             className={`w-full max-w-[280px] ${idx !== cap.items.length - 1 ? 'border-b border-[rgba(255,255,255,0.06)]' : ''}`}
                           >
                             <Link 
-                              href="/in-progress" 
+                              href={item === "Places" ? "/places" : "/in-progress"} 
                               className="group/link flex items-center justify-between text-[15px] md:text-[16px] text-[#A0A0A0] font-light transition-colors duration-300 hover:text-[#F2F2F0] py-4 w-full"
                             >
                               {item}
