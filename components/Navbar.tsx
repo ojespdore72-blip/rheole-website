@@ -88,7 +88,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const springTransition = { type: "spring", stiffness: 400, damping: 40, mass: 0.8 };
+  const springTransition = { type: "spring" as const, stiffness: 400, damping: 40, mass: 0.8 };
 
   return (
     <>
