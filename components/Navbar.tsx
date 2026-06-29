@@ -71,7 +71,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                 animate={{ opacity: mounted ? 1 : 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <RheoleLogo className="h-[28px] w-auto transition-opacity duration-300 group-hover:opacity-80" />
+                <RheoleLogo className="h-[20px] w-auto transition-opacity duration-300 group-hover:opacity-80" />
               </motion.div>
             </Link>
           </div>
@@ -128,7 +128,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
           >
             {/* Overlay Header */}
             <div className="flex items-center justify-between w-full px-6 md:px-12 py-5 border-b border-[rgba(255,255,255,0.05)]">
-              <RheoleLogo className="h-[28px] w-auto opacity-50" />
+              <RheoleLogo className="h-[20px] w-auto opacity-50" />
               <button 
                 onClick={() => setMenuOpen(false)}
                 className="text-[#6A6A6A] hover:text-[#F2F2F0] transition-colors interactive p-1"

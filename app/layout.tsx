@@ -21,7 +21,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Rheole | The pulse of your city.",
+  title: "Rheole",
   description: "The intelligence layer between people and the physical world.",
   keywords: "local intelligence, spatial intelligence, communities, discovery, networking, events",
   openGraph: {
@@ -36,10 +36,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/rheole-app-icon-cropped.png?v=7", type: "image/png" }
+      { url: "/rheole-app-icon-small.png?v=9", type: "image/png" }
     ],
     apple: [
-      { url: "/rheole-app-icon-cropped.png?v=7", sizes: "180x180", type: "image/png" }
+      { url: "/rheole-app-icon-small.png?v=9", sizes: "180x180", type: "image/png" }
     ]
   }
 };
