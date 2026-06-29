@@ -37,23 +37,23 @@ export default function ProductPreviewSection() {
         <div className="w-full flex flex-col lg:flex-row gap-16 lg:gap-32 items-center justify-center">
           
           {/* Elegant Toggles Menu */}
-          <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto w-full lg:w-auto pb-6 lg:pb-0 scrollbar-hide shrink-0">
+          <div className="flex flex-row lg:flex-col gap-3 overflow-x-auto snap-x snap-mandatory w-full lg:w-auto pb-6 lg:pb-0 scrollbar-hide shrink-0 items-center lg:items-stretch px-6 lg:px-0">
             {scenarios.map((scenario) => {
               const isActive = activeScenario === scenario.id;
               return (
                 <button
                   key={scenario.id}
                   onClick={() => setActiveScenario(scenario.id)}
-                  className="relative group flex items-center justify-between py-4 px-6 min-w-[200px] text-left transition-all duration-500 rounded-2xl hover:bg-[rgba(255,255,255,0.02)]"
+                  className={`snap-start relative group flex items-center justify-center lg:justify-between py-2.5 px-6 lg:py-4 lg:px-6 min-w-max lg:min-w-[200px] text-center lg:text-left transition-all duration-300 rounded-full lg:rounded-2xl ${isActive ? 'bg-[#4F6EF7]/10 lg:bg-transparent border border-[#4F6EF7]/20 lg:border-transparent' : 'bg-white/[0.02] lg:bg-transparent border border-white/[0.04] lg:border-transparent lg:hover:bg-[rgba(255,255,255,0.02)]'}`}
                 >
-                  <span className={`block text-[13px] font-medium tracking-[0.08em] uppercase transition-colors duration-500 ${
-                    isActive ? "text-[#F2F2F0]" : "text-[#6A6A6A] group-hover:text-[#A0A0A0]"
+                  <span className={`block text-[12px] lg:text-[13px] font-medium tracking-[0.08em] uppercase transition-colors duration-500 ${
+                    isActive ? "text-[#F2F2F0]" : "text-[#6A6A6A] lg:group-hover:text-[#A0A0A0]"
                   }`}>
                     {scenario.label}
                   </span>
                   
-                  {/* Active Indicator & Arrow */}
-                  <div className="flex items-center gap-4">
+                  {/* Active Indicator & Arrow (Hidden on mobile) */}
+                  <div className="hidden lg:flex items-center gap-4">
                     <ChevronRight size={14} className={`transition-all duration-500 ${
                       isActive ? "text-[#F2F2F0] opacity-100 translate-x-0" : "text-[#6A6A6A] opacity-0 -translate-x-4 group-hover:opacity-50 group-hover:-translate-x-2"
                     }`} />
@@ -64,14 +64,6 @@ export default function ProductPreviewSection() {
                     <motion.div 
                       layoutId="activeIndicator"
                       className="absolute left-0 top-1/4 bottom-1/4 w-[2px] bg-[#4F6EF7] rounded-full hidden lg:block"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  {/* Active Line (Mobile) */}
-                  {isActive && (
-                    <motion.div 
-                      layoutId="activeIndicatorMobile"
-                      className="absolute bottom-0 left-1/4 right-1/4 h-[2px] bg-[#4F6EF7] rounded-full lg:hidden"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}

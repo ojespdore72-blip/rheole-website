@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Plus, Minus, Info } from "lucide-react";
 
@@ -52,12 +53,17 @@ export default function PlacesContentArticle() {
             </p>
           </div>
           
-          <ExpandableInsight title="Learn how variables alter recommendations">
-            <div className="p-6 bg-white/[0.02] border-t border-white/[0.06] flex flex-col gap-4 text-[#A0A0A0] font-light text-[15px]">
-              <p><strong>Crowd & Noise:</strong> We process real-time volume to distinguish between a quiet study spot and a bustling networking hub.</p>
-              <p><strong>Walking Effort:</strong> We analyze terrain and weather to understand if a destination is truly walkable in the current moment.</p>
-            </div>
-          </ExpandableInsight>
+          <div className="mt-4">
+            <Link 
+              href="/variables"
+              className="w-full px-6 py-5 flex items-center justify-between text-left group border border-white/[0.06] rounded-2xl overflow-hidden bg-white/[0.02] hover:bg-white/[0.04] transition-colors"
+            >
+              <span className="text-[14px] uppercase tracking-widest text-[#F2F2F0] font-medium">Learn how variables alter recommendations</span>
+              <span className="text-[#6A6A6A] group-hover:text-[#F2F2F0] group-hover:translate-x-1 transition-all">
+                →
+              </span>
+            </Link>
+          </div>
         </div>
       </ChapterSection>
 
@@ -346,7 +352,7 @@ function LayerCard({ title, desc }: { title: string, desc: string }) {
 }
 
 function DiscoveryInteractiveSection() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState<number | null>(0);
   const types = [
     { 
       title: "Intentional", 
@@ -371,40 +377,41 @@ function DiscoveryInteractiveSection() {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row gap-12 min-h-[350px]">
-      <div className="flex-1 flex flex-col gap-2">
-        <h3 className="text-[24px] font-serif-editorial text-[#F2F2F0] mb-4 px-4">Types of Discovery</h3>
-        {types.map((type, idx) => {
-          const isActive = activeTab === idx;
-          return (
+    <div className="flex flex-col gap-4 w-full">
+      <h3 className="text-[24px] font-serif-editorial text-[#F2F2F0] mb-4">Types of Discovery</h3>
+      {types.map((type, idx) => {
+        const isActive = activeTab === idx;
+        return (
+          <div key={idx} className={`flex flex-col border transition-all duration-300 rounded-2xl overflow-hidden ${isActive ? 'bg-[#0A0A0A] border-white/[0.08]' : 'bg-white/[0.01] border-white/[0.04] hover:bg-white/[0.02]'}`}>
             <button 
-              key={idx}
-              onClick={() => setActiveTab(idx)}
-              className={`flex flex-col gap-1 p-4 rounded-xl text-left transition-all duration-300 ${isActive ? 'bg-white/[0.04] border border-white/[0.08]' : 'hover:bg-white/[0.02] border border-transparent opacity-60 hover:opacity-100'}`}
+              onClick={() => setActiveTab(isActive ? null : idx)}
+              className="flex flex-col gap-1 p-6 text-left w-full"
             >
-              <span className={`text-[16px] font-medium tracking-wide transition-colors ${isActive ? 'text-[#F2F2F0]' : 'text-[#A0A0A0]'}`}>{type.title}</span>
-              <span className="text-[14px] text-[#6A6A6A] font-light leading-relaxed">{type.short}</span>
+              <div className="flex justify-between items-center w-full mb-1">
+                <span className={`text-[18px] font-medium tracking-wide transition-colors ${isActive ? 'text-[#F2F2F0]' : 'text-[#A0A0A0]'}`}>{type.title}</span>
+                <span className="text-[#6A6A6A]">{isActive ? <Minus size={18}/> : <Plus size={18}/>}</span>
+              </div>
+              <span className="text-[14px] text-[#6A6A6A] font-light leading-relaxed pr-8">{type.short}</span>
             </button>
-          )
-        })}
-      </div>
-      <div className="flex-1 flex flex-col p-8 lg:p-12 pt-[120px] md:pt-[180px] relative h-full">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="relative z-10 flex flex-col gap-6"
-          >
-            <span className="text-[12px] uppercase tracking-widest text-[#4F6EF7] font-medium">{types[activeTab].title} Discovery</span>
-            <p className="text-[18px] md:text-[20px] text-[#F2F2F0] font-light leading-relaxed">
-              {types[activeTab].explanation}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+            <AnimatePresence>
+              {isActive && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden"
+                >
+                  <div className="p-6 pt-0 border-t border-white/[0.04] mx-6 mb-4 mt-2">
+                    <p className="text-[16px] md:text-[18px] text-[#A0A0A0] font-light leading-relaxed mt-4">
+                      {type.explanation}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )
+      })}
     </div>
   );
 }
