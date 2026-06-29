@@ -17,13 +17,13 @@ const capabilities = [
     id: "navigate",
     title: "Navigate",
     icon: <Map size={24} strokeWidth={1} />,
-    items: ["Smart routing", "Live traffic", "Transit", "Walking", "Cycling"]
+    items: ["Smart routing", "Live traffic", "Transit", "Movement"]
   },
   {
     id: "connect",
     title: "Connect",
     icon: <Users size={24} strokeWidth={1} />,
-    items: ["Communities", "Founders", "Students", "Local groups", "Nearby people"]
+    items: ["Friends", "Founders", "Local groups", "Nearby people", "Colonies"]
   },
   {
     id: "understand",
@@ -99,7 +99,7 @@ export default function CapabilitiesSection() {
                             className={`w-full max-w-[280px] ${idx !== cap.items.length - 1 ? 'border-b border-[rgba(255,255,255,0.06)]' : ''}`}
                           >
                             <Link 
-                              href={item === "Places" ? "/places" : item === "Events" ? "/events" : item === "Communities" ? "/communities" : "/in-progress"} 
+                              href={item === "Places" ? "/places" : item === "Events" ? "/events" : item === "Businesses" ? "/businesses" : item === "New exploration" ? "/exploration" : item === "Smart routing" ? "/smart-routing" : item === "Live traffic" ? "/live-traffic" : item === "Transit" ? "/transit" : item === "Movement" ? "/movement-intelligence" : item === "Friends" ? "/friends" : item === "Nearby people" ? "/presence-intelligence" : "/in-progress"} 
                               className="group/link flex items-center justify-between text-[15px] md:text-[16px] text-[#A0A0A0] font-light transition-colors duration-300 hover:text-[#F2F2F0] py-4 w-full"
                             >
                               {item}
