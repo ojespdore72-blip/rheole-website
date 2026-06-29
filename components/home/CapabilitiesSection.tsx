@@ -99,7 +99,7 @@ export default function CapabilitiesSection() {
                             className={`w-full max-w-[280px] ${idx !== cap.items.length - 1 ? 'border-b border-[rgba(255,255,255,0.06)]' : ''}`}
                           >
                             <Link 
-                              href={item === "Places" ? "/places" : item === "Events" ? "/events" : "/in-progress"} 
+                              href={item === "Places" ? "/places" : item === "Events" ? "/events" : item === "Communities" ? "/communities" : "/in-progress"} 
                               className="group/link flex items-center justify-between text-[15px] md:text-[16px] text-[#A0A0A0] font-light transition-colors duration-300 hover:text-[#F2F2F0] py-4 w-full"
                             >
                               {item}
