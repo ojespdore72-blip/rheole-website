@@ -227,20 +227,3 @@ export const comparisonData = [
   }
 ];
 
-export const faqsData = [
-  { q: "Where should I start?", a: "Start with the Authentication and Versioning guides. Understanding how to securely construct a request and pin your API version is fundamental before interacting with any specific resource." },
-  { q: "How are endpoints organised?", a: "Endpoints are organised around RESTful, resource-oriented architecture. URLs map to logical entities (e.g., /v1/places, /v1/events) rather than actions." },
-  { q: "How do I migrate versions?", a: "We release API versions using a date-based format (YYYY-MM-DD). You can upgrade versions via the Developer Dashboard, which will provide a detailed migration guide for any breaking changes." },
-  { q: "What resources require authentication?", a: "Every single resource in the Rheole platform requires authentication. There are no completely public endpoints. Unauthenticated requests will immediately return a 401 Unauthorized." },
-  { q: "How do SDKs relate to REST APIs?", a: "Our SDKs (TypeScript, Python, Go, iOS, Android) are idiomatic wrappers around the REST APIs. They handle authentication, retries, and pagination automatically. We strongly recommend using SDKs over raw REST calls." },
-  { q: "How are realtime resources documented?", a: "Realtime resources (WebSockets) are documented alongside their REST equivalents, clearly indicating the subscription message formats and expected event payloads." },
-  { q: "How do I discover related endpoints?", a: "Our Reference Graph automatically injects 'Related Resources' links at the bottom of every endpoint page. Furthermore, our Semantic API Discovery search allows you to search by intent (e.g., 'find traffic') to locate the correct endpoint." },
-  { q: "What is the rate limit?", a: "Rate limits are bound to your Project tier. The standard tier allows 1,000 requests per minute. Limits are returned dynamically in the HTTP response headers (X-RateLimit-Limit)." },
-  { q: "Are SDKs auto-generated?", a: "No. While our OpenAPI specs are generated from code, our SDKs are hand-crafted by engineers to ensure they feel idiomatic and natural for the target programming language." },
-  { q: "What happens if a request fails?", a: "Review the 'Error Model' section. Every error returns a standardized JSON payload containing a human-readable message, a specific error code, and often a 'recovery_suggestion' string." },
-  { q: "How do I report a bug in the documentation?", a: "Every reference page has a 'Provide Feedback' button at the bottom. We treat documentation bugs with the same severity as platform outages." },
-  { q: "Can I download the OpenAPI spec?", a: "Yes, the complete OpenAPI 3.1 specification is available for download, allowing you to generate your own clients or import the collection into tools like Postman or Insomnia." },
-  { q: "How long are old API versions supported?", a: "We guarantee support for all API versions for a minimum of 24 months after they have been superseded by a newer version." },
-  { q: "What is 'Expansion'?", a: "Expansion allows you to request nested relationships within a single API call. Instead of fetching a Place, and then making a second call to fetch its associated Business, you can request '?expand=business' to retrieve both simultaneously." },
-  { q: "How do I test my integration safely?", a: "Every Account includes isolated 'Test Mode' Projects. Requests made using Test API Keys will never impact production data or incur billing charges." }
-];

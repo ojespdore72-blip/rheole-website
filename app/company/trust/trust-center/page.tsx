@@ -12,7 +12,7 @@ import {
   ourCommitmentData, fivePillarsData, privacyData, securityData, 
   responsibleAiData, dataGovernanceData, platformReliabilityData, 
   transparencyData, complianceData, responsibleDisclosureData, 
-  uniqueConceptsData, trustResourcesData, comparisonData, faqsData 
+  uniqueConceptsData, trustResourcesData, comparisonData 
 } from "@/lib/data/trust-center";
 
 export default function TrustCenterPage() {
@@ -408,43 +408,23 @@ export default function TrustCenterPage() {
         </ScrollReveal>
       </section>
 
-      {/* Frequently Asked Questions */}
-      <section className="pt-32 px-6 md:px-12 max-w-[1000px] mx-auto">
+      {/* Continue to FAQs */}
+      <section className="pt-32 px-6 md:px-12 max-w-[1000px] mx-auto mb-32">
         <ScrollReveal>
-          <h2 className="text-[32px] md:text-[48px] font-serif-editorial font-light mb-12 text-white">Frequently Asked Questions</h2>
+          <div className="p-8 md:p-12 rounded-3xl bg-gradient-to-b from-[#111] to-[#0A0A0A] border border-white/[0.05] flex flex-col items-center text-center">
+            <h2 className="text-[32px] md:text-[48px] font-serif-editorial font-light mb-6 text-white">Have more questions?</h2>
+            <p className="text-[#8A8A8A] text-lg font-light leading-relaxed mb-8 max-w-[600px]">
+              Explore our centralized knowledge base for detailed answers regarding Trust Center.
+            </p>
+            <Link 
+              href="/resources/faq#section-7"
+              className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full text-sm font-medium hover:bg-[#F2F2F0] transition-colors"
+            >
+              Read Trust Center FAQs
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </ScrollReveal>
-
-        <div className="flex flex-col gap-2">
-          {faqsData.map((faq, i) => (
-            <ScrollReveal key={i} delay={0.1 + (i * 0.02)}>
-              <div className="border-b border-white/[0.05] overflow-hidden">
-                <button 
-                  onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                  className="w-full py-6 flex items-center justify-between text-left group"
-                >
-                  <span className={`text-[18px] md:text-[22px] font-light transition-colors duration-300 ${activeFaq === i ? 'text-white' : 'text-[#A0A0A0] group-hover:text-[#D0D0D0]'}`}>
-                    {faq.q}
-                  </span>
-                  <ChevronDown className={`w-5 h-5 text-[#6A6A6A] transition-transform duration-500 ${activeFaq === i ? 'rotate-180' : ''}`} />
-                </button>
-                <AnimatePresence>
-                  {activeFaq === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      <p className="pb-8 text-[#8A8A8A] text-[16px] font-light leading-relaxed max-w-[800px]">
-                        {faq.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
       </section>
 
       {/* Building The Future */}

@@ -87,20 +87,3 @@ export const thirdPartyData = [
   }
 ];
 
-export const faqsData = [
-  { q: "What exactly are cookies?", a: "Cookies are small text files placed on your device by the websites you visit. They are widely used to make websites work, or work more efficiently, as well as to provide essential information to the site owners." },
-  { q: "Do I have to accept all cookies?", a: "No. You are only required to accept 'Essential' and 'Security' cookies, which are necessary for the website to function. All other categories are entirely optional." },
-  { q: "Can I delete cookies later?", a: "Yes. You can delete all cookies already on your device and configure most modern browsers to prevent them from being placed in the future." },
-  { q: "Will disabling cookies break the website?", a: "Disabling optional cookies (like Performance or Functional) will not break the website, though you may lose some personalized features. Disabling Essential cookies at the browser level will prevent you from logging in or using the Developer Platform." },
-  { q: "How long do cookies remain on my device?", a: "It depends on the type. 'Session cookies' are deleted the moment you close your browser. 'Persistent cookies' remain until they reach their explicitly defined expiration date or you manually delete them." },
-  { q: "Does Rheole use cookies for advertising?", a: "No. Rheole does not use advertising or cross-site tracking cookies. We do not sell your data to data brokers or third-party advertising networks." },
-  { q: "Can I change my preferences at any time?", a: "Yes. You can access the 'Cookie Preferences' link at the bottom of any page to instantly update your choices. Changes take effect immediately." },
-  { q: "What happens when a cookie expires?", a: "Once a cookie passes its expiration date, your browser automatically deletes it. The website will treat you as a new visitor for the purpose that specific cookie served." },
-  { q: "Are cookies safe?", a: "Cookies themselves are plain text files. They cannot execute code or deliver viruses. However, because they can be used to track behavior, their safety depends on the transparency and integrity of the website issuing them." },
-  { q: "Why do I see cookies from other domains?", a: "These are 'third-party cookies'. On Rheole, these are strictly limited to secure authentication providers (like GitHub) and essential infrastructure monitoring. We do not permit third-party advertising domains." },
-  { q: "What is 'Local Storage'?", a: "Local Storage is a modern browser feature similar to a cookie, but it can hold more data and isn't automatically sent to the server with every HTTP request. We use it to save UI preferences like Dark Mode." },
-  { q: "Do cookies collect personal data?", a: "Most of our cookies collect anonymous identifiers (like a randomized string). However, Authentication cookies do link to your personal account to keep you securely logged in." },
-  { q: "How often is this policy updated?", a: "We review this policy quarterly or whenever we introduce a new feature that requires a change in how we process local storage and cookies." },
-  { q: "Who can I contact about privacy concerns?", a: "You can reach our privacy team directly through the Contact page, or by reviewing our full Privacy Architecture documentation." },
-  { q: "Is this policy globally applicable?", a: "Yes. While specific regional laws (like GDPR or CCPA) require different disclosures, we apply our strictest privacy standards globally to all users, regardless of their location." }
-];

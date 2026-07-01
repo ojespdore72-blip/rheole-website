@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, CheckCircle2, ChevronRight, BrainCircuit, Quote } from "lucide-react";
-import { aiResearchInitiatives, aiFaqsData, comparisonData, openQuestionsData } from "@/lib/data/ai-research";
+import { aiResearchInitiatives, comparisonData, openQuestionsData } from "@/lib/data/ai-research";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const KnowledgeBlock = ({ label, children }: { label: string, children: React.ReactNode }) => (
@@ -316,39 +316,23 @@ export default function AIResearchPage() {
 
       <div className="w-full h-[1px] bg-white/[0.05] max-w-[1200px] mx-auto my-32" />
 
-      {/* FAQ SECTION */}
-      <section className="px-6 md:px-12 max-w-[800px] mx-auto">
-        <SectionTitle title="Frequently Asked Questions" />
-        <div className="flex flex-col border-t border-white/[0.05] mt-12">
-          {aiFaqsData.map((faq, idx) => (
-            <div key={idx} className="border-b border-white/[0.05]">
-              <button 
-                onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                className="w-full py-6 flex items-center justify-between text-left focus:outline-none group"
-              >
-                <span className="text-[16px] md:text-[18px] text-[#F2F2F0] font-medium group-hover:text-[#4F6EF7] transition-colors pr-8">
-                  {faq.q}
-                </span>
-                <ChevronDown className={`shrink-0 text-[#6A6A6A] transition-transform duration-300 ${openFaq === idx ? 'rotate-180 text-white' : ''}`} size={20} />
-              </button>
-              <AnimatePresence>
-                {openFaq === idx && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="overflow-hidden"
-                  >
-                    <p className="pb-8 text-[15px] md:text-[16px] text-[#A0A0A0] font-light leading-relaxed">
-                      {faq.a}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </div>
+      {/* Continue to FAQs */}
+      <section className="pt-32 px-6 md:px-12 max-w-[1000px] mx-auto mb-32">
+        <ScrollReveal>
+          <div className="p-8 md:p-12 rounded-3xl bg-gradient-to-b from-[#111] to-[#0A0A0A] border border-white/[0.05] flex flex-col items-center text-center">
+            <h2 className="text-[32px] md:text-[48px] font-serif-editorial font-light mb-6 text-white">Have more questions?</h2>
+            <p className="text-[#8A8A8A] text-lg font-light leading-relaxed mb-8 max-w-[600px]">
+              Explore our centralized knowledge base for detailed answers regarding AI Research.
+            </p>
+            <Link 
+              href="/resources/faq#section-1"
+              className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full text-sm font-medium hover:bg-[#F2F2F0] transition-colors"
+            >
+              Read AI Research FAQs
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </ScrollReveal>
       </section>
 
       <div className="w-full h-[1px] bg-white/[0.05] max-w-[1200px] mx-auto my-32" />

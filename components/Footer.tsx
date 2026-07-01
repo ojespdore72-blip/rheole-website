@@ -182,7 +182,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
           {/* Bottom of Bottom Footer: Legal & Copyright */}
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 text-[12px] text-[#6A6A6A]">
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-              <p>Copyright © 2026 Rheole Technologies Inc. All rights reserved.</p>
+              <p>Copyright © 2026 Rheole Technologies Pvt. Ltd. All rights reserved.</p>
             </div>
             
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">

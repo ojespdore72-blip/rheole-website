@@ -211,29 +211,6 @@ export const caseStudiesData = [
   }
 ];
 
-export const faqsData = [
-  { q: "Why are these case studies exploratory?", a: "We believe in asking the right questions before engineering solutions. Exploratory case studies allow us to rigorously define a problem space—understanding the human and spatial nuances—before we commit to a specific technological approach." },
-  { q: "How are research questions selected?", a: "Questions emerge from continuous observation of urban friction. Our interdisciplinary team of data scientists, urban planners, and behavioural psychologists identify patterns of frustration or missed opportunity in how people interact with their environments." },
-  { q: "Can the public contribute ideas?", a: "Yes. We believe that the best insights often come from the people living the experience. We actively host 'Spatial Inquiry' workshops and maintain open channels for community-driven research proposals." },
-  { q: "Do case studies become products?", a: "Not directly, but they inform everything we build. A case study acts as a compass. The insights generated often evolve into core capabilities within the Rheole platform, shaping how our APIs and SDKs are designed." },
-  { q: "How do you validate hypotheses?", a: "Through a combination of ethical data simulation, opt-in field studies, and partnerships with academic institutions. We prioritise rigorous, real-world testing over theoretical modelling." },
-  { q: "Why avoid exaggerated metrics?", a: "Because spatial intelligence is complex. Claiming a '500% increase in happiness' is marketing fiction. We prefer intellectual honesty, acknowledging both the successes and the profound limitations of our research." },
-  { q: "What is 'Spatial Inquiry™'?", a: "It is our proprietary methodology for investigating real-world challenges. It requires examining a problem through three lenses simultaneously: the physical environment, the digital layer, and human intent." },
-  { q: "How do you protect privacy during field studies?", a: "Privacy is foundational. We employ edge-processing, aggressive data anonymisation, and strict opt-in protocols. Our research focuses on aggregate spatial rhythms, not individual tracking." },
-  { q: "Are these studies limited to major cities?", a: "While dense urban environments provide rich data, our research explicitly includes suburban, rural, and developing regions. Spatial friction exists everywhere, and our solutions must be universally applicable." },
-  { q: "What role do urban planners play at Rheole?", a: "They are integral. We cannot understand spatial intelligence without understanding the physical built environment. Urban planners ensure our digital solutions respect and enhance the physical architecture of a city." },
-  { q: "How does weather data impact your research?", a: "Profoundly. Weather is the ultimate dynamic modifier of spatial behaviour. Understanding how a sudden downpour changes intent is crucial for building truly ambient, responsive systems." },
-  { q: "Why focus on 'decision fatigue'?", a: "Because modern digital mapping provides endless options without context. We research how to reduce cognitive load by offering fewer, but highly relevant, suggestions based on real-time spatial conditions." },
-  { q: "How do you define 'Ambient Communities'?", a: "These are latent networks of people with shared interests who occupy the same physical space but are unaware of each other. Our research explores how to safely make these connections visible." },
-  { q: "What is the 'Urban Insight Framework™'?", a: "It is our structured method for analysing the relationship between environmental factors (like noise, light, and density) and human decision-making in physical spaces." },
-  { q: "Do you study the negative impacts of technology?", a: "Absolutely. A core part of our research is understanding how poorly designed spatial technology can cause harm, such as algorithmic gentrification or distraction-induced accidents." },
-  { q: "How do 'Open Questions™' guide your roadmap?", a: "Open Questions are unresolved challenges that we publicly commit to investigating. They act as a transparent research agenda, inviting collaboration from the broader scientific and engineering communities." },
-  { q: "What does 'Context over convenience' mean?", a: "It is a research principle stating that the fastest or easiest route is not always the best. A truly intelligent system considers the emotional and environmental context of a journey, not just the math." },
-  { q: "How do you measure 'Atmospheric Context'?", a: "We synthesize multiple data streams—including aggregated foot traffic, ambient noise levels, and temporal rhythms—to infer the 'vibe' or atmosphere of a specific location at a specific time." },
-  { q: "Can spatial intelligence improve accessibility?", a: "Yes. It is a major research focus. By moving away from static accessibility data and toward dynamic, real-time inference (detecting temporary obstacles), we can significantly improve navigation for differently-abled users." },
-  { q: "How can I stay updated on Rheole Research?", a: "Our Case Studies page is continuously updated. We also publish detailed findings in our Engineering Notes and Research Blog, and we frequently present at major urban computing conferences." }
-];
-
 export const observationsData = [
   {
     title: "The Friction of Choice",

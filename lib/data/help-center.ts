@@ -73,30 +73,3 @@ export const comparisonData = {
   ]
 };
 
-export const faqsData = [
-  { q: "How does Rheole know what to recommend?", a: "We use Contextual Intelligence. The platform analyzes the time of day, current weather, venue operating hours, and your anonymized historical routine to provide recommendations that actually make sense for the moment." },
-  { q: "Can I disable location tracking?", a: "Yes. You can use Rheole by manually entering locations for searches and routing. However, ambient features like live transit updates and nearby community alerts require background location access." },
-  { q: "How are communities discovered?", a: "Communities are geographically anchored. You discover them by being in or verifying your residency in specific neighborhoods, ensuring groups remain hyper-local and relevant." },
-  { q: "What makes Smart Routing different?", a: "Smart Routing doesn't just calculate distance. It factors in live transit delays, elevation changes for cyclists, pedestrian safety data, and current weather conditions to find the optimal path." },
-  { q: "How does Context work?", a: "Context is the layer that sits between your search and the map. If you search 'coffee' at 8 AM, Context prioritizes fast espresso bars. At 8 PM, it prioritizes cozy cafes open late." },
-  { q: "Can I customise recommendations?", a: "Absolutely. In your Account Settings, you can define strict dietary requirements, accessibility needs, and pricing preferences that will universally filter all your recommendations." },
-  { q: "How do I report an incorrect map location?", a: "Tap the location pin, scroll to the bottom of the venue card, and select 'Suggest an Edit'. Our moderation team reviews these within 24 hours." },
-  { q: "What happens if I lose internet connection?", a: "If you have 'Offline Regions' enabled in your settings, your active routes, saved places, and neighborhood maps will remain fully functional without cellular data." },
-  { q: "How do I change my home or work address?", a: "Navigate to Account > Preferences > Saved Locations. Here you can update, add, or remove your primary anchor points." },
-  { q: "Are my saved places public?", a: "No. By default, all saved places and custom lists are entirely private. You must explicitly generate a shareable link to show them to friends." },
-  { q: "How do I turn off specific notifications?", a: "Go to Settings > Notifications. You have granular control—you can disable 'Community Updates' while keeping 'Transit Delays' active." },
-  { q: "Why is a route marked as 'Potentially Unsafe'?", a: "Rheole integrates with local municipal data. A route may be flagged if there is active construction, severe weather flooding, or inadequate street lighting reported in the area." },
-  { q: "Can I use Rheole in a new city?", a: "Yes. When you travel, Rheole automatically detects the new region and begins caching local transit schedules and highly-rated venues to ensure a seamless experience." },
-  { q: "How do I delete my account?", a: "Go to Account > Privacy & Security > Danger Zone. Selecting 'Delete Account' initiates a cryptographic scrub of your data, completed within 30 days." },
-  { q: "What is the 'Routine Cache'?", a: "It is an encrypted, on-device ledger of your frequent geographic movements. It helps Rheole predict when you might need transit times to work or home." },
-  { q: "Why did my community request get denied?", a: "Community moderators set their own entrance criteria. Often, this requires a verified profile or a brief introduction message. Check the community guidelines." },
-  { q: "How do I switch to dark mode?", a: "Go to Settings > Theme. You can select Light, Dark, or System, which automatically matches your device's current OS setting." },
-  { q: "Can I share a live route with a friend?", a: "Yes. Once navigation has started, swipe up on the bottom card and tap 'Share ETA'. This generates a secure, temporary tracking link." },
-  { q: "How do I change the language?", a: "Language preferences are managed in Settings > Language & Region. Changing this updates both the UI and the spoken navigation instructions." },
-  { q: "What does 'Anonymized Telemetry' mean?", a: "It means we collect diagnostic data (like app crashes or slow load times) without attaching your name, email, or exact location to the report." },
-  { q: "How do I contact a business directly?", a: "If a business has provided contact details, a 'Call' or 'Message' button will appear directly beneath their opening hours on their venue card." },
-  { q: "Why isn't my route showing public transit?", a: "Ensure 'Transit' is toggled on in your mobility preferences. If it is, the local transit authority may be experiencing a complete blackout or we may not support that specific region yet." },
-  { q: "Can I review a place anonymously?", a: "To prevent spam and manipulation, all reviews require a verified Rheole account. However, you can choose to display only your first name in Privacy Settings." },
-  { q: "How do I view my offline maps?", a: "Go to Account > Offline Regions. Here you can see downloaded areas, update them over Wi-Fi, or delete them to free up device storage." },
-  { q: "Where do I report a bug with the app?", a: "In the Help Center, scroll to 'Contact Support' and select 'Report a Bug'. Including a screenshot and your device model greatly accelerates our fix." }
-];

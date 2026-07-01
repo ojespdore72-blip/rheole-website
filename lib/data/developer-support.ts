@@ -85,25 +85,3 @@ export const comparisonData = {
   ]
 };
 
-export const faqsData = [
-  { q: "Where should I ask technical questions?", a: "For general implementation advice, our Developer Forums are best. For account-specific or critical API failures, use the Developer Support ticket system in your dashboard." },
-  { q: "How quickly does support respond?", a: "Email support typically responds within 24 hours. Enterprise partners with dedicated SLAs receive prioritized routing." },
-  { q: "When should I contact enterprise support?", a: "Enterprise support is designed for large-scale deployments, custom SLA requirements, complex legal compliance reviews, and dedicated Technical Account Management." },
-  { q: "How do I report a bug?", a: "You can submit bug reports directly through your Developer Portal or via our public GitHub repositories if the bug is related to an open-source SDK." },
-  { q: "How do I request a feature?", a: "Feature requests can be submitted via the Community Forums under the 'Feedback' category, where other developers can upvote your idea." },
-  { q: "How do I report a security issue?", a: "Please practice responsible disclosure by emailing security@rheole.com. Do not post potential vulnerabilities in public channels." },
-  { q: "How do I follow platform incidents?", a: "You can view real-time telemetry at our Status Page and subscribe via Email, SMS, or Slack Webhook for instant incident alerts." },
-  { q: "What information should I include in a ticket?", a: "Always include the exact API endpoint, the HTTP status code, a snippet of the request payload, and most importantly, the 'x-rheole-request-id' response header." },
-  { q: "Can someone review my application architecture?", a: "Yes. Enterprise partners have access to Architecture Clinics. For independent developers, we encourage posting architectural drafts in the Community Forums." },
-  { q: "Is the AI Assistant trained on my code?", a: "No. The AI Assistant is trained exclusively on Rheole's public documentation, SDK source code, and knowledge base. It does not ingest your proprietary queries for training." },
-  { q: "Do you offer live chat support?", a: "Live chat is currently available exclusively for Enterprise partners during critical deployment windows." },
-  { q: "Where can I find older versions of the SDK?", a: "All historical versions of our SDKs are maintained on npm, Maven Central, and CocoaPods. You can find version-specific documentation in the Developer Portal archive." },
-  { q: "How do I appeal an API rate limit block?", a: "If your account was blocked due to an unexpected spike, contact Developer Support with an explanation of the traffic surge and your requested limit increase." },
-  { q: "Are Office Hours recorded?", a: "Yes. All bi-weekly Office Hours are recorded and uploaded to our Video Tutorials library within 48 hours of the broadcast." },
-  { q: "Can I get help with a third-party integration?", a: "We provide best-effort guidance for integrating Rheole with popular frameworks (like Next.js or React Native). For obscure or proprietary frameworks, we recommend the Community Forums." },
-  { q: "What is a 'Living Knowledge Base'?", a: "It means our documentation is never 'finished'. Every time a developer asks a novel question that isn't covered in the docs, we update the docs to include that context for the next person." },
-  { q: "How do I recover a lost Developer Key?", a: "For security reasons, Developer Keys cannot be recovered. If you lose a key, you must immediately revoke it in the Developer Portal and generate a new one." },
-  { q: "Do you provide hands-on coding assistance?", a: "We provide detailed examples and integration guidance, but we do not write custom application logic for your specific business requirements." },
-  { q: "How are breaking changes communicated?", a: "Breaking changes are announced via email to all active developers 90 days in advance, accompanied by a detailed Migration Guide in the Knowledge Base." },
-  { q: "Is the community actively moderated?", a: "Yes. Our Developer Advocates actively moderate the forums to ensure discussions remain productive, respectful, and technically accurate." }
-];
