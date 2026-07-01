@@ -99,6 +99,38 @@ const navData = {
   }
 };
 
+const getRoute = (link: string) => {
+  const overrides: Record<string, string> = {
+    "New exploration": "/exploration",
+    "Movement": "/movement-intelligence",
+    "Opportunities": "/opportunity-intelligence",
+    "Local groups": "/local-coordination",
+    "Nearby Presence": "/presence-intelligence",
+    "Neighbourhood": "/neighbourhood-intelligence",
+    "User intent": "/intent-intelligence",
+    "Contextual intelligence": "/context-intelligence",
+    "Environmental Intelligence": "/environmental-intelligence",
+    "Curiosity Intelligence": "/curiosity-intelligence",
+    "Personal rhythm": "/rhythm-intelligence",
+    "About Us": "/about",
+    "Mission": "/about",
+    "Interactive Playground": "/documentation",
+    "GitHub": "https://github.com/rheole",
+    "Spatial Intelligence": "/spatial-computing",
+    "Urban Computing": "/research",
+    "Ambient AI": "/ai-architecture",
+    "Human Mobility": "/movement-intelligence",
+    "AI Transparency": "/privacy-architecture",
+    "Whitepapers": "/research",
+    "Engineering Notes": "/blog",
+    "Research Blog": "/blog",
+    "Newsroom": "/press",
+    "Brand Assets": "/brand",
+    "Security": "/security-architecture",
+  };
+  return overrides[link] || `/${link.toLowerCase().replace(/\s+/g, '-')}`;
+};
+
 export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -218,22 +250,14 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                       </div>
                       <ul className="flex flex-col gap-4">
                         {col.links.map((link, j) => {
-                          const route = link === "Movement" ? "/movement-intelligence" : 
-                                        link === "Opportunities" ? "/opportunity-intelligence" : 
-                                        link === "Local groups" ? "/local-coordination" : 
-                                        link === "Nearby Presence" ? "/presence-intelligence" : 
-                                        link === "Neighbourhood" ? "/neighbourhood-intelligence" : 
-                                        link === "User intent" ? "/intent-intelligence" : 
-                                        link === "Contextual intelligence" ? "/context-intelligence" : 
-                                        link === "Environmental Intelligence" ? "/environmental-intelligence" : 
-                                        link === "Curiosity Intelligence" ? "/curiosity-intelligence" : 
-                                        link === "Personal rhythm" ? "/rhythm-intelligence" : 
-                                        `/${link.toLowerCase().replace(/\s+/g, '-')}`;
+                          const route = getRoute(link);
+                          const isExternal = route.startsWith("http");
                           return (
                             <li key={j}>
                               <Link 
-                                href={route} 
-                                prefetch={false}
+                                href={route}
+                                target={isExternal ? "_blank" : undefined}
+                                prefetch={!isExternal ? false : undefined}
                                 className="group inline-flex items-center text-[13px] text-[#A0A0A0] hover:text-white transition-colors"
                                 onClick={() => setActiveMenu(null)}
                               >
@@ -347,26 +371,28 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                   return (
                     <div key={key} className="flex flex-col gap-6">
                       <h3 className="text-[28px] font-light text-white tracking-tight">{section.title}</h3>
-                      <div className="flex flex-col gap-4">
-                        {section.columns[0].links.map((link, i) => {
-                          const route = link === "Movement" ? "/movement-intelligence" : 
-                                        link === "Opportunities" ? "/opportunity-intelligence" : 
-                                        link === "Local groups" ? "/local-coordination" : 
-                                        link === "Nearby Presence" ? "/presence-intelligence" : 
-                                        link === "Neighbourhood" ? "/neighbourhood-intelligence" : 
-                                        link === "User intent" ? "/intent-intelligence" : 
-                                        link === "Contextual intelligence" ? "/context-intelligence" : 
-                                        link === "Environmental Intelligence" ? "/environmental-intelligence" : 
-                                        link === "Curiosity Intelligence" ? "/curiosity-intelligence" : 
-                                        link === "Personal rhythm" ? "/rhythm-intelligence" : 
-                                        `/${link.toLowerCase().replace(/\\s+/g, '-')}`;
-                          return (
-                          <Link key={i} href={route} className="flex items-center justify-between text-[16px] text-[#A0A0A0] hover:text-white" onClick={() => setMobileMenuOpen(false)}>
-                            {link}
-                            <ChevronRight size={16} className="text-[#4A4A4A]" />
-                          </Link>
-                          );
-                        })}
+                      <div className="flex flex-col gap-8">
+                        {section.columns.map((col, cIdx) => (
+                          <div key={cIdx} className="flex flex-col gap-4">
+                            <h4 className="text-[12px] uppercase tracking-widest text-[#6A6A6A] font-medium">{col.title}</h4>
+                            {col.links.map((link, i) => {
+                              const route = getRoute(link);
+                              const isExternal = route.startsWith("http");
+                              return (
+                              <Link 
+                                key={i} 
+                                href={route} 
+                                target={isExternal ? "_blank" : undefined}
+                                className="flex items-center justify-between text-[16px] text-[#A0A0A0] hover:text-white" 
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                {link}
+                                <ChevronRight size={16} className="text-[#4A4A4A]" />
+                              </Link>
+                              );
+                            })}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   );
