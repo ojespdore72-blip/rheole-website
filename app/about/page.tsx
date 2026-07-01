@@ -1,15 +1,15 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 
-const editorialVariants = {
+const editorialVariants: Variants = {
   hidden: { opacity: 0, y: 15 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } 
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } 
   }
 };
 

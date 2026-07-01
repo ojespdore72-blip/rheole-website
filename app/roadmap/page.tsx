@@ -115,7 +115,7 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle?: string }
   );
 }
 
-function InsightNote({ title, category, children }: { title: string; category: string; children: React.ReactNode }) {
+function InsightNote({ title, category, desc }: { title: string; category: string; desc: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-3 p-6 bg-[#030303] border border-white/[0.08] hover:border-white/[0.2] transition-colors rounded-[8px] h-full group">
       <div className="flex items-center gap-2">
@@ -123,7 +123,7 @@ function InsightNote({ title, category, children }: { title: string; category: s
         <span className="text-[9px] uppercase tracking-[0.2em] text-[#6A6A6A] font-medium font-mono">{category}</span>
       </div>
       <h4 className="text-[16px] text-[#F2F2F0] font-medium tracking-wide">{title}</h4>
-      <p className="text-[13px] text-[#8A8A8A] font-light leading-relaxed">{children}</p>
+      <p className="text-[13px] text-[#8A8A8A] font-light leading-relaxed">{desc}</p>
     </div>
   );
 }
