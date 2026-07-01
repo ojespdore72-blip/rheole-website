@@ -44,10 +44,26 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
                 {title}
               </h4>
               <ul className="flex flex-col gap-4">
-                {links.map((link) => (
+                {links.map((link) => {
+                  const route = link === "Movement" ? "/movement-intelligence" : 
+                                link === "Opportunities" ? "/opportunity-intelligence" : 
+                                link === "Local groups" ? "/local-coordination" : 
+                                link === "Nearby Presence" ? "/presence-intelligence" : 
+                                link === "Neighbourhood" ? "/neighbourhood-intelligence" : 
+                                link === "User intent" ? "/intent-intelligence" : 
+                                link === "Contextual intelligence" ? "/context-intelligence" : 
+                                link === "Environmental Intelligence" ? "/environmental-intelligence" : 
+                                link === "Curiosity Intelligence" ? "/curiosity-intelligence" : 
+                                link === "Personal rhythm" ? "/rhythm-intelligence" : 
+                                link === "Privacy Policy" ? "/privacy" :
+                                link === "Terms of Service" ? "/terms" :
+                                link === "Terms" ? "/terms" :
+                                `/${link.toLowerCase().replace(/\\s+/g, '-')}`;
+                  return (
                   <li key={link}>
                     <Link 
-                      href="#"
+                      href={route}
+                      prefetch={false}
                       className="group inline-flex items-center gap-1 text-[13px] text-[#8A8A8A] transition-colors duration-300 hover:text-[#F2F2F0] outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-sm"
                     >
                       <span className="relative">
@@ -56,7 +72,8 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
                       </span>
                     </Link>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -94,15 +111,15 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
             </div>
             
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-              <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/privacy" prefetch={false} className="hover:text-white transition-colors">Privacy Policy</Link>
               <span className="hidden lg:block w-1 h-1 rounded-full bg-[#3A3A3A]" />
-              <Link href="#" className="hover:text-white transition-colors">Terms of Use</Link>
+              <Link href="/terms" prefetch={false} className="hover:text-white transition-colors">Terms of Use</Link>
               <span className="hidden lg:block w-1 h-1 rounded-full bg-[#3A3A3A]" />
-              <Link href="#" className="hover:text-white transition-colors">Sales Policy</Link>
+              <Link href="/terms" prefetch={false} className="hover:text-white transition-colors">Sales Policy</Link>
               <span className="hidden lg:block w-1 h-1 rounded-full bg-[#3A3A3A]" />
-              <Link href="#" className="hover:text-white transition-colors">Legal</Link>
+              <Link href="/terms" prefetch={false} className="hover:text-white transition-colors">Legal</Link>
               <span className="hidden lg:block w-1 h-1 rounded-full bg-[#3A3A3A]" />
-              <Link href="#" className="hover:text-white transition-colors">Site Map</Link>
+              <Link href="/sitemap.xml" prefetch={false} className="hover:text-white transition-colors">Site Map</Link>
               <span className="w-1 h-1 rounded-full bg-[#3A3A3A] ml-2" />
               <span>Version 2.0.0</span>
             </div>

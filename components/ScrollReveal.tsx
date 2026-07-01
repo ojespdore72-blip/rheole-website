@@ -17,7 +17,7 @@ export default function ScrollReveal({
   staggerChildren = false
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
+  const isInView = useInView(ref, { once: true, amount: 0 });
 
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 24 },

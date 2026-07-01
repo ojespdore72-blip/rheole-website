@@ -167,7 +167,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
             {Object.keys(navData).map((key) => (
               <Link
                 key={key}
-                href={key === "platform" ? "/platform" : key === "technology" ? "/technology" : "#"}
+                href={key === "platform" ? "/platform" : key === "technology" ? "/technology" : key === "research" ? "/research" : key === "company" ? "/about" : "#"}
                 onMouseEnter={() => setActiveMenu(key)}
                 className="relative group outline-none"
               >
@@ -233,6 +233,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                             <li key={j}>
                               <Link 
                                 href={route} 
+                                prefetch={false}
                                 className="group inline-flex items-center text-[13px] text-[#A0A0A0] hover:text-white transition-colors"
                                 onClick={() => setActiveMenu(null)}
                               >
@@ -249,7 +250,8 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                 {/* Mega Menu Footer CTA */}
                 <div className="mt-12 pt-6 border-t border-white/[0.05] flex items-center">
                   <Link 
-                    href={activeMenu === "platform" ? "/platform" : activeMenu === "technology" ? "/technology" : "#"} 
+                    href={activeMenu === "platform" ? "/platform" : activeMenu === "technology" ? "/technology" : activeMenu === "research" ? "/research" : activeMenu === "company" ? "/about" : "#"} 
+                    prefetch={false}
                     className="group flex items-center gap-2 text-[13px] text-white font-medium"
                     onClick={() => setActiveMenu(null)}
                   >
@@ -346,12 +348,25 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                     <div key={key} className="flex flex-col gap-6">
                       <h3 className="text-[28px] font-light text-white tracking-tight">{section.title}</h3>
                       <div className="flex flex-col gap-4">
-                        {section.columns[0].links.map((link, i) => (
-                          <Link key={i} href="#" className="flex items-center justify-between text-[16px] text-[#A0A0A0] hover:text-white" onClick={() => setMobileMenuOpen(false)}>
+                        {section.columns[0].links.map((link, i) => {
+                          const route = link === "Movement" ? "/movement-intelligence" : 
+                                        link === "Opportunities" ? "/opportunity-intelligence" : 
+                                        link === "Local groups" ? "/local-coordination" : 
+                                        link === "Nearby Presence" ? "/presence-intelligence" : 
+                                        link === "Neighbourhood" ? "/neighbourhood-intelligence" : 
+                                        link === "User intent" ? "/intent-intelligence" : 
+                                        link === "Contextual intelligence" ? "/context-intelligence" : 
+                                        link === "Environmental Intelligence" ? "/environmental-intelligence" : 
+                                        link === "Curiosity Intelligence" ? "/curiosity-intelligence" : 
+                                        link === "Personal rhythm" ? "/rhythm-intelligence" : 
+                                        `/${link.toLowerCase().replace(/\\s+/g, '-')}`;
+                          return (
+                          <Link key={i} href={route} className="flex items-center justify-between text-[16px] text-[#A0A0A0] hover:text-white" onClick={() => setMobileMenuOpen(false)}>
                             {link}
                             <ChevronRight size={16} className="text-[#4A4A4A]" />
                           </Link>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   );
