@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
+import Link from "next/link";
 
 // -----------------------------------------------------------------------------------
 // KNOWLEDGE BLOCK COMPONENT
@@ -36,7 +37,7 @@ function IntroSection() {
         <ScrollReveal delay={0.2}>
           <h1 className="text-[40px] md:text-[72px] lg:text-[96px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.05] tracking-tight max-w-[1000px]">
             The world already knows everything.<br />
-            <span className="text-[#8A8A8A]">It simply doesn't understand it together.</span>
+            <span className="text-[#8A8A8A]">It simply doesn&apos;t understand it together.</span>
           </h1>
         </ScrollReveal>
         
@@ -101,22 +102,26 @@ function FourPillarsSection() {
     {
       title: "Discover",
       desc: "Helping people understand what exists around them.",
-      detail: "Not just places, but the context of those places. Real-time atmosphere, crowdedness, and relevance to your current intent."
+      detail: "Not just places, but the context of those places. Real-time atmosphere, crowdedness, and relevance to your current intent.",
+      link: "/platform/discover"
     },
     {
       title: "Navigation",
       desc: "Helping people move intelligently through the world.",
-      detail: "Beyond shortest-path logic. Routing that considers safety, weather, live events, and the exact nature of your journey."
+      detail: "Beyond shortest-path logic. Routing that considers safety, weather, live events, and the exact nature of your journey.",
+      link: "/platform/navigation"
     },
     {
       title: "Connect",
       desc: "Helping people discover meaningful human relationships.",
-      detail: "Surfacing serendipitous encounters, local communities, and founders nearby without the noise of traditional social media."
+      detail: "Surfacing serendipitous encounters, local communities, and founders nearby without the noise of traditional social media.",
+      link: "/platform/connect"
     },
     {
       title: "Intelligence",
       desc: "Helping technology understand people before responding.",
-      detail: "The invisible engine. It learns your rhythms and preferences, ensuring the platform anticipates needs rather than waiting for commands."
+      detail: "The invisible engine. It learns your rhythms and preferences, ensuring the platform anticipates needs rather than waiting for commands.",
+      link: "/platform/intelligence"
     }
   ];
 
@@ -135,17 +140,19 @@ function FourPillarsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {pillars.map((pillar, i) => (
-            <ScrollReveal key={i} delay={i * 0.1} className="relative group">
-              <div className="h-full flex flex-col gap-8 p-10 border border-white/[0.05] bg-[#080808] rounded-2xl hover:bg-white/[0.02] transition-colors duration-500">
-                <h3 className="text-[20px] font-medium text-white tracking-tight">{pillar.title}</h3>
-                <p className="text-[15px] text-[#A0A0A0] leading-relaxed font-light flex-1">
-                  {pillar.desc}
-                </p>
-                <div className="w-full h-[1px] bg-white/[0.05] group-hover:bg-white/[0.1] transition-colors" />
-                <p className="text-[13px] text-[#6A6A6A] leading-relaxed font-light">
-                  {pillar.detail}
-                </p>
-              </div>
+            <ScrollReveal key={i} delay={i * 0.1} className="relative group h-full">
+              <Link href={pillar.link} className="block h-full cursor-pointer hover:scale-[1.02] transition-transform duration-500">
+                <div className="h-full flex flex-col gap-8 p-10 border border-white/[0.05] bg-[#080808] rounded-2xl hover:bg-white/[0.02] hover:border-white/[0.15] transition-all duration-500">
+                  <h3 className="text-[20px] font-medium text-white tracking-tight">{pillar.title}</h3>
+                  <p className="text-[15px] text-[#A0A0A0] leading-relaxed font-light flex-1">
+                    {pillar.desc}
+                  </p>
+                  <div className="w-full h-[1px] bg-white/[0.05] group-hover:bg-white/[0.1] transition-colors" />
+                  <p className="text-[13px] text-[#6A6A6A] leading-relaxed font-light">
+                    {pillar.detail}
+                  </p>
+                </div>
+              </Link>
             </ScrollReveal>
           ))}
         </div>
@@ -182,7 +189,7 @@ function HowTheyWorkSection() {
 
               <div className="flex flex-col gap-2">
                 <span className="text-[12px] uppercase tracking-widest text-white font-medium">The User Request</span>
-                <p className="text-[24px] md:text-[32px] text-[#8A8A8A] font-serif-editorial font-light italic">"I'm hungry."</p>
+                <p className="text-[24px] md:text-[32px] text-[#8A8A8A] font-serif-editorial font-light italic">&quot;I&apos;m hungry.&quot;</p>
               </div>
 
               <div className="flex flex-col gap-8">

@@ -58,7 +58,15 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
                                 link === "Privacy Policy" ? "/privacy" :
                                 link === "Terms of Service" ? "/terms" :
                                 link === "Terms" ? "/terms" :
-                                `/${link.toLowerCase().replace(/\\s+/g, '-')}`;
+                                link === "Case Studies" ? "/research/case-studies" :
+                                link === "AI" ? "/research/ai-research" :
+                                link === "Urban Computing" ? "/research/urban-computing" :
+                                link === "API Reference" ? "/platform/api-references" :
+                                link === "Discover" ? "/platform/discover" :
+                                link === "Navigation" ? "/platform/navigation" :
+                                link === "Connect" ? "/platform/connect" :
+                                link === "Intelligence" ? "/platform/intelligence" :
+                                `/${link.toLowerCase().replace(/\s+/g, '-')}`;
                   return (
                   <li key={link}>
                     <Link 

@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/changelog",
     "/press",
-    "/events",
+    "/platform/discover/events",
     "/brand",
     "/community",
     "/trust-center",
