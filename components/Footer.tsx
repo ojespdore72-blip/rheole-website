@@ -8,12 +8,100 @@ import RheoleLogo from "./logo";
 const footerData = {
   Platform: ["Discover", "Navigation", "Connect", "Intelligence"],
   Technology: ["Developers", "APIs", "Documentation", "SDKs", "Status"],
-  Research: ["Publications", "Case Studies", "AI", "Urban Computing", "Whitepapers"],
+  Research: ["Publications", "Case Studies", "AI", "Urban Computing"],
   Company: ["About", "Manifesto", "Careers", "Contact", "Newsroom", "Brand"],
   Trust: ["Security", "Privacy", "Trust Center", "Community Guidelines", "Terms"],
   Developers: ["GitHub", "API Reference", "SDK Downloads", "Examples", "Support"],
   Resources: ["Blog", "Help Center", "FAQ", "Roadmap", "Release Notes"],
   Legal: ["Privacy Policy", "Terms of Service", "Cookies", "Licenses", "Open Source", "Accessibility"]
+};
+
+const getRoute = (link: string) => {
+  const overrides: Record<string, string> = {
+    // Platform Dropdowns
+    "Places": "/platform/discover/places",
+    "Events": "/platform/discover/events",
+    "Communities": "/platform/discover/communities",
+    "Businesses": "/platform/discover/businesses",
+    "New exploration": "/platform/discover/exploration",
+    "Smart routing": "/platform/navigation/smart-routing",
+    "Live traffic": "/platform/navigation/live-traffic",
+    "Transit": "/platform/navigation/transit",
+    "Movement": "/platform/navigation/movement-intelligence",
+    "Friends": "/platform/connect/friends",
+    "Opportunities": "/platform/connect/opportunity-intelligence",
+    "Local groups": "/platform/connect/local-coordination",
+    "Nearby Presence": "/platform/connect/presence-intelligence",
+    "Neighbourhood": "/platform/connect/neighbourhood-intelligence",
+    "User intent": "/platform/intelligence/intent-intelligence",
+    "Contextual intelligence": "/platform/intelligence/context-intelligence",
+    "Curiosity Intelligence": "/platform/intelligence/curiosity-intelligence",
+    "Personal rhythm": "/platform/intelligence/rhythm-intelligence",
+    
+    // Research
+    "Intent Intelligence": "/research/core-research/intent-intelligence",
+    "Context Intelligence": "/research/core-research/context-intelligence",
+    "Spatial Intelligence": "/research/core-research/spatial-intelligence",
+    "Urban Computing": "/research/urban-computing",
+    "Ambient AI": "/research/applied-ai/ambient-ai",
+    "Human Mobility": "/research/applied-ai/human-mobility",
+    "Environmental Intelligence": "/research/applied-ai/environmental-intelligence",
+    "AI Transparency": "/research/applied-ai/ai-transparency",
+    "Whitepapers": "/research/publications/whitepapers",
+    "Case Studies": "/research/case-studies",
+    "Engineering Notes": "/research/publications/engineering-notes",
+    "Research Blog": "/research/publications/research-blog",
+    
+    // Technology
+    "AI Architecture": "/technology/engineering/ai-architecture",
+    "Spatial Computing": "/technology/engineering/spatial-computing",
+    "Privacy Architecture": "/technology/engineering/privacy-architecture",
+    "SDKs": "/technology/developer-platform/sdks",
+    "REST APIs": "/platform/api-references",
+    "Realtime APIs": "/technology/developer-platform/realtime-apis",
+    "Authentication": "/technology/developer-platform/authentication",
+    "Status": "/technology/resources/status",
+    "Roadmap": "/technology/resources/roadmap",
+    "Documentation": "/technology/resources/documentation",
+    "Interactive Playground": "/technology/resources/interactive-playground",
+    "GitHub": "https://github.com/rheole",
+    "API Reference": "/platform/api-references",
+    "SDK Downloads": "/technology/developer-platform/sdks",
+    "Support": "/platform/support",
+    
+    // Company
+    "About Us": "/company/about/about-us",
+    "About": "/company/about/about-us",
+    "Manifesto": "/company/about/manifesto",
+    "Mission": "/company/about/mission",
+    "Careers": "/company/about/careers",
+    "Security": "/company/trust/security",
+    "Trust Center": "/company/trust/trust-center",
+    "Privacy": "/company/trust/privacy",
+    "Privacy Policy": "/company/trust/privacy",
+    "Contact": "/company/connect/contact",
+    "Newsroom": "/company/connect/newsroom",
+    "Brand Assets": "/company/connect/brand-assets",
+    "Press": "/company/connect/press",
+    
+    // Legal
+    "Cookies": "/legal/cookies",
+    
+    // Bottom Pillar routes
+    "Discover": "/platform/discover",
+    "Navigation": "/platform/navigation",
+    "Connect": "/platform/connect",
+    "Intelligence": "/platform/intelligence",
+    
+    // Resources
+    "Blog": "/resources/blog",
+    "Help Center": "/resources/help-center",
+    "FAQ": "/resources/faq",
+    
+    // Research
+    "AI": "/research/ai-research",
+  };
+  return overrides[link] || `/${link.toLowerCase().replace(/\s+/g, '-')}`;
 };
 
 export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
@@ -45,28 +133,7 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
               </h4>
               <ul className="flex flex-col gap-4">
                 {links.map((link) => {
-                  const route = link === "Movement" ? "/movement-intelligence" : 
-                                link === "Opportunities" ? "/opportunity-intelligence" : 
-                                link === "Local groups" ? "/local-coordination" : 
-                                link === "Nearby Presence" ? "/presence-intelligence" : 
-                                link === "Neighbourhood" ? "/neighbourhood-intelligence" : 
-                                link === "User intent" ? "/intent-intelligence" : 
-                                link === "Contextual intelligence" ? "/context-intelligence" : 
-                                link === "Environmental Intelligence" ? "/environmental-intelligence" : 
-                                link === "Curiosity Intelligence" ? "/curiosity-intelligence" : 
-                                link === "Personal rhythm" ? "/rhythm-intelligence" : 
-                                link === "Privacy Policy" ? "/privacy" :
-                                link === "Terms of Service" ? "/terms" :
-                                link === "Terms" ? "/terms" :
-                                link === "Case Studies" ? "/research/case-studies" :
-                                link === "AI" ? "/research/ai-research" :
-                                link === "Urban Computing" ? "/research/urban-computing" :
-                                link === "API Reference" ? "/platform/api-references" :
-                                link === "Discover" ? "/platform/discover" :
-                                link === "Navigation" ? "/platform/navigation" :
-                                link === "Connect" ? "/platform/connect" :
-                                link === "Intelligence" ? "/platform/intelligence" :
-                                `/${link.toLowerCase().replace(/\s+/g, '-')}`;
+                  const route = getRoute(link);
                   return (
                   <li key={link}>
                     <Link 
