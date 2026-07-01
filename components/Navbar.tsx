@@ -2,264 +2,365 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { User, Menu, X, ArrowRight, ChevronRight, Search } from "lucide-react";
 import RheoleLogo from "./logo";
 
+// --- Data Structures ---
+const navData = {
+  platform: {
+    title: "Platform",
+    columns: [
+      {
+        title: "Discover",
+        desc: "Find what matters around you.",
+        links: ["Places", "Events", "Communities", "Businesses", "New exploration"]
+      },
+      {
+        title: "Navigate",
+        desc: "Move with intent.",
+        links: ["Smart routing", "Live traffic", "Transit", "Movement"]
+      },
+      {
+        title: "Connect",
+        desc: "Bridge physical and digital.",
+        links: ["Friends", "Opportunities", "Local groups", "Nearby Presence", "Neighbourhood"]
+      },
+      {
+        title: "Understand",
+        desc: "Deep contextual awareness.",
+        links: ["User intent", "Contextual intelligence", "Environmental Intelligence", "Curiosity Intelligence", "Personal rhythm"]
+      }
+    ],
+    cta: "Explore the Platform"
+  },
+  technology: {
+    title: "Technology",
+    columns: [
+      {
+        title: "Engineering",
+        desc: "The backbone of spatial AI.",
+        links: ["AI Architecture", "Spatial Computing", "Privacy Architecture"]
+      },
+      {
+        title: "Developer Platform",
+        desc: "Build on Rheole.",
+        links: ["SDKs", "REST APIs", "Realtime APIs", "Authentication"]
+      },
+      {
+        title: "Resources",
+        desc: "Tools & Documentation.",
+        links: ["Status", "Roadmap", "Documentation", "Interactive Playground", "GitHub"]
+      }
+    ],
+    cta: "Build with Rheole"
+  },
+  research: {
+    title: "Research",
+    columns: [
+      {
+        title: "Core Research",
+        desc: "Pioneering spatial intelligence.",
+        links: ["Intent Intelligence", "Context Intelligence", "Spatial Intelligence", "Urban Computing"]
+      },
+      {
+        title: "Applied AI",
+        desc: "Bringing AI to the physical world.",
+        links: ["Ambient AI", "Human Mobility", "Environmental Intelligence", "AI Transparency"]
+      },
+      {
+        title: "Publications",
+        desc: "Read our latest findings.",
+        links: ["Whitepapers", "Case Studies", "Engineering Notes", "Research Blog"]
+      }
+    ],
+    cta: "Explore Research"
+  },
+  company: {
+    title: "Company",
+    columns: [
+      {
+        title: "About",
+        desc: "Who we are.",
+        links: ["About Us", "Manifesto", "Mission", "Careers"]
+      },
+      {
+        title: "Trust",
+        desc: "Your privacy is paramount.",
+        links: ["Security", "Trust Center", "Privacy"]
+      },
+      {
+        title: "Connect",
+        desc: "Get in touch.",
+        links: ["Contact", "Newsroom", "Brand Assets", "Press"]
+      }
+    ],
+    cta: "About Rheole"
+  }
+};
+
 export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
-  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-
-  // Intelligence Mega Menu Structure (Apple Style)
-  const intelligenceColumns = [
-    {
-      title: "Understand",
-      items: [
-        { name: "Intent Intelligence", path: "/intent-intelligence" },
-        { name: "Context Intelligence", path: "/context-intelligence" },
-        { name: "Living Conditions", path: "/environmental-intelligence" },
-        { name: "Curiosity Intelligence", path: "/curiosity-intelligence" },
-        { name: "Rhythm Intelligence", path: "/rhythm-intelligence" },
-      ]
-    },
-    {
-      title: "Connect",
-      items: [
-        { name: "Friends", path: "/friends" },
-        { name: "Founders", path: "/founding-access" },
-        { name: "Communities", path: "/communities" },
-        { name: "Neighbourhoods", path: "/neighbourhood-intelligence" },
-      ]
-    },
-    {
-      title: "Navigation",
-      items: [
-        { name: "Smart Routing", path: "/smart-routing" },
-        { name: "Transit", path: "/transit" },
-        { name: "Movement Intelligence", path: "/movement-intelligence" },
-        { name: "Live Traffic", path: "/live-traffic" },
-      ]
-    },
-    {
-      title: "Discover",
-      items: [
-        { name: "Places", path: "/places" },
-        { name: "Events", path: "/events" },
-        { name: "Businesses", path: "/businesses" },
-        { name: "Exploration", path: "/exploration" },
-      ]
-    }
-  ];
-
-  // Company Mega Menu Structure (Apple Style)
-  const companyColumns = [
-    {
-      title: "About Rheole",
-      large: true,
-      items: [
-        { name: "Founder Letter", path: "/founder-letter" },
-        { name: "Careers", path: "/careers" },
-      ]
-    },
-    {
-      title: "Support & Contact",
-      items: [
-        { name: "Contact Us", path: "/contact" },
-        { name: "Global Offices", path: "/contact" },
-      ]
-    },
-    {
-      title: "Legal",
-      items: [
-        { name: "Privacy Policy", path: "/privacy" },
-        { name: "Terms of Service", path: "/terms" },
-      ]
-    }
-  ];
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+      if (e.key === "Escape") {
+        setSearchOpen(false);
+        setMobileMenuOpen(false);
+        setActiveMenu(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
-  const springTransition = { type: "spring" as const, stiffness: 400, damping: 40, mass: 0.8 };
+  // Prevent scrolling when overlays are open
+  useEffect(() => {
+    if (searchOpen || mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [searchOpen, mobileMenuOpen]);
+
+  const transitionSpring = { type: "spring" as const, stiffness: 400, damping: 40, mass: 0.8 };
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-[999] pointer-events-none flex justify-center px-4 pt-4 md:px-8 md:pt-6 transition-all duration-500">
-        <motion.div 
-          layout
-          className={`pointer-events-auto flex items-center justify-between w-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] relative z-[100] rounded-[24px] border ${
-            scrolled
-              ? "bg-[#030303]/85 backdrop-blur-2xl saturate-150 border-white/[0.08] max-w-[1200px] px-6 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
-              : "bg-transparent border-transparent max-w-[1400px] px-2 py-4"
-          }`}
-        >
-          {/* Left: Logo */}
-          <div className="flex items-center w-[200px]">
-            <Link href="/" className="flex items-center group relative z-10 outline-none focus-visible:ring-2 focus-visible:ring-[#8B5CF6]/50 rounded-md">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: mounted ? 1 : 0, scale: scrolled ? 0.95 : 1 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-              >
-                <RheoleLogo className="h-[20px] w-auto transition-opacity duration-300 group-hover:opacity-80" />
+      <header 
+        onMouseLeave={() => setActiveMenu(null)}
+        className={`fixed top-0 left-0 right-0 z-[900] transition-all duration-300 ease-out border-b ${
+          scrolled || activeMenu
+            ? "bg-[#030303]/80 backdrop-blur-2xl saturate-[1.2] border-white/[0.08]"
+            : "bg-transparent border-transparent"
+        }`}
+      >
+        <div className="max-w-[1440px] mx-auto px-4 md:px-8 h-[48px] md:h-[56px] flex items-center justify-between">
+          
+          {/* Logo */}
+          <div className="flex-1 lg:flex-none flex items-center">
+            <Link href="/" className="group outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-sm">
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: mounted ? 1 : 0 }} transition={{ duration: 0.8 }}>
+                <RheoleLogo className="h-[18px] w-auto transition-all duration-300 group-hover:opacity-70" />
               </motion.div>
             </Link>
           </div>
 
-          {/* Center: Primary Navigation */}
-          {/* INCREASED GAP TO gap-8 (was gap-2) */}
-          <nav className="hidden lg:flex items-center gap-8" onMouseLeave={() => setActiveDropdown(null)}>
-            <Link href="/manifesto" className="nav-text" onMouseEnter={() => setActiveDropdown(null)}>
-              Manifesto
-            </Link>
-            <Link href="/about" className="nav-text" onMouseEnter={() => setActiveDropdown(null)}>
-              About
-            </Link>
-            
-            <div className="relative" onMouseEnter={() => setActiveDropdown("intelligence")}>
-              <button className={`nav-text ${activeDropdown === "intelligence" ? "text-[#F2F2F0]" : ""}`}>
-                Intelligence
-              </button>
-            </div>
-
-            <div className="relative" onMouseEnter={() => setActiveDropdown("company")}>
-              <button className={`nav-text ${activeDropdown === "company" ? "text-[#F2F2F0]" : ""}`}>
-                Company
-              </button>
-            </div>
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-10">
+            {Object.keys(navData).map((key) => (
+              <Link
+                key={key}
+                href={key === "platform" ? "/platform" : key === "technology" ? "/technology" : "#"}
+                onMouseEnter={() => setActiveMenu(key)}
+                className="relative group outline-none"
+              >
+                <span className={`text-[12px] font-medium tracking-wide transition-colors duration-300 ${activeMenu === key ? "text-white" : "text-[#A0A0A0] group-hover:text-[#F2F2F0]"}`}>
+                  {navData[key as keyof typeof navData].title}
+                </span>
+              </Link>
+            ))}
           </nav>
 
-          {/* Right: CTA */}
-          <div className="flex items-center justify-end w-[200px] gap-4">
+          {/* Right Actions */}
+          <div className="flex-1 lg:flex-none flex items-center justify-end gap-4 md:gap-6">
             <Link
               href="/founding-access"
-              className="hidden md:flex items-center justify-center h-8 px-4 rounded-full border border-white/[0.1] bg-transparent text-[#F2F2F0] text-[12px] font-medium transition-all duration-300 hover:bg-white hover:text-black outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+              className="relative hidden md:flex items-center justify-center h-[28px] px-4 rounded-full border border-white/[0.12] bg-white/[0.02] text-[#F2F2F0] text-[11px] font-medium tracking-wide transition-all duration-300 hover:bg-white/[0.08] hover:border-white/[0.3] hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] outline-none focus-visible:ring-2 focus-visible:ring-white/50"
             >
               Founding Access
             </Link>
 
-            <button 
-              onClick={() => setMenuOpen(true)}
-              className="lg:hidden w-10 h-10 rounded-full border border-white/[0.08] bg-[#050505] flex items-center justify-center text-[#F2F2F0] transition-colors hover:bg-white/[0.05] outline-none"
-            >
-              <Menu size={18} strokeWidth={1.5} />
-            </button>
-          </div>
-
-          {/* Mega Dropdown Panel */}
-          {/* Using fixed positioning to stretch across the entire screen width */}
-          <AnimatePresence>
-            {activeDropdown && (
-              <motion.div
-                initial={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -5, filter: "blur(2px)", transition: { duration: 0.2 } }}
-                transition={springTransition}
-                onMouseEnter={() => setActiveDropdown(activeDropdown)}
-                onMouseLeave={() => setActiveDropdown(null)}
-                className="fixed top-[80px] left-0 right-0 w-full bg-[#080808]/95 backdrop-blur-3xl border-t border-b border-white/[0.05] shadow-[0_32px_64px_rgba(0,0,0,0.6)] overflow-hidden pointer-events-auto"
-              >
-                <div className="w-full max-w-[1400px] mx-auto px-8 md:px-12 py-12">
-                  
-                  {activeDropdown === "intelligence" && (
-                    <div className="flex justify-between gap-8">
-                      {intelligenceColumns.map((col, i) => (
-                        <div key={i} className="flex flex-col gap-5 flex-1">
-                          <h4 className="text-[12px] text-[#6A6A6A] font-medium">{col.title}</h4>
-                          <ul className="flex flex-col gap-3">
-                            {col.items.map((item, j) => (
-                              <li key={j}>
-                                <Link 
-                                  href={item.path} 
-                                  onClick={() => setActiveDropdown(null)} 
-                                  className="text-[14px] text-[#D0D0D0] hover:text-white transition-colors font-medium block"
-                                >
-                                  {item.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {activeDropdown === "company" && (
-                    <div className="flex gap-16">
-                      {companyColumns.map((col, i) => (
-                        <div key={i} className="flex flex-col gap-5 min-w-[200px]">
-                          <h4 className="text-[12px] text-[#6A6A6A] font-medium">{col.title}</h4>
-                          <ul className="flex flex-col gap-3">
-                            {col.items.map((item, j) => (
-                              <li key={j}>
-                                <Link 
-                                  href={item.path} 
-                                  onClick={() => setActiveDropdown(null)} 
-                                  className={`${col.large ? 'text-[20px] font-semibold text-[#F2F2F0] hover:text-white' : 'text-[14px] text-[#D0D0D0] hover:text-white font-medium'} transition-colors block`}
-                                >
-                                  {item.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-        </motion.div>
-      </header>
-
-      {/* Full Screen Mobile Overlay Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: "-100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[1000] bg-[#030303] flex flex-col overflow-hidden"
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between w-full px-6 py-6 border-b border-white/[0.04]">
-              <RheoleLogo className="h-[20px] w-auto opacity-90" />
-              <button 
-                onClick={() => setMenuOpen(false)}
-                className="w-10 h-10 rounded-full bg-white/[0.03] flex items-center justify-center text-[#A0A0A0] hover:text-[#F2F2F0] transition-colors"
-              >
-                <X size={20} strokeWidth={1.5} />
+            <div className="flex items-center gap-4">
+              <button className="hidden md:block text-[#A0A0A0] hover:text-white transition-colors outline-none">
+                <User size={16} strokeWidth={1.5} />
+              </button>
+              <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden text-[#A0A0A0] hover:text-white transition-colors outline-none">
+                <Menu size={20} strokeWidth={1.5} />
               </button>
             </div>
+          </div>
+        </div>
 
-            {/* Content */}
-            <div className="flex-1 overflow-y-auto px-6 py-12">
-              <div className="flex flex-col gap-12 max-w-[400px] mx-auto">
-                <Link href="/manifesto" onClick={() => setMenuOpen(false)} className="text-[28px] font-serif-editorial text-[#F2F2F0] font-light">Manifesto</Link>
-                <Link href="/about" onClick={() => setMenuOpen(false)} className="text-[28px] font-serif-editorial text-[#F2F2F0] font-light">About</Link>
+        {/* Desktop Mega Menu Dropdown */}
+        <AnimatePresence>
+          {activeMenu && (
+            <motion.div
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5, transition: { duration: 0.15 } }}
+              transition={transitionSpring}
+              className="absolute top-[56px] left-0 right-0 w-full bg-[#030303]/95 backdrop-blur-3xl border-b border-white/[0.08] shadow-[0_40px_80px_rgba(0,0,0,0.5)] overflow-hidden"
+            >
+              <div className="max-w-[1440px] mx-auto px-8 py-12">
+                <div className="grid grid-cols-4 gap-12">
+                  {navData[activeMenu as keyof typeof navData].columns.map((col, i) => (
+                    <div key={i} className="flex flex-col gap-6">
+                      <div>
+                        <h4 className="text-[14px] text-white font-medium mb-1">{col.title}</h4>
+                        <p className="text-[12px] text-[#6A6A6A] font-light">{col.desc}</p>
+                      </div>
+                      <ul className="flex flex-col gap-4">
+                        {col.links.map((link, j) => {
+                          const route = link === "Movement" ? "/movement-intelligence" : 
+                                        link === "Opportunities" ? "/opportunity-intelligence" : 
+                                        link === "Local groups" ? "/local-coordination" : 
+                                        link === "Nearby Presence" ? "/presence-intelligence" : 
+                                        link === "Neighbourhood" ? "/neighbourhood-intelligence" : 
+                                        link === "User intent" ? "/intent-intelligence" : 
+                                        link === "Contextual intelligence" ? "/context-intelligence" : 
+                                        link === "Environmental Intelligence" ? "/environmental-intelligence" : 
+                                        link === "Curiosity Intelligence" ? "/curiosity-intelligence" : 
+                                        link === "Personal rhythm" ? "/rhythm-intelligence" : 
+                                        `/${link.toLowerCase().replace(/\s+/g, '-')}`;
+                          return (
+                            <li key={j}>
+                              <Link 
+                                href={route} 
+                                className="group inline-flex items-center text-[13px] text-[#A0A0A0] hover:text-white transition-colors"
+                                onClick={() => setActiveMenu(null)}
+                              >
+                                {link}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Mega Menu Footer CTA */}
+                <div className="mt-12 pt-6 border-t border-white/[0.05] flex items-center">
+                  <Link 
+                    href={activeMenu === "platform" ? "/platform" : activeMenu === "technology" ? "/technology" : "#"} 
+                    className="group flex items-center gap-2 text-[13px] text-white font-medium"
+                    onClick={() => setActiveMenu(null)}
+                  >
+                    {navData[activeMenu as keyof typeof navData].cta}
+                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      {/* Global Search Overlay */}
+      <AnimatePresence>
+        {searchOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[1000] bg-[#000000]/40 backdrop-blur-md flex justify-center items-start pt-[10vh] px-4"
+          >
+            <div className="absolute inset-0" onClick={() => setSearchOpen(false)} />
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 10 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 10 }}
+              transition={{ type: "spring", stiffness: 400, damping: 40 }}
+              className="relative w-full max-w-[640px] bg-[#0A0A0A] border border-white/[0.1] rounded-2xl shadow-2xl overflow-hidden"
+            >
+              <div className="flex items-center px-6 h-16 border-b border-white/[0.08]">
+                <Search size={18} className="text-[#6A6A6A]" />
+                <input 
+                  autoFocus
+                  type="text" 
+                  placeholder="Search Rheole..." 
+                  className="flex-1 bg-transparent border-none text-[16px] text-white px-4 outline-none placeholder:text-[#4A4A4A]"
+                />
+                <button onClick={() => setSearchOpen(false)} className="text-[12px] bg-white/[0.05] px-2 py-1 rounded text-[#8A8A8A] border border-white/[0.1]">ESC</button>
+              </div>
+              <div className="p-6">
+                <h5 className="text-[11px] uppercase tracking-wider text-[#6A6A6A] font-medium mb-4">Quick Links</h5>
+                <div className="flex flex-col gap-2">
+                  {["Intent Intelligence", "Developer SDKs", "Spatial Computing", "Careers"].map((item, i) => (
+                    <button key={i} className="flex items-center justify-between p-3 rounded-lg hover:bg-white/[0.03] transition-colors text-left group outline-none">
+                      <span className="text-[14px] text-[#A0A0A0] group-hover:text-white transition-colors">{item}</span>
+                      <ArrowRight size={14} className="text-[#4A4A4A] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <style jsx global>{`
-        .nav-text {
-          @apply text-[13px] text-[#8A8A8A] transition-colors duration-300 hover:text-[#F2F2F0] outline-none;
-        }
-      `}</style>
+      {/* Mobile Bottom Sheet Navigation */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div className="fixed inset-0 z-[1000] lg:hidden">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: "0%" }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 32, stiffness: 300, mass: 0.8 }}
+              className="absolute bottom-0 left-0 right-0 h-[85vh] bg-[#050505] rounded-t-[32px] border-t border-white/[0.08] shadow-[0_-20px_60px_rgba(0,0,0,0.6)] flex flex-col"
+            >
+              {/* Drag Handle Area */}
+              <div className="w-full flex justify-center pt-4 pb-2" onClick={() => setMobileMenuOpen(false)}>
+                <div className="w-12 h-1.5 bg-white/[0.2] rounded-full" />
+              </div>
+
+              {/* Header */}
+              <div className="px-6 pb-6 flex items-center justify-between border-b border-white/[0.05]">
+                <span className="text-[20px] font-medium text-white">Menu</span>
+                <button onClick={() => setMobileMenuOpen(false)} className="w-8 h-8 rounded-full bg-white/[0.05] flex items-center justify-center text-[#A0A0A0]">
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Scrollable Content */}
+              <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col gap-10">
+                {Object.keys(navData).map((key) => {
+                  const section = navData[key as keyof typeof navData];
+                  return (
+                    <div key={key} className="flex flex-col gap-6">
+                      <h3 className="text-[28px] font-light text-white tracking-tight">{section.title}</h3>
+                      <div className="flex flex-col gap-4">
+                        {section.columns[0].links.map((link, i) => (
+                          <Link key={i} href="#" className="flex items-center justify-between text-[16px] text-[#A0A0A0] hover:text-white" onClick={() => setMobileMenuOpen(false)}>
+                            {link}
+                            <ChevronRight size={16} className="text-[#4A4A4A]" />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -2,125 +2,112 @@
 
 import React from "react";
 import Link from "next/link";
+import { ArrowUpRight, ArrowUp, Globe } from "lucide-react";
 import RheoleLogo from "./logo";
-import ScrollReveal from "./ScrollReveal";
+
+const footerData = {
+  Platform: ["Discover", "Navigation", "Connect", "Intelligence"],
+  Technology: ["Developers", "APIs", "Documentation", "SDKs", "Status"],
+  Research: ["Publications", "Case Studies", "AI", "Urban Computing", "Whitepapers"],
+  Company: ["About", "Manifesto", "Careers", "Contact", "Newsroom", "Brand"],
+  Trust: ["Security", "Privacy", "Trust Center", "Community Guidelines", "Terms"],
+  Developers: ["GitHub", "API Reference", "SDK Downloads", "Examples", "Support"],
+  Resources: ["Blog", "Help Center", "FAQ", "Roadmap", "Release Notes"],
+  Legal: ["Privacy Policy", "Terms of Service", "Cookies", "Licenses", "Open Source", "Accessibility"]
+};
 
 export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
-  const footerCategories = [
-    {
-      title: "Platform",
-      links: [
-        { name: "Manifesto", path: "/manifesto" },
-        { name: "About", path: "/about" },
-        { name: "Intelligence", path: "/intelligence" },
-        { name: "Company", path: "/about" },
-        { name: "Founder Letter", path: "/founder-letter" },
-        { name: "Careers", path: "/careers" },
-        { name: "Contact", path: "/contact" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { name: "Privacy", path: "/privacy" },
-        { name: "Terms", path: "/terms" },
-      ],
-    },
-    {
-      title: "Resources",
-      links: [
-        { name: "Research", path: "/research" },
-        { name: "Developers", path: "#", badge: "Coming Soon" },
-        { name: "Status", path: "#", badge: "Coming Soon" },
-        { name: "Roadmap", path: "#", badge: "Coming Soon" },
-      ],
-    },
-    {
-      title: "Social",
-      links: [
-        { name: "LinkedIn", path: "#" },
-        { name: "X", path: "#" },
-        { name: "GitHub", path: "#" },
-        { name: "Instagram", path: "#" },
-      ],
-    },
-  ];
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <footer className="w-full bg-[#030303] pt-32 pb-16 overflow-hidden z-10 relative font-sans">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col gap-32">
+    <footer className="w-full bg-[#020202] pt-32 pb-12 overflow-hidden z-10 relative font-sans">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col gap-24">
         
-        {/* Large Editorial Statement */}
-        <ScrollReveal>
-          <div className="flex flex-col gap-8 md:gap-12 max-w-[800px]">
-            <RheoleLogo className="h-[28px] w-auto opacity-90" />
-            <h2 className="text-[32px] md:text-[56px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.1] tracking-tight">
-              The world is already moving.<br className="hidden md:block" />
-              <span className="text-[#A0A0A0]">Rheole simply helps you understand it.</span>
-            </h2>
-          </div>
-        </ScrollReveal>
+        {/* Top Editorial Section */}
+        <div className="flex flex-col items-start gap-6 max-w-[800px]">
+          <RheoleLogo className="h-[24px] w-auto opacity-90 self-start" />
+          <h2 className="text-[24px] md:text-[36px] text-white font-serif-editorial font-light leading-[1.2] tracking-tight">
+            Designed to understand the world around you.
+          </h2>
+          <p className="text-[16px] md:text-[18px] text-[#A0A0A0] font-light leading-relaxed max-w-[600px]">
+            Rheole is a spatial intelligence platform bridging the gap between human intent and physical reality. We build tools that make the world more legible, navigable, and connected.
+          </p>
+        </div>
 
-        {/* Navigation Columns */}
-        <ScrollReveal delay={0.1}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
-            {footerCategories.map((category) => (
-              <div key={category.title} className="flex flex-col gap-8">
-                <h4 className="text-[12px] uppercase tracking-[0.2em] text-[#F2F2F0] font-medium">
-                  {category.title}
-                </h4>
-                <ul className="flex flex-col gap-5">
-                  {category.links.map((link) => (
-                    <li key={link.name}>
-                      <Link 
-                        href={link.path}
-                        className="group inline-flex items-center gap-3 text-[15px] text-[#6A6A6A] transition-colors duration-300 hover:text-[#F2F2F0]"
-                      >
-                        <span className="relative">
-                          {link.name}
-                          <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-[#F2F2F0] transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100" />
-                        </span>
-                        {link.badge && (
-                          <span className="text-[10px] uppercase tracking-wider bg-white/[0.03] border border-white/[0.05] px-2 py-0.5 rounded-full text-[#4A4A4A]">
-                            {link.badge}
-                          </span>
-                        )}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
+        {/* Massive 8-Column Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-x-6 gap-y-16 pt-16">
+          {Object.entries(footerData).map(([title, links]) => (
+            <div key={title} className="flex flex-col gap-6">
+              <h4 className="text-[12px] font-semibold text-white tracking-wide">
+                {title}
+              </h4>
+              <ul className="flex flex-col gap-4">
+                {links.map((link) => (
+                  <li key={link}>
+                    <Link 
+                      href="#"
+                      className="group inline-flex items-center gap-1 text-[13px] text-[#8A8A8A] transition-colors duration-300 hover:text-[#F2F2F0] outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-sm"
+                    >
+                      <span className="relative">
+                        {link}
+                        <span className="absolute left-0 -bottom-1 w-full h-[1px] bg-[#F2F2F0] scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100 opacity-50" />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
 
-        {/* Bottom Details */}
-        <ScrollReveal delay={0.2}>
-          <div className="flex flex-col gap-8">
-            <div className="w-full h-[1px] bg-gradient-to-r from-white/[0.08] via-white/[0.02] to-transparent" />
+        {/* Bottom Footer Section */}
+        <div className="flex flex-col gap-8 pt-12">
+          {/* Top of Bottom Footer: Social & Tools */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+            <div className="flex items-center gap-5 text-[#8A8A8A]">
+              {/* Social icons removed per user request */}
+            </div>
             
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-              <div className="flex flex-col gap-2">
-                <p className="text-[13px] text-[#8A8A8A] font-light max-w-[400px] leading-relaxed">
-                  Rheole is an intelligence platform designed to bridge the gap between human intent and physical reality.
-                </p>
-                <div className="flex items-center gap-4 mt-2">
-                  <p className="text-[12px] text-[#4A4A4A]">
-                    © {new Date().getFullYear()} IKHAGA LTD. All rights reserved.
-                  </p>
-                  <span className="w-1 h-1 rounded-full bg-[#4A4A4A]" />
-                  <p className="text-[12px] text-[#4A4A4A]">
-                    Designed in London.
-                  </p>
+            <div className="flex items-center gap-6">
+              <button className="flex items-center gap-2 text-[13px] text-[#8A8A8A] hover:text-white transition-colors">
+                <Globe size={16} strokeWidth={1.5} />
+                English (IN)
+              </button>
+              <button 
+                onClick={scrollToTop}
+                className="flex items-center gap-2 text-[13px] text-[#8A8A8A] hover:text-white transition-colors group"
+              >
+                Back to top
+                <div className="w-6 h-6 rounded-full bg-white/[0.05] flex items-center justify-center group-hover:bg-white/[0.1] transition-colors">
+                  <ArrowUp size={14} className="group-hover:-translate-y-0.5 transition-transform" />
                 </div>
-              </div>
-
-              <Link href="/" className="opacity-40 hover:opacity-100 transition-opacity duration-300">
-                <RheoleLogo variant="icon" className="h-[24px] w-auto" />
-              </Link>
+              </button>
             </div>
           </div>
-        </ScrollReveal>
+
+          {/* Bottom of Bottom Footer: Legal & Copyright */}
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 text-[12px] text-[#6A6A6A]">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <p>Copyright © 2026 Rheole Technologies Inc. All rights reserved.</p>
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <span className="hidden lg:block w-1 h-1 rounded-full bg-[#3A3A3A]" />
+              <Link href="#" className="hover:text-white transition-colors">Terms of Use</Link>
+              <span className="hidden lg:block w-1 h-1 rounded-full bg-[#3A3A3A]" />
+              <Link href="#" className="hover:text-white transition-colors">Sales Policy</Link>
+              <span className="hidden lg:block w-1 h-1 rounded-full bg-[#3A3A3A]" />
+              <Link href="#" className="hover:text-white transition-colors">Legal</Link>
+              <span className="hidden lg:block w-1 h-1 rounded-full bg-[#3A3A3A]" />
+              <Link href="#" className="hover:text-white transition-colors">Site Map</Link>
+              <span className="w-1 h-1 rounded-full bg-[#3A3A3A] ml-2" />
+              <span>Version 2.0.0</span>
+            </div>
+          </div>
+        </div>
 
       </div>
     </footer>
