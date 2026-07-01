@@ -1,197 +1,486 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ScrollReveal from "@/components/ScrollReveal";
+import { 
+  ShieldCheck, 
+  Eye, 
+  Lock, 
+  SlidersHorizontal, 
+  ArrowRight,
+  Database,
+  History,
+  ToggleLeft,
+  Map,
+  Users,
+  Bell,
+  Camera,
+  Calendar
+} from "lucide-react";
+import Link from "next/link";
 
-interface ArchitectureCard {
-  title: string;
-  metric: string;
-  details: string[];
+// -----------------------------------------------------------------------------------
+// REUSABLE COMPONENTS
+// -----------------------------------------------------------------------------------
+
+function PrivacyNote({ title, category, children }: { title: string; category: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-4 p-8 bg-[#080808] border border-white/[0.05] rounded-2xl group hover:border-white/[0.1] transition-colors relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/[0.03] to-transparent rounded-full blur-2xl pointer-events-none group-hover:from-white/[0.06] transition-all" />
+      <span className="text-[10px] uppercase tracking-[0.2em] text-[#6A6A6A] font-medium">{category}</span>
+      <h4 className="text-[20px] text-[#F2F2F0] font-serif-editorial font-medium tracking-tight">{title}</h4>
+      <div className="text-[14px] text-[#8A8A8A] leading-relaxed font-light">
+        {children}
+      </div>
+    </div>
+  );
 }
 
-export default function PrivacyArchitecture() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const },
-  };
+// -----------------------------------------------------------------------------------
+// SECTIONS
+// -----------------------------------------------------------------------------------
 
-  const layers: ArchitectureCard[] = [
-    {
-      title: "Data We Collect",
-      metric: "Minimum Footprint",
-      details: [
-        "Ephemeral Localized Geohashes (not literal coordinates)",
-        "Profile Pseudonym Signatures",
-        "Public Event Registries & Schedule Tags",
-        "Temporary Mesh Message Headers (decay within 24h)"
-      ]
-    },
-    {
-      title: "Why We Collect It",
-      metric: "Strict Utility",
-      details: [
-        "To recommend active communities in your geohash",
-        "To index and coordinate local gathering markers",
-        "To route mesh communications across nearby relays",
-        "To calculate multi-signal path optimizations"
-      ]
-    },
-    {
-      title: "How It Is Protected",
-      metric: "Edge Isolation",
-      details: [
-        "AES-256 local database encryption",
-        "Client-side signature hashing before transit",
-        "P2P mesh routing for community chat nodes",
-        "No centralized tracking databases"
-      ]
-    },
-    {
-      title: "Your Absolute Control",
-      metric: "User Sovereignty",
-      details: [
-        "Modify location granularity parameters anytime",
-        "Instantly flush cached local data stacks",
-        "Request full account database deletion",
-        "Revoke community signature authorization keys"
-      ]
-    }
+function HeroSection() {
+  return (
+    <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-center px-6 md:px-12 pt-20 bg-[#000000]">
+      {/* Absolute minimalist glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white opacity-[0.015] blur-[150px] rounded-full pointer-events-none" />
+      
+      <div className="max-w-[1000px] mx-auto z-10 flex flex-col items-center text-center gap-12 w-full mt-12">
+        <ScrollReveal>
+          <div className="flex items-center justify-center gap-4 border border-white/[0.08] rounded-full px-5 py-2 bg-white/[0.02]">
+            <ShieldCheck size={14} className="text-[#A0A0A0]" />
+            <span className="text-[11px] uppercase tracking-[0.25em] text-[#A0A0A0] font-medium">Privacy Architecture</span>
+          </div>
+        </ScrollReveal>
+        
+        <ScrollReveal delay={0.2}>
+          <h1 className="text-[56px] md:text-[88px] lg:text-[112px] text-[#F2F2F0] font-serif-editorial font-light leading-[0.95] tracking-tight">
+            Intelligence begins<br />with trust.
+          </h1>
+        </ScrollReveal>
+        
+        <ScrollReveal delay={0.4}>
+          <p className="text-[20px] md:text-[24px] text-[#A0A0A0] font-light leading-relaxed max-w-[700px] mt-4">
+            Technology should understand people only with their explicit permission. The more intelligent a system becomes, the more responsibility it carries.
+          </p>
+        </ScrollReveal>
+        
+        <ScrollReveal delay={0.5}>
+          <p className="text-[16px] text-[#6A6A6A] font-light leading-relaxed max-w-[500px]">
+            Rheole believes trust is earned continuously—not assumed. Privacy is not a feature added after a product is built. It is the foundation upon which every intelligent decision is made.
+          </p>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}
+
+function PhilosophySection() {
+  const principles = [
+    { title: "Privacy is proactive.", desc: "We do not wait for privacy breaches to react. Systems are engineered to protect anonymity by default.", ex: "Location coordinates are fuzzed before reaching the cloud unless precise routing is explicitly active." },
+    { title: "Transparency is essential.", desc: "Intelligence must never operate in the shadows. Users deserve to know why a recommendation was made.", ex: "Every suggestion includes an 'Explain My Data' breakdown." },
+    { title: "People remain in control.", desc: "Consent is an ongoing conversation, not a one-time checkbox hidden in terms and conditions.", ex: "Permissions automatically expire after a period of inactivity." },
+    { title: "Data should have purpose.", desc: "We collect only what is strictly necessary to provide the immediate service requested.", ex: "If you ask for weather, we don't save your calendar events." },
   ];
 
   return (
-    <div className="w-full min-h-screen py-32 px-6 md:px-12 max-w-5xl mx-auto flex flex-col gap-16 md:gap-24">
-      {/* Title */}
-      <motion.div {...fadeInUp} className="flex flex-col gap-4 border-b border-brand-blue/15 dark:border-luxury-white/10 pb-8">
-        <h1 className="text-4xl md:text-6xl font-light tracking-wide uppercase text-brand-blue dark:text-luxury-white font-serif-editorial">
-          PRIVACY ARCHITECTURE
-        </h1>
-        <p className="text-xs uppercase tracking-widest text-brand-gold font-semibold">
-          Decentralized spatial privacy. Proven by design.
-        </p>
-      </motion.div>
-
-      {/* Narrative Intro */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.2 }}
-        className="flex flex-col gap-8 text-brand-blue/80 dark:text-luxury-white/80 font-light text-md md:text-lg leading-relaxed max-w-3xl"
-      >
-        <p className="font-serif-editorial text-xl md:text-3xl text-brand-blue dark:text-luxury-white leading-relaxed">
-          &ldquo;Privacy is not about hiding information. It is about retaining ownership of your physical presence.&rdquo;
-        </p>
-        <p className="text-sm tracking-wide uppercase text-brand-blue/70 dark:text-luxury-white/50">
-          Our system translates location data into dynamic mathematical indexes, ensuring that your coordinates are never permanently logged.
-        </p>
-      </motion.div>
-
-      {/* Interactive Privacy Diagram */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.4 }}
-        className="-mx-6 w-[calc(100%+3rem)] md:mx-0 md:w-full border-y md:border border-brand-blue/10 dark:border-luxury-white/10 rounded-none md:rounded-2xl frosted-glass p-8 flex flex-col gap-8 relative overflow-hidden shadow-xl"
-      >
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-gold/10 to-transparent blur-xl pointer-events-none" />
+    <section className="relative w-full py-[160px] px-6 md:px-12 bg-[#050505]">
+      <div className="max-w-[1200px] mx-auto flex flex-col gap-24">
         
-        <h3 className="text-xs uppercase tracking-widest text-brand-gold font-semibold">
-          Data Pipeline Anonymization Map
-        </h3>
-
-        {/* Custom SVG Architecture Map */}
-        <div className="w-full flex items-center justify-center py-6">
-          <svg viewBox="0 0 800 220" fill="none" className="w-full max-w-3xl stroke-brand-blue dark:stroke-luxury-white opacity-85">
-            {/* User GPS */}
-            <circle cx="80" cy="110" r="24" strokeWidth="0.75" />
-            <path d="M80,95 L80,125 M65,110 L95,110" strokeWidth="0.75" strokeDasharray="2 2" />
-            <text x="80" y="170" textAnchor="middle" className="text-[9px] tracking-widest uppercase font-sans fill-current">Raw GPS Coordinate</text>
-
-            {/* Line 1 */}
-            <path d="M110,110 L190,110" strokeWidth="0.75" />
-            <polygon points="190,110 184,107 184,113" fill="currentColor" className="stroke-none" />
-
-            {/* Anonymization Box */}
-            <rect x="210" y="70" width="160" height="80" rx="8" strokeWidth="0.75" />
-            <text x="290" y="105" textAnchor="middle" className="text-[10px] tracking-widest uppercase font-sans font-semibold fill-brand-gold">Local Geohashing</text>
-            <text x="290" y="125" textAnchor="middle" className="text-[9px] font-sans fill-current opacity-60">Scrubbing & Precision Truncation</text>
-            <text x="290" y="170" textAnchor="middle" className="text-[9px] tracking-widest uppercase font-sans fill-current">Edge Processing (On-Device)</text>
-
-            {/* Line 2 */}
-            <path d="M380,110 L460,110" strokeWidth="0.75" />
-            <polygon points="460,110 454,107 454,113" fill="currentColor" className="stroke-none" />
-
-            {/* Mesh Box */}
-            <polygon points="550,60 630,110 550,160 470,110" strokeWidth="0.75" strokeDasharray="3 3" />
-            <text x="550" y="115" textAnchor="middle" className="text-[10px] tracking-widest uppercase font-sans font-semibold fill-current">Decentralized Mesh</text>
-            <text x="550" y="170" textAnchor="middle" className="text-[9px] tracking-widest uppercase font-sans fill-current">Spatial Index Node</text>
-
-            {/* Line 3 */}
-            <path d="M630,110 L700,110" strokeWidth="0.75" />
-            <polygon points="700,110 694,107 694,113" fill="currentColor" className="stroke-none" />
-
-            {/* Output */}
-            <circle cx="730" cy="110" r="12" strokeWidth="0.75" />
-            <text x="730" y="170" textAnchor="middle" className="text-[9px] tracking-widest uppercase font-sans fill-current">Rheole Pulse</text>
-          </svg>
+        <div className="flex flex-col gap-6 max-w-[700px]">
+          <ScrollReveal>
+            <h2 className="text-[40px] md:text-[56px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.1] tracking-tight">
+              Our Privacy Philosophy.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <p className="text-[20px] text-[#A0A0A0] font-light leading-relaxed">
+              Intelligence requires understanding. Understanding requires trust. Trust requires privacy.
+            </p>
+          </ScrollReveal>
         </div>
 
-        <p className="text-xs text-brand-blue/70 dark:text-luxury-white/40 leading-relaxed text-center max-w-xl mx-auto">
-          Coordinates never leave the device in raw format. Hashing coordinates at the client level ensures your path history is cryptographically decoupled from your profile identity before interacting with spatial routing relays.
-        </p>
-      </motion.div>
-
-      {/* Grid List */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.4 }}
-        className="flex flex-col gap-12 mt-8 border-t border-brand-blue/15 dark:border-luxury-white/10 pt-16"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 gap-y-16">
-          {layers.map((layer, index) => (
-            <div key={index} className="flex flex-col gap-4 border-l border-brand-blue/10 dark:border-luxury-white/10 pl-6 text-left">
-              <div className="flex flex-col gap-1">
-                <span className="text-[10px] tracking-widest uppercase text-brand-gold font-semibold">
-                  {layer.metric}
-                </span>
-                <h3 className="text-lg md:text-xl font-medium text-brand-blue dark:text-luxury-white uppercase tracking-wider">
-                  {layer.title}
-                </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {principles.map((p, i) => (
+            <ScrollReveal key={i} delay={i * 0.1}>
+              <div className="flex flex-col gap-4 p-8 border-l border-white/[0.1] hover:border-white/[0.3] transition-colors">
+                <h3 className="text-[24px] text-[#F2F2F0] font-serif-editorial font-medium">{p.title}</h3>
+                <p className="text-[16px] text-[#8A8A8A] font-light">{p.desc}</p>
+                <div className="mt-4 pt-4 border-t border-white/[0.05]">
+                  <span className="text-[10px] uppercase tracking-widest text-[#4F6EF7] font-medium block mb-1">Real-World Application</span>
+                  <p className="text-[14px] text-[#A0A0A0] italic">"{p.ex}"</p>
+                </div>
               </div>
-              
-              <ul className="flex flex-col gap-2 mt-2">
-                {layer.details.map((detail, idx) => (
-                  <li key={idx} className="text-xs text-brand-blue/70 dark:text-luxury-white/70 leading-relaxed font-sans flex items-start gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand-gold mt-1.5 shrink-0" />
-                    <span>{detail}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
-      </motion.div>
 
-      {/* CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2 }}
-        className="flex flex-col gap-8 text-center border-t border-brand-blue/15 dark:border-luxury-white/10 pt-16 mt-8"
-      >
-        <h2 className="text-xl md:text-3xl font-light uppercase tracking-widest text-brand-blue dark:text-luxury-white leading-relaxed">
-          Request early access to the secure local network.
-        </h2>
-        <a
-          href="/founding-access"
-          className="inline-block mx-auto text-xs uppercase tracking-[0.25em] font-medium border border-brand-blue/30 dark:border-luxury-white/20 hover:border-brand-gold hover:text-brand-gold rounded-full px-8 py-4 transition-all duration-300 text-brand-blue dark:text-luxury-white"
-        >
-          Join the Future
-        </a>
-      </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function DesignSection() {
+  return (
+    <section className="relative w-full py-[160px] px-6 md:px-12 bg-[#080808]">
+      <div className="max-w-[1200px] mx-auto flex flex-col gap-24">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="flex flex-col gap-8">
+            <ScrollReveal>
+              <h2 className="text-[40px] md:text-[56px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.1] tracking-tight">
+                Privacy by Design.
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.1}>
+              <div className="text-[18px] text-[#8A8A8A] font-light leading-relaxed flex flex-col gap-6">
+                <p>
+                  Privacy is not a compliance checklist executed at the end of a development cycle. It is the architectural blueprint.
+                </p>
+                <p>
+                  We rely on <strong className="font-medium text-[#F2F2F0]">Minimal Data Collection</strong> and <strong className="font-medium text-[#F2F2F0]">Purpose Limitation</strong>. Our intelligence engines run on the principle of least privilege, processing sensitive contextual signals locally on your device whenever appropriate. 
+                </p>
+                <p>
+                  When cloud reasoning is required, data separation ensures that your identity is cryptographically decoupled from your queries. Secure defaults mean you never have to navigate complex settings just to protect yourself.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
+          
+          <div className="flex justify-center lg:justify-end">
+            <ScrollReveal delay={0.2} className="w-full max-w-[500px]">
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "Local Processing", icon: <Database size={20} /> },
+                  { label: "Data Separation", icon: <SlidersHorizontal size={20} /> },
+                  { label: "Secure Defaults", icon: <Lock size={20} /> },
+                  { label: "Least Privilege", icon: <ShieldCheck size={20} /> }
+                ].map((item, i) => (
+                  <div key={i} className="flex flex-col items-center text-center gap-4 p-8 bg-[#030303] border border-white/[0.05] rounded-2xl">
+                    <span className="text-[#A0A0A0]">{item.icon}</span>
+                    <span className="text-[14px] text-[#F2F2F0] font-medium">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+function PermissionEngineSection() {
+  const permissions = [
+    { name: "Location", icon: <Map size={16} />, why: "To understand surrounding context.", value: "Enables nearby recommendations.", revoke: "Can be limited to approximate or 'Only while using'." },
+    { name: "Calendar", icon: <Calendar size={16} />, why: "To understand your schedule constraints.", value: "Prevents routing you into traffic when you have a meeting.", revoke: "Can be revoked instantly via the Privacy Dashboard." },
+    { name: "Camera", icon: <Camera size={16} />, why: "To interpret physical surroundings visually.", value: "Translates signs or identifies architectural landmarks.", revoke: "Operates strictly on a per-session basis." }
+  ];
+
+  return (
+    <section className="relative w-full py-[160px] px-6 md:px-12 bg-[#000000] border-y border-white/[0.05]">
+      <div className="max-w-[1200px] mx-auto flex flex-col gap-20">
+        
+        <div className="text-center flex flex-col items-center gap-6">
+          <ScrollReveal>
+            <span className="text-[11px] uppercase tracking-[0.2em] text-[#6A6A6A] font-medium">Signature Concept</span>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <h2 className="text-[40px] md:text-[56px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.1] tracking-tight">
+              The Permission Engine
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <p className="text-[18px] text-[#8A8A8A] font-light max-w-[600px]">
+              Permissions should be meaningful conversations, not binary pop-ups. Every capability requested by Rheole is contextual, transparent, and completely reversible.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {permissions.map((perm, i) => (
+            <ScrollReveal key={i} delay={i * 0.1}>
+              <div className="flex flex-col p-8 bg-[#050505] border border-white/[0.08] rounded-2xl gap-6 h-full">
+                <div className="flex items-center gap-3 border-b border-white/[0.05] pb-4">
+                  <div className="p-2 bg-white/[0.05] rounded-lg text-[#F2F2F0]">
+                    {perm.icon}
+                  </div>
+                  <h3 className="text-[18px] text-[#F2F2F0] font-medium">{perm.name}</h3>
+                </div>
+                
+                <div className="flex flex-col gap-4 text-[14px]">
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-[#6A6A6A] font-medium block mb-1">Why requested</span>
+                    <p className="text-[#A0A0A0] font-light">{perm.why}</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-[#6A6A6A] font-medium block mb-1">Value created</span>
+                    <p className="text-[#A0A0A0] font-light">{perm.value}</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-[#6A6A6A] font-medium block mb-1">Revocation</span>
+                    <p className="text-[#A0A0A0] font-light">{perm.revoke}</p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <ScrollReveal>
+          <div className="mt-8">
+            <PrivacyNote title="Permission Intelligence™" category="Proprietary Concept">
+              Permissions are treated as ongoing agreements. If you grant location access for a weekend trip, Rheole can automatically revert the permission when you return home, ensuring intelligence never outlives its necessity.
+            </PrivacyNote>
+          </div>
+        </ScrollReveal>
+
+      </div>
+    </section>
+  );
+}
+
+function LifecycleSection() {
+  const steps = [
+    "User Permission",
+    "Minimal Collection",
+    "Local Understanding",
+    "Cloud Reasoning",
+    "Private Recommendation",
+    "Ephemeral Retention",
+    "Secure Deletion",
+    "Continuous Control"
+  ];
+
+  return (
+    <section className="relative w-full py-[160px] px-6 md:px-12 bg-[#050505]">
+      <div className="max-w-[1200px] mx-auto flex flex-col gap-24">
+        
+        <div className="flex flex-col gap-6 max-w-[700px]">
+          <ScrollReveal>
+            <h2 className="text-[40px] md:text-[56px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.1] tracking-tight">
+              The Data Lifecycle.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <p className="text-[18px] text-[#8A8A8A] font-light leading-relaxed">
+              Data follows a strict, transparent lifecycle rather than disappearing into unknown algorithmic systems. You can trace its journey from conception to deletion.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <ScrollReveal delay={0.2}>
+          <div className="relative border-l border-white/[0.1] ml-4 md:ml-12 pl-8 md:pl-16 flex flex-col gap-12">
+            {steps.map((step, i) => (
+              <div key={i} className="relative flex items-center group">
+                {/* Node indicator */}
+                <div className="absolute -left-[41px] md:-left-[73px] w-4 h-4 rounded-full bg-[#050505] border-[2px] border-[#4A4A4A] group-hover:border-[#F2F2F0] transition-colors" />
+                <h3 className="text-[20px] md:text-[28px] text-[#A0A0A0] font-light group-hover:text-[#F2F2F0] transition-colors tracking-tight">
+                  {step}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+      </div>
+    </section>
+  );
+}
+
+function TransparentIntelligenceSection() {
+  return (
+    <section className="relative w-full py-[160px] px-6 md:px-12 bg-[#080808]">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+        
+        <div className="flex flex-col gap-10">
+          <ScrollReveal>
+            <h2 className="text-[40px] md:text-[56px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.1] tracking-tight">
+              Transparent Intelligence.
+            </h2>
+          </ScrollReveal>
+          
+          <ScrollReveal delay={0.1}>
+            <div className="text-[18px] text-[#A0A0A0] font-light leading-relaxed flex flex-col gap-6">
+              <p>
+                Trust increases when intelligence explains itself.
+              </p>
+              <p>
+                A recommendation is useless if it feels like magic. When Rheole suggests a detour, it explicitly tells you <span className="text-[#F2F2F0] italic">why</span>.
+              </p>
+              <p>
+                You can instantly view which permissions contributed to the decision, which contextual signals (like weather or crowd density) were factored in, and alternative interpretations the engine considered.
+              </p>
+              <p>
+                If the intelligence assumes incorrectly, you can correct it. The system maintains full auditability and explainability, ensuring you are always a participant, never a subject.
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        <div className="flex flex-col gap-6">
+          <ScrollReveal delay={0.2}>
+            <PrivacyNote title="Explain My Data™" category="Proprietary Concept">
+              Every important recommendation includes an explanation of the information that influenced it. No hidden reasoning. No black-box algorithms. You see what the AI sees.
+            </PrivacyNote>
+          </ScrollReveal>
+          <ScrollReveal delay={0.3}>
+            <PrivacyNote title="Trust Graph™" category="Proprietary Concept">
+              A transparent visual representation of exactly which permissions, past interactions, and real-time contextual signals contributed to a specific output. 
+            </PrivacyNote>
+          </ScrollReveal>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+function ControlSection() {
+  const controls = [
+    "Permission Dashboard",
+    "Data Export",
+    "Temporary Permissions",
+    "Approximate Location",
+    "AI Memory Controls",
+    "Connected Devices",
+    "Privacy Dashboard",
+    "Delete Data",
+    "Incognito Sessions",
+    "Activity History",
+    "Context Controls",
+    "Consent History"
+  ];
+
+  return (
+    <section className="relative w-full py-[160px] px-6 md:px-12 bg-[#000000] overflow-hidden">
+      <div className="max-w-[1200px] mx-auto flex flex-col gap-20">
+        
+        <div className="text-center flex flex-col items-center gap-6">
+          <ScrollReveal>
+            <h2 className="text-[40px] md:text-[56px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.1] tracking-tight">
+              Your Control.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <p className="text-[18px] text-[#8A8A8A] font-light max-w-[600px]">
+              You remain in complete charge of your digital footprint. Privacy settings intelligently adapt to context while always remaining under your authority.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {controls.map((control, i) => (
+            <ScrollReveal key={i} delay={i * 0.05}>
+              <div className="flex items-center justify-between p-4 bg-[#050505] border border-white/[0.05] rounded-xl hover:bg-white/[0.02] transition-colors group cursor-default">
+                <span className="text-[13px] text-[#A0A0A0] font-medium group-hover:text-[#F2F2F0] transition-colors">{control}</span>
+                <ToggleLeft size={16} className="text-[#4A4A4A] group-hover:text-[#F2F2F0] transition-colors" />
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <ScrollReveal>
+          <div className="mt-8 border-t border-white/[0.05] pt-16">
+            <PrivacyNote title="Adaptive Privacy™" category="Rheole Concept">
+              Privacy settings intelligently adapt to your context. The permissions you grant while travelling through a foreign city automatically tighten when you return to your home or office, ensuring maximum utility when needed, and maximum privacy when not.
+            </PrivacyNote>
+          </div>
+        </ScrollReveal>
+
+      </div>
+    </section>
+  );
+}
+
+function ComparisonSection() {
+  return (
+    <section className="relative w-full py-[160px] px-6 md:px-12 bg-[#050505]">
+      <div className="max-w-[1000px] mx-auto flex flex-col gap-16">
+        <ScrollReveal>
+          <h2 className="text-[32px] md:text-[40px] text-[#F2F2F0] font-serif-editorial font-light tracking-tight text-center">
+            A New Standard for Trust
+          </h2>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/[0.05] rounded-3xl overflow-hidden border border-white/[0.05]">
+          <div className="bg-[#080808] p-10 md:p-16 flex flex-col gap-8">
+            <h3 className="text-[12px] uppercase tracking-[0.2em] text-[#6A6A6A] font-medium">Traditional Digital Services</h3>
+            <ul className="flex flex-col gap-6 text-[15px] text-[#8A8A8A] font-light">
+              <li className="flex items-start gap-4"><span className="text-[#4A4A4A] mt-1">•</span> Broad permissions.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4A4A4A] mt-1">•</span> Static settings.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4A4A4A] mt-1">•</span> Limited transparency.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4A4A4A] mt-1">•</span> Hidden reasoning.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4A4A4A] mt-1">•</span> One-time consent.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4A4A4A] mt-1">•</span> Generic privacy controls.</li>
+            </ul>
+          </div>
+          <div className="bg-[#0A0A0A] p-10 md:p-16 flex flex-col gap-8">
+            <h3 className="text-[12px] uppercase tracking-[0.2em] text-[#F2F2F0] font-medium">Rheole Privacy Architecture</h3>
+            <ul className="flex flex-col gap-6 text-[15px] text-[#F2F2F0] font-light">
+              <li className="flex items-start gap-4"><span className="text-[#4F6EF7] mt-1">•</span> Context-aware permissions.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4F6EF7] mt-1">•</span> Transparent reasoning.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4F6EF7] mt-1">•</span> Granular control.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4F6EF7] mt-1">•</span> Explainable intelligence.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4F6EF7] mt-1">•</span> Continuous consent.</li>
+              <li className="flex items-start gap-4"><span className="text-[#4F6EF7] mt-1">•</span> Human-centred trust.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FutureSection() {
+  return (
+    <section className="relative w-full py-[200px] px-6 md:px-12 bg-[#020202] overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-32 bg-gradient-to-b from-transparent to-white/[0.1]" />
+      
+      <div className="max-w-[800px] mx-auto text-center flex flex-col gap-12 relative z-10">
+        <ScrollReveal>
+          <h2 className="text-[40px] md:text-[64px] lg:text-[80px] text-[#F2F2F0] font-serif-editorial font-light leading-[1.05] tracking-tight">
+            The Future of Private AI.
+          </h2>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.2}>
+          <div className="text-[18px] md:text-[22px] text-[#A0A0A0] font-light leading-relaxed flex flex-col gap-8">
+            <p>
+              Future intelligence should become exponentially more capable without ever becoming more intrusive.
+            </p>
+            <p>
+              People should never have to choose between deeply useful technology and fundamental personal privacy. They are not opposing forces. 
+            </p>
+            <p className="text-[#F2F2F0] text-[22px] md:text-[28px] font-medium font-serif-editorial italic mt-4">
+              The most trusted systems are those that quietly respect boundaries while remaining genuinely helpful.
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}
+
+// -----------------------------------------------------------------------------------
+// PAGE EXPORT
+// -----------------------------------------------------------------------------------
+
+export default function PrivacyArchitecturePage() {
+  return (
+    <div className="relative w-full bg-[#000000] text-[#F2F2F0] selection:bg-white/20 selection:text-[#F2F2F0]">
+      <HeroSection />
+      <PhilosophySection />
+      <DesignSection />
+      <PermissionEngineSection />
+      <LifecycleSection />
+      <TransparentIntelligenceSection />
+      <ControlSection />
+      <ComparisonSection />
+      <FutureSection />
     </div>
   );
 }
