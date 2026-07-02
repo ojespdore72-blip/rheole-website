@@ -163,10 +163,14 @@ export default function Footer({ isGlobal = false }: { isGlobal?: boolean }) {
             </div>
             
             <div className="flex items-center gap-6">
-              <button className="flex items-center gap-2 text-[13px] text-[#8A8A8A] hover:text-white transition-colors">
-                <Globe size={16} strokeWidth={1.5} />
-                English (IN)
-              </button>
+              <div className="relative flex items-center group cursor-pointer">
+                <Globe size={16} strokeWidth={1.5} className="absolute left-0 text-[#8A8A8A] group-hover:text-white pointer-events-none transition-colors" />
+                <select className="appearance-none bg-transparent text-[13px] text-[#8A8A8A] group-hover:text-white transition-colors pl-6 pr-2 py-1 cursor-pointer outline-none border-none">
+                  <option value="in" className="bg-[#050505] text-[#8A8A8A]">English (IN)</option>
+                  <option value="us" className="bg-[#050505] text-[#8A8A8A]">English (US)</option>
+                  <option value="uk" className="bg-[#050505] text-[#8A8A8A]">English (UK)</option>
+                </select>
+              </div>
               <button 
                 onClick={scrollToTop}
                 className="flex items-center gap-2 text-[13px] text-[#8A8A8A] hover:text-white transition-colors group"

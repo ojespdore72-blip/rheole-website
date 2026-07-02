@@ -40,7 +40,7 @@ const navData = {
       {
         title: "Engineering",
         desc: "The backbone of spatial AI.",
-        links: ["AI Architecture", "Spatial Computing", "Privacy Architecture"]
+        links: ["Spatial Intelligence", "AI Architecture", "Spatial Computing", "Privacy Architecture"]
       },
       {
         title: "Developer Platform",
@@ -61,7 +61,7 @@ const navData = {
       {
         title: "Core Research",
         desc: "Pioneering spatial intelligence.",
-        links: ["Intent Intelligence", "Context Intelligence", "Spatial Intelligence", "Urban Computing"]
+        links: ["Spatial Intelligence", "Intent Intelligence", "Context Intelligence", "Urban Computing"]
       },
       {
         title: "Applied AI",
@@ -120,9 +120,9 @@ const getRoute = (link: string) => {
     "Curiosity Intelligence": "/platform/intelligence/curiosity-intelligence",
     "Personal rhythm": "/platform/intelligence/rhythm-intelligence",
     // Research
+    "Spatial Intelligence": "/research/core-research/spatial-intelligence",
     "Intent Intelligence": "/research/core-research/intent-intelligence",
     "Context Intelligence": "/research/core-research/context-intelligence",
-    "Spatial Intelligence": "/research/core-research/spatial-intelligence",
     "Urban Computing": "/research/urban-computing",
     "Ambient AI": "/research/applied-ai/ambient-ai",
     "Human Mobility": "/research/applied-ai/human-mobility",
@@ -134,6 +134,7 @@ const getRoute = (link: string) => {
     "Research Blog": "/research/publications/research-blog",
     
     // Technology
+    "Spatial Intelligence": "/technology/engineering/spatial-intelligence",
     "AI Architecture": "/technology/engineering/ai-architecture",
     "Spatial Computing": "/technology/engineering/spatial-computing",
     "Privacy Architecture": "/technology/engineering/privacy-architecture",
