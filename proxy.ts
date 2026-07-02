@@ -45,7 +45,7 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+  const nonce = btoa(crypto.randomUUID());
   
   // Enterprise Content Security Policy
   const cspHeader = `
