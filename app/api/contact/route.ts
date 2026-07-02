@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     const result = contactSchema.safeParse(rawBody);
     
     if (!result.success) {
-      Logger.warn("Invalid contact form payload", { errors: result.error.errors });
+      Logger.warn("Invalid contact form payload", { errors: result.error.issues });
       return NextResponse.json(
         { error: "Invalid input. Please check your data." },
         { status: 400 }

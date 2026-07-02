@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     // Zod Validation
     const result = submitSchema.safeParse(rawData);
     if (!result.success) {
-      Logger.warn("Invalid founding-access submit payload", { errors: result.error.errors });
+      Logger.warn("Invalid founding-access submit payload", { errors: result.error.issues });
       return NextResponse.json({ error: "Invalid input data" }, { status: 400 });
     }
 
