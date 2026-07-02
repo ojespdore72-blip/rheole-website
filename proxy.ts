@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { updateSession } from "@/lib/supabase/middleware";
 
 // Dynamic Rate Limiter Cache (In-Memory for standard Node/Edge processes)
 const ipCache = new Map<string, { count: number; resetTime: number }>();
@@ -65,8 +66,6 @@ export async function proxy(request: NextRequest) {
   requestHeaders.set("x-nonce", nonce);
   requestHeaders.set("Content-Security-Policy", cspHeader);
 
-  // Import locally to avoid circular dependencies if any
-  const { updateSession } = require("./lib/supabase/middleware");
   const response = await updateSession(request, requestHeaders);
 
   // Enterprise Security Headers
