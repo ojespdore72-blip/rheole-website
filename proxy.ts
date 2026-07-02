@@ -66,7 +66,17 @@ export async function proxy(request: NextRequest) {
   requestHeaders.set("x-nonce", nonce);
   requestHeaders.set("Content-Security-Policy", cspHeader);
 
-  const response = await updateSession(request, requestHeaders);
+  let response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+
+  try {
+    response = await updateSession(request, requestHeaders);
+  } catch (e) {
+    console.error("Supabase proxy error:", e);
+  }
 
   // Enterprise Security Headers
   response.headers.set("Content-Security-Policy", cspHeader);
