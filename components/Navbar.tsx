@@ -40,7 +40,7 @@ const navData = {
       {
         title: "Engineering",
         desc: "The backbone of spatial AI.",
-        links: ["Spatial Intelligence", "AI Architecture", "Spatial Computing", "Privacy Architecture"]
+        links: ["AI Architecture", "Spatial Computing", "Privacy Architecture"]
       },
       {
         title: "Developer Platform",
@@ -134,7 +134,6 @@ const getRoute = (link: string) => {
     "Research Blog": "/research/publications/research-blog",
     
     // Technology
-    "Spatial Intelligence": "/technology/engineering/spatial-intelligence",
     "AI Architecture": "/technology/engineering/ai-architecture",
     "Spatial Computing": "/technology/engineering/spatial-computing",
     "Privacy Architecture": "/technology/engineering/privacy-architecture",
