@@ -69,22 +69,42 @@ export default function Homepage() {
             {heroData.subheadline}
           </motion.p>
 
+          {/* Moved original CTAs to second section */}
+
+          {/* Added App Store / Play Store Links */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 1 }}
-            className="flex flex-col sm:flex-row items-center gap-6 backdrop-blur-md p-2 rounded-full bg-white/[0.02] border border-white/[0.05]"
+            transition={{ delay: 1, duration: 1 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
           >
             <Link 
-              href={heroData.ctaPrimary.link}
-              className="h-[56px] px-8 rounded-full bg-white text-black font-medium text-[16px] flex items-center justify-center hover:scale-105 transition-transform duration-300 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]"
+              href="#"
+              className="flex items-center gap-4 bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] transition-colors rounded-xl px-5 py-2.5"
             >
-              {heroData.ctaPrimary.label}
+              <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.19 2.31-.88 3.5-.8 1.96.15 3.32 1 4.14 2.54-3.41 2.05-2.88 6.09.28 7.35-.78 1.92-1.92 3.65-2.98 3.08zm-4.71-13.4c.16-2.22 1.76-4.04 3.73-4.32.39 2.51-1.63 4.38-3.73 4.32z"/>
+              </svg>
+              <div className="flex flex-col text-left">
+                <span className="text-[9px] text-white/70 uppercase font-medium">Download on the</span>
+                <span className="text-[15px] text-white font-semibold leading-none mt-0.5">App Store</span>
+              </div>
             </Link>
-            <button className="h-[56px] px-8 rounded-full bg-transparent text-white font-medium text-[16px] flex items-center justify-center gap-3 hover:bg-white/[0.05] transition-colors group">
-              <PlayCircle className="w-5 h-5 text-[#A0A0A0] group-hover:text-white transition-colors" />
-              {heroData.ctaSecondary.label}
-            </button>
+            <Link 
+              href="#"
+              className="flex items-center gap-4 bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] transition-colors rounded-xl px-5 py-2.5"
+            >
+              <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.7,2.5C3.3,2.9,3,3.6,3,4.6v14.9c0,1,0.3,1.7,0.7,2.1l0.1,0.1l8.3-8.3v-0.2L3.8,2.4L3.7,2.5z"/>
+                <path d="M14.9,9.2l-2.7,2.7v0.2l2.7,2.7l0.1-0.1l3.2-1.8c0.9-0.5,0.9-1.4,0-1.9l-3.2-1.8L14.9,9.2z"/>
+                <path d="M12.2,12l-8.4,8.4l8.4-4.8L12.2,12z"/>
+                <path d="M3.8,2.4L12.2,12l0-3.6L3.8,2.4z"/>
+              </svg>
+              <div className="flex flex-col text-left">
+                <span className="text-[9px] text-white/70 uppercase font-medium">Get it on</span>
+                <span className="text-[15px] text-white font-semibold leading-none mt-0.5">Google Play</span>
+              </div>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -100,6 +120,22 @@ export default function Homepage() {
                 {line}
               </p>
             ))}
+          </motion.div>
+
+          <motion.div 
+            style={{ opacity: textOpacity }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-16 backdrop-blur-md p-2 rounded-full bg-white/[0.02] border border-white/[0.05] max-w-fit mx-auto"
+          >
+            <Link 
+              href={heroData.ctaPrimary.link}
+              className="h-[56px] px-8 rounded-full bg-white text-black font-medium text-[16px] flex items-center justify-center hover:scale-105 transition-transform duration-300 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]"
+            >
+              {heroData.ctaPrimary.label}
+            </Link>
+            <button className="h-[56px] px-8 rounded-full bg-transparent text-white font-medium text-[16px] flex items-center justify-center gap-3 hover:bg-white/[0.05] transition-colors group">
+              <PlayCircle className="w-5 h-5 text-[#A0A0A0] group-hover:text-white transition-colors" />
+              {heroData.ctaSecondary.label}
+            </button>
           </motion.div>
         </div>
         {/* Spacer for sticky scroll */}

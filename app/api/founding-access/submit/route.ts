@@ -1,9 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase, withRetry } from "@/lib/supabase/client";
 import { Logger } from "@/lib/monitoring/logger";
+import { z } from "zod";
 
 // In-memory fallback for local development without Supabase
 export const localDbStore = new Map<string, any>();
+
+const submitSchema = z.object({
+  email: z.string().email(),
+  fullName: z.string().min(2).max(100),
+  dob: z.string().optional(),
+  mobile: z.string().optional(),
+  country: z.string().optional(),
+  city: z.string().optional(),
+  discovery: z.string().optional(),
+  excitement: z.string().min(10).max(5000),
+}).strict();
 
 function generateReferralCode() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -16,13 +28,16 @@ function generateReferralCode() {
 
 export async function POST(request: NextRequest) {
   try {
-    const data = await request.json();
+    const rawData = await request.json();
     
-    // Minimal validation
-    if (!data.email || !data.fullName || !data.excitement) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    // Zod Validation
+    const result = submitSchema.safeParse(rawData);
+    if (!result.success) {
+      Logger.warn("Invalid founding-access submit payload", { errors: result.error.errors });
+      return NextResponse.json({ error: "Invalid input data" }, { status: 400 });
     }
 
+    const data = result.data;
     const referralCode = generateReferralCode();
     
     const dbRecord = {
@@ -47,12 +62,11 @@ export async function POST(request: NextRequest) {
         if (error) throw error;
         return { data: null, error: null };
       });
-      Logger.info("Founding Member created in database", { email: data.email });
+      Logger.info("Founding Member created in database");
     } else {
-      // Mock save
       localDbStore.set(data.email, dbRecord);
-      localDbStore.set(referralCode, dbRecord); // Allow lookup by referral code
-      Logger.info("Founding Member simulated save (No Supabase client)", { email: data.email, code: referralCode });
+      localDbStore.set(referralCode, dbRecord);
+      Logger.info("Founding Member simulated save (No Supabase client)");
     }
 
     return NextResponse.json({
@@ -62,7 +76,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error: any) {
-    Logger.error("Failed to submit founding access application", error);
+    Logger.error("Failed to submit founding access application", error.message || "Unknown error");
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

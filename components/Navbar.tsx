@@ -210,7 +210,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
       <header 
         onMouseLeave={() => setActiveMenu(null)}
         className={`fixed top-0 left-0 right-0 z-[900] transition-all duration-300 ease-out border-b ${
-          scrolled || activeMenu
+          scrolled
             ? "bg-[#030303]/80 backdrop-blur-2xl saturate-[1.2] border-white/[0.08]"
             : "bg-transparent border-transparent"
         }`}
@@ -231,7 +231,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
             {Object.keys(navData).map((key) => (
               <Link
                 key={key}
-                href={key === "platform" ? "/platform" : key === "technology" ? "/technology" : key === "research" ? "/research" : key === "company" ? "/about" : "#"}
+                href={key === "platform" ? "/platform" : key === "technology" ? "/technology" : key === "research" ? "/research" : key === "company" ? "/company/about" : "#"}
                 onMouseEnter={() => setActiveMenu(key)}
                 className="relative group outline-none"
               >
@@ -306,7 +306,7 @@ export default function Navbar({ isGlobal = false }: { isGlobal?: boolean }) {
                 {/* Mega Menu Footer CTA */}
                 <div className="mt-12 pt-6 border-t border-white/[0.05] flex items-center">
                   <Link 
-                    href={activeMenu === "platform" ? "/platform" : activeMenu === "technology" ? "/technology" : activeMenu === "research" ? "/research" : activeMenu === "company" ? "/about" : "#"} 
+                    href={activeMenu === "platform" ? "/platform" : activeMenu === "technology" ? "/technology" : activeMenu === "research" ? "/research" : activeMenu === "company" ? "/company/about" : "#"} 
                     prefetch={false}
                     className="group flex items-center gap-2 text-[13px] text-white font-medium"
                     onClick={() => setActiveMenu(null)}

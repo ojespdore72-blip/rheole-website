@@ -28,7 +28,7 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const ip = (request as any).ip || request.headers.get("x-forwarded-for") || "127.0.0.1";
 
   // Rate limit public API endpoints and form submissions
@@ -65,11 +65,9 @@ export function proxy(request: NextRequest) {
   requestHeaders.set("x-nonce", nonce);
   requestHeaders.set("Content-Security-Policy", cspHeader);
 
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  // Import locally to avoid circular dependencies if any
+  const { updateSession } = require("./lib/supabase/middleware");
+  const response = await updateSession(request, requestHeaders);
 
   // Enterprise Security Headers
   response.headers.set("Content-Security-Policy", cspHeader);
